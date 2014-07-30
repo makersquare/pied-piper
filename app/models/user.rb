@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  # TODO:
-  # This is made for the purpose of stubbing users
-  # We'll build a real auth system later
+  has_many :pipeline_users
+  has_many :pipelines, :through => :pipeline_users
 end

@@ -11,10 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729232410) do
+ActiveRecord::Schema.define(version: 20140730224813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pipeline_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "pipeline_id"
+    t.boolean  "admin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pipelines", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stages", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "pipeline_id"
+    t.integer  "pipeline_location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

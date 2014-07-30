@@ -44,11 +44,19 @@ GEM
       execjs
     coffee-script-source (1.7.1)
     columnize (0.8.9)
+    contextio (1.7.2)
+      faraday (~> 0.8.0)
+      faraday_middleware (~> 0.9.0)
+      simple_oauth (~> 0.2.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.1)
+    faraday (0.8.9)
+      multipart-post (~> 1.2.0)
+    faraday_middleware (0.9.1)
+      faraday (>= 0.7.4, < 0.10)
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (1.5.3)
@@ -65,6 +73,7 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.10.1)
+    multipart-post (1.2.0)
     pg (0.17.0)
     polyglot (0.3.5)
     pry (0.10.0)
@@ -114,6 +123,7 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    simple_oauth (0.2.0)
     slop (3.6.0)
     sprockets (2.11.0)
       hike (~> 1.2)
@@ -142,6 +152,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   coffee-rails (~> 4.0.0)
+  contextio
   jbuilder (~> 1.2)
   jquery-rails
   pg

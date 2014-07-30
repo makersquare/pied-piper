@@ -48,3 +48,4 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
+require_relative 'services/transactionscript_spec_helper.rb'

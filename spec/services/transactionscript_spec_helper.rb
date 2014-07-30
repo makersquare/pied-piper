@@ -1,14 +1,12 @@
-require 'spec_helper'
-
-#please describe the transaction script class in the same way as below in order to
-#maintain the form of the tests
-
-#this refers to the transactionscript_spec_helper and needs to be used at the
-#beginning of every transaction script.
+#these tests are for all different transaction scripts
+#to run these tests include it_behaves_like('TransactionScripts') at beginning
+#of your spec tests.
 
 shared_examples_for "TransactionScripts" do
+#this will create a new instance of the described Transanction Script
   let(:current_script) { described_class.new }
 
+#these tests make sure it conforms to the basic form a Transaction script
   it "exists" do
     expect(described_class).to be_a(Class)
     expect(described_class.new).to be_a(TransactionScript)
@@ -35,10 +33,4 @@ shared_examples_for "TransactionScripts" do
     expect(result.data).to eql("somedata")
   end
 
-end
-
-describe TransactionScript do
-#this refers to the transactionscript_spec_helper and needs to be used at the
-#beginning of every transaction script.
-  it_behaves_like('TransactionScripts')
 end

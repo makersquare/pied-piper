@@ -6,7 +6,11 @@ gem 'rails', '4.0.2'
 # RSpec
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.2'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-byebug'
 end
+
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
@@ -45,3 +49,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'vcr', '~> 2.6.0'
+gem 'webmock', '~> 1.13.0'

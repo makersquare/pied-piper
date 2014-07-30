@@ -1,5 +1,9 @@
 require 'ostruct'
+<<<<<<< HEAD
 require 'pry-byebug'
+=======
+
+>>>>>>> created base transaction script class and implemented ostruct, created speck helper file and shared spec for transaction script inherited classes to use.
 # Example TransactionScript
 #
 # def SomeScript < TransactionScript

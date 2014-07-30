@@ -62,6 +62,11 @@ gem 'figaro'
 <<<<<<< HEAD
 gem 'vcr', '~> 2.6.0'
 gem 'webmock', '~> 1.13.0'
+<<<<<<< HEAD
 =======
 gem 'contextio'
 >>>>>>> I added contextio to the Gemfile
+=======
+
+gem 'contextio'
+>>>>>>> created base transaction script class and implemented ostruct, created speck helper file and shared spec for transaction script inherited classes to use.

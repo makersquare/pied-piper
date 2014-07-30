@@ -1,4 +1,13 @@
 Crm::Application.routes.draw do
+
+  get '/', to: 'sessions#index'
+
+  # devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+
+  # get '/signin'      => 'sessions#new'     # New page
+  # post '/signin'     => 'sessions#create'  # CREATE
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

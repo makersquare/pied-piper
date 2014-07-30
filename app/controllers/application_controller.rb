@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   # We'll build a real auth system later
   # When testing, stub current_user
   def current_user
-    User.new(name: "Shehzan", email: "shehzan@makersquare.com", admin: true)
+    # User.new(name: "Shehzan", email: "shehzan@makersquare.com", admin: true)
   end
 end

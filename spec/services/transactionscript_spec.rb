@@ -1,9 +1,11 @@
 
 
 shared_examples_for "TransactionScripts" do
+  let(:current_script) { described_class.new }
+
   it "exists" do
     expect(described_class).to be_a(Class)
-    expect(described_class).to be_a(TransactionScript)
+    expect(described_class.new).to be_a(TransactionScript)
   end
 
   it "can fail" do
@@ -29,12 +31,7 @@ shared_examples_for "TransactionScripts" do
 
 end
 
-shared_context "TransactionScripts" do
-  let(:current_script) { described_class.new }
-end
-
 describe TransactionScript do
-  include_context('TransactionScripts')
   it_behaves_like('TransactionScripts')
 end
 

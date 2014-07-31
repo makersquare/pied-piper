@@ -1,32 +1,40 @@
-describe TransactionScript do
 
+
+shared_examples_for "TransactionScripts" do
   it "exists" do
-    expect(TransactionScript).to be_a(Class)
+    expect(described_class).to be_a(Class)
+    expect(described_class).to be_a(TransactionScript)
   end
 
-  let(:obj) { TransactionScript.new }
-
   it "can fail" do
-    expect(obj).to respond_to(:failure)
-    result = obj.failure("error_code")
+    expect(current_script).to respond_to(:failure)
+    result = current_script.failure("error_code")
     expect(result.success?).to eql(false)
     expect(result.error).to eql("error_code")
   end
 
   it "can fail with data" do
-    result = obj.failure("error_code", data: "someData")
+    result = current_script.failure("error_code", data: "someData")
     expect(result.success?).to eql(false)
     expect(result.error).to eql("error_code")
     expect(result.data).to eql("someData")
   end
 
   it "can succeed" do
-    expect(obj).to respond_to(:success)
-    result = obj.success(data: "somedata")
+    expect(current_script).to respond_to(:success)
+    result = current_script.success(data: "somedata")
     expect(result.success?).to eql(true)
     expect(result.data).to eql("somedata")
   end
 
-
-
 end
+
+shared_context "TransactionScripts" do
+  let(:current_script) { described_class.new }
+end
+
+describe TransactionScript do
+  include_context('TransactionScripts')
+  it_behaves_like('TransactionScripts')
+end
+

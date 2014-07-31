@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730224813) do
+ActiveRecord::Schema.define(version: 20140730234921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "box_history", force: true do |t|
+    t.integer  "box_id"
+    t.integer  "stage_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "boxes", force: true do |t|
+    t.integer "contact_id"
+    t.integer "pipeline_id"
+    t.integer "stage_id"
+    t.text    "notes"
+  end
+
+  create_table "contacts", force: true do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phoneNum"
+    t.string "city"
+  end
 
   create_table "pipeline_users", force: true do |t|
     t.integer  "user_id"

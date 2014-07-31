@@ -1,6 +1,6 @@
 class TransactionScript
 
-  private
+  # private
   def self.run(inputs)
     self.new.run(inputs)
   end
@@ -10,7 +10,7 @@ class TransactionScript
   end
 
   def success(data)
-    return data.merge(:success? => true)
+    return {:success? => true}.merge({data: data})
   end
 
 end

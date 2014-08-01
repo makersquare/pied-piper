@@ -1,3 +1,4 @@
+require 'pry-byebug'
 class CreatePipelineScript < TransactionScript
   def run(params)
     return failure(:name_nil) if params[:name].nil?

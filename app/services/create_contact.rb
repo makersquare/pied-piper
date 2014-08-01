@@ -1,7 +1,6 @@
 class CreateContact < TransactionScript
   def run(params)
-    contact = Contact.create(params)
-    result = contact
+    result = Contact.create(params)
     return success(contact: result)
   end
 end

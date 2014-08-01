@@ -12,6 +12,7 @@ describe GetPipelineContacts do
   end
 
   it "gets contacts given pipeline location" do
+    p1 = CreatePipeline.run()
     c1 = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phoneNum=>'1234567'})
     c2 = CreateContact.run({:name=>'contact2', :email=>'you@email.com', :phoneNum=>'2234567'})
     c3 = CreateContact.run({:name=>'contact3', :email=>'they@email.com', :phoneNum=>'3234567'})

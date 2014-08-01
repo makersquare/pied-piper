@@ -161,7 +161,6 @@ DEPENDENCIES
   hirb
   jbuilder (~> 1.2)
   jquery-rails
-  omniauth
   omniauth-google-oauth2
   pg
   pry-byebug

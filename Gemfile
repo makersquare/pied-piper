@@ -34,7 +34,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'hirb'
 gem 'pry-byebug'

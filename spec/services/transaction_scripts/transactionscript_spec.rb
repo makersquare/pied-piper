@@ -9,3 +9,4 @@ describe TransactionScript do
 #beginning of every transaction script.
   it_behaves_like('TransactionScripts')
 end
+

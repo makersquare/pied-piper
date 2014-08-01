@@ -34,10 +34,11 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'hirb'
+gem 'rspec'
+gem 'pry-byebug'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

@@ -158,9 +158,11 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
+  hashie
   hirb
   jbuilder (~> 1.2)
   jquery-rails
+  json
   omniauth-google-oauth2
   pg
   pry-byebug

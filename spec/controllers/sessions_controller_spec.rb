@@ -23,5 +23,4 @@ describe SessionsController do
       expect(response.request.fullpath).to eq("/signout")
     end
   end
-
 end

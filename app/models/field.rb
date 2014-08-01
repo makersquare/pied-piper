@@ -1,3 +1,3 @@
 class Field < ActiveRecord::Base
-  belongs_to :pipelines
+  belongs_to :pipeline
 end

@@ -1,0 +1,17 @@
+<h2>Contact#create_contact - link from pipeline & homepage</h2>
+
+<%= form_tag(contacts_path, method: 'post') do %>
+  <%= label_tag('pipeline_id', 'Pipeline ID') %>
+  <%= text_field_tag('pipeline_id') %><br>
+
+  <%= label_tag('contact_name', 'Name') %>
+  <%= text_field_tag('contact_name') %><br>
+
+  <%= label_tag('email', 'Email') %>
+  <%= text_field_tag('email') %><br>
+
+  <%= label_tag('phoneNum', 'Phone number') %>
+  <%= text_field_tag('phoneNum') %><br>
+
+  <%= submit_tag('submit') %>
+<% end %>

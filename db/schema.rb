@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731211835) do
+ActiveRecord::Schema.define(version: 20140803084647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,12 @@ ActiveRecord::Schema.define(version: 20140731211835) do
     t.string  "value"
   end
 
-  create_table "box_history", force: true do |t|
+  create_table "box_histories", force: true do |t|
     t.integer  "box_id"
     t.integer  "stage_id"
+    t.integer  "stage_from"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "stage_from"
   end
 
   create_table "boxes", force: true do |t|
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20140731211835) do
 
   create_table "fields", force: true do |t|
     t.integer "pipeline_id"
-    t.string  "type"
     t.string  "field_name"
+    t.string  "field_type"
   end
 
   create_table "notes", force: true do |t|

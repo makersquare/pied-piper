@@ -8,6 +8,11 @@ class TypeFormTrigger
   end
 
 
+
+class TypeFormTrigger < TransactionScript
+  def run(inputs)
+
+  end
 end
 
 

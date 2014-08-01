@@ -1,10 +1,11 @@
 require_relative '../../app/services/triggers/typeform_script.rb'
 require 'spec_helper'
 
-describe PP:TypeFormTrigger do
+
+describe PP::TypeFormTrigger do
 
   describe "checking the API response" do
-    let(:script) { TypeFormTrigger.new }
+    let(:script) { PP::TypeFormTrigger.new }
 
     before(:each) do
       contact =
@@ -59,7 +60,13 @@ describe PP:TypeFormTrigger do
       expect(result).to_not be_nil
     end
 
-    xit "checks email" do
+    it "checks name" do
+      result = script.run
+      expect(result.)
+      expect(result.success?).to eq(true)
+    end
+
+    it "checks email" do
       result = script.run
       expect(result.success?).to eq(true)
     end
@@ -90,6 +97,7 @@ describe PP:TypeFormTrigger do
       end
 
       xit "assigns the contact to a pipeline" do
+
       end
     end
   end

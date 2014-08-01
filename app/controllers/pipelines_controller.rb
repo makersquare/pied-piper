@@ -11,7 +11,7 @@ class PipelinesController < ApplicationController
   end
 
   #Retrieves all rows from the Pipeline table, ID, name
-  def index 
+  def index
     respond_with Pipeline.all
   end
 
@@ -25,7 +25,7 @@ class PipelinesController < ApplicationController
   # also need to destroy all associated stages and boxes associated
   # destroy the entries in the pipeline users table
   def destroy
-    
+
   end
 
   #sets DB flag for pipeline to be trashed, can limit to admins on frontend

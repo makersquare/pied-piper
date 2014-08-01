@@ -41,7 +41,8 @@ end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
-# Use unicorn as the app server
+# Use unicorn as the app
+#!!!!!!!!!server pagerDuty!!!!!!!!!!!!!!!!!!!
 # gem 'unicorn'
 
 # Use Capistrano for deployment
@@ -49,3 +50,5 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'contextio'

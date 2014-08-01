@@ -10,6 +10,5 @@ class CreatePipelineScript < TransactionScript
     rescue Exception => e
       return failure(:name_taken, :error_data => e)
     end
-
   end
 end

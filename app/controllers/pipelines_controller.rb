@@ -3,8 +3,8 @@ class PipelinesController < ApplicationController
 
   #TSX cause we need the pipeline data, we need the stage data, boxes
   def show 
-    Pipeline.find(pipeline_params)
-    respond_with 
+    RetrievePipeline.run()
+    respond_with
   end
 
   #Retrieves all rows from the Pipeline table, ID, name
@@ -26,7 +26,7 @@ class PipelinesController < ApplicationController
   # also need to destroy all associated stages and boxes associated
   # destroy the entries in the pipeline users table
   def destroy
-    
+
   end
 
   #sets DB flag for pipeline to be trashed, can limit to admins on frontend

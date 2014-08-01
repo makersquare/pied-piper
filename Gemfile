@@ -6,7 +6,11 @@ gem 'rails', '4.0.2'
 # RSpec
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.2'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-byebug'
 end
+
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
@@ -37,7 +41,8 @@ end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
-# Use unicorn as the app server
+# Use unicorn as the app
+#!!!!!!!!!server pagerDuty!!!!!!!!!!!!!!!!!!!
 # gem 'unicorn'
 
 # Use Capistrano for deployment
@@ -47,3 +52,5 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'gdata', '~> 1.1.2'
+
+gem 'contextio'

@@ -52,5 +52,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'gdata', '~> 1.1.2'
+gem 'vcr', '~> 2.6.0'
+gem 'webmock', '~> 1.13.0'
 
 gem 'contextio'

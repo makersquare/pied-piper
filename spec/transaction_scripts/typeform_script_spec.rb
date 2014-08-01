@@ -1,7 +1,11 @@
-describe PP:TypeFormTrigger do
+require_relative '../../app/services/triggers/typeform_script.rb'
+require 'spec_helper'
+
+
+describe PP::TypeFormTrigger do
 
   describe "checking the API response" do
-    let(:script) { PP:TypeFormTrigger.new }
+    let(:script) { PP::TypeFormTrigger.new }
 
     before(:each) do
       contact =
@@ -11,12 +15,12 @@ describe PP:TypeFormTrigger do
           token: "d3bbd31ff9b4d91dc3cf15d903615951",
           locked: "0",
           metadata: {
-            browser: "default"
-            platform: "other"
-            date_land: "2014-04-21 19:43:34"
-            date_submit: "2014-04-21 19:53:04"
-            user_agent: "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/34.0.1847.116 Safari\/537.36"
-            referer: "http:\/\/www.themakersquare.com\/faq"
+            browser: "default",
+            platform: "other",
+            date_land: "2014-04-21 19:43:34",
+            date_submit: "2014-04-21 19:53:04",
+            user_agent: "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/34.0.1847.116 Safari\/537.36",
+            referer: "http:\/\/www.themakersquare.com\/faq",
             network_id: "b4acf382aada324638372d6b56630a8790ba2272"
             },
           hidden: [ ],
@@ -51,6 +55,11 @@ describe PP:TypeFormTrigger do
       expect(script).to receive(:api_call).and_return(contact)
     end
 
+    it "is a correct API call" do
+      result = script.run
+      expect(result).to_not be_nil
+    end
+
     it "checks name" do
       result = script.run
       expect(result.)
@@ -62,32 +71,33 @@ describe PP:TypeFormTrigger do
       expect(result.success?).to eq(true)
     end
 
-    it "checks phone" do
+    xit "checks phone" do
     end
 
-    it "checks location" do
+    xit "checks location" do
     end
 
-    it "checks cohort" do
+    xit "checks cohort" do
     end
 
-    it "checks languages" do
+    xit "checks languages" do
     end
 
-    it "checks linkedin profile" do
+    xit "checks linkedin profile" do
     end
 
-    it "checks skype/google account" do
+    xit "checks skype/google account" do
     end
 
     context "the typeform API does not return correct information" do
     end
 
     context "the typeform API returns correct information" do
-      it "creates an instance of a contact model" do
+      xit "creates an instance of a contact model" do
       end
 
-      it "assigns the contact to a pipeline" do
+      xit "assigns the contact to a pipeline" do
+
       end
     end
   end

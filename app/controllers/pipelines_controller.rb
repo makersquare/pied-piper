@@ -1,10 +1,13 @@
 class PipelinesController < ApplicationController
   respond_to :json
+  before_filter :logged_in?
+  before_filter :admin?, :only => [:destroy, :tras]
 
-  #TSX cause we need the pipeline data, we need the stage data, boxes
-  def show 
-    RetrievePipeline.run()
-    respond_with
+  #TSX cause we need the pipeline data, we need the stage data, boxes. Jbuilder, rabl
+  #Ar serializer
+  def show
+    pipeline_with_data = RetrievePipeline.run(params[:id])
+    respond_with pipeline_with_data
   end
 
   #Retrieves all rows from the Pipeline table, ID, name
@@ -27,6 +30,8 @@ class PipelinesController < ApplicationController
 
   #sets DB flag for pipeline to be trashed, can limit to admins on frontend
   def trash_pipeline
+    # p = Pipeline.find(params[:id])
+    # p.update(trashed: true)
     Pipeline.update(params[:id], trashed: true)
   end
 
@@ -38,6 +43,6 @@ class PipelinesController < ApplicationController
   private
 
   def pipeline_params
-    params.permit(:id, :name)
+    params.permit(:id, :name, :trashed)
   end
 end

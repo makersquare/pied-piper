@@ -3,10 +3,13 @@ class UpdatePipelineName < TransactionScript
     return failure(:name_nil) if params[:name].nil?
     name = params[:name].strip
     return failure(:name_empty) if name.length == 0
-    return failure(:name_taken) unless Pipeline.create(name: name).valid?
 
-    pipeline = Pipeline.update(params[:id], name: params[:name])
+    begin
+      pipeline = Pipeline.update!(params[:id], name: params[:name])
+      return success(:data => pipeline)
+    rescue Exception => e
+      return failure(:name_taken, :error_data => e)
+    end
 
-    return success(:data => pipeline)
   end
 end

@@ -1,7 +1,7 @@
 class GetAllContacts < TransactionScript
   def run
-    contact = Contact.create(params)
-    result = contacts
+    contact = Contact.all
+    result = contact
     return success(contact: result)
   end
 end

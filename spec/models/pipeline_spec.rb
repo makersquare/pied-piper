@@ -21,7 +21,7 @@ describe Pipeline do
     it "requires a name to not be taken" do
       use_case = CreatePipelineScript.new
       result = use_case.run(name: 'Process Cows')
-
+      result = use_case.run(name: 'Process Cows')
       expect(result[:success?]).to eq(false)
       expect(result[:error]).to eq(:name_taken)
     end

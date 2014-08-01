@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe GetPipelineContacts do
 
+  it_behaves_like('TransactionScripts')
   let(:script) {GetPipelineContacts.new}
 
   describe 'Validation' do
@@ -10,25 +11,18 @@ describe GetPipelineContacts do
     end
   end
 
-  xit "returns a list of contacts in a given box" do
-    # item_1 = DoubleDog.db.create_item(name: 'hot dog', price: 5)
-    # item_2 = DoubleDog.db.create_item(name: 'fries', price: 3)
-    # order_1 = DoubleDog.db.create_order(session_id: 'stubbed', items: [item_1, item_2])
-    # order_2 = DoubleDog.db.create_order(session_id: 'stubbed', items: [item_2])
+  it "gets contacts given pipeline location" do
+    c1 = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phoneNum=>'1234567'})
+    c2 = CreateContact.run({:name=>'contact2', :email=>'you@email.com', :phoneNum=>'2234567'})
+    c3 = CreateContact.run({:name=>'contact3', :email=>'they@email.com', :phoneNum=>'3234567'})
 
-    # script = DoubleDog::SeeAllOrders.new
-    # expect(script).to receive(:admin_session?).and_return(true)
+    result = GetPipelineContacts.run(p1.id)
+    contacts = result.contact
 
-    # result = script.run(admin_session: 'stubbed')
-
-    # expect(result[:success?]).to eq(true)
-
-    # orders = result[:orders]
-
-    # expect(orders.count).to be >= 2
-    # item_names = orders.map { |order| order.items.map &:name }.flatten
-    # expect(item_names).to include('hot dog', 'fries')
-    # expect(item_names.count).to eq(3)
+    expect(result.success?).to eq(true)
+    expect(contacts.length).to eq(3)
+    expect(contacts.first.name).to eq('contact1')
+    expect(contacts.last.phoneNum).to eq('3234567')
   end
 
 end

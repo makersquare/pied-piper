@@ -9,8 +9,7 @@ class CreatePipelineScript < TransactionScript
       pipeline = Pipeline.create!(name: name)
       return success(:data => pipeline)
     rescue Exception => e
-      puts e
-      return failure(:record_invalid, :error_data => e)
+      return failure(:name_taken, :error_data => e)
     end
 
   end

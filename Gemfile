@@ -37,7 +37,6 @@ end
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'hirb'
-gem 'rspec'
 gem 'pry-byebug'
 
 # Use ActiveModel has_secure_password

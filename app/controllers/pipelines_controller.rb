@@ -1,9 +1,9 @@
 class PipelinesController < ApplicationController
   respond_to :json
 
-  def show
+  #TSX cause we need the pipeline data, we need the stage data, boxes
+  def show 
     Pipeline.find(pipeline_params)
-    #TSX cause we need the pipeline data, we need the stage data, boxes
     respond_with 
   end
 
@@ -12,38 +12,36 @@ class PipelinesController < ApplicationController
     respond_with Pipeline.all
   end
 
+  # Displays form for creating a new pipeline, might not be needed
   def new
-    # Displays form for creating a new pipeline
   end
 
+  # TSX to check and make sure valid. Backend check for if
+  # people concurrently add pipelines
   def create
-    # TSX to check and make sure valid, probably do that on the front end? Backend check for if
-    # people concurrently add pipelines
-    Pipeline.create()
+    respond_with CreatePipeline.run(pipeline_params)
   end
 
+  # TSX to check if pipeline is in trash and actually deletes db entry
+  # also need to destroy all associated stages and boxes associated
+  # destroy the entries in the pipeline users table
   def destroy
-    # TSX to check if pipeline is in trash and actually deletes db entry
-    # also need to destroy all associated stages and boxes associated
-    # destroy the entries in the pipeline users table
+    
   end
 
+  #sets DB flag for pipeline to be trashed, can limit to admins on frontend
   def trash_pipeline
-    #sets DB flag for pipeline to be trashed
-
+    Pipeline.update(params[:id], trashed: true)
   end
 
+  #Changes the name of the pipeline
   def update
-    #
-  end
-
-  def update_pipeline_users
-
+    respond_with UpdatePipelineName.run(pipeline_params)
   end
 
   private
 
   def pipeline_params
-    params.permit()
+    params.permit(:id, :name)
   end
 end

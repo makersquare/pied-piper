@@ -1,5 +1,5 @@
 require 'pry-byebug'
-class CreatePipeline < TransactionScript
+class CreatePipelineScript < TransactionScript
   def run(params)
     return failure(:name_nil) if params[:name].nil?
     name = params[:name]

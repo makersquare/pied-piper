@@ -12,7 +12,6 @@ describe CreateContact do
   end
 
   it "creates a contact" do
-    binding.pry
     result = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phoneNum=>'1234567'})
     contact = result.contact
 

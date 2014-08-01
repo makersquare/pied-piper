@@ -11,10 +11,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730224813) do
+ActiveRecord::Schema.define(version: 20140731211835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "box_fields", force: true do |t|
+    t.integer "field_id"
+    t.integer "box_id"
+    t.string  "value"
+  end
+
+  create_table "box_history", force: true do |t|
+    t.integer  "box_id"
+    t.integer  "stage_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "stage_from"
+  end
+
+  create_table "boxes", force: true do |t|
+    t.integer "contact_id"
+    t.integer "pipeline_id"
+    t.integer "stage_id"
+    t.integer "pipeline_location"
+  end
+
+  create_table "contact_pipelines", force: true do |t|
+    t.integer "contact_id"
+    t.integer "pipeline_id"
+  end
+
+  create_table "contact_stages", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contacts", force: true do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phoneNum"
+    t.string "city"
+  end
+
+  create_table "fields", force: true do |t|
+    t.integer "pipeline_id"
+    t.string  "type"
+    t.string  "field_name"
+  end
+
+  create_table "notes", force: true do |t|
+    t.integer "user_id"
+    t.integer "box_id"
+    t.text    "notes"
+  end
 
   create_table "pipeline_users", force: true do |t|
     t.integer  "user_id"
@@ -28,6 +78,7 @@ ActiveRecord::Schema.define(version: 20140730224813) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "trashed"
   end
 
   create_table "stages", force: true do |t|

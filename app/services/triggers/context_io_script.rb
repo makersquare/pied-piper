@@ -14,7 +14,7 @@ require 'ostruct'
 
 
 class ContextIOTrigger < TransactionScript
-  def intialize(webhook_id, account_id, api_key, secret_key)
+  def initialize(webhook_id, account_id, api_key, secret_key)
     @webhook_id = webhook_id
     @account_id = account_id
     @api_key = api_key

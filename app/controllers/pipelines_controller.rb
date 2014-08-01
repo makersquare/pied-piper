@@ -12,10 +12,6 @@ class PipelinesController < ApplicationController
     respond_with Pipeline.all
   end
 
-  # Displays form for creating a new pipeline, might not be needed
-  def new
-  end
-
   # TSX to check and make sure valid. Backend check for if
   # people concurrently add pipelines
   def create
@@ -26,7 +22,7 @@ class PipelinesController < ApplicationController
   # also need to destroy all associated stages and boxes associated
   # destroy the entries in the pipeline users table
   def destroy
-
+    
   end
 
   #sets DB flag for pipeline to be trashed, can limit to admins on frontend

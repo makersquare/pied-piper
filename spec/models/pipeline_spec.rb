@@ -25,5 +25,6 @@ describe Pipeline do
       expect(result[:success?]).to eq(false)
       expect(result[:error]).to eq(:name_taken)
     end
+
   end
 end

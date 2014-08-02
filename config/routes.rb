@@ -1,4 +1,6 @@
 Crm::Application.routes.draw do
+  post 'contextio/cb' => 'contextio#callback'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -53,4 +55,5 @@ Crm::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end

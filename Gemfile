@@ -11,6 +11,10 @@ group :development, :test do
   gem 'pry-byebug'
 end
 
+group :test do
+  gem 'vcr', '~> 2.6.0'
+  gem 'webmock', '~> 1.13.0'
+end
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
@@ -51,7 +55,5 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'vcr', '~> 2.6.0'
-gem 'webmock', '~> 1.13.0'
 
 gem 'contextio'

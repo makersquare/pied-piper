@@ -1,14 +1,3 @@
-class TypeFormTrigger
-  def run
-    api_call
-  end
-
-####  will return JSON ####
-  def api_call
-  end
-end
-
-
 class TypeFormTrigger < TransactionScript
   def run(inputs)
 

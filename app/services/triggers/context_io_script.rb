@@ -6,9 +6,9 @@ require 'ostruct'
 
 # require 'contextio'
 
-# contextio = ContextIO.new('hmsdfr9u', 'AGDc0NnvjJicuwaA')
+contextio = ContextIO.new('hmsdfr9u', 'AGDc0NnvjJicuwaA')
 
-# account = contextio.accounts.where(email: 'devpiedpiper@gmail.com').first
+account = contextio.accounts.where(email: 'devpiedpiper@gmail.com').first
 
 # account.messages.where(from: 'jeredmccullough@gmail.com')
 
@@ -35,8 +35,9 @@ class ContextIOTrigger < TransactionScript
     end
   end
 
-  def authenicate(alert)
+  def authenticate(alert)
     notification = OpenStruct.new(alert)
+    binding.pry
     unless (notification.signature == Base64.encode64(OpenSSL::HMAC.digest(
       OpenSSL::Digest::Digest.new('sha256'), @secret_key,
       body.timestamp+'.'+body.token)).strip())

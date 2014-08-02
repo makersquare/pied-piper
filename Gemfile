@@ -16,6 +16,11 @@ gem 'foundation-rails'
 gem 'angularjs-rails'
 gem 'ng-rails-csrf'
 
+group :test do
+  gem 'vcr', '~> 2.6.0'
+  gem 'webmock', '~> 1.13.0'
+end
+
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 
@@ -59,14 +64,6 @@ gem 'figaro'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-<<<<<<< HEAD
-gem 'vcr', '~> 2.6.0'
-gem 'webmock', '~> 1.13.0'
-<<<<<<< HEAD
-=======
-gem 'contextio'
->>>>>>> I added contextio to the Gemfile
-=======
+
 
 gem 'contextio'
->>>>>>> created base transaction script class and implemented ostruct, created speck helper file and shared spec for transaction script inherited classes to use.

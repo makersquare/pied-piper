@@ -6,7 +6,7 @@ class TypeFormTrigger
 ####  will return JSON ####
   def api_call
   end
-
+end
 
 
 class TypeFormTrigger < TransactionScript

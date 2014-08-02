@@ -62,7 +62,7 @@ describe PP::TypeFormTrigger do
 
     it "checks name" do
       result = script.run
-      expect(result.)
+      expect(result).to eq(nil)
       expect(result.success?).to eq(true)
     end
 

@@ -1,4 +1,6 @@
 Crm::Application.routes.draw do
+  root 'static_pages#index'
+
   resources :pipelines do
     resources :stages
   end

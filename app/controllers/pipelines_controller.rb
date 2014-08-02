@@ -1,7 +1,7 @@
 class PipelinesController < ApplicationController
   respond_to :json
-  before_filter :logged_in?
-  before_filter :admin?, :only => [:destroy, :tras]
+  # before_filter :logged_in?
+  # before_filter :admin?, :only => [:destroy, :trash]
 
   #TSX cause we need the pipeline data, we need the stage data, boxes. Jbuilder, rabl
   #Ar serializer

@@ -1,5 +1,5 @@
 class ContextioController < ApplicationController
   def callback
-    binding.pry
+    puts params
   end
 end

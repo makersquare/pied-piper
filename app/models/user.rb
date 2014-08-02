@@ -1,5 +1,14 @@
 class User < ActiveRecord::Base
-  # TODO:
-  # This is made for the purpose of stubbing users
-  # We'll build a real auth system later
+  #saves google outh user object to DB
+  def self.from_omniauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.name = auth.info.name
+      user.email = auth.info.email
+      user.oauth_token = auth.credentials.token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      user.save!
+    end
+  end
 end

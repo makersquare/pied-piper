@@ -27,7 +27,7 @@ describe 'Create Pipeline' do
     it "Adds an entry to the db when there is no problem" do
       result = CreatePipelineScript.run(name: 'Andrew is great')
       expect(result.data.id).to be_a(Integer)
-      expect(result[:success?]).to eq(true)
+      expect(result.success?).to eq(true)
     end
   end
 
@@ -39,8 +39,8 @@ describe 'Update Pipeline' do
 
     updated_result = UpdatePipelineName.run(id: result.data.id, name: nil)
 
-    expect(updated_result[:success?]).to eq(false)
-    expect(updated_result[:error]).to eq(:name_nil)
+    expect(updated_result.success?).to eq(false)
+    expect(updated_result.error).to eq(:name_nil)
   end
 
   it "requires a non-blank name" do
@@ -49,26 +49,27 @@ describe 'Update Pipeline' do
 
     updated_result = UpdatePipelineName.run(id: result.data.id, name: '')
 
-    expect(updated_result[:success?]).to eq(false)
-    expect(updated_result[:error]).to eq(:name_empty)
+    expect(updated_result.success?).to eq(false)
+    expect(updated_result.error).to eq(:name_empty)
   end
 
   it "requires a name to not be taken" do
     result = CreatePipelineScript.run(name: "Pipe3")
+    CreatePipelineScript.run(name: "Pipe4")
     expect(result.data.name).to eq("Pipe3")
 
-    updated_result = UpdatePipelineName.run(id: result.data.id, name: 'Pipe3')
+    updated_result = UpdatePipelineName.run(id: result.data.id, name: 'Pipe4')
 
-    expect(updated_result[:success?]).to eq(false)
-    expect(updated_result[:error]).to eq(:name_taken)
+    expect(updated_result.success?).to eq(false)
+    expect(updated_result.error).to eq(:name_taken)
   end
 
   it "Should change the name if there are no issues" do
     result = CreatePipelineScript.run(name: "Pipe3")
     expect(result.data.name).to eq("Pipe3")
-
+    
     updated_result = UpdatePipelineName.run(id: result.data.id, name: 'Pipe5')
-    expect(updated_result[:success?]).to eq(true)
+    expect(updated_result.success?).to eq(true)
     expect(updated_result.data.name).to eq('Pipe5')
   end
 end

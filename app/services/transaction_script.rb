@@ -1,4 +1,5 @@
 require 'ostruct'
+require 'pry-byebug'
 # Example TransactionScript
 #
 # def SomeScript < TransactionScript

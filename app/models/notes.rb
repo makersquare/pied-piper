@@ -1,4 +1,4 @@
 class Notes < ActiveRecord::Base
-  belongs_to :contacts
-  belongs_to :boxes
+  belongs_to :contact
+  belongs_to :box
 end

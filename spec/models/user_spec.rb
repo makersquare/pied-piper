@@ -27,7 +27,6 @@ describe User do
         auth = eval(auth_string)
         auth_mash = Hashie::Mash.new(auth)
 
-        binding.pry
         existing_user_check = User.where(uid: auth_mash.uid, provider: auth_mash.provider)
         result = User.from_omniauth(auth_mash)
 

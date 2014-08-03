@@ -29,7 +29,6 @@ describe GetContactBox do
     notes = result.notes
 
     expect(result.success?).to eq(true)
-    # binding.pry
     expect(box.id).to eq(b1.box.id)
     expect(box.pipeline_id).to eq(p1.data.id)
     expect(box.contact_id).to eq(c1.contact.id)

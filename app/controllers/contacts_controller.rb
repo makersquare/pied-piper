@@ -7,7 +7,6 @@ class ContactsController < ApplicationController
     # Create a new contact manually with the create_contact TXS
     results = CreateContact.run(contact_params)
     @result_box = CreateBox.run({:contact_id=>results.contact.id})
-    # binding.pry
     if results.success?
       respond_with results.contact
     else
@@ -17,8 +16,7 @@ class ContactsController < ApplicationController
 
   def show
     # Show a contact within its box given the contact id
-    binding.pry
-    show_contact = GetContactBox.run({:box_id=>@result_box.box.id})
+    show_contact = GetContactBox.run({:contact_id=>contact_params[:id]})
     respond_with show_contact
   end
 

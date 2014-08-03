@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140803084647) do
+ActiveRecord::Schema.define(version: 20140803204500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,12 @@ ActiveRecord::Schema.define(version: 20140803084647) do
     t.string  "value"
   end
 
-  create_table "box_history", force: true do |t|
+  create_table "box_histories", force: true do |t|
     t.integer  "box_id"
     t.integer  "stage_id"
+    t.integer  "stage_from"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "stage_from"
   end
 
   create_table "boxes", force: true do |t|

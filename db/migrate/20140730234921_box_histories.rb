@@ -1,4 +1,4 @@
-class CreateBoxHistories < ActiveRecord::Migration
+class BoxHistories < ActiveRecord::Migration
   def change
     create_table :box_histories do |t|
       t.references :box

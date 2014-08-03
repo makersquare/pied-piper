@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe UpdateBoxStage do
+  # Updates a box stage and documents the update in the box_history table
 
   it_behaves_like('TransactionScripts')
   let(:script) {UpdateBoxStage.new}

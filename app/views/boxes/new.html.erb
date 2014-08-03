@@ -1,0 +1,12 @@
+<!-- order form -->
+<h2>Box#create_box - pipeline/stage should have a link to here</h2>
+
+<%= form_tag(boxes_path, method: 'post') do %>
+  <%= label_tag('field_name', 'Field name') %>
+  <%= text_field_tag('field_name') %><br>
+
+  <%= label_tag('field_type', 'Field type (change to dropdown)') %>
+  <%= text_field_tag('field_type') %><br>
+
+  <%= submit_tag('submit') %>
+<% end %>

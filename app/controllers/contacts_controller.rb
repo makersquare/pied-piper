@@ -6,6 +6,8 @@ class ContactsController < ApplicationController
   def create
     # Create a new contact manually with the create_contact TXS
     results = CreateContact.run(contact_params)
+    @result_box = CreateBox.run({:contact_id=>results.contact.id})
+    # binding.pry
     if results.success?
       respond_with results.contact
     else
@@ -15,18 +17,19 @@ class ContactsController < ApplicationController
 
   def show
     # Show a contact within its box given the contact id
-    show_contact = GetContactBox.run(params)
+    binding.pry
+    show_contact = GetContactBox.run({:box_id=>@result_box.box.id})
     respond_with show_contact
   end
 
   def index
-    # Index to show boxes and create new boxes
-    respond_with Box.all.to_json
+    # Index to show contacts
+    respond_with Contact.all.to_json
   end
 
   def update
-    # User can create new box fields
-    respond_with Field.create(params)
+    # User can update a contact's info and associated box info
+    # respond_with Field.create(params)
   end
 
   private
@@ -46,7 +49,7 @@ class ContactsController < ApplicationController
     params.permit(:id, :field_id, :box_id, :value)
   end
 
-  def contacts_params
+  def contact_params
     # All params currently permitted
     params.permit(:id, :name, :email, :phoneNum, :city)
   end

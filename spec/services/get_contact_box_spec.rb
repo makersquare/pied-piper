@@ -22,13 +22,14 @@ describe GetContactBox do
     n1 = Note.create({:user_id=>1, :box_id=>b1.box.id, :notes=>'here you go'})
 
     result = GetContactBox.run({:box_id=>b1.box.id, :contact_id=>c1.contact.id})
-    box = result.box
+    box = result.box.first
     field = result.field
     box_field = result.field_value
     contact = result.contact
     notes = result.notes
 
     expect(result.success?).to eq(true)
+    # binding.pry
     expect(box.id).to eq(b1.box.id)
     expect(box.pipeline_id).to eq(p1.data.id)
     expect(box.contact_id).to eq(c1.contact.id)

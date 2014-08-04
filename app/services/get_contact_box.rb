@@ -1,4 +1,4 @@
-# class GetContactBox < TransactionScript
+class GetContactBox < TransactionScript
 #   def run(params)
 #     # Returns a contact's box, with info associated with the pipeline stage
 #     b = Box.where('contact_id = ?', params[:contact_id])
@@ -8,4 +8,4 @@
 #     n = Box.find(b.first.id).notes
 #     return success box: b, contact: c, field: f, field_value: fv, notes: n
 #   end
-# end
+end

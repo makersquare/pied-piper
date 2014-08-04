@@ -1,6 +1,7 @@
-include 'spec_helper'
+require 'spec_helper'
 
 describe ApiAuthenticationScript do
+  binding.pry
   it_behaves_like('TransactionScripts')
 
   it 'fails if the signature is nil' do

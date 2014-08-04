@@ -1,5 +1,5 @@
 
-class ContextIOTrigger < TransactionScript
+class ContextIORetrieveMessageScript < TransactionScript
 
   def run(inputs)
     secret_key = inputs.secret_key

@@ -1,6 +1,6 @@
 include 'spec_helper'
 
-description ContextIOTrigger do
+description ContextIORetrieveMessageScript do
   it_behaves_like('TransactionScripts')
 
   before(:each) do

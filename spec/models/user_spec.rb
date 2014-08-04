@@ -27,10 +27,10 @@ describe User do
         auth = eval(auth_string)
         auth_mash = Hashie::Mash.new(auth)
 
-        existing_user_check = User.where(uid: auth_mash.uid, provider: auth_mash.provider)
+        existing_user_check = User.find_by(uid: auth_mash.uid, provider: auth_mash.provider)
         result = User.from_omniauth(auth_mash)
 
-        expect(existing_user_check).to eq([])
+        expect(existing_user_check).to eq(nil)
         expect(result.uid).to be_a String
         expect(result.email).to be_a String
       end

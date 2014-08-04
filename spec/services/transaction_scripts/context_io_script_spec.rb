@@ -4,9 +4,8 @@ inlcude 'spec_helper'
 description 'context_io' do
 
   context 'recieves a notification from context_io webhook' do
-    before(all:)
     it 'authenticates that the request came from context.io' do
-
+      expect(desc)
     end
 
     it 'parses the notification into a hash' do

@@ -10,15 +10,22 @@ var app = angular.module('crmApp', ['ngResource', 'ngRoute'])
 // constants first
 
 //providers second
-  $routeProvider.when('/test/:name', {
+  $routeProvider.when('/pipelines', {
     // when using url parameters, to access them in the controller we
     // must, in the controller, inject the dependency $routeParams
-    templateUrl: "<%= asset_path('angular/templates/test.html') %>",
+    templateUrl: "<%= asset_path('angular/templates/pipelines.html') %>",
     controller: 'PipelineCtrl',
-    // there is a third necessary option here
-    // resolve sends the http request and fills the data field
-    // the data field is then injected into the controller and accessible there
+
+  }).when('pipelines/:pid/contact/:cid', {
+    templateUrl: "<%= asset_path('angular/templates/pipelines.html') %>"
+    controller: 'ContactBoxCtrl',
+
+  }).when('pipelines/:pid', {
+
+
   });
+
+
 
 }])
 

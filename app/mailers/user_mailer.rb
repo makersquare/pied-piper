@@ -8,5 +8,6 @@ class UserMailer < ActionMailer::Base
   end
 
   def email_update
+
   end
 end

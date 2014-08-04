@@ -1,27 +1,23 @@
-inlcude 'spec_helper'
+include 'spec_helper'
+
+description ContextIOTrigger do
   it_behaves_like('TransactionScripts')
 
-description 'context_io' do
-
-  context 'recieves a notification from context_io webhook' do
-    it 'authenticates that the request came from context.io' do
-      expect(desc)
-    end
-
-    it 'parses the notification into a hash' do
-    end
-
-    it 'confirms that it is the correct type of notification for typeform' do
-    end
-
-    it 'parses the email body into a hash' do
-    end
-
+  before(:each) do
+    stub_const("secret_key", 1)
+    stub_const("contextio", 'newcontextio')
+    stub_const("account_id", 1)
+    stub_const('account', 'new_account')
+    stub_const('message', 'new_message')
   end
 
+  it 'fails if the message is not a ContextIO::Message' do
+    test = described_class.run(inputs)
+    expect(test.error).to eq('message content missing')
+  end
 
-  it 'sends the info to the api transaction scripts' do
-
+  it 'fails if the message body is not a string' do
+    expect(test.error).to eq('message not formatted correctly')
   end
 
 end

@@ -1,28 +1,31 @@
-require 'json'
 require 'openssl'
 require 'base64'
-require 'ostruct'
 
-class ApiConversionScript < TransactionScript
+class ApiAuthenticationScript < TransactionScript
   def run(inputs)
-    webhook_id = #pre-defined webhook id from creation
-    authenticate(inputs)
-    confirm_type(inputs, webhook_id)
+    secret_key = 'AGDc0NnvjJicuwaA'
+    webhook_id = '53dc3db6b4810f6c699076d3'
+    error = authenticate(inputs, webhook_id, secret_key)
+
+    return failure error if !error.nil?
+
+    return success({ alert: inputs, secret_key: secret_key })
   end
 
-  def authenticate(alert)
-    unless (alert.signature == Base64.encode64(OpenSSL::HMAC.digest(
-      OpenSSL::Digest::Digest.new('sha256'), @secret_key,
-      body.timestamp+'.'+body.token)).strip())
 
-      failure error: 'Context.io notification authentication failure'
+
+  def authenticate(alert, webhook_id, secret_key)
+    our_hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest::SHA256.new, secret_key, alert['timestamp'].to_s+alert['token'])
+
+    unless our_hash == alert['signature']
+      return 'Context.io notification authentication failure'
     end
+
+    unless alert['webhook_id'] == webhook_id
+      return failure error: 'Context.io webhook id not recognized'
+    end
+
   end
 
-  def confirm_type(alert, webhook_id)
-    unless alert.webhook_id == webhook_id
-      failure error: 'connect io webhook_id not recognized'
-    end
-  end
 
 end

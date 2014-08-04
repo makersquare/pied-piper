@@ -1,19 +1,18 @@
-require 'json'
-require 'openssl'
-require 'base64'
 require 'ostruct'
 
 class ApiConversionScript < TransactionScript
   def run(inputs)
-    confirm(inputs)
+    alert = confirm(inputs)
+    unless alert.is_a?(OpenStruct)
+      return failure error: 'failure to convert alert to OpenStruct'
+    end
+    return success ({ alert: alert })
   end
 
   def confirm(alert)
-    if notification_hash.is_a(Hash)
+    if alert.alert.is_a?(Hash)
       OpenStruct.new(alert)
-    else
-      failure error: 'failure to convert notificaion to OpenStruct'
     end
   end
-
 end
+

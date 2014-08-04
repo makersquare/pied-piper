@@ -12,6 +12,10 @@ group :development, :test do
 end
 
 gem 'hashie'
+gem 'foundation-rails'
+gem 'angularjs-rails'
+gem 'ng-rails-csrf'
+
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 
@@ -56,6 +60,3 @@ gem 'figaro'
 
 gem 'vcr', '~> 2.6.0'
 gem 'webmock', '~> 1.13.0'
-
-gem 'angularjs-rails'
-gem 'ng-rails-csrf'

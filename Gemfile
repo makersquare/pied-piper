@@ -16,6 +16,11 @@ group :test do
   gem 'webmock', '~> 1.13.0'
 end
 
+gem 'hashie'
+gem 'foundation-rails'
+gem 'angularjs-rails'
+gem 'ng-rails-csrf'
+
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 
@@ -41,6 +46,10 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+gem 'json'
+gem 'omniauth-google-oauth2'
+gem 'hirb'
+gem 'figaro'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
@@ -54,7 +63,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
 
 gem 'contextio'
 

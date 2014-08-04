@@ -4,7 +4,7 @@
 
 <div>
 <h3>Add fields</h3>
-<%= form_tag(box_path, method: 'patch') do %>
+<%= form_tag(box_path, method: 'post') do %>
   <%= label_tag('field_name', 'Field name') %>
   <%= text_field_tag('field_name') %><br>
 

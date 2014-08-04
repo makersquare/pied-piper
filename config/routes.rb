@@ -1,5 +1,20 @@
 Crm::Application.routes.draw do
   post 'contextio/cb' => 'contextio#callback'
+
+  #this route is the redirect route that is triggered after sending an authentication request to google
+  get 'auth/:provider/callback', to: 'sessions#create'
+
+  #if the google authentication results in a failure redirect to root
+  get 'auth/failure', to: redirect('/')
+
+  #trigger session destruction on logout
+  get 'signout', to: 'sessions#destroy', as: 'signout'
+
+  resources :sessions, only: [:create, :destroy]
+  resources :home, only: [:show]
+
+  #provides a root route to show login button, can be changed later
+
   root 'static_pages#index'
 
   resources :pipelines do

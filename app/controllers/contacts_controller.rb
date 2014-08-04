@@ -27,7 +27,9 @@ class ContactsController < ApplicationController
 
   def update
     # User can update a contact's info and associated box info
-    # respond_with Field.create(params)
+    # binding.pry
+    update_contact_box = UpdateContactBox.run(params)
+    respond_with update_contact_box
   end
 
   private

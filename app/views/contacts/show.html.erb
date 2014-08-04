@@ -5,16 +5,31 @@
 <div>
 <h3>Contact form</h3>
 <%= form_tag(contact_path, method: 'patch') do %>
+  <%= label_tag('field_id', 'Field ID') %>
+  <%= text_field_tag('field_id') %><br>
   <%= label_tag('field_name', 'Field name') %>
   <%= text_field_tag('field_name') %><br>
-
   <%= label_tag('value', 'Field value') %>
   <%= text_field_tag('value') %><br>
-
+  <%= label_tag('field_type', 'Field type') %>
+  <%= text_field_tag('field_type') %><br>
 
   <%= label_tag('notes', 'Notes') %>
   <%= text_field_tag('notes') %><br>
 
+
+  <%= label_tag('pipeline_id', 'Pipeline ID') %>
+  <%= text_field_tag('pipeline_id') %><br>
+  <%= label_tag('stage_id', 'Stage ID') %>
+  <%= text_field_tag('stage_id') %><br>
+  <%= label_tag('name', 'Contact Name') %>
+  <%= text_field_tag('name') %><br>
+  <%= label_tag('email', 'Email') %>
+  <%= text_field_tag('email') %><br>
+  <%= label_tag('phoneNum', 'Phone Number') %>
+  <%= text_field_tag('phoneNum') %><br>
+  <%= label_tag('notes', 'Notes') %>
+  <%= text_field_tag('notes') %><br>
   <%= submit_tag('submit') %>
 <% end %>
 </div>

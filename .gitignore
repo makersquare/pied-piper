@@ -17,3 +17,6 @@
 .DS_Store
 *.swp
 /vendor
+
+# Ignore application configuration
+/config/application.yml

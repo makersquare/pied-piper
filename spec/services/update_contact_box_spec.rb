@@ -23,8 +23,8 @@ describe UpdateContactBox do
 
     result = UpdateContactBox.run({:id=>b1.box.id, :contact_id=>c1.contact.id, :field_id=>f1.id, :box_field_id=>bf1.id, :name=>'updated name', :notes_id=>n1.id, :notes=>'updated notes'})
     box = result.box
-    field = result.field
-    box_field = result.field_value
+    field = result.fields
+    box_field = result.field_values
     contact = result.contact
     notes = result.notes
 

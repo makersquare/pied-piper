@@ -2,9 +2,13 @@ class ContactsController < ApplicationController
   respond_to :json, :html
   # before_filter :logged_in?
   # before_filter :admin?
+  def new
+    # binding.pry
+  end
 
   def create
     # Create a new contact manually with the create_contact TXS
+    # binding.pry
     results = CreateContact.run(contact_params)
     @result_box = CreateBox.run({:contact_id=>results.contact.id})
     if results.success?
@@ -15,19 +19,21 @@ class ContactsController < ApplicationController
   end
 
   def show
+    # binding.pry
     # Show a contact within its box given the contact id
     show_contact = GetContactBox.run({:contact_id=>contact_params[:id]})
-    respond_with show_contact
+    respond_with show_contact.to_json
   end
 
   def index
+    # binding.pry
     # Index to show contacts
     respond_with Contact.all.to_json
   end
 
   def update
     # User can update a contact's info and associated box info
-    update_contact_box = UpdateContactBox.run(params)
+    update_contact_box = UpdateContactBox.run(box_params)
     respond_with update_contact_box
   end
 
@@ -35,7 +41,9 @@ class ContactsController < ApplicationController
 
   def box_params
     # All params currently permitted
-    params.permit(:id, :contact_id, :pipeline_id, :stage_id, :pipeline_location)
+    params.permit(:id, :contact_id, :pipeline_id, :stage_id, :pipeline_location,
+                  :name, :pipeline_name, :email, :phoneNum, :city, :fields, :field_values,
+                  :notes)
   end
 
   def field_params

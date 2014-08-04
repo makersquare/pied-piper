@@ -5,7 +5,6 @@ class PipelinesController < ApplicationController
   # We need to check and make sure the request is coming from
   # an admin of the pipeline
 
-
   #Retrieves all rows from the Pipeline table, ID, name.
   #Use this for the sidebar
   def index
@@ -48,8 +47,6 @@ class PipelinesController < ApplicationController
       respond_with result.error.to_json
     end
 
-<<<<<<< HEAD
-=======
   end
 
   #Method takes a pipeline id and a user id and adds the user to the pipeline
@@ -83,7 +80,16 @@ class PipelinesController < ApplicationController
     else
       respond_with result.error
     end
->>>>>>> ddf80f5... Added pipeline user collab logic, no tests yet
+  end
+
+  def update_access_to_pipeline
+    result = UpdateUserPipeline.run(pipeline_params)
+
+    if result.success?
+      respond_with result.data
+    else
+      respond_with result.error
+    end
   end
 
 

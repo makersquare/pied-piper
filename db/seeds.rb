@@ -56,14 +56,14 @@ pipeline_hiring.fields.create({field_name: 'hiring_position', field_type: 'strin
 
 
 contacts_list = [
-  {name: 'Andrew', email: 'andrew@gmail.com', phoneNum: '(650) 555-5126', city: 'San Francisco'},
-  {name: 'Gideon', email: 'gideon@gmail.com', phoneNum: '(650) 555-5126', city: 'San Francisco'},
-  {name: 'Jered', email: 'jered@gmail.com', phoneNum: '(650) 555-5126', city: 'San Francisco'},
-  {name: 'Jon', email: 'jon@gmail.com', phoneNum: '(650) 555-5126', city: 'San Francisco'},
-  {name: 'Catherine', email: 'catherine@gmail.com', phoneNum: '(650) 555-5126', city: 'Barstow'},
-  {name: 'DJ', email: 'dj@gmail.com', phoneNum: '(650) 555-5126', city: 'Barstow'},
-  {name: 'Gabe', email: 'gabe@gmail.com', phoneNum: '(650) 555-5126', city: 'Barstow'},
-  {name: 'Alex', email: 'alex@gmail.com', phoneNum: '(650) 555-5126', city: 'Barstow'}
+  {name: 'Andrew', email: 'andrew@gmail.com', phonenumber: '(650) 555-5126', city: 'San Francisco'},
+  {name: 'Gideon', email: 'gideon@gmail.com', phonenumber: '(650) 555-5126', city: 'San Francisco'},
+  {name: 'Jered', email: 'jered@gmail.com', phonenumber: '(650) 555-5126', city: 'San Francisco'},
+  {name: 'Jon', email: 'jon@gmail.com', phonenumber: '(650) 555-5126', city: 'San Francisco'},
+  {name: 'Catherine', email: 'catherine@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
+  {name: 'DJ', email: 'dj@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
+  {name: 'Gabe', email: 'gabe@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
+  {name: 'Alex', email: 'alex@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'}
 ]
 
 Contact.create(contacts_list)

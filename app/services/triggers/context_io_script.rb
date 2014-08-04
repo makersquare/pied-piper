@@ -15,14 +15,13 @@ account = contextio.accounts.where(email: 'devpiedpiper@gmail.com').first
 
 class ContextIOTrigger < TransactionScript
 
-
   def run(inputs)
-    webhook_id = webhook_id
+    webhook_id = inputs.webhook_id
     account_id = account_id
     api_key = api_key
     secret_key = secret_key
 
-    notification= parse_notification(inputs)
+    notification = parse_notification(inputs)
     notification_hash.authenticate
     notification_hash.comfirm_type
     notification_hash.gather_message_info

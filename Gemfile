@@ -6,6 +6,9 @@ gem 'rails', '4.0.2'
 # RSpec
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.2'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-byebug'
 end
 
 gem 'hashie'
@@ -37,7 +40,6 @@ end
 gem 'json'
 gem 'omniauth-google-oauth2'
 gem 'hirb'
-gem 'pry-byebug'
 gem 'figaro'
 
 # Use ActiveModel has_secure_password
@@ -51,3 +53,9 @@ gem 'figaro'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'vcr', '~> 2.6.0'
+gem 'webmock', '~> 1.13.0'
+
+gem 'angularjs-rails'
+gem 'ng-rails-csrf'

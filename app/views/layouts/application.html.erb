@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Pied Piper</title>
-    <%= csrf_meta_tags %>
-  </head>
-  <body>
-    <%= render "shared/navbar" %>
-    <div>
-    <%= yield %>
-    </div>
-  </body>
+<html ng-app='crmApp'>
+<head>
+  <title>Pied Piper</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+</head>
+<body>
+<%= render "shared/navbar" %>
+<%= yield %>
+
+</body>
 </html>

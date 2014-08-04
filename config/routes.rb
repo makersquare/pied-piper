@@ -1,5 +1,6 @@
 Crm::Application.routes.draw do
 
+
   #this route is the redirect route that is triggered after sending an authentication request to google
   get 'auth/:provider/callback', to: 'sessions#create'
 
@@ -13,7 +14,15 @@ Crm::Application.routes.draw do
   resources :home, only: [:show]
 
   #provides a root route to show login button, can be changed later
-  root to: "home#show"
+
+  root 'static_pages#index'
+
+  resources :pipelines do
+    resources :stages
+  end
+
+  resources :contacts
+  resources :boxes
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

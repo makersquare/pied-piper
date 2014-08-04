@@ -1,0 +1,2 @@
+class TriggerScript
+end

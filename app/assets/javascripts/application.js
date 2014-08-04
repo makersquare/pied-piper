@@ -12,4 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require angular
+//= require angular-resource
+//= require ng-rails-csrf
+//= require angular-animate
+//= require angular-route
+//= require ./angular/app
+//= require_tree ./angular

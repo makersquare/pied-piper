@@ -11,7 +11,7 @@ describe CreateBox do
     end
   end
 
-  it "creates a box" do
+  it "creates a box with fields" do
     p1 = CreatePipelineScript.run({:name=>'pipeline1'})
     c1 = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phoneNum=>'1234567'})
 

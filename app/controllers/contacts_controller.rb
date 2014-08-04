@@ -3,7 +3,6 @@ class ContactsController < ApplicationController
   # before_filter :logged_in?
   # before_filter :admin?
   def new
-    binding.pry
   end
 
   def create

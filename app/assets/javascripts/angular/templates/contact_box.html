@@ -1,6 +1,6 @@
 <div>contact box!</div>
 <div ng-controller="ContactBoxCtrl"><%=@results%>
- <form method="post" action="pipeline/params[:pipeline_id]/contacts/params[:id]">
+ <form method="post" action="pipeline/params[:pipeline_id]/contacts/params[:contact_id]">
     <div>
       <div class="row">
         <div class="large-12 columns">
@@ -10,7 +10,6 @@
           <input type="text" id="input" name="email" placeholder="Email"/><br>
           <input type="text" id="input" name="phoneNum" placeholder="Phone Number"/><br>
           <input type="text" id="input" name="city" placeholder="City"/><br>
-          <input type="text" id="input" name="field_name" placeholder="Add Field"/><br>
           <input type="text" id="input" name="field_value" placeholder="Info"/><br>
           <input type="text" id="input" name="notes" placeholder="Notes"/><br>
         </div>

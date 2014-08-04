@@ -1,9 +1,8 @@
+#this takes the output from the context_io notification and parses it for the information to
+#input into the database and pipline
+
 class TypeFormTrigger < TransactionScript
   def run(inputs)
 
   end
 end
-
-
-# 1. go through the api call and make sure it has the information we need
-# 2.

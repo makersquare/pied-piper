@@ -8,6 +8,13 @@ class UserMailer < ActionMailer::Base
   end
 
   def email_update
+    # if new_contacts?
+    #   update(new_contacts)
+    # end
 
+    # if pipeline_change?
+    #   moved_contacts = database query for moved contacts
+    #   update(moved_contacts)
+    # end
   end
 end

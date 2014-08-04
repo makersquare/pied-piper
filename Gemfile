@@ -55,3 +55,6 @@ gem 'webmock', '~> 1.13.0'
 
 gem 'angularjs-rails'
 gem 'ng-rails-csrf'
+
+# Use cron jobs to send email notifications to users on interval basis.
+gem 'whenever', :require => false

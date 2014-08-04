@@ -11,6 +11,11 @@ group :development, :test do
   gem 'pry-byebug'
 end
 
+group :test do
+  gem 'vcr', '~> 2.6.0'
+  gem 'webmock', '~> 1.13.0'
+end
+
 gem 'hashie'
 gem 'foundation-rails'
 gem 'angularjs-rails'
@@ -50,6 +55,7 @@ gem 'figaro'
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
+#!!!!!!!!!pagerDuty!!!!!!!!!!!!!!!!!!!
 # gem 'unicorn'
 
 # Use Capistrano for deployment
@@ -58,5 +64,7 @@ gem 'figaro'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'vcr', '~> 2.6.0'
-gem 'webmock', '~> 1.13.0'
+gem 'contextio'
+
+gem 'angularjs-rails'
+gem 'ng-rails-csrf'

@@ -1,5 +1,5 @@
 Crm::Application.routes.draw do
-
+  post 'contextio/cb' => 'contextio#callback'
 
   #this route is the redirect route that is triggered after sending an authentication request to google
   get 'auth/:provider/callback', to: 'sessions#create'
@@ -78,4 +78,5 @@ Crm::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end

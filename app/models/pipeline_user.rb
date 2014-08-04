@@ -1,4 +1,4 @@
-class PipelineUsers < ActiveRecord::Base
+class PipelineUser < ActiveRecord::Base
   belongs_to :pipeline
   belongs_to :user
 end

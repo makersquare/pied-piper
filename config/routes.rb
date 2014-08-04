@@ -1,5 +1,13 @@
 Crm::Application.routes.draw do
   post 'contextio/cb' => 'contextio#callback'
+  root 'static_pages#index'
+
+  resources :pipelines do
+    resources :stages
+  end
+
+  resources :contacts
+  resources :boxes
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

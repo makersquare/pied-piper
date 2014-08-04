@@ -1,5 +1,5 @@
 require 'ostruct'
-
+require 'pry-byebug'
 # Example TransactionScript
 #
 # def SomeScript < TransactionScript
@@ -18,8 +18,8 @@ require 'ostruct'
 
 class TransactionScript
 
-  def self.run(inputs)
-    self.new.run(inputs)
+  def self.run(*inputs)
+    self.new.run(*inputs)
   end
 
   def failure(error_sym, data={})

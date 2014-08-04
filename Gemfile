@@ -57,3 +57,6 @@ end
 
 
 gem 'contextio'
+
+gem 'angularjs-rails'
+gem 'ng-rails-csrf'

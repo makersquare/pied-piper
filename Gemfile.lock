@@ -26,6 +26,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.6)
+    angularjs-rails (1.2.20)
     arel (4.0.2)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -77,7 +78,8 @@ GEM
     minitest (4.7.5)
     multi_json (1.10.1)
     multipart-post (1.2.0)
-    pg (0.17.0)
+    ng-rails-csrf (0.1.0)
+    pg (0.17.1)
     polyglot (0.3.5)
     pry (0.10.0)
       coderay (~> 1.1.0)
@@ -157,12 +159,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angularjs-rails
   better_errors
   binding_of_caller
   coffee-rails (~> 4.0.0)
   contextio
   jbuilder (~> 1.2)
   jquery-rails
+  ng-rails-csrf
   pg
   pry-byebug
   rails (= 4.0.2)

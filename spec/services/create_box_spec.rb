@@ -13,7 +13,7 @@ describe CreateBox do
 
   it "creates a box with fields" do
     p1 = CreatePipelineScript.run({:name=>'pipeline1'})
-    c1 = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phoneNum=>'1234567'})
+    c1 = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phonenumber=>'1234567'})
 
     result = CreateBox.run({:contact_id=>c1.contact.id, :pipeline_id=>p1.data.id, :stage_id=>1, :pipeline_location=>2})
     box = result.box

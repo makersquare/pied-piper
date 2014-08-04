@@ -1,6 +1,6 @@
 <div>contact box!</div>
 <div>
- <form name="inputForm" method="PUT" ng-submit="updateEntry()">
+ <form id="inputForm" name="inputForm" method="PUT" ng-submit="updateEntry()">
     <div>
       <div class="row">
         <div class="large-12 columns">
@@ -16,13 +16,36 @@
           ng-model="cb.box.stage"/><br>
           <input type="text" name="email" placeholder="Email"
           ng-model="cb.contact.email"/><br>
-          <input type="text" name="phoneNum" placeholder="Phone Number"
-            ng-model="cb.contact.phoneNum"/><br>
+          <input type="text" name="phonenumber" placeholder="Phone Number"
+            ng-model="cb.contact.phonenumber"/><br>
           <input type="text" name="city" placeholder="City"
           ng-model="cb.contact.city"/><br>
 
           <!-- Arrays -->
-          <ul><li>
+          <ul>Fields:
+            <li ng-repeat="field in cb.fields" name="field">
+              {{field.field_name}}
+            </li>
+          </ul>
+          <br>
+          
+          Field value:
+          <ul>
+            <li ng-repeat="field_value in cb.field_values" >
+              <input type="text" name="field_value" ng-model="field_value.value"/>
+            </li>
+          </ul>
+          <br>
+
+          Notes:
+          <ul>
+            <li ng-repeat="note in cb.notes">
+              <input type="text" name="note" ng-model="note.notes"/>
+            </li>
+          </ul>
+          <br>
+
+<!--           <ul><li>
           <input type="text" ng-repeat="field in fields" name="field" placeholder=""
           ng-model="cb.field"/>field: {{field.field_name}}
           </li></ul><br>
@@ -34,11 +57,11 @@
           <br>
 
           <ul><li>
-          <input type="text" ng-repeat="note in notes" name="notes" placeholder="Notes"
+          <input type="text" ng-repeat="note in notes" name="notes id" placeholder="Notes"
           ng-model="cb.notes"/>notes: {{note.notes}}
           </li></ul>
           <br>
-        </div>
+        </div> -->
 
         <div>
           <input type="submit" value="Update Info" class="button" style="margin-left: 15px; background-color: #1abc9c;">

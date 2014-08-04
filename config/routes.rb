@@ -1,11 +1,11 @@
 Crm::Application.routes.draw do
-
+  # ROOT ALWAYS AT TOP
+  root 'static_pages#index'
+  #if the google authentication results in a failure redirect to root
+  get 'auth/failure', to: redirect('/')
 
   #this route is the redirect route that is triggered after sending an authentication request to google
   get 'auth/:provider/callback', to: 'sessions#create'
-
-  #if the google authentication results in a failure redirect to root
-  get 'auth/failure', to: redirect('/')
 
   #trigger session destruction on logout
   get 'signout', to: 'sessions#destroy', as: 'signout'
@@ -15,10 +15,11 @@ Crm::Application.routes.draw do
 
   #provides a root route to show login button, can be changed later
 
-  root 'static_pages#index'
 
   resources :pipelines do
     resources :stages
+    resources :contacts
+    resources :boxes
   end
 
   resources :contacts

@@ -1,0 +1,24 @@
+<div>contact box!</div>
+<div ng-controller="ContactBoxCtrl"><%=@results%>
+ <form method="post" action="pipeline/params[:pipeline_id]/contacts/params[:id]">
+    <div>
+      <div class="row">
+        <div class="large-12 columns">
+          <input type="text" id="input" name="contact_name" placeholder="Name"/><br>
+          <input type="text" id="input" name="pipeline" placeholder="Pipeline"/><br>
+          <input type="text" id="input" name="stage" placeholder="Stage"/><br>
+          <input type="text" id="input" name="email" placeholder="Email"/><br>
+          <input type="text" id="input" name="phoneNum" placeholder="Phone Number"/><br>
+          <input type="text" id="input" name="city" placeholder="City"/><br>
+          <input type="text" id="input" name="field_name" placeholder="Add Field"/><br>
+          <input type="text" id="input" name="field_value" placeholder="Info"/><br>
+          <input type="text" id="input" name="notes" placeholder="Notes"/><br>
+        </div>
+
+        <div>
+          <input type="submit" value="Update Contact" class="button" style="margin-left: 15px; background-color: #1abc9c;">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

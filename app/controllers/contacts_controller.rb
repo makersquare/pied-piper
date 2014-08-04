@@ -2,6 +2,9 @@ class ContactsController < ApplicationController
   respond_to :json, :html
   # before_filter :logged_in?
   # before_filter :admin?
+  def new
+    binding.pry
+  end
 
   def create
     # Create a new contact manually with the create_contact TXS
@@ -15,9 +18,10 @@ class ContactsController < ApplicationController
   end
 
   def show
+    binding.pry
     # Show a contact within its box given the contact id
     show_contact = GetContactBox.run({:contact_id=>contact_params[:id]})
-    respond_with show_contact
+    respond_with show_contact.to_json
   end
 
   def index

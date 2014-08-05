@@ -3,7 +3,7 @@ class RetrieveMessageScript < TransactionScript
 
   def run(inputs)
     contextio = ContextIO.new('hmsdfr9u', inputs.secret_key)
-    account = contextio.accounts[inputs.alert.account_id]
+    account = contextio.accounts[inputs.alert['account_id']]
     message = get_message(inputs, account)
 
     return failure 'message content missing' unless message.is_a?(ContextIO::Message)
@@ -18,7 +18,7 @@ class RetrieveMessageScript < TransactionScript
 
   def get_message(inputs, account)
 
-    message_id = inputs.message_data[:message_id]
+    message_id = inputs.alert['message_data']['message_id']
     account.messages[message_id]
 
   end

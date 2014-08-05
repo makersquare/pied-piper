@@ -56,6 +56,11 @@ ActiveRecord::Schema.define(version: 20140805175311) do
     t.text    "notes"
   end
 
+  create_table "pipeline_fields", force: true do |t|
+    t.integer "pipeline_id"
+    t.integer "field_id"
+  end
+
   create_table "pipeline_users", force: true do |t|
     t.integer  "user_id"
     t.integer  "pipeline_id"

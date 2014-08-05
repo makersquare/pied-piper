@@ -1,7 +1,7 @@
 require 'openssl'
 require 'base64'
 
-class ApiAuthenticationScript < TransactionScript
+class ApiAuthenticationScriptApiAuthenticationScript < TransactionScript
   def run(inputs)
     if inputs['signature'].nil?
       return failure 'Context.io authentication signature is nil'

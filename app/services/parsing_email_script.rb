@@ -1,38 +1,34 @@
 class ParsingEmailScript < TransactionScript
   def run(inputs)
     @questions = [
-      'First name',
-      'First Name',
       'firstname',
       'first name',
       'last name',
-      'Last name',
-      'last name',
       'name',
-      'Name',
-      'NAME',
-      'Email',
-      'Email Address',
       'e-mail',
       'e-mail address',
+      'email',
       'phone number',
       'phonenumber',
-      'Phone Number',
-      'Phone number',
-      'phone Number'
     ]
     info = parse(inputs.alert)
+    return failure 'Missing firstname' if info['firstname'].nil?
+    return failure 'Missing lastname' if info['lastname'].nil?
+    return failure 'Missing email' if info['email'].nil?
+    success info
   end
 
 
   def parse(message)
-    info = message.gsub(/>|\r/,'').map{|word| word.split(/\n/)}.map{|word| word.split(' ')}
+    body = message.downcase.gsub(/>|\r/,'')
+    info = body.split(/\n/).map{|word| word.split(' ')}
     questions = @questions.map{|word| word.split(' ')}
 
     new_info = {}
+    new_info['body'] = body
     info.each_with_index do |sentence, index|
       if questions.include?(sentence)
-        new_info[sentence.join(' ')] = info[index+1][0]
+        new_info[sentence.join('')] = info[index+1][0].capitalize
       end
     end
 

@@ -2,17 +2,10 @@ require 'ostruct'
 
 class ApiConversionScript < TransactionScript
   def run(inputs)
-    alert = confirm(inputs.alert)
-    unless alert.is_a?(OpenStruct)
-      return failure 'failure to convert alert to OpenStruct'
+    unless inputs.is_a?(Hash)
+      return failure 'Api POST request formatted incorrectly'
     end
-    return success ({ alert: alert })
-  end
-
-  def confirm(alert)
-    if alert.is_a?(Hash)
-      OpenStruct.new(alert)
-    end
+    return success ({ alert: inputs })
   end
 end
 

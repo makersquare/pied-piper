@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140805152613) do
+ActiveRecord::Schema.define(version: 20140805175311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,19 +45,15 @@ ActiveRecord::Schema.define(version: 20140805152613) do
   end
 
   create_table "fields", force: true do |t|
-    t.string "field_name"
-    t.string "field_type"
+    t.string  "field_name"
+    t.string  "field_type"
+    t.integer "pipeline_id"
   end
 
   create_table "notes", force: true do |t|
     t.integer "user_id"
     t.integer "box_id"
     t.text    "notes"
-  end
-
-  create_table "pipeline_fields", force: true do |t|
-    t.integer "pipeline_id"
-    t.integer "field_id"
   end
 
   create_table "pipeline_users", force: true do |t|

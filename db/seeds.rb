@@ -50,21 +50,6 @@ jobs_stage_list.each { |stage|
   pipeline_get_alumni_jobs.stages.create(stage)
 }
 
-common_fields_list = [
-  {field_name: 'name', field_type: 'string'},
-  {field_name: 'email', field_type: 'string'},
-  {field_name: 'phoneNum', field_type: 'string'},
-  {field_name: 'city', field_type: 'string'}
-]
-
-Field.create(common_fields_list)
-
-Array(1..4).each { |field_number|
-  PipelineField.create(pipeline_id: 1, field_id: field_number)
-  PipelineField.create(pipeline_id: 2, field_id: field_number)
-  PipelineField.create(pipeline_id: 3, field_id: field_number)
-}
-
 pipeline_get_alumni_jobs.fields.create({field_name: 'top_choice_company', field_type: 'string'})
 pipeline_admissions.fields.create({field_name: 'cohort_desired', field_type: 'string'})
 pipeline_hiring.fields.create({field_name: 'hiring_position', field_type: 'string'})

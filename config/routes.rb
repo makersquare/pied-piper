@@ -24,6 +24,7 @@ Crm::Application.routes.draw do
 
   resources :contacts
   resources :boxes
+
   post 'contextio/cb' => 'contextio#callback'
 
   # The priority is based upon order of creation: first created -> highest priority.

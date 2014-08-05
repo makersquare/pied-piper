@@ -9,18 +9,25 @@ class UserMailer < ActionMailer::Base
 
 # UserMailer.pipelineUpdate.deliver
 
-  def pipeline_update
+# might want to use @email_users = EmailSettings.where(setting: "RealTime") at some point
+  def stage_change_update
     @url = 'http://makersquare.com/crm/admin'
     @time = Time.now.strftime("%A, %B %d, %Y")
-    @email_users = EmailSettings.where(on: true)
+    @email_users = EmailSettings.all
     @email_users.each do |email_user|
       mail(to: email_user.user.email
-        subject: 'Pipeline Update for #{@time}',
+        subject: 'Pipeline Update for ' + @time.to_s,
         template_path: 'user_mailer',
         template_name: 'pipeline_update'
         )
-    end
   end
+
+# To test methods...use this mail to
+  # mail(to: 'jonathan.a.katz@gmail.com',
+  #   subject: 'Pipeline update for ' + @time.to_s,
+  #   template_path: 'user_mailer',
+  #   template_name: 'pipeline_update'
+  #   )
 end
 
   # create_table "box_histories", force: true do |t|

@@ -44,6 +44,22 @@ ActiveRecord::Schema.define(version: 20140807022648) do
     t.string "phonenumber"
   end
 
+  create_table "email_settings", force: true do |t|
+    t.integer  "user_id"
+    t.string   "setting"
+    t.integer  "pipeline_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "email_settings", force: true do |t|
+    t.integer  "user_id"
+    t.string   "setting",     default: "Realtime"
+    t.integer  "pipeline_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "fields", force: true do |t|
     t.string  "field_name"
     t.string  "field_type"

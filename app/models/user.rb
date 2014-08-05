@@ -16,4 +16,5 @@ class User < ActiveRecord::Base
   has_many :pipelines, :through => :pipeline_users
   has_many :user_stages
   has_many :stages, through: :user_stages
+  has_many :email_settings
 end

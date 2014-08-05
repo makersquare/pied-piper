@@ -30,6 +30,10 @@ var app = angular
       templateUrl: "<%= asset_path('angular/templates/createFields.html') %>",
       controller: 'CreateFieldsCtrl'
     })
+    .when('/email_settings/:user_id', {
+      templateUrl: "<%= asset_path('angular/templates/account_settings.html') %>",
+      controller: 'EmailCtrl'
+    })
     .otherwise({
       redirectTo: '/pipelines'
     })

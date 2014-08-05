@@ -10,15 +10,15 @@ class ContextioController < ApplicationController
     puts contact unless contact.error.nil?
 
     puts "Api authentication script starting"
-    contact = ApiAuthenticationScript.run(params)
+    contact = ApiAuthenticationScript.run(contact)
     puts contact unless contact.error.nil?
 
     puts "Retrieve message script starting"
-    contact = RetrieveMessageScript.run(params)
+    contact = RetrieveMessageScript.run(contact)
     puts contact unless contact.error.nil?
 
     puts "Parsing email script starting"
-    contact = ParsingEmailScript.run(params)
+    contact = ParsingEmailScript.run(contact)
     puts contact unless contact.error.nil?
 
     puts contact

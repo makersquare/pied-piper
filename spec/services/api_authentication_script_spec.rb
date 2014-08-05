@@ -1,17 +1,16 @@
 require 'spec_helper'
 
 describe ApiAuthenticationScript do
-  binding.pry
   it_behaves_like('TransactionScripts')
 
   it 'fails if the signature is nil' do
     alert = described_class.run({ signature: nil, webhook_id:'53dc3db6b4810f6c699076d3', timestamp: 1, token:'2a' })
-    expect(alert.error).to eq('Context.io notification authentication failure')
+    expect(alert.error).to eq('Context.io authentication signature is nil')
 
   end
 
   it 'fails if the signature is incorrect' do
-    alert = described_class.run({ signature: nil, webhook_id:'53dc3db6b4810f6c699076d3', timestamp: 1, token:'2a' })
+    alert = described_class.run({ signature: 123, webhook_id:'53dc3db6b4810f6c699076d3', timestamp: 1, token:'2a' })
     expect(alert.error).to eq('Context.io notification authentication failure')
   end
 

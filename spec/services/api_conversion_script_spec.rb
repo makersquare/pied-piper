@@ -1,4 +1,4 @@
-include 'spec_helper'
+require 'spec_helper'
 
 describe ApiConversionScript do
   it_behaves_like('TransactionScripts')

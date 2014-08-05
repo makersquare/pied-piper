@@ -1,7 +1,4 @@
 class UserMailer < ActionMailer::Base
-  # default from: "dev.piedpiper@gmail.com"
-  default from: "test@example.com"
-
   # def welcome_email(user)
   #   @user = user
   #   @url = 'http://makersquare.com/crm/admin'

@@ -3,36 +3,33 @@
 //  The run function is run after the config function.
 //  An example of this is the config provides a route while the run function
 // provides user authentication for the routes.
-var app = angular.module('crmApp', ['ngResource', 'ngRoute'])
+var app = angular
+  .module('crmApp', [
+    'ngResource',
+    'ngRoute'
+  ])
 
-// Inject necessary dependencies inside of this function below
-.config(['$routeProvider',function($routeProvider){
-// constants first
+  // Inject necessary dependencies inside of this function below
+  app.config(['$routeProvider',function($routeProvider){
+  // constants first
 
-//providers second
-  $routeProvider.when('/pipelines', {
-    // when using url parameters, to access them in the controller we
-    // must, in the controller, inject the dependency $routeParams
-    templateUrl: "<%= asset_path('angular/templates/pipelines.html') %>",
-    controller: 'PipelineCtrl',
+  //providers second
+  $routeProvider
+    .when('/pipelines', {
+      templateUrl: "<%= asset_path('angular/templates/pipelines.html') %>",
+      controller: 'PipelineCtrl'})
 
-  }).when('pipelines/:pid/contact/:cid', {
-    templateUrl: "<%= asset_path('angular/templates/pipelines.html') %>"
-    controller: 'ContactBoxCtrl',
+    .when('pipelines/:pid/contact/:cid', {
+      templateUrl: "<%= asset_path('angular/templates/pipelines.html') %>"
+      controller: 'ContactBoxCtrl'})
 
-  }).when('pipelines/:pid', {
-
-
-  });
-
-
-
+    .when('pipelines/:pid', {
+    });
 }])
 
 .run(function(){
 // User authentication should go here
 // When the angular route is changed the ng event
 // $routeChangeSuccess OR $routeChanseError is fired
-
 
 });

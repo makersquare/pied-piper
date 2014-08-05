@@ -4,5 +4,6 @@ class ContextioController < ApplicationController
   def callback
     ContextioApiScript.run(params)
     render nothing: true
+
   end
 end

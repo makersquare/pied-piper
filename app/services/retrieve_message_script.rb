@@ -13,7 +13,7 @@ class RetrieveMessageScript < TransactionScript
     return failure text['error'] unless text['error'].nil?
     return failure 'message content not a string' unless text.is_a?(String)
 
-    return success ({ alert: inputs.alert, secret_key: secret_key  })
+    return success ({ alert: text, secret_key: inputs.secret_key  })
   end
 
   def get_message(inputs, account)

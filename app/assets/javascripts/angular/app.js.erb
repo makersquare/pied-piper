@@ -20,20 +20,19 @@ var app = angular
       controller: 'PipelineCtrl'})
 
     .when('pipelines/:pid/contact/:cid', {
-      templateUrl: "<%= asset_path('angular/templates/pipelines.html') %>"
+      templateUrl: "<%= asset_path('angular/templates/pipelines.html') %>",
       controller: 'ContactBoxCtrl'})
 
     .when('pipelines/:pid', {
-    }
+    })
     .otherwise({
       redirectTo: '/pipelines'
     })
-    );
 }])
 
 .run(function(){
 // User authentication should go here
 // When the angular route is changed the ng event
-// $routeChangeSuccess OR $routeChanseError is fired
+// $routeChangeSuccess OR $routeChangeError is fired
 
 });

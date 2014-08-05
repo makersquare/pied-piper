@@ -100,6 +100,6 @@ internal_users_list.each { |user|
 
 # Unable to create Boxes inside this seed file you have to run this in rails console if you want example Boxes
 
-# 8.times do |i|
-#   Box.create(stage_id: rand(9) + 1, contact_id: rand(8) + 1)
-# end
+8.times do |i|
+  Box.create(stage_id: rand(9) + 1, contact_id: rand(8) + 1)
+end

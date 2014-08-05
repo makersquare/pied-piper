@@ -1,5 +1,4 @@
 Crm::Application.routes.draw do
-<<<<<<< HEAD
 
 
   #this route is the redirect route that is triggered after sending an authentication request to google
@@ -24,9 +23,7 @@ Crm::Application.routes.draw do
 
   resources :contacts
   resources :boxes
-=======
   post 'contextio/cb' => 'contextio#callback'
->>>>>>> working on contextio, committing to push to a staging server to check notifications
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

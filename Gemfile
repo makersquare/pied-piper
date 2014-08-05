@@ -65,8 +65,4 @@ gem 'figaro'
 # gem 'debugger', group: [:development, :test]
 
 
-<<<<<<< HEAD
-
 gem 'contextio'
-=======
->>>>>>> move files to function prperly with rspec

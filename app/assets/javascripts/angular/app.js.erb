@@ -17,8 +17,8 @@ var app = angular
       templateUrl: "<%= asset_path('angular/templates/pipelines.html') %>",
       controller: 'PipelineCtrl'})
 
-    .when('pipelines/:pid/contact/:cid', {
-      templateUrl: "<%= asset_path('angular/templates/pipelines.html') %>",
+    .when('/pipeline/:pid/contact/:cid', {
+      templateUrl: "<%= asset_path('angular/templates/contact_box.html') %>",
       controller: 'ContactBoxCtrl'})
 
     .when('pipelines/:pid', {

@@ -1,6 +1,5 @@
 app.controller('ContactBoxCtrl', ['$scope', '$resource', '$http', '$location', '$routeParams',
   function($scope, $resource, $http, $location, $routeParams) {
-    console.log("controller hit");
     $scope.cb = null;
     $scope.fields = [];
     $scope.field_values = [];

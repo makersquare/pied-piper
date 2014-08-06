@@ -20,6 +20,7 @@ Crm::Application.routes.draw do
     resources :stages
     resources :contacts
     resources :boxes
+    resources :users
   end
 
   resources :contacts

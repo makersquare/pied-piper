@@ -3,6 +3,8 @@ class PipelinesController < ApplicationController
   # respond_with :json
   # before_filter :logged_in?
   # before_filter :admin?, :only => [:destroy, :trash]
+  # We need to check and make sure the request is coming from
+  # an admin of the pipeline
 
 
   #Retrieves all rows from the Pipeline table, ID, name.
@@ -12,7 +14,9 @@ class PipelinesController < ApplicationController
   end
 
   # TSX to check and make sure valid. Backend check for if
-  # people concurrently add pipelines
+  # people concurrently add pipelines. This needs to check
+  # if the request is coming for an admin of the entire app or
+  # allow any user to create pipelines
   def create
     respond_with CreatePipeline.run(pipeline_params).data
   end
@@ -45,12 +49,48 @@ class PipelinesController < ApplicationController
       respond_with result.error.to_json
     end
 
+<<<<<<< HEAD
+=======
+  end
+
+  #Method takes a pipeline id and a user id and adds the user to the pipeline
+  # This is a mass assignment so I think I have to permit the user_id.
+  # Need to first check and see if target user is not already part of pipeline
+  def add_to_pipeline
+    result = AddUserPipeline.run(pipeline_params)
+
+    if result.success?
+      respond_with result.data
+    else
+      respond_with result.error
+    end
+  end
+
+  def remove_from_pipeline
+    result = RemoveUserPipeline.run(pipeline_params)
+
+    if result.success?
+      respond_with result.data
+    else
+      respond_with result.error
+    end
+  end
+
+  def update_access_to_pipeline
+    result = UpdateUserPipeline.run(pipeline_params)
+
+    if result.success?
+      respond_with result.data
+    else
+      respond_with result.error
+    end
+>>>>>>> ddf80f5... Added pipeline user collab logic, no tests yet
   end
 
 
   private
 
   def pipeline_params
-    params.permit(:id, :name, :trashed)
+    params.permit(:id, :name, :trashed, :user_id, :pipeline_admin)
   end
 end

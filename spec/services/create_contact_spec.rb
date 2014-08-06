@@ -20,4 +20,10 @@ describe CreateContact do
     expect(contact.phoneNum).to eq('1234567')
   end
 
+   it "creates a contact" do
+    result = CreateContact.run({ :email=>'me@email.com', :phoneNum=>'1234567'})
+    expect(result.success?).to be_false
+    expect(result.error).to eq('Contact is missing name')
+  end
+
 end

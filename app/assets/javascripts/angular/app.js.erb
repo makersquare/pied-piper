@@ -6,7 +6,7 @@
 var app = angular
   .module('crmApp', [
     'ngResource',
-    'ngRoute'
+    'ngRoute',
   ]);
 
   // Inject necessary dependencies inside of this function below
@@ -15,13 +15,15 @@ var app = angular
   $routeProvider
     .when('/pipelines', {
       templateUrl: "<%= asset_path('angular/templates/pipelines.html') %>",
-      controller: 'PipelineCtrl'})
-
+      controller: 'PipelinesStatusCtrl'
+    })
+    .when('/pipeline/:id', {
+      templateUrl: "<%= asset_path('angular/templates/pipeline_details.html') %>",
+      controller: 'PipelineDetailsCtrl'
+    })
     .when('/pipeline/:pid/contact/:cid', {
       templateUrl: "<%= asset_path('angular/templates/contact_box.html') %>",
-      controller: 'ContactBoxCtrl'})
-
-    .when('pipelines/:pid', {
+      controller: 'ContactBoxCtrl'
     })
     .otherwise({
       redirectTo: '/pipelines'
@@ -34,3 +36,6 @@ var app = angular
 // $routeChangeSuccess OR $routeChangeError is fired
 
 });
+
+// This is our services Module for API calls
+// var service = angular.module("apiService", ["ngResource"]);

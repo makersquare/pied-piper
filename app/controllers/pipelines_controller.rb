@@ -61,7 +61,7 @@ class PipelinesController < ApplicationController
   end
 
   def remove_from_pipeline
-    result = RemoveUserPipeline.run(pipeline_params)
+    result = AddUserPipeline.run(pipeline_params)
 
     if result.success?
       respond_with result.data

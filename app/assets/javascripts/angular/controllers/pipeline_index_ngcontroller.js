@@ -1,8 +1,8 @@
 app.controller('PipelineIndexCtrl',
-  ['$scope', '$resource', 'Pipelines',
-  function($scope, $resource, Pipelines) {
+  ['$scope', '$resource', 'PipelinesRsc',
+  function($scope, $resource, PipelinesRsc) {
 
-  $scope.pipelineList = Pipelines.get();
+  $scope.pipelineList = PipelinesRsc.get();
 
 
   }]);

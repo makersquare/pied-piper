@@ -5,7 +5,7 @@ describe UserMailer do
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
     @contact = Contact.create(name: 'Jon', email: 'jonathan.a.katz@gmail.com', phoneNum: '123', city: 'Philadelphia' )
-    UserMailer.new_contact_update(@contact).deliver
+    UserMailer.pipeline_update.deliver
   end
 
   after(:each) do
@@ -13,6 +13,7 @@ describe UserMailer do
   end
 
   it 'sends an email ' do
+    # binding.pry
     expect(ActionMailer::Base.deliveries.count).to eq(1)
   end
 

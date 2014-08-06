@@ -1,20 +1,21 @@
 class UserMailer < ActionMailer::Base
   default from: "MakerSquare CRM Notifications"
 
-  # def welcome_email(user)
-  #   @user = user
-  #   @url = 'http://makersquare.com/crm/admin'
-  #   mail(to: @user.email, subject: 'Welcome to Pied Piper CRM')
-  # end
-
-# UserMailer.pipelineUpdate.deliver
+  def registration_email(user)
+    @user = user
+    @url = 'http://makersquare.com/crm/admin'
+    mail(to: @user.email,
+        subject: 'You have successfully registered for the MakerSquare CRM',
+        template_path: 'user_mailer',
+        template_name: 'registration_email'
+        )
+  end
 
 # might want to use @email_users = EmailSettings.where(setting: "RealTime") at some point
   def stage_change_update(contact)
     @url = 'http://makersquare.com/crm/admin'
     @time = Time.now.strftime("%A, %B %d, %Y")
-    # @email_users = EmailSettings.all
-    @email_users = users
+    @email_users = EmailSettings.all
     @email_users.each do |email_user|
       mail(to: email_user.user.email,
         subject: 'MakerSquare CRM Notification: Stage Change Update at ' + @time.to_s,
@@ -29,7 +30,7 @@ class UserMailer < ActionMailer::Base
     @city = contact.city
     @phone_number = contact.phoneNum
     @time = Time.now
-
+    @email_users = EmailSettings.all
     @email_users.each do |email_user|
       mail(to: email_user.user.email,
         subject: 'MakerSquare CRM Notification: New Contact Added',
@@ -38,14 +39,17 @@ class UserMailer < ActionMailer::Base
         )
     end
   end
-end
 
+  def pipeline_update
+   mail(to: 'jonathan.a.katz@gmail.com',
+    subject: 'Pipeline Update',
+    template_path: 'user_mailer',
+    template_name: 'pipeline_update'
+    )
+  end
+end
 # To test methods...use this mail to
-  # mail(to: 'jonathan.a.katz@gmail.com',
-  #   subject: 'Pipeline update for ' + @time.to_s,
-  #   template_path: 'user_mailer',
-  #   template_name: 'pipeline_update'
-  #   )
+
 
 
 ##########   Table References   ###########

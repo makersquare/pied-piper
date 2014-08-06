@@ -22,6 +22,7 @@ Crm::Application.routes.draw do
     resources :contacts
     resources :boxes
     resources :users
+    resources :fields, :defaults => { :format => :json }
   end
 
   resources :contacts

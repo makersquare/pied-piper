@@ -2,6 +2,8 @@ class PipelinesController < ApplicationController
   respond_to :json
   # before_filter :logged_in?
   # before_filter :admin?, :only => [:destroy, :trash]
+  # We need to check and make sure the request is coming from
+  # an admin of the pipeline
 
   #Retrieves all rows from the Pipeline table, ID, name
   def index 
@@ -9,7 +11,9 @@ class PipelinesController < ApplicationController
   end
 
   # TSX to check and make sure valid. Backend check for if
-  # people concurrently add pipelines
+  # people concurrently add pipelines. This needs to check
+  # if the request is coming for an admin of the entire app or
+  # allow any user to create pipelines
   def create
     respond_with CreatePipeline.run(pipeline_params).data
   end
@@ -41,6 +45,18 @@ class PipelinesController < ApplicationController
     else #Do something else saying that the pipeline was not trashed
       respond_with result.error.to_json
     end
+  end
+
+  def add_to_pipeline
+    
+  end
+
+  def remove_from_pipeline
+
+  end
+
+  def update_access_to_pipeline
+
   end
 
   private

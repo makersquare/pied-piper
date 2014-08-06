@@ -1,7 +1,8 @@
 class UpdateContactBox < TransactionScript
   def run(params)
     # Updates a contact's box info
-    b = Box.find(params[:id])
+    b = Box.where('contact_id = ?', params[:contact_id].to_i).first
+    # binding.pry
     b.pipeline_id = params[:pipeline_id] || b.pipeline_id
     b.stage_id = params[:stage_id] || b.stage_id
     b.pipeline_location = params[:pipeline_location] || b.pipeline_location
@@ -32,6 +33,6 @@ class UpdateContactBox < TransactionScript
     f = b.fields
     fv = b.box_fields
     n = b.notes
-    return success box: b, contact: c, field: f, field_value: fv, notes: n
+    return success box: b, contact: c, fields: f, field_values: fv, notes: n
   end
 end

@@ -7,6 +7,7 @@
           <ul>
             <!-- <li ng-repeat="result in results">entry: {{}}</li> -->
           </ul>
+          <!-- General contact info -->
           <input type="text" name="name" placeholder="Name"
             ng-model="cb.contact.name"/><br>
           <input type="text" name="pipeline" placeholder="Pipeline"
@@ -20,12 +21,23 @@
           <input type="text" name="city" placeholder="City"
           ng-model="cb.contact.city"/><br>
 
-          <input type="text" name="field" placeholder=""
-          ng-model="cb.field"/><br>
-          <input type="text" name="field_value" placeholder="Info"
-          ng-model="cb.field_value"/><br>
-          <input type="text" name="notes" placeholder="Notes"
-          ng-model="cb.notes"/><br>
+          <!-- Arrays -->
+          <ul><li>
+          <input type="text" ng-repeat="field in fields" name="field" placeholder=""
+          ng-model="cb.field"/>field: {{field.field_name}}
+          </li></ul><br>
+
+          <ul><li>
+          <input type="text" ng-repeat="field_value in field_values" name="field_value" placeholder="Info"
+          ng-model="cb.field_value"/>field value: {{field_value.value}}
+          </li></ul>
+          <br>
+
+          <ul><li>
+          <input type="text" ng-repeat="note in notes" name="notes" placeholder="Notes"
+          ng-model="cb.notes"/>notes: {{note.notes}}
+          </li></ul>
+          <br>
         </div>
 
         <div>

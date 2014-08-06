@@ -41,7 +41,9 @@ class ContactsController < ApplicationController
 
   def box_params
     # All params currently permitted
-    params.permit(:id, :contact_id, :pipeline_id, :stage_id, :pipeline_location)
+    params.permit(:id, :contact_id, :pipeline_id, :stage_id, :pipeline_location,
+                  :name, :pipeline_name, :email, :phoneNum, :city, :fields, :field_values,
+                  :notes)
   end
 
   def field_params

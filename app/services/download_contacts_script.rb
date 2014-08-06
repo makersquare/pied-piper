@@ -1,0 +1,2 @@
+class DownloadContactScript < TransactionScript
+end

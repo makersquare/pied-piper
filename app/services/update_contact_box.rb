@@ -19,7 +19,7 @@ class UpdateContactBox < TransactionScript
     field_value = BoxField.where('box_id = ?', b.id).first
     field_value.value = params[:value] || field_value.value
 
-    notes = b.notes.find(params[:notes_id])
+    notes = Note.where('box_id = ?', b.id).first
     notes.notes = params[:notes] || notes.notes
 
     b.save

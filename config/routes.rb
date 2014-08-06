@@ -28,7 +28,7 @@ Crm::Application.routes.draw do
   resources :contacts
   resources :boxes
 
-  post 'contextio/cb' => 'contextio#callback'
+  post 'contextio/webhook/' => 'contextio#callback'
 
 
 

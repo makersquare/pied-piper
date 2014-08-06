@@ -4,7 +4,7 @@ describe RetrieveMessageScript do
   it_behaves_like('TransactionScripts')
 
   before(:all) do
-    @inputs = OpenStruct.new(secret_key: '123', alert:{'message_data'=> {'message_id'=> 1}, 'account_id' => 0})
+    @inputs = OpenStruct.new( alert:{'message_data'=> {'message_id'=> 1}, 'account_id' => 0})
   end
 
   it 'fails if the message is not a ContextIO::Message' do

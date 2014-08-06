@@ -31,7 +31,7 @@ class ApiAuthenticationScript < TransactionScript
 
   #this hash is generated using the secret key, the timestamp and the token from the
   #notification using openssl and sha256 encryption
-    our_hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest::SHA256.new, ENV['CONTEXTIO_SECRETKEY'] secret_key, alert['timestamp'].to_s+alert['token'])
+    our_hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest::SHA256.new, ENV['CONTEXTIO_SECRETKEY'], alert['timestamp'].to_s+alert['token'])
 
   #then we compare our generated has to the signature from the notification
     unless our_hash == alert['signature']

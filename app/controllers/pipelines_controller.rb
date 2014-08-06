@@ -3,9 +3,9 @@ class PipelinesController < ApplicationController
   # before_filter :logged_in?
   # before_filter :admin?, :only => [:destroy, :trash]
 
-  #Retrieves all rows from the Pipeline table, ID, name. 
+  #Retrieves all rows from the Pipeline table, ID, name.
   #Use this for the sidebar
-  def index 
+  def index
     respond_with Pipeline.all
   end
 

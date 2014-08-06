@@ -1,10 +1,10 @@
 app.controller('ContactBoxCtrl', ['$scope', '$resource', '$http', '$location', '$routeParams',
   function($scope, $resource, $http, $location, $routeParams) {
     $scope.cb = null;
-    $scope.fields = [];
-    $scope.field_values = [];
+    // $scope.fields = [];
+    // $scope.field_values = [];
     $scope.notes = [];
-    $scope.updateInfo = {name: '', phoneNum: '', contact_id: $routeParams.cid};
+
     // $scope.contact_id = $routeParams.cid // ?
 
 // Define the rails path that will be hit by the http requests
@@ -12,7 +12,7 @@ app.controller('ContactBoxCtrl', ['$scope', '$resource', '$http', '$location', '
       {cid: '@cid', pid: '@pid'},//$routeParams instead of @
       {
        get: {method: 'GET'},//isArray:false
-       update: { method: 'PUT', params: $scope.updateInfo}
+       update: { method: 'PUT', params: $scope.cb}
         }//params:{name:''}
       );
 
@@ -22,25 +22,26 @@ app.controller('ContactBoxCtrl', ['$scope', '$resource', '$http', '$location', '
         pid: $routeParams.pid
       })
       .$promise.then(function(cb){
-        console.log(cb.table);
+        // console.log(cb.table);
         $scope.cb = cb.table;
-
-        $scope.fields = $scope.cb.field;
-        $scope.field_values = $scope.cb.field_value;
-        $scope.notes = $scope.cb.notes;
-
-        console.log($scope.fields)
+        $scope.cb.contact.contact_id = $routeParams.cid;
+        $scope.cb.cid = $routeParams.cid;
+        $scope.cb.pid = $routeParams.pid;
+        $scope.cb.contact_id = $routeParams.cid;
+        // $scope.fields = $scope.cb.field;
+        // $scope.field_values = $scope.cb.field_value;
+        // $scope.notes = $scope.cb.notes;
+        // $scope.notes
+        console.log($scope.cb)
       })
 
 // Update the entry by sending the 'update' request
     $scope.updateEntry = function(){
-      console.log($scope.results)
-      console.log($scope.updateInfo)
+      // console.log($scope.results)
       console.log('updating...')
+      console.log($scope.cb)
       entry = ContactBoxRsc.update(
-        {cid: $routeParams.cid,
-        pid: $routeParams.pid
-        })
+        $scope.cb)
       console.log(entry)
       // $scope.results.push(entry);
       // $scope.newEntry = {};

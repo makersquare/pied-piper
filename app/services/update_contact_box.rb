@@ -1,7 +1,6 @@
 class UpdateContactBox < TransactionScript
   def run(params)
     # Updates a contact's box info
-    # binding.pry
     b = Box.where('contact_id = ?', params[:contact_id].to_i).first
     b.pipeline_id = params[:pipeline_id] || b.pipeline_id
     b.stage_id = params[:stage_id] || b.stage_id
@@ -19,14 +18,24 @@ class UpdateContactBox < TransactionScript
     field_value = BoxField.where('box_id = ?', b.id).first
     field_value.value = params[:value] || field_value.value if !field_value.nil?
 
-    notes = Note.where('box_id = ?', b.id).first
-    notes.notes = params[:notes] || notes.notes if !notes.nil?
+    notes = params[:notes]
+    # binding.pry
+    # notes = Note.where('box_id = ?', b.id)
+    notes.each do |note|
+        # binding.pry
+        nt = Note.find(note[:id])
+        # binding.pry
+        nt.update_column(:notes, note[:notes]) || b.notes
+        # binding.pry
+    end
+
+    # notes.notes = params[:notes] || notes.notes if !notes.nil?
 
     b.save
     b.contact.save
-    field.save if !field.nil?
-    field_value.save if !field_value.nil?
-    notes.save if !notes.nil?
+    # field.save if !field.nil?
+    # field_value.save if !field_value.nil?
+    # notes.save if !notes.nil?
 
     c = b.contact
     f = b.fields

@@ -1,6 +1,6 @@
 <div>contact box!</div>
 <div>
- <form name="inputForm" method="PUT" ng-submit="updateEntry()">
+ <form id="inputForm" name="inputForm" method="PUT" ng-submit="updateEntry()">
     <div>
       <div class="row">
         <div class="large-12 columns">
@@ -33,10 +33,12 @@
           </li></ul>
           <br>
 
-          <ul><li>
-          <input type="text" ng-repeat="note in notes" name="notes" placeholder="Notes"
-          ng-model="cb.notes"/>notes: {{note.notes}}
-          </li></ul>
+          <ul>
+            <li ng-repeat="note in cb.notes" >
+              <input type="text" name="note" placeholder="Notes"/>
+              notes: {{note.notes}}
+            </li>
+          </ul>
           <br>
         </div>
 

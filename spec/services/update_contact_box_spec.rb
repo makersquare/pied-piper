@@ -20,8 +20,9 @@ describe UpdateContactBox do
     bf1 = BoxField.create({:field_id=>f1.id, :box_id=>b1.box.id, :value=>'application complete'})
     bf2 = BoxField.create({:field_id=>f2.id, :box_id=>b1.box.id, :value=>'SF2'})
     n1 = Note.create({:user_id=>1, :box_id=>b1.box.id, :notes=>'here you go'})
+    n2 = Note.create({:user_id=>1, :box_id=>b1.box.id, :notes=>'second note'})
 
-    result = UpdateContactBox.run({:id=>b1.box.id, :pipeline_id=>p1.data.id, :contact_id=>c1.contact.id, :field_id=>f1.id, :box_field_id=>bf1.id, :name=>'updated name', :notes_id=>n1.id, :notes=>'updated notes'})
+    result = UpdateContactBox.run({:id=>b1.box.id, :pipeline_id=>p1.data.id, :contact_id=>c1.contact.id, :field_id=>f1.id, :box_field_id=>bf1.id, :name=>'updated name', :notes=>[{:id=>n1.id, :notes=>'updated notes'}, {:id=>n2.id, :notes=>'second updated note'}]})
     box = result.box
     field = result.fields
     box_field = result.field_values

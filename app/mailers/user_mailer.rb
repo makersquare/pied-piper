@@ -42,7 +42,7 @@ class UserMailer < ActionMailer::Base
 
   def pipeline_update
    mail(to: 'jonathan.a.katz@gmail.com',
-    subject: 'Pipeline Update',
+    subject: 'MakerSquare CRM Notification: Pipeline Update',
     template_path: 'user_mailer',
     template_name: 'pipeline_update'
     )

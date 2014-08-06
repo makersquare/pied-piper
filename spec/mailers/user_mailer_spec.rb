@@ -22,6 +22,6 @@ describe UserMailer do
   end
 
   it 'sets the subject to the correct subject' do
-    expect(ActionMailer::Base.deliveries.first.subject).to eq('MakerSquare CRM Notification: New Contact Added')
+    expect(ActionMailer::Base.deliveries.first.subject).to eq('MakerSquare CRM Notification: Pipeline Update')
   end
 end

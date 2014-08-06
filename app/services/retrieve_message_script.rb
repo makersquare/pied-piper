@@ -13,7 +13,7 @@ class RetrieveMessageScript < TransactionScript
     return failure 'message not formatted correctly' unless text[:success]
     return failure 'message content not a string' unless text[:body]is_a?(String)
 
-    return success ({ alert: text[:body] })
+    return success (alert: text[:body])
   end
 
   def get_message(inputs, account)

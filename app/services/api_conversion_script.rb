@@ -13,7 +13,7 @@ class ApiConversionScript < TransactionScript
       return failure 'Api POST request formatted incorrectly'
     end
 
-    return success ({ alert: inputs })
+    return success (alert: inputs)
   end
 end
 

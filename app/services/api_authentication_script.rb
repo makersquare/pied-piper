@@ -22,7 +22,7 @@ class ApiAuthenticationScript < TransactionScript
 
     return failure error if !error.nil?
 
-    return success({ alert: inputs })
+    return success(alert: inputs)
   end
 
 

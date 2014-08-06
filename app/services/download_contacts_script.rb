@@ -11,7 +11,7 @@ class DownloadContactScript < TransactionScript
     return failure text['error'] unless text['error'].nil?
     return failure 'message content not a string' unless text.is_a?(String)
 
-    return success ({ alert: text })
+    return success (alert: text)
   end
 
   def get_message(inputs, account)

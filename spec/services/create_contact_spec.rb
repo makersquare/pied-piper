@@ -14,7 +14,6 @@ describe CreateContact do
   it "creates a contact" do
     result = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phoneNum=>'1234567'})
     contact = result.contact
-
     expect(result.success?).to eq(true)
     expect(contact.name).to eq('contact1')
     expect(contact.email).to eq('me@email.com')

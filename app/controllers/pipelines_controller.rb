@@ -31,18 +31,16 @@ class PipelinesController < ApplicationController
     respond_with pipeline_with_data.data
   end
 
-#TODO!
-
   # TSX to check if pipeline is in trash and actually deletes db entry
   # also need to destroy all associated stages and boxes associated
   # destroy the entries in the pipeline users table
   def destroy
     result = DestroyPipeline.run(params[:id])
-
-    respond_with 
-  end
-
-  def retrieve_pipelines_with_stages
+    if result.success?
+      respond_with result.data
+    else #Do something else saying that the pipeline was not trashed
+      respond_with result.error.to_json
+    end
   end
 
   private

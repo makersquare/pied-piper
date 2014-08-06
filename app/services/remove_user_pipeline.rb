@@ -9,7 +9,7 @@ class RemoveUserPipeline < TransactionScript
     return failure(:user_not_in_pipeline) if pipeline_entity.nil?
     
     begin
-      result = PipelineUser.delete(pipeline_entity.id)
+      result = PipelineUser.destroy(pipeline_entity.id)
       return success(:data => result)
     rescue
       return failure(:problem_adding_user)

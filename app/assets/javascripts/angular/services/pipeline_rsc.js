@@ -1,4 +1,4 @@
-app.factory("Pipelines", function ($resource) {
+app.factory("PipelinesRsc", function ($resource) {
     return $resource(
         "/pipelines/:Id.json",
         {Id: "@Id" },

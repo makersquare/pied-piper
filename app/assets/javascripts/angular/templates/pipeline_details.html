@@ -1,9 +1,33 @@
 <!-- stageBoxes, pipeStages, pipeData -->
-
 <div>
-  <form>
-    <input type="text" name="pipeName"
-      ng-model="pipeData.name" ng-disabled="true">
-  </form>
+
+  <label class="label round warning"for="editPipeData">Edit Data</label>
+  <input type="checkbox" name="editPideData" ng-model="editData">
+
+  <div id="pipeDataDiv" class="panel">
+
+
+    <div id="showDataDiv" ng-hide="editData">
+      <h1><span class="">{{pipeData.id}}</span>{{pipeData.name}}</h1>
+    </div>
+
+    <form name="pipeDataForm" ng-hide="!editData">
+      <input type="text" name="pipeName"
+        ng-model="pipeData.name">
+    </form>
+
+    <a class="button radius round tiny" ng-hide="!editData">Submit</a>
+  </div>
 </div>
 
+<h1>DEV DATA</h1>
+<p>{{pipeData}}</p>
+
+<div class="panel callout">
+  <p ng-repeat="stage in pipeStages">{{stage}}</p>
+</div>
+<p>{{stageBoxes}}</p>
+
+<h1>Raw DATA DUMP</h1>
+  <p class='panel'>{{data}}</p>
+<p>

@@ -1,22 +1,37 @@
 <div>contact box!</div>
-<div ng-controller="ContactBoxCtrl"><%=@results%>
- <form method="post" action="pipeline/params[:pipeline_id]/contacts/params[:contact_id]">
+<div>
+ <form name="inputForm" method="PUT" ng-submit="updateEntry()">
     <div>
       <div class="row">
         <div class="large-12 columns">
-          <input type="text" id="input" name="contact_name" placeholder="Name"/><br>
-          <input type="text" id="input" name="pipeline" placeholder="Pipeline"/><br>
-          <input type="text" id="input" name="stage" placeholder="Stage"/><br>
-          <input type="text" id="input" name="email" placeholder="Email"/><br>
-          <input type="text" id="input" name="phoneNum" placeholder="Phone Number"/><br>
-          <input type="text" id="input" name="city" placeholder="City"/><br>
-          <input type="text" id="input" name="field_value" placeholder="Info"/><br>
-          <input type="text" id="input" name="notes" placeholder="Notes"/><br>
+          <ul>
+            <!-- <li ng-repeat="result in results">entry: {{}}</li> -->
+          </ul>
+          <input type="text" name="name" placeholder="Name"
+            ng-model="cb.contact.name"/><br>
+          <input type="text" name="pipeline" placeholder="Pipeline"
+          ng-model="cb.pipeline.name"/><br>
+          <input type="text" name="stage" placeholder="Stage"
+          ng-model="cb.box.stage"/><br>
+          <input type="text" name="email" placeholder="Email"
+          ng-model="cb.contact.email"/><br>
+          <input type="text" name="phoneNum" placeholder="Phone Number"
+            ng-model="cb.contact.phoneNum"/><br>
+          <input type="text" name="city" placeholder="City"
+          ng-model="cb.contact.city"/><br>
+
+          <input type="text" name="field" placeholder=""
+          ng-model="cb.field"/><br>
+          <input type="text" name="field_value" placeholder="Info"
+          ng-model="cb.field_value"/><br>
+          <input type="text" name="notes" placeholder="Notes"
+          ng-model="cb.notes"/><br>
         </div>
 
         <div>
-          <input type="submit" value="Update Contact" class="button" style="margin-left: 15px; background-color: #1abc9c;">
+          <input type="submit" value="Update Info" class="button" style="margin-left: 15px; background-color: #1abc9c;">
         </div>
+
       </div>
     </div>
   </form>

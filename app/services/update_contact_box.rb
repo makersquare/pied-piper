@@ -18,18 +18,23 @@ class UpdateContactBox < TransactionScript
     field_value = BoxField.where('box_id = ?', b.id).first
     field_value.value = params[:value] || field_value.value if !field_value.nil?
 
-    notes = params[:notes]
-    # binding.pry
-    # notes = Note.where('box_id = ?', b.id)
-    notes.each do |note|
-        # binding.pry
-        nt = Note.find(note[:id])
-        # binding.pry
-        nt.update_column(:notes, note[:notes]) || b.notes
-        # binding.pry
+    # Loop through box_field array to update field value by box_field id
+    if !params[:box_field].nil?
+        field_vals = params[:box_field]
+        field_vals.each do |field_val|
+            v = BoxField.find(field_val[:id])
+            v.update_column(:value, field_val[:value]) || v[:value]
+        end
     end
 
-    # notes.notes = params[:notes] || notes.notes if !notes.nil?
+    # Loop through notes array to update note by note id
+    if !params[:notes].nil?
+        notes = params[:notes]
+        notes.each do |note|
+            nt = Note.find(note[:id])
+            nt.update_column(:notes, note[:notes]) || nt[:notes]
+        end
+    end
 
     b.save
     b.contact.save

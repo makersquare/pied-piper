@@ -22,7 +22,13 @@ describe UpdateContactBox do
     n1 = Note.create({:user_id=>1, :box_id=>b1.box.id, :notes=>'here you go'})
     n2 = Note.create({:user_id=>1, :box_id=>b1.box.id, :notes=>'second note'})
 
-    result = UpdateContactBox.run({:id=>b1.box.id, :pipeline_id=>p1.data.id, :contact_id=>c1.contact.id, :field_id=>f1.id, :box_field_id=>bf1.id, :name=>'updated name', :notes=>[{:id=>n1.id, :notes=>'updated notes'}, {:id=>n2.id, :notes=>'second updated note'}]})
+    result = UpdateContactBox.run({:id=>b1.box.id,
+        :pipeline_id=>p1.data.id,
+        :contact_id=>c1.contact.id,
+        :name=>'updated name',
+        :field_id=>f1.id,
+        :box_field=>[{:id=>bf1.id, :value=>'interview scheduled'}],
+        :notes=>[{:id=>n1.id, :notes=>'updated notes'}, {:id=>n2.id, :notes=>'second updated note'}]})
     box = result.box
     field = result.fields
     box_field = result.field_values
@@ -43,10 +49,11 @@ describe UpdateContactBox do
     expect(field.last.field_name).to eq(f2.field_name)
     expect(field.last.field_type).to eq(f2.field_type)
     expect(box_field.first.id).to eq(bf1.id)
-    expect(box_field.first.value).to eq(bf1.value)
+    expect(box_field.first.value).to eq('interview scheduled')
     expect(box_field.last.id).to eq(bf2.id)
     expect(box_field.last.value).to eq(bf2.value)
     expect(notes.first.notes).to eq('updated notes')
+    expect(notes.last.notes).to eq('second updated note')
   end
 
 end

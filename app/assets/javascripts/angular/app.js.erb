@@ -3,6 +3,7 @@
 //  The run function is run after the config function.
 //  An example of this is the config provides a route while the run function
 // provides user authentication for the routes.
+
 var app = angular
   .module('crmApp', [
     'ngResource',
@@ -24,6 +25,10 @@ var app = angular
     .when('/pipeline/:pid/contact/:cid', {
       templateUrl: "<%= asset_path('angular/templates/contact_box.html') %>",
       controller: 'ContactBoxCtrl'
+    })
+    .when('/pipeline/:pipeline_id/fields', {
+      templateUrl: "<%= asset_path('angular/templates/createFields.html') %>",
+      controller: 'CreateFieldsCtrl'
     })
     .otherwise({
       redirectTo: '/pipelines'

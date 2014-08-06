@@ -13,21 +13,20 @@ class UpdateContactBox < TransactionScript
     b.contact.city = params[:city] || b.contact.city
 
     field = Field.where('pipeline_id = ?', params[:pipeline_id]).first
-    field.field_name = params[:field_name] || field.field_name
-    field.field_type = params[:field_type] || field.field_type
+    field.field_name = params[:field_name] || field.field_name if !field.nil?
+    field.field_type = params[:field_type] || field.field_type if !field.nil?
 
     field_value = BoxField.where('box_id = ?', b.id).first
-    field_value.value = params[:value] || field_value.value
+    field_value.value = params[:value] || field_value.value if !field_value.nil?
 
     notes = Note.where('box_id = ?', b.id).first
-    notes.notes = params[:notes] || notes.notes
+    notes.notes = params[:notes] || notes.notes if !notes.nil?
 
     b.save
     b.contact.save
-    b.contact.save
-    field.save
-    field_value.save
-    notes.save
+    field.save if !field.nil?
+    field_value.save if !field_value.nil?
+    notes.save if !notes.nil?
 
     c = b.contact
     f = b.fields

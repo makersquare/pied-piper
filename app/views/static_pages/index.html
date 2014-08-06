@@ -1,17 +1,17 @@
-<div>
+<div class="row">
 {{"Testing Angular Muastaches!"}}
 </div>
 <div class="row">
 
-  <div class="small-4 large-4 columns panel callout" ng-controller="PipelineIndexCtrl">
-    {{test}}
-    <ol>
-      <li ng-repeat="pipeline in pipelineList">{{pipeline.name}}</li>
-    </ol>
+  <div class="small-2 large-2 columns panel callout"
+    ng-controller="PipelineIndexCtrl">
+      <div ng-repeat="pipe in pipelineList" class="">
+        <a href="/#/pipeline/{{pipe.id}}" title="">{{pipe.name}}</a>
+      </div>
   </div>
 
   <!-- The below div is where the ng views/partials will be shown -->
-  <div class="small-8 large-8 columns">
+  <div class="small-10 large-10 columns">
     <div ng-view>
 
     </div>

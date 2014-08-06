@@ -1,10 +1,13 @@
 class PipelinesController < ApplicationController
   respond_to :json
+  # respond_with :json
   # before_filter :logged_in?
   # before_filter :admin?, :only => [:destroy, :trash]
 
-  #Retrieves all rows from the Pipeline table, ID, name
-  def index 
+
+  #Retrieves all rows from the Pipeline table, ID, name.
+  #Use this for the sidebar
+  def index
     respond_with Pipeline.all
   end
 
@@ -41,7 +44,9 @@ class PipelinesController < ApplicationController
     else #Do something else saying that the pipeline was not trashed
       respond_with result.error.to_json
     end
+
   end
+
 
   private
 

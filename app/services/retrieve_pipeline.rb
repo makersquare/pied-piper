@@ -6,6 +6,6 @@ class RetrievePipeline < TransactionScript
     pipeline_stages.each { |stage|
       stage_boxes[stage] = stage.boxes
     }
-    return success(:data => {pipeline: pipeline_entity.to_json, pipeline_stages: pipeline_stages.to_json, stage_boxes: stage_boxes.to_json})
+    return success(:data => {pipeline: pipeline_entity, pipeline_stages: pipeline_stages, stage_boxes: stage_boxes})
   end
 end

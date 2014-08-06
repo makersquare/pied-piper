@@ -33,6 +33,7 @@ class ContactsController < ApplicationController
 
   def update
     # User can update a contact's info and associated box info
+    # binding.pry
     update_contact_box = UpdateContactBox.run(box_params)
     respond_with update_contact_box
   end
@@ -43,7 +44,11 @@ class ContactsController < ApplicationController
     # All params currently permitted
     params.permit(:id, :contact_id, :pipeline_id, :stage_id, :pipeline_location,
                   :name, :pipeline_name, :email, :phoneNum, :city, :fields, :field_values,
-                  :notes)
+                  :notes, :format, :cid, :pid, :contact=>[:name, :phoneNum])
+  end
+
+  def contact_params
+    params.require(:contact).permit(:name, :phoneNum)
   end
 
   def field_params

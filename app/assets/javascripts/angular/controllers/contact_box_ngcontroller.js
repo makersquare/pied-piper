@@ -4,15 +4,16 @@ app.controller('ContactBoxCtrl', ['$scope', '$resource', '$http', '$location', '
     $scope.fields = [];
     $scope.field_values = [];
     $scope.notes = [];
-    $scope.updateInfo = {name: ''}; // ?
+    $scope.updateInfo = {name: '', phoneNum: '', contact_id: $routeParams.cid};
+    // $scope.contact_id = $routeParams.cid // ?
 
 // Define the rails path that will be hit by the http requests
-    var ContactBoxRsc = $resource('/pipelines/:pid/contacts/:cid.json',
-      {cid: '@cid', pid: '@pid'},
+    var ContactBoxRsc = $resource('/pipelines/:pid/contacts/:cid.json',//.json
+      {cid: '@cid', pid: '@pid'},//$routeParams instead of @
       {
-       get: {method: 'GET'},
-       update: { method: 'PUT'}
-        }
+       get: {method: 'GET'},//isArray:false
+       update: { method: 'PUT', params: $scope.updateInfo}
+        }//params:{name:''}
       );
 
 // Send 'get' request
@@ -39,7 +40,7 @@ app.controller('ContactBoxCtrl', ['$scope', '$resource', '$http', '$location', '
       entry = ContactBoxRsc.update(
         {cid: $routeParams.cid,
         pid: $routeParams.pid
-        },$scope.updateInfo)
+        })
       console.log(entry)
       // $scope.results.push(entry);
       // $scope.newEntry = {};

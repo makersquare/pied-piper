@@ -15,6 +15,7 @@ Crm::Application.routes.draw do
 
   #provides a root route to show login button, can be changed later
 
+  # put 'pipeline/:pipeline_id/contact/:contact_id' => 'contacts#update'
 
   resources :pipelines do
     resources :stages
@@ -25,6 +26,8 @@ Crm::Application.routes.draw do
   resources :contacts
   resources :boxes
   post 'contextio/cb' => 'contextio#callback'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -13,8 +13,8 @@ class DestroyPipeline < TransactionScript
     begin 
       result = Pipeline.destroy(pipeline_id)
       return success(:data => result)
-    rescue Exception
-      return failure(:problem_destroy_pipeline, :error_data => e)
+    rescue
+      return failure(:problem_destroy_pipeline)
     end
   end
 end

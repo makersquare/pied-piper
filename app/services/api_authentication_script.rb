@@ -1,8 +1,11 @@
 require 'openssl'
 require 'base64'
 
+#This Script authenticates the notifications to confirm that theya are
+#from Contextio.
 class ApiAuthenticationScript < TransactionScript
   def run(alert)
+    #this selectst the params given
     inputs = alert.alert
     if inputs['signature'].nil?
       return failure 'Context.io authentication signature is nil'

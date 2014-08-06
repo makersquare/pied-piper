@@ -1,0 +1,17 @@
+class ContextioApiScript < ApplicationController
+  def run(inputs)
+
+    contact = ApiConversionScript.run(inputs)
+    return contact unless contact.error.nil?
+
+    contact = ApiAuthenticationScript.run(contact)
+    return contact unless contact.error.nil?
+
+    contact = RetrieveMessageScript.run(contact)
+    return contact unless contact.error.nil?
+
+    contact = ParsingEmailScript.run(contact)
+
+    return contact
+  end
+end

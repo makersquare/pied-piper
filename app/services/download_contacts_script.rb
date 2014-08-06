@@ -1,7 +1,7 @@
 class DownloadContactScript < TransactionScript
   def run(inputs)
-    contextio = ContextIO.new('hmsdfr9u', inputs.secret_key)
-    account = contextio.accounts[inputs.alert['account_id']]
+    contextio = ContextIO.new(ENV['CONTEXTIO_APIKEY'], ENV['CONTEXTIO_SECRETKEY'])
+    account = contextio.accounts[ENV['CONTEXTIO_ACCOUNTID']]
     message = get_message(inputs, account)
 
     return failure 'message content missing' unless message.is_a?(ContextIO::Message)
@@ -11,7 +11,7 @@ class DownloadContactScript < TransactionScript
     return failure text['error'] unless text['error'].nil?
     return failure 'message content not a string' unless text.is_a?(String)
 
-    return success ({ alert: text, secret_key: inputs.secret_key  })
+    return success ({ alert: text })
   end
 
   def get_message(inputs, account)

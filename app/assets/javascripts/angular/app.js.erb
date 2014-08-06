@@ -18,8 +18,11 @@ var app = angular.module('crmApp', ['ngResource', 'ngRoute'])
     // there is a third necessary option here
     // resolve sends the http request and fills the data field
     // the data field is then injected into the controller and accessible there
+  })
+  .when('/pipeline/:pipeline_id/fields', {
+    templateUrl: "<%= asset_path('angular/templates/createFields.html') %>",
+    controller: 'CreateFieldsCtrl'
   });
-
 }])
 
 .run(function(){

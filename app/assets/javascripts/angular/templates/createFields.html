@@ -1,0 +1,13 @@
+<div ng-controller='CreateFieldsCtrl'>
+  <h1>Pipeline fields</h1>
+  <div class='fields'>
+    <div class="field" ng-repeat="field in fields">
+      <span><a deleteField data-id="{{field.id}}" data-index="{{$index}}" href="#" class="button tiny alert">Delete</a> {{field.field_name}}</span>
+    </div>
+  </div>
+  {{fieldName}}
+  <form name="fieldForm" ng-submit="addField()">
+    <input name="name" ng-model="fieldName" type="text" placeholder="create a new field"/>
+    <input type='submit' name='submit' />
+  </form>
+</div>

@@ -19,6 +19,7 @@ Crm::Application.routes.draw do
 
   resources :pipelines do
     resources :stages
+    resources :fields, :defaults => { :format => :json }
   end
 
   resources :contacts

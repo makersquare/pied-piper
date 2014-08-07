@@ -112,14 +112,6 @@ contacts_list.each_with_index { |contact, i|
   end
 }
 
-#Not sure what to do here as the users table has a lot oath crap in it
-internal_users_list = [
-  {name: 'Shehzan', email: 'shehzan@gmail.com'},
-  {name: 'Shaan', email: 'shaan@gmail.com'},
-  {name: 'Nikhil', email: 'nik@gmail.com'},
-  {name: 'Amanda', email: 'amanda@gmail.com'}
-]
-
 user_email_settings_list = [
   {user_id: 1, setting: "Smartdigest", pipeline_id: 1},
   {user_id: 1, setting: "Noemails", pipeline_id: 2},
@@ -129,6 +121,14 @@ user_email_settings_list = [
 user_email_settings_list.each { |setting|
   EmailSetting.create(setting)
 }
+
+#Not sure what to do here as the users table has a lot oath crap in it
+internal_users_list = [
+  {name: 'Shehzan', email: 'shehzan@gmail.com'},
+  {name: 'Shaan', email: 'shaan@gmail.com'},
+  {name: 'Nikhil', email: 'nik@gmail.com'},
+  {name: 'Amanda', email: 'amanda@gmail.com'}
+]
 
 internal_users_list.each { |user|
   user_entity = User.create(user)

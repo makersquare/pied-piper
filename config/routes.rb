@@ -18,7 +18,7 @@ Crm::Application.routes.draw do
   # put 'pipeline/:pipeline_id/contact/:contact_id' => 'contacts#update'
 
   resources :pipelines do
-    resources :stages
+    resources :stages, :defaults => { :format => :json }
     resources :contacts
     resources :boxes
     resources :users

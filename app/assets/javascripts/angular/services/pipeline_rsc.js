@@ -3,11 +3,16 @@ app.factory("PipelinesRsc", function ($resource) {
         "/pipelines/:Id.json",
         {Id: "@Id" },
         {
-            'get': {method:'GET',
-                    isArray:true,
-                    },
-            'getPipe':{method:'GET'}
-
+            'get': {
+              method:'GET',
+              isArray:true,
+            },
+            'getPipe':{
+              method:'GET'
+            },
+            'createPipe':{
+              method:"POST",
+            }
         }
     );
 });

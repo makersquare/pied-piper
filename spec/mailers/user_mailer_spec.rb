@@ -4,24 +4,19 @@ describe UserMailer do
   before(:each) do
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
-    @contact = Contact.create(name: 'Jon', email: 'jonathan.a.katz@gmail.com', phonenumber: '123', city: 'Philadelphia' )
-    UserMailer.pipeline_update.deliver
+    @user = User.create(name: "Jon", email: "jon@mks.com")
+    @contact = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phonenumber=>'1234567'})
   end
 
   after(:each) do
     ActionMailer::Base.deliveries.clear
   end
 
-  it 'sends an email ' do
-    # binding.pry
-    expect(ActionMailer::Base.deliveries.count).to eq(1)
-  end
+  it "sends an email when a new contact is created" do
+    expect(ActionMailer::Base.deliveries.size).to eq(1)
+    expect(ActionMailer::Base.deliveries.first.subject).to eq('MakerSquare CRM Notification: New Contact Added')
 
-  it 'renders the sender email' do
-    expect(ActionMailer::Base.deliveries.first.from).to eq("MakerSquare CRM Notifications")
-  end
-
-  it 'sets the subject to the correct subject' do
-    expect(ActionMailer::Base.deliveries.first.subject).to eq('MakerSquare CRM Notification: Pipeline Update')
+    new_contact = CreateContact.run({:name=>'contact2', :email=>'you@email.com', :phonenumber=>'2234567'})
+    expect(ActionMailer::Base.deliveries.size).to eq(2)
   end
 end

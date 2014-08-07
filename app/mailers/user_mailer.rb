@@ -18,7 +18,7 @@ class UserMailer < ActionMailer::Base
   def stage_change_update(contact)
     @url = root_url
     @time = Time.now.strftime("%A, %B %d, %Y")
-    @email_users = EmailSettings.all
+    @email_users = User.all
     @email_users.each do |email_user|
       mail(to: email_user.user.email,
         subject: 'MakerSquare CRM Notification: Stage Change Update at ' + @time.to_s,
@@ -34,12 +34,12 @@ class UserMailer < ActionMailer::Base
     @city = contact.city
     @phone_number = contact.phonenumber
     @time = Time.now
-    @email_users = EmailSettings.all
+    @email_users = User.all
     @email_users.each do |email_user|
-      mail(to: email_user.user.email,
+      mail(to: email_user.email,
         subject: 'MakerSquare CRM Notification: New Contact Added',
         template_path: 'user_mailer',
-        template_name: 'pipeline_update'
+        template_name: 'new_contact_update'
         )
     end
   end

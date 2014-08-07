@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807022648) do
+ActiveRecord::Schema.define(version: 20140807214411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,12 @@ ActiveRecord::Schema.define(version: 20140807022648) do
     t.boolean  "trashed"
   end
 
+  create_table "stage_fields", force: true do |t|
+    t.integer "stage_id"
+    t.integer "field_id"
+    t.boolean "visible"
+  end
+
   create_table "stages", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -103,7 +109,6 @@ ActiveRecord::Schema.define(version: 20140807022648) do
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
     t.string   "webhook_id"
-    t.string   "uid"
   end
 
 end

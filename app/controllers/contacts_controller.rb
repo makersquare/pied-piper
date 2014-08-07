@@ -56,18 +56,15 @@ class ContactsController < ApplicationController
     params.require(:contact).permit(:name, :phonenumber)
   end
 
-  def field_params
-    # All params currently permitted
-    params.permit(:id, :pipeline_id, :type, :field_name)
-  end
-
-  def box_field_params
-    # All params currently permitted
-    params.permit(:id, :field_id, :box_id, :value)
-  end
-
   def contact_params
-    # All params currently permitted
     params.permit(:id, :name, :email, :phonenumber, :city)
   end
+
+  # def field_params
+  #   params.permit(:id, :pipeline_id, :type, :field_name)
+  # end
+
+  # def box_field_params
+  #   params.permit(:id, :field_id, :box_id, :value)
+  # end
 end

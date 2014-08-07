@@ -2,7 +2,7 @@ class PipelinesController < ApplicationController
   respond_to :json
   # Need to implement authentication
   # before_filter :logged_in?
-  before_filter :admin?, :only => [:destroy, :trash]
+  before_filter :is_pipeline_admin?, :only => [:destroy, :trash, :update, :add_to_pipeline, :remove_from_pipeline, :update_access_to_pipeline]
   # We need to check and make sure the request is coming from
   # an admin of the pipeline
 
@@ -98,7 +98,8 @@ class PipelinesController < ApplicationController
   # Also need the pipeline ID, return true if user is the admin
   #This blocks access to admin only pipeline methods in the CTRL
   def is_pipeline_admin?
-
+    pipeline_user = PipelineUser.find_by(user_id: current_user.id, pipeline_id: params[:id])
+    return pipeline_user.admin || false
   end
 
   def pipeline_params

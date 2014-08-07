@@ -7,7 +7,7 @@ class CreateStage < TransactionScript
 
     pipeline = Pipeline.find(params[:pipeline_id])
     stage_row = pipeline.stages.create(:name=>params[:name], :description=>params[:description], :pipeline_location=>params[:pipeline_location])
-    return success(:data => stage_row)
+    return success(:data => stage_row, :pipeline => pipeline)
   end
 end
 

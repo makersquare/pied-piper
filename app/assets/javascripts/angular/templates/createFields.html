@@ -16,12 +16,13 @@
   <h1>Add/Remove Pipeline Stages</h1>
   <div class='stages'>
     <div class="stage" ng-repeat="stage in stages">
-      <span><a deleteStage data-id="{{stage.id}}" data-index="{{$index}}" href="#" class="button tiny alert">Delete</a> {{stage.name}}</span>
+      <span><a deletestage data-id="{{stage.id}}" data-index="{{$index}}" href="#" class="button tiny alert">Delete</a> {{stage.name}}: {{stage.description}}</span>
     </div>
   </div>
   <h4>{{stageName}}</h4>
   <form name="stageForm" ng-submit="addStage()">
     <input name="name" ng-model="stageName" type="text" placeholder="create a new stage"/>
+    <input name="description" ng-model="stageDesc" type="text" placeholder="stage description"/>
     <input type='submit' name='submit' />
   </form>
 </div>

@@ -9,7 +9,7 @@ respond_to :json, :html
     # Create a new stage for a pipeline
     results = CreateStage.run(stage_params)
     if results.success?
-      respond_with results.data
+      respond_with results.pipeline, results.data
     else
       respond_with results.error
     end
@@ -17,12 +17,12 @@ respond_to :json, :html
 
   def index
     # Show stages for a given pipeline
-    respond_with Status.where(pipeline_id: params['pipeline_id']).to_json
+    respond_with Stage.where(pipeline_id: params['pipeline_id']).to_json
   end
 
   def destroy
     # Destroy a pipeline in browser and database
-    respond_with Status.destroy(params['id']).to_json
+    respond_with Stage.destroy(params['id']).to_json
   end
 
   private

@@ -22,23 +22,13 @@ app.controller('ContactBoxCtrl', ['$scope', '$resource', '$http', '$location', '
         $scope.cb.cid = $routeParams.cid;
         $scope.cb.pid = $routeParams.pid;
         $scope.cb.contact_id = $routeParams.cid;
-        // $scope.fields = $scope.cb.field;
-        // $scope.field_values = $scope.cb.field_value;
-        // $scope.notes = $scope.cb.notes;
-        // $scope.notes
         console.log($scope.cb)
       })
 
 // Update the entry by sending the 'update' request
     $scope.updateEntry = function(){
-      // console.log($scope.results)
-      console.log('updating...')
-      console.log($scope.cb)
       entry = ContactBoxRsc.update(
         $scope.cb)
-      console.log(entry)
-      // $scope.results.push(entry);
-      // $scope.newEntry = {};
     }
 
   }]);

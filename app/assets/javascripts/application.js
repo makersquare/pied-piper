@@ -19,5 +19,6 @@
 //= require angular-animate
 //= require angular-route
 //= require_tree ./angular
+//= require_tree ./balancedjs
 
 $(function(){ $(document).foundation(); });

@@ -33,6 +33,9 @@ var app = angular
     .when('/email_settings/:user_id', {
       templateUrl: "<%= asset_path('angular/templates/account_settings.html') %>",
       controller: 'EmailCtrl'
+    }).when('/pay', {
+      templateUrl: "<%= asset_path('angular/templates/pay.html') %>",
+      controller: 'PayCtrl'
     })
     .when('/pipeline/:pipeline_id/stages', {
       templateUrl: "<%= asset_path('angular/templates/createFields.html') %>",

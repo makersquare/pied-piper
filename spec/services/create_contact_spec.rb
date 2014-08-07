@@ -21,7 +21,7 @@ describe CreateContact do
   end
 
    it "creates a contact" do
-    result = CreateContact.run({ :email=>'me@email.com', :phoneNum=>'1234567'})
+    result = CreateContact.run({ :email=>'me@email.com', :phonenumber=>'1234567'})
     expect(result.success?).to be_false
     expect(result.error).to eq('Contact is missing name')
   end

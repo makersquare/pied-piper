@@ -1,14 +1,17 @@
 <div class="row">
 
-  <div class="small-2 large-2 columns panel callout"
+  <div class="small-3 large-3 columns panel callout row"
     ng-controller="PipelineIndexCtrl">
+      <h3>Pipelines <a class="button tiny radius round"
+        ng-click="createNewPipeline()">+</a></h3>
       <div ng-repeat="pipe in pipelineList" class="">
         <a href="/#/pipeline/{{pipe.id}}" title="">{{pipe.name}}</a>
       </div>
+
   </div>
 
   <!-- The below div is where the ng views/partials will be shown -->
-  <div class="small-10 large-10 columns">
+  <div class="small-9 large-9 columns">
     <div ng-view>
 
     </div>

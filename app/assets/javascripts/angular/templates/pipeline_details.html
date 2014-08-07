@@ -1,33 +1,53 @@
+<!-- TODO -->
 <!-- stageBoxes, pipeStages, pipeData -->
-<div>
 
-  <label class="label round warning"for="editPipeData">Edit Data</label>
-  <input type="checkbox" name="editPideData" ng-model="editData">
+<div class="row panel">
+<!-- THIS DIV IS FOR PIPELINE DATA ONLY -->
 
-  <div id="pipeDataDiv" class="panel">
+  <div id="pipeDataDiv" class="large-8 columns">
 
 
     <div id="showDataDiv" ng-hide="editData">
-      <h1><span class="">{{pipeData.id}}</span>{{pipeData.name}}</h1>
+      <h2>{{pipeData.name}}
+      <span class="label large">
+        <h3>[id:{{pipeData.id}}]</h3>
+      <span>
+      </h2>
+      <h4>Created At: {{pipeData.created_at | date : 'M/d/yy h:mm a'}}</h4>
+      <h4>Trash: {{pipeData.trashed}}</h4>
     </div>
 
     <form name="pipeDataForm" ng-hide="!editData">
-      <input type="text" name="pipeName"
-        ng-model="pipeData.name">
+      Title: <input type="text" name="pipeName" ng-model="pipeData.name">
+      Creation At: <input disabled type="text" name="pipeCreationDate" ng-model="pipeData.created_at">
+      Trash: <input type="checkbox" name="pipeTrash" ng-model="pipeData.trashed">
     </form>
 
+  </div>
+
+  <div class="columns large-2">
+    <label class="label round warning"for="editPipeData">Edit Data</label>
+    <input type="checkbox" name="editPideData" ng-model="editData">
     <a class="button radius round tiny" ng-hide="!editData">Submit</a>
   </div>
+
 </div>
 
+<h3>Stages</h3>
+<div class="row panel">
+  <!--  -->
+
+</div>
+
+<!-- *************************************** -->
+<!-- BELOW IS DATA FOR DEVELOPMENT USES ONLY -->
+<!-- *************************************** -->
 <h1>DEV DATA</h1>
 <p>{{pipeData}}</p>
-
 <div class="panel callout">
   <p ng-repeat="stage in pipeStages">{{stage}}</p>
 </div>
 <p>{{stageBoxes}}</p>
-
 <h1>Raw DATA DUMP</h1>
   <p class='panel'>{{data}}</p>
 <p>

@@ -17,7 +17,7 @@ class PipelinesController < ApplicationController
   # if the request is coming for an admin of the entire app or
   # allow any user to create pipelines
   def create
-    respond_with CreatePipeline.run(pipeline_params).data
+    respond_with CreatePipelineScript.run(pipeline_params).data
   end
 
   #sets DB flag for pipeline to be trashed, can limit to admins on frontend

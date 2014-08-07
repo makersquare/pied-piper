@@ -92,50 +92,6 @@ class PipelinesController < ApplicationController
     end
   end
 
-  #Method takes a pipeline id and a user id and adds the user to the pipeline
-  # This is a mass assignment so I think I have to permit the user_id.
-  # Need to first check and see if target user is not already part of pipeline
-  def add_to_pipeline
-    result = AddUserPipeline.run(pipeline_params)
-
-    if result.success?
-      respond_with result.data
-    else
-      respond_with result.error
-    end
-  end
-
-  def remove_from_pipeline
-    result = RemoveUserPipeline.run(pipeline_params)
-
-    if result.success?
-      respond_with result.data
-    else
-      respond_with result.error
-    end
-  end
-
-  def update_access_to_pipeline
-    result = UpdateUserPipeline.run(pipeline_params)
-
-    if result.success?
-      respond_with result.data
-    else
-      respond_with result.error
-    end
-  end
-
-  def update_access_to_pipeline
-    result = UpdateUserPipeline.run(pipeline_params)
-
-    if result.success?
-      respond_with result.data
-    else
-      respond_with result.error
-    end
-  end
-
-
   private
 
   #Takes the user_id from the session of the person making request

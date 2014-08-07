@@ -1,12 +1,13 @@
 class CreateStage < TransactionScript
   def run(params)
+
     return failure(:name_nil) if params[:name].nil?
     name = params[:name].strip
     return failure(:name_empty) if name.length == 0
 
     pipeline = Pipeline.find(params[:pipeline_id])
-    stage_row = pipeline.stages.create(name: params[:name], description: params[:description], pipeline_location: params[:pipeline_location])
-    return success(:data => stage_row)
+    stage_row = pipeline.stages.create(:name=>params[:name], :description=>params[:description], :pipeline_location=>params[:pipeline_location])
+    return success(:data => stage_row, :pipeline => pipeline)
   end
 end
 

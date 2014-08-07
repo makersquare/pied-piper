@@ -28,7 +28,12 @@ class ContactsController < ApplicationController
 
   def index
     # Index to show contacts
-    respond_with Contact.all.to_json
+    result = RetrieveAllContactInfo.run(params)
+    if result.success?
+      respond_with result.contacts
+    else
+      respond_with(result.errors, status: :unprocessable_entity)
+    end
   end
 
   def update

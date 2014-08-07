@@ -1,4 +1,5 @@
-app.controller('ContactBoxCtrl', ['$scope', '$resource', '$http', '$location', '$routeParams',
+app.controller('ContactBoxCtrl',
+  ['$scope', '$resource', '$http', '$location', '$routeParams',
   function($scope, $resource, $http, $location, $routeParams) {
     $scope.cb = null;
 
@@ -22,13 +23,19 @@ app.controller('ContactBoxCtrl', ['$scope', '$resource', '$http', '$location', '
         $scope.cb.cid = $routeParams.cid;
         $scope.cb.pid = $routeParams.pid;
         $scope.cb.contact_id = $routeParams.cid;
-        console.log($scope.cb)
-      })
+        console.log($scope.cb);
+      });
 
 // Update the entry by sending the 'update' request
     $scope.updateEntry = function(){
+      // console.log($scope.results)
+      console.log('updating...');
+      console.log($scope.cb);
       entry = ContactBoxRsc.update(
-        $scope.cb)
-    }
+        $scope.cb);
+      console.log(entry);
+      // $scope.results.push(entry);
+      // $scope.newEntry = {};
+    };
 
-  }]);
+}]);

@@ -6,17 +6,14 @@ class UpdateContactBox < TransactionScript
     b.stage_id = params[:stage_id] || b.stage_id
     b.pipeline_location = params[:pipeline_location] || b.pipeline_location
 
-    b.contact.name = params[:name] || b.contact.name
-    b.contact.email = params[:email] || b.contact.email
-    b.contact.phoneNum = params[:phoneNum] || b.contact.phoneNum
-    b.contact.city = params[:city] || b.contact.city
+    b.contact.name = params[:contact][:name] || b.contact.name
+    b.contact.email = params[:contact][:email] || b.contact.email
+    b.contact.phoneNum = params[:contact][:phoneNum] || b.contact.phoneNum
+    b.contact.city = params[:contact][:city] || b.contact.city
 
-    field = Field.where('pipeline_id = ?', params[:pipeline_id]).first
-    field.field_name = params[:field_name] || field.field_name if !field.nil?
-    field.field_type = params[:field_type] || field.field_type if !field.nil?
-
-    field_value = BoxField.where('box_id = ?', b.id).first
-    field_value.value = params[:value] || field_value.value if !field_value.nil?
+    # field = Field.where('pipeline_id = ?', params[:pipeline_id]).first
+    # field.field_name = params[:field_name] || field.field_name if !field.nil?
+    # field.field_type = params[:field_type] || field.field_type if !field.nil?
 
     # Loop through box_field array to update field value by box_field id
     if !params[:box_field].nil?
@@ -35,7 +32,6 @@ class UpdateContactBox < TransactionScript
             nt.update_column(:notes, note[:notes]) || nt[:notes]
         end
     end
-
     b.save
     b.contact.save
     # field.save if !field.nil?

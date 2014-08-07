@@ -22,7 +22,29 @@
           ng-model="cb.contact.city"/><br>
 
           <!-- Arrays -->
-          <ul><li>
+          <ul>Fields:
+            <li ng-repeat="field in cb.fields" name="field">
+              {{field.field_name}}
+            </li>
+          </ul>
+          <br>
+
+          <ul>
+            <li>Field value:
+              <input type="text" ng-repeat="field_value in cb.field_values" name="field_value" placeholder="Info"/>
+              {{field_value.value}}
+            </li>
+          </ul>
+          <br>
+
+          <ul>
+            <li>Notes:
+              <input type="text" ng-repeat="note in cb.notes"  name="note" placeholder="Notes"/>{{note.notes}}
+            </li>
+          </ul>
+          <br>
+
+<!--           <ul><li>
           <input type="text" ng-repeat="field in fields" name="field" placeholder=""
           ng-model="cb.field"/>field: {{field.field_name}}
           </li></ul><br>
@@ -33,14 +55,12 @@
           </li></ul>
           <br>
 
-          <ul>
-            <li ng-repeat="note in cb.notes" >
-              <input type="text" name="note" placeholder="Notes"/>
-              notes: {{note.notes}}
-            </li>
-          </ul>
+          <ul><li>
+          <input type="text" ng-repeat="note in notes" name="notes id" placeholder="Notes"
+          ng-model="cb.notes"/>notes: {{note.notes}}
+          </li></ul>
           <br>
-        </div>
+        </div> -->
 
         <div>
           <input type="submit" value="Update Info" class="button" style="margin-left: 15px; background-color: #1abc9c;">

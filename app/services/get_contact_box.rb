@@ -7,6 +7,6 @@ class GetContactBox < TransactionScript
     fv = Box.find(b.first.id).box_fields
     n = Box.find(b.first.id).notes
     p = Pipeline.find(b.first.pipeline_id)
-    return success box: b, contact: c, field: f, field_value: fv, notes: n, pipeline: p
+    return success box: b, contact: c, fields: f, field_values: fv, notes: n, pipeline: p
   end
 end

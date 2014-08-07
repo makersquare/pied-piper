@@ -8,7 +8,7 @@ class UpdateContactBox < TransactionScript
 
     b.contact.name = params[:contact][:name] || b.contact.name
     b.contact.email = params[:contact][:email] || b.contact.email
-    b.contact.phoneNum = params[:contact][:phoneNum] || b.contact.phoneNum
+    b.contact.phonenumber = params[:contact][:phonenumber] || b.contact.phonenumber
     b.contact.city = params[:contact][:city] || b.contact.city
 
     # field = Field.where('pipeline_id = ?', params[:pipeline_id]).first

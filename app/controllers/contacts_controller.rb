@@ -45,11 +45,11 @@ class ContactsController < ApplicationController
                   :box_fields=>[:value, :field_id, :id, :box_id, :pipeline_id],
                   :field_values=>[:value, :field_id, :id, :box_id, :pipeline_id],
                   :fields=>[:field_name, :id, :pipeline_id, :field_type],
-                  :contact=>[:name, :phoneNum, :contact_id, :city, :id, :email])
+                  :contact=>[:name, :phonenumber, :contact_id, :city, :id, :email])
   end
 
   def contact_params
-    params.require(:contact).permit(:name, :phoneNum)
+    params.require(:contact).permit(:name, :phonenumber)
   end
 
   def field_params
@@ -64,6 +64,6 @@ class ContactsController < ApplicationController
 
   def contact_params
     # All params currently permitted
-    params.permit(:id, :name, :email, :phoneNum, :city)
+    params.permit(:id, :name, :email, :phonenumber, :city)
   end
 end

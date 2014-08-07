@@ -14,7 +14,7 @@ describe GetContactBox do
 
   it "gets the box associated with a contact in a given pipeline" do
     p1 = CreatePipelineScript.run({:name=>'pipeline1'})
-    c1 = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phoneNum=>'1234567'})
+    c1 = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phonenumber=>'1234567'})
     b1 = CreateBox.run({:contact_id=>c1.contact.id, :pipeline_id=>p1.data.id})
     f1 = Field.create({:pipeline_id=>p1.data.id, :field_type=>'text', :field_name=>'status'})
     f2 = Field.create({:pipeline_id=>p1.data.id, :field_type=>'text', :field_name=>'cohort'})
@@ -35,7 +35,7 @@ describe GetContactBox do
     expect(box.contact_id).to eq(c1.contact.id)
     expect(contact.name).to eq(c1.contact.name)
     expect(contact.email).to eq(c1.contact.email)
-    expect(contact.phoneNum).to eq(c1.contact.phoneNum)
+    expect(contact.phonenumber).to eq(c1.contact.phonenumber)
     expect(fields.first.id).to eq(f1.id)
     expect(fields.first.field_name).to eq(f1.field_name)
     expect(fields.first.field_type).to eq(f1.field_type)

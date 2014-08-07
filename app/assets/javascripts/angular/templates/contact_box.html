@@ -16,8 +16,8 @@
           ng-model="cb.box.stage"/><br>
           <input type="text" name="email" placeholder="Email"
           ng-model="cb.contact.email"/><br>
-          <input type="text" name="phoneNum" placeholder="Phone Number"
-            ng-model="cb.contact.phoneNum"/><br>
+          <input type="text" name="phonenumber" placeholder="Phone Number"
+            ng-model="cb.contact.phonenumber"/><br>
           <input type="text" name="city" placeholder="City"
           ng-model="cb.contact.city"/><br>
 
@@ -37,9 +37,10 @@
           </ul>
           <br>
 
+          Notes:
           <ul>
-            <li>Notes:
-              <input type="text" ng-repeat="note in cb.notes"  name="note" placeholder="Notes"/>{{note.notes}}
+            <li ng-repeat="note in cb.notes">
+              <input type="text" name="note" ng-model="note.notes"/>
             </li>
           </ul>
           <br>

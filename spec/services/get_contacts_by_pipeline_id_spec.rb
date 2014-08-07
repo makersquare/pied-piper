@@ -13,8 +13,8 @@ describe GetContactsByPipelineId do
 
   it "gets all contacts associated with a pipeline by pipeline id" do
     p1 = CreatePipelineScript.run({:name=>'pipeline1'})
-    c1 = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phoneNum=>'1234567'})
-    c2 = CreateContact.run({:name=>'contact2', :email=>'you@email.com', :phoneNum=>'2234567'})
+    c1 = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phonenumber=>'1234567'})
+    c2 = CreateContact.run({:name=>'contact2', :email=>'you@email.com', :phonenumber=>'2234567'})
     b1 = CreateBox.run({:contact_id=>c1.contact.id, :pipeline_id=>p1.data.id})
     b2 = CreateBox.run({:contact_id=>c2.contact.id, :pipeline_id=>p1.data.id})
 

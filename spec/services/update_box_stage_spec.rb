@@ -14,7 +14,7 @@ describe UpdateBoxStage do
 
   it "updates the box stage and documents the change in the box_history table" do
     p1 = CreatePipelineScript.run({:name=>'pipeline1'})
-    c1 = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phoneNum=>'1234567'})
+    c1 = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phonenumber=>'1234567'})
     b1 = CreateBox.run({:contact_id=>c1.contact.id, :pipeline_id=>p1.data.id, :stage_id=>1, :pipeline_location=>2})
 
     result = UpdateBoxStage.run({:box_id=>b1.box.id, :stage_id=>2})

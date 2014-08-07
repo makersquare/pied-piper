@@ -19,6 +19,17 @@ pipeline_get_alumni_jobs = Pipeline.create({name: 'Get alumni jobs', trashed: fa
 
 all_pipelines = [pipeline_admissions, pipeline_hiring, pipeline_get_alumni_jobs]
 
+jobs_stage_list = [
+  {name: 'Applying to companies', description: 'make sure each app is customized', pipeline_location: 1},
+  {name: 'Interviewing', description: 'prep these students', pipeline_location: 2},
+  {name: 'Reviewing offers', description: 'do 1 on 1 to review offers', pipeline_location: 3}
+]
+
+jobs_stage_list.each { |stage|
+  pipeline_get_alumni_jobs.stages.create(stage)
+}
+
+
 admissions_stage_list = [
   {name: 'First contact', description: 'reach out', pipeline_location: 1},
   {name: 'Interview', description: 'judge them harshly', pipeline_location: 2},
@@ -39,20 +50,18 @@ hiring_stage_list.each { |stage|
   pipeline_hiring.stages.create(stage)
 }
 
-
-jobs_stage_list = [
-  {name: 'Applying to companies', description: 'make sure each app is customized', pipeline_location: 1},
-  {name: 'Interviewing', description: 'prep these students', pipeline_location: 2},
-  {name: 'Reviewing offers', description: 'do 1 on 1 to review offers', pipeline_location: 3}
-]
-
-jobs_stage_list.each { |stage|
-  pipeline_get_alumni_jobs.stages.create(stage)
-}
-
-pipeline_get_alumni_jobs.fields.create({field_name: 'top_choice_company', field_type: 'string'})
-pipeline_admissions.fields.create({field_name: 'cohort_desired', field_type: 'string'})
-pipeline_hiring.fields.create({field_name: 'hiring_position', field_type: 'string'})
+pipeline_get_alumni_jobs.fields.create([
+  {field_name: 'top_choice_company', field_type: 'string'},
+  {field_name: 'number_companies_applied_to', field_type: 'integer'}
+])
+pipeline_admissions.fields.create([
+  {field_name: 'cohort_desired', field_type: 'string'},
+  {field_name: 'candidate_quality_grade', field_type: 'float'}
+])
+pipeline_hiring.fields.create([
+  {field_name: 'hiring_position', field_type: 'string'},
+  {field_name: 'position_location', field_type: 'string'}
+])
 
 
 contacts_list = [
@@ -63,10 +72,45 @@ contacts_list = [
   {name: 'Catherine', email: 'catherine@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
   {name: 'DJ', email: 'dj@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
   {name: 'Gabe', email: 'gabe@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
-  {name: 'Alex', email: 'alex@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'}
+  {name: 'Alex', email: 'alex@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
+  {name: 'Maddy', email: 'maddy@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'},
+  {name: 'Michael', email: 'michael@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'},
+  {name: 'Charis', email: 'charis@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'},
+  {name: 'Jason', email: 'jason@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'}
 ]
 
-Contact.create(contacts_list)
+num_stages = admissions_stage_list.length + hiring_stage_list.length + jobs_stage_list.length
+
+contacts_list.each_with_index { |contact, i|
+  contact_entity = Contact.create(contact)
+  i = 0 if i > num_stages
+  box_entity = contact_entity.boxes.create(contact_id: contact_entity.id, stage_id: (i+1))
+  companies = ['Google', 'Yahoo', 'Facebook', 'Amazon']
+  cohorts = ['SF August', 'SF December', 'Austin August']
+  jobs = ['Instructor', 'Operations', 'Career Services']
+  case box_entity.id
+  when 1..3
+    BoxField.create([
+      {box_id: box_entity.id, field_id: 1, value: companies[rand(companies.length)]},
+      {box_id: box_entity.id, field_id: 2, value: (rand(8)+5)}
+    ])
+  when 4..6
+    BoxField.create([
+      {box_id: box_entity.id, field_id: 3, value: cohorts[box_entity.id-4]},
+      {box_id: box_entity.id, field_id: 4, value: (rand(9)+1)}
+    ])
+  when 7..9
+    BoxField.create([
+      {box_id: box_entity.id, field_id: 5, value: jobs[box_entity.id-10]},
+      {box_id: box_entity.id, field_id: 6, value: 'San Francisco'}
+    ])
+  when 10..12
+    BoxField.create([
+      {box_id: box_entity.id, field_id: 1, value: companies[rand(companies.length)]},
+      {box_id: box_entity.id, field_id: 2, value: (rand(8)+5)}
+    ])
+  end
+}
 
 #Not sure what to do here as the users table has a lot oath crap in it
 internal_users_list = [
@@ -82,9 +126,3 @@ internal_users_list.each { |user|
   PipelineUser.create(pipeline_id: 2, user_id: user_entity.id, admin: true)
   PipelineUser.create(pipeline_id: 3, user_id: user_entity.id, admin: true)
 }
-
-# Unable to create Boxes inside this seed file you have to run this in rails console if you want example Boxes
-
-8.times do |i|
-  Box.create(stage_id: rand(9) + 1, contact_id: rand(8) + 1)
-end

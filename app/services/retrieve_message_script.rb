@@ -2,7 +2,7 @@
 class RetrieveMessageScript < TransactionScript
 
   def run(inputs)
-    contextio = ContextIO.new('hmsdfr9u', inputs.secret_key)
+    contextio = ContextIO.new(ENV['CONTEXTIO_APIKEY'], ENV['CONTEXTIO_SECRETKEY'])
     account = contextio.accounts[inputs.alert['account_id']]
     message = get_message(inputs, account)
 
@@ -10,10 +10,10 @@ class RetrieveMessageScript < TransactionScript
 
     text = select_message_text(message)
 
-    return failure text['error'] unless text['error'].nil?
-    return failure 'message content not a string' unless text.is_a?(String)
+    return failure 'message not formatted correctly' unless text[:success]
+    return failure 'message content not a string' unless text[:body].is_a?(String)
 
-    return success ({ alert: text, secret_key: inputs.secret_key  })
+    return success alert: text[:body]
   end
 
   def get_message(inputs, account)
@@ -25,9 +25,10 @@ class RetrieveMessageScript < TransactionScript
 
   def select_message_text(message)
     begin
-      message.body_parts.where(type: 'text/plain').first.content
+      { body: message.body_parts.where(type: 'text/plain').first.content,
+        success:true }
     rescue
-      'message not formatted correctly'
+      { success:false }
     end
   end
 

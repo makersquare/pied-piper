@@ -1,8 +1,7 @@
 class PipelinesController < ApplicationController
   respond_to :json
-  # respond_with :json
-  # before_filter :logged_in?
-  # before_filter :admin?, :only => [:destroy, :trash]
+  before_filter :logged_in?
+  before_filter :admin?, :only => [:destroy, :trash]
   # We need to check and make sure the request is coming from
   # an admin of the pipeline
 
@@ -89,6 +88,13 @@ class PipelinesController < ApplicationController
 
 
   private
+
+  #Takes the user_id from the session of the person making request
+  # Also need the pipeline ID, return true if user is the admin
+  #This blocks access to admin only pipeline methods in the CTRL
+  def is_pipeline_admin?
+
+  end
 
   def pipeline_params
     params.permit(:id, :name, :trashed, :user_id, :pipeline_admin)

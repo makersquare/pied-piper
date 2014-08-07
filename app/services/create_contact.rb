@@ -7,6 +7,11 @@ class CreateContact < TransactionScript
     return failure 'Contact is missing name' unless contact_has_name?(params)
 
     result = Contact.create({name: params.name, phonenumber: params.phonenumber, email: params.email})
+
+    if result
+      UserMailer.new_contact_update(result).deliver
+    end
+
     return success(contact: result)
   end
 
@@ -31,3 +36,4 @@ class CreateContact < TransactionScript
 
 
 end
+

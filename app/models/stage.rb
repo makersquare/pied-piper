@@ -1,6 +1,6 @@
 class Stage < ActiveRecord::Base
   belongs_to :pipeline
-  belongs_one :payment_plan
+  belongs_to :payment_plan
   has_many :boxes, dependent: :destroy
   has_many :contacts, through: :boxes
   has_many :user_stages

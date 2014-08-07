@@ -108,7 +108,6 @@ ActiveRecord::Schema.define(version: 20140807234645) do
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
     t.string   "webhook_id"
-    t.string   "uid"
   end
 
 end

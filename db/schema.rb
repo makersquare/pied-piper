@@ -46,14 +46,6 @@ ActiveRecord::Schema.define(version: 20140807022648) do
 
   create_table "email_settings", force: true do |t|
     t.integer  "user_id"
-    t.string   "setting"
-    t.integer  "pipeline_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "email_settings", force: true do |t|
-    t.integer  "user_id"
     t.string   "setting",     default: "Realtime"
     t.integer  "pipeline_id"
     t.datetime "created_at"
@@ -110,7 +102,6 @@ ActiveRecord::Schema.define(version: 20140807022648) do
     t.string   "provider"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.string   "uid"
     t.string   "webhook_id"
   end
 

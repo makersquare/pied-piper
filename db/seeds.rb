@@ -120,6 +120,16 @@ internal_users_list = [
   {name: 'Amanda', email: 'amanda@gmail.com'}
 ]
 
+user_email_settings_list = [
+  {user_id: 1, setting: "Smartdigest", pipeline_id: 1},
+  {user_id: 1, setting: "Noemails", pipeline_id: 2},
+  {user_id: 2, setting: "Dailydigest", pipeline_id: 1}
+]
+
+user_email_settings_list.each { |setting|
+  EmailSetting.create(setting)
+}
+
 internal_users_list.each { |user|
   user_entity = User.create(user)
   PipelineUser.create(pipeline_id: 1, user_id: user_entity.id, admin: true)

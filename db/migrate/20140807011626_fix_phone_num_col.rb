@@ -1,6 +1,6 @@
-class FixphonenumberCol < ActiveRecord::Migration
+class FixPhoneNumCol < ActiveRecord::Migration
   def change
-    remove_column :contacts, :phonenumber
+    remove_column :contacts, :phoneNum
     add_column :contacts, :phonenumber, :string
   end
 end

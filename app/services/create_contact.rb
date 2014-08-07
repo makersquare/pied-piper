@@ -6,7 +6,6 @@ class CreateContact < TransactionScript
     return failure 'Contact already in database' if contact_already_exists?(params)
     return failure 'Contact is missing name' unless contact_has_name?(params)
 
-
     result = Contact.create({name: params.name, phonenumber: params.phonenumber, email: params.email})
     return success(contact: result)
   end

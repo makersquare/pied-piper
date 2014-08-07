@@ -19,7 +19,11 @@ class ContactsController < ApplicationController
   def show
     # Show a contact within its box given the contact id
     show_contact = GetContactBox.run({:contact_id=>contact_params[:id]})
-    respond_with show_contact.to_json
+    if show_contact.success?
+      respond_with show_contact.to_json
+    elsif show_contact.error == :no_box_found
+      respond_with({errors: ["Could not find proper Box"]}, status: :unprocessable_entity)
+    end
   end
 
   def index

@@ -49,5 +49,14 @@ describe GetContactBox do
     expect(notes.first.notes).to eq(n1.notes)
   end
 
+  context "the box does not exist" do
+    it "returns a failure" do
+      params = {contact_id: 5, box_id: 10000}
+      result = GetContactBox.run(params)
+      expect(result.success?).to eq(false)
+      expect(result.error).to eq(:no_box_found)
+    end
+  end
+
 end
 

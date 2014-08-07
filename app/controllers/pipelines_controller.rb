@@ -1,6 +1,7 @@
 class PipelinesController < ApplicationController
   respond_to :json
-  before_filter :logged_in?
+  # Need to implement authentication
+  # before_filter :logged_in?
   before_filter :admin?, :only => [:destroy, :trash]
   # We need to check and make sure the request is coming from
   # an admin of the pipeline

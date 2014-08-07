@@ -5,7 +5,7 @@
       <span><a deleteField data-id="{{field.id}}" data-index="{{$index}}" href="#" class="button tiny alert">Delete</a> {{field.field_name}}</span>
     </div>
   </div>
-  {{fieldName}}
+  <h4>{{fieldName}}</h4>
   <form name="fieldForm" ng-submit="addField()">
     <input name="name" ng-model="fieldName" type="text" placeholder="create a new field"/>
     <input type='submit' name='submit' />

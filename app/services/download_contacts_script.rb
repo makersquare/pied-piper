@@ -2,22 +2,15 @@ class DownloadContactScript < TransactionScript
   def run(inputs)
     contextio = ContextIO.new(ENV['CONTEXTIO_APIKEY'], ENV['CONTEXTIO_SECRETKEY'])
     account = contextio.accounts[ENV['CONTEXTIO_ACCOUNTID']]
-    message = get_message(inputs, account)
+    contacts = account.messages.map{|x|x.from}.uniq
+    contacts.each{ CreateContact.run}
 
-    return failure 'message content missing' unless message.is_a?(ContextIO::Message)
 
-    text = select_message_text(message)
-
-    return failure text['error'] unless text['error'].nil?
-    return failure 'message content not a string' unless text.is_a?(String)
 
     return success (alert: text)
   end
 
-  def get_message(inputs, account)
-
-    message_id = inputs.alert['message_data']['message_id']
-    account.messages[message_id]
+  def create_webhook(inputs)
 
   end
 

@@ -103,9 +103,9 @@ create_contacts
 add_contacts_to_pipelines
 
 user_email_settings_list = [
-  {user_id: 2, setting: "Smartdigest", pipeline_id: 1},
-  {user_id: 2, setting: "Noemails", pipeline_id: 2},
-  {user_id: 3, setting: "Dailydigest", pipeline_id: 1}
+  {pipeline_user_id: 2, setting: "Smartdigest"},
+  {pipeline_user_id: 2, setting: "Noemails"},
+  {pipeline_user_id: 3, setting: "Dailydigest"}
 ]
 
 user_email_settings_list.each { |setting|

@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20140807234645) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "trashed"
+    t.boolean  "trashed",    default: false
   end
 
   create_table "stage_fields", force: true do |t|

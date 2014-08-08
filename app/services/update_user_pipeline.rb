@@ -10,7 +10,8 @@ class UpdateUserPipeline < TransactionScript
     return failure(:no_association_exists) if pipeline_entity.nil?
     
     begin
-      result = pipeline_entity.update(admin: admin)
+      pipeline_entity.update(admin: admin)
+      result = PipelineUser.find_by(user_id: user_id, pipeline_id: pipeline_id)
       return success(:data => result)
     rescue
       return failure(:problem_updating_user)

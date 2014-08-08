@@ -7,7 +7,6 @@ class RemoveUserPipeline < TransactionScript
     pipeline_entity = PipelineUser.find_by(user_id: user_id, pipeline_id: pipeline_id)
     
     return failure(:user_not_in_pipeline) if pipeline_entity.nil?
-    
     begin
       result = PipelineUser.destroy(pipeline_entity.id)
       return success(:data => result)

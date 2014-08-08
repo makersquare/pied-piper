@@ -3,9 +3,6 @@ app.factory("ContactsRsc", function ($resource) {
         "/contacts/:id.json",
         {id: '@id'},
         {
-          get: {
-            method: 'GET'
-          },
           update: {
             method: 'PUT'
           }

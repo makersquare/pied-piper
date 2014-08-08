@@ -94,7 +94,6 @@ describe RetrieveAllContactInfo do
           expect(result.contacts[0][:id]).to eq(c1.id)
           expect(result.contacts[0].name).to eq(c1.name)
           expect(result.contacts[0].email).to eq(c1.email)
-
           expect(result.contacts[1].id).to eq(c3.id)
           expect(result.contacts[1].name).to eq(c3.name)
           expect(result.contacts[1].email).to eq(c3.email)

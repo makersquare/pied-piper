@@ -20,8 +20,7 @@
 #         ...more fields...
 #        },
 #         ...Another Contact...
-#     ],
-#     meta: {fields: {'field_name' : "field_id"}
+#     ]
 #   }
 class RetrieveAllContactInfo < TransactionScript
   def run(params)
@@ -48,7 +47,7 @@ class RetrieveAllContactInfo < TransactionScript
       contact
     end
 
-    success(contacts: contacts, meta: {fields: fields_hash(fields)})
+    success(contacts: contacts)
   end
 
   def retrieve_fields(pipeline)
@@ -60,15 +59,5 @@ class RetrieveAllContactInfo < TransactionScript
       box_field = BoxField.where(field_id: field.id, box_id: box.id).first
       contact[field.field_name] = box_field.value
     end
-  end
-
-  # returns a hash with field name pointing to it's id
-  def fields_hash(fields)
-    meta_data = {}
-    fields.each do |field|
-      field = field.serializable_hash
-      meta_data[field['field_name']] = field['id']
-    end
-    return meta_data
   end
 end

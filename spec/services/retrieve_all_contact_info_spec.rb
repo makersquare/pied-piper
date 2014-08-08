@@ -71,12 +71,6 @@ describe RetrieveAllContactInfo do
         expect(result.contacts[1]["Field 1"]).to eq("Contact 2 Field 1")
         expect(result.contacts[1]["Field 2"]).to eq("Contact 2 Field 2")
       end
-
-      it "includes metadata about the fields" do
-        result = RetrieveAllContactInfo.run(params)
-        expect(result.meta).to_not be(nil)
-        expect(result.meta[:fields]).to eq({"Field 1" => field1.id, "Field 2" => field2.id})
-      end
     end
   end
 end

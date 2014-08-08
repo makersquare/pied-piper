@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20140807234645) do
 
   # These are extensions that must be enabled in order to support this database
@@ -45,10 +46,18 @@ ActiveRecord::Schema.define(version: 20140807234645) do
   end
 
   create_table "email_settings", force: true do |t|
+<<<<<<< HEAD
     t.string   "setting",          default: "Realtime"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "pipeline_user_id"
+=======
+    t.integer  "user_id"
+    t.string   "setting",     default: "Realtime"
+    t.integer  "pipeline_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+>>>>>>> added foundation angular added forms to pay html
   end
 
   create_table "fields", force: true do |t|
@@ -76,6 +85,12 @@ ActiveRecord::Schema.define(version: 20140807234645) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "trashed",    default: false
+  end
+
+  create_table "stage_fields", force: true do |t|
+    t.integer "stage_id"
+    t.integer "field_id"
+    t.boolean "visible"
   end
 
   create_table "stage_fields", force: true do |t|

@@ -18,7 +18,9 @@
 //= require ng-rails-csrf
 //= require angular-animate
 //= require angular-route
-//= require_tree ./angular
+//= require_tree ./angular-foundation
 //= require_tree ./balancedjs
+//= require_tree ./angular
+
 
 $(function(){ $(document).foundation(); });

@@ -7,6 +7,7 @@ app.controller('PipelineDetailsCtrl',
     PipelinesRsc, ContactsBoxRsc, FieldsRsc,
     StagesRsc) {
 
+    $scope.pipeline_id = $routeParams.id;
     $scope.editData = false;
 
     PipelinesRsc.getPipe({Id: $routeParams.id})

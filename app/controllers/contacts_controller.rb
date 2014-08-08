@@ -32,7 +32,7 @@ class ContactsController < ApplicationController
     if result.success?
       respond_with result.contacts.map(&:to_h)
     else
-      respond_with(result.errors, status: :unprocessable_entity)
+      respond_with(result.error, status: :unprocessable_entity)
     end
   end
 

@@ -28,14 +28,10 @@ Crm::Application.routes.draw do
   resources :contacts
   resources :boxes
   resources :users do
-    resources :email_settings
+    resources :email_settings, :defaults => { :format => :json }
   end
 
   post 'contextio/webhook/' => 'contextio#callback'
-
-
-
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

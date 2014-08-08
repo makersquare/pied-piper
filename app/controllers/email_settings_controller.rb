@@ -1,15 +1,19 @@
 class EmailSettingsController < ApplicationController
-  respond_to :json, :html
+  respond_to :json
 
   def index
-    u = User.find(params[:user_id])
-    respond_with(u.email_settings)
+    respond_with(GetEmailSettings.run(params))
   end
 
   def update
-    # update_email_settings =
+    email_settings = EmailSetting.find(params[:id])
+    email_settings.update!(email_setting_params)
+    respond_with email_settings
   end
 
-
+  private
+  def email_setting_params
+    params.permit(:setting)
+  end
 end
 

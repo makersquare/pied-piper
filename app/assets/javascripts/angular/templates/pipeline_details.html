@@ -25,12 +25,14 @@
 <h3>Stages</h3>
 <div class="row">
   <div class="panel collumns"
-    ng-repeat="stage in stages"
+<<<<<<< HEAD
+    ng-repeat="stage in stages | orderBy: 'pipeline_location'"
     ng-drop="true"
     ng-drop-success="onDropComplete($data,stage)">
 
     <h3>{{stage.name}}</h3>
     <p>{{stage.description}}</p>
+
     <table>
       <!-- Heading for fields in your pipeline -->
       <thead>

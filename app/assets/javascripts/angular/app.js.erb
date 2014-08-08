@@ -5,10 +5,7 @@
 // provides user authentication for the routes.
 
 var app = angular
-  .module('crmApp', [
-    'ngResource',
-    'ngRoute',
-  ]);
+  .module('crmApp', ['ngResource', 'ngRoute', 'mm.foundation']);
 
   // Inject necessary dependencies inside of this function below
   app.config(['$routeProvider',function($routeProvider){

@@ -11,6 +11,9 @@ class UpdateContactBox < TransactionScript
     b.contact.phonenumber = params[:contact][:phonenumber] || b.contact.phonenumber
     b.contact.city = params[:contact][:city] || b.contact.city
 
+    if params.include?(:status)
+        UpdateBoxStage.run(params)
+    end
     # field = Field.where('pipeline_id = ?', params[:pipeline_id]).first
     # field.field_name = params[:field_name] || field.field_name if !field.nil?
     # field.field_type = params[:field_type] || field.field_type if !field.nil?

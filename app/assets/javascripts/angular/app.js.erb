@@ -43,6 +43,10 @@ var app = angular
       templateUrl: "<%= asset_path('angular/templates/contacts.html') %>",
       controller: 'ContactsCtrl'
     })
+    .when('/pipeline/:pipeline_id/contact/:cid/notes', {
+      templateUrl: "<%= asset_path('angular/templates/contact_box.html') %>",
+      controller: 'NotesCtrl'
+    })
     .otherwise({
       redirectTo: '/pipelines'
     })

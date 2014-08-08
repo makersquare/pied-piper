@@ -24,8 +24,8 @@
 <div class="row">
   <div class="panel collumns"
     ng-repeat="stage in stages">
-    <h3>{{stage.name}}</h3>
-    <p>{{stage.description}}</p>
+    <h3 class={{stage.id}}>{{stage.name}}</h3>
+    <p class={{stage.id}}>{{stage.description}}</p>
     <table>
       <!-- Heading for fields in your pipeline -->
       <thead>
@@ -35,15 +35,25 @@
           <th ng-repeat="field in fields">{{field.field_name}}</th>
         </tr>
       </thead>
-      <tbody>
-        <tr ng-repeat="contact in contacts | orderBy:'name' | filter: {stage_id : stage.id}">
+      <tbody id={{stage.id}} class="contacts" ng-controller="PipelineDetailsCtrl">
+        <tr dnd-list="contacts" ng-repeat="contact in contacts | orderBy:'name' | filter: {stage_id : stage.id}">
           <!-- Display actual data for your contact -->
           <td>
             <a href="/#/pipeline/{{pipeline_id}}/contact/{{contact.id}}"
               class="button detail-button tiny radius round">Details</a>
             </td>
-          <td ng-repeat="field in basicFields">{{contact[field.field_name]}}</td>
-          <td ng-repeat="field in fields">{{contact[field.field_name]}}</td>
+          <!-- <td ng-repeat="field in basicFields">{{contact[field.field_name]}}</td> -->
+          <!-- <td ng-repeat="field in fields">{{contact[field.field_name]}}</td> -->
+          <form id="inputForm" name="inputForm" method="PUT" ng-keyup="updateEntry()">
+           <td ng-repeat="field in basicFields">
+             <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="keyup($event, contact)">
+             <p ng-hide="contact.showEdit" ng-dblclick="contact.showEdit=!contact.showEdit;">{{contact[field.field_name]}}</p>
+           </td>
+           <td ng-repeat="field in fields">
+             <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="keyup($event, contact)">
+             <p ng-hide="contact.showEdit" ng-dblclick="contact.showEdit=!contact.showEdit;">{{contact[field.field_name]}}</p>
+           </td>
+         </form>
         </tr>
       </tbody>
     </table>

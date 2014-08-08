@@ -5,9 +5,10 @@ class UserMailer < ActionMailer::Base
 
 # Sends email to admin upon registration.
   def registration_email(user)
-    @user = user
-    @url = root_url
-    mail(to: @user.email,
+    @name = user.name
+    @email = user.email
+    @url = root_path
+    mail(to: @email,
         subject: 'You have successfully registered for the MakerSquare CRM',
         template_path: 'user_mailer',
         template_name: 'registration_email'
@@ -16,7 +17,7 @@ class UserMailer < ActionMailer::Base
 
 # Sends email after a stage change.
   def stage_change_update(contact)
-    @url = root_url
+    @url = root_path
     @time = Time.now.strftime("%A, %B %d, %Y")
     @email_users = User.all
     @email_users.each do |email_user|

@@ -25,9 +25,17 @@
 class RetrieveAllContactInfo < TransactionScript
   def run(params)
     pipeline_id = params[:pipeline_id]
+
     if pipeline_id.nil? || pipeline_id == ""
-      return failure(:need_pipeline_id)
+      contacts = Contact.all.map do |contact|
+        # Convert to OpenStruct for ease of use
+        contact = OpenStruct.new(contact.serializable_hash)
+        contact
+      end
+
+      return success(contacts: contacts)
     end
+
     pipeline = Pipeline.where(id: pipeline_id).first
 
     if pipeline.nil?

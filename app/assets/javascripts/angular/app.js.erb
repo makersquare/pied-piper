@@ -38,6 +38,10 @@ var app = angular
       templateUrl: "<%= asset_path('angular/templates/createFields.html') %>",
       controller: 'StagesCtrl'
     })
+    .when('/contacts', {
+      templateUrl: "<%= asset_path('angular/templates/contacts.html') %>",
+      controller: 'ContactsCtrl'
+    })
     .otherwise({
       redirectTo: '/pipelines'
     })

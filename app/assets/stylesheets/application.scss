@@ -12,3 +12,13 @@
  *= require_tree .
  */
 @import "foundation_and_overrides";
+
+.button.detail-button.tiny {
+  width: auto;
+  height: 10px;
+  padding-top: 0.25rem;
+  padding-bottom: 0.9rem;
+  margin: 0 0 0;
+  font-size: 1em;
+  top: 0; left: 0; bottom: 0; right: 0;
+}

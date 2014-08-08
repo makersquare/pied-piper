@@ -30,7 +30,7 @@ class ContactsController < ApplicationController
     # Index to show contacts
     result = RetrieveAllContactInfo.run(params)
     if result.success?
-      respond_with result.contacts
+      respond_with result.contacts.map(&:to_h)
     else
       respond_with(result.errors, status: :unprocessable_entity)
     end

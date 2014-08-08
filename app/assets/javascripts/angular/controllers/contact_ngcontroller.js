@@ -1,7 +1,15 @@
+//this controller gives scope to the dom template "contacts.html" and adds
+//functionality for manually adding contacts to the dom and db simultaneously
 app.controller('ContactsCtrl',
   ['$scope', '$resource', 'ContactsRsc',
   function($scope, $resource, ContactsRsc) {
     $scope.contacts = ContactsRsc.query();
-    console.log($scope.contacts);
-    // Use $scope.contacts.id to GET pipelines
+    $scope.newContact = {};
+
+    $scope.addNewContact = function(){
+      ContactsRsc.save($scope.newContact, function(contact) {
+        $scope.contacts.unshift(contact);
+        $scope.newContact = {};
+      });
+    };
   }]);

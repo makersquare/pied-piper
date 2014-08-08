@@ -13,7 +13,7 @@ describe RemoveUserPipeline do
     p1 = CreatePipelineScript.run({:name=>'pipeline1'})
     user = User.create(name: 'Andrew', email: 'a@gmail.com')
     user_pipeline = AddUserPipeline.run(id: p1.data.id, user_id: user.id, pipeline_admin: true)
-    result = RemoveUserPipeline.run(id: p1.data.id, user_id: user.id)
+    result = RemoveUserPipeline.run(pipeline_id: p1.data.id, user_id: user.id)
 
     expect(result.success?).to eq(true)
     expect(result.data.user_id).to eq(user.id)

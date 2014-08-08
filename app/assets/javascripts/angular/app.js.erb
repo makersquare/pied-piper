@@ -33,10 +33,15 @@ var app = angular
     .when('/email_settings/:user_id', {
       templateUrl: "<%= asset_path('angular/templates/account_settings.html') %>",
       controller: 'EmailCtrl'
+    })
     .when('/pipeline/:pipeline_id/stages', {
       templateUrl: "<%= asset_path('angular/templates/createFields.html') %>",
       controller: 'StagesCtrl'
     })
+    .when('/pipeline/:pipeline_id/contact/:cid/notes', {
+      templateUrl: "<%= asset_path('angular/templates/contact_box.html') %>",
+      controller: 'NotesCtrl'      
+    }) 
     .otherwise({
       redirectTo: '/pipelines'
     })

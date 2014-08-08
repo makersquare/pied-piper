@@ -4,6 +4,58 @@
 
 require 'pry-byebug'
 
+def create_pipelines_with_stages_and_fields
+  pipeline_admissions = Pipeline.create({name: 'Admissions', trashed: false})
+  pipeline_hiring = Pipeline.create({name: 'Hiring', trashed: false})
+  pipeline_get_alumni_jobs = Pipeline.create({name: 'Get alumni jobs', trashed: false})
+
+  all_pipelines = [pipeline_admissions, pipeline_hiring, pipeline_get_alumni_jobs]
+
+  jobs_stage_list = [
+    {name: 'Applying to companies', description: 'make sure each app is customized', pipeline_location: 1},
+    {name: 'Interviewing', description: 'prep these students', pipeline_location: 2},
+    {name: 'Reviewing offers', description: 'do 1 on 1 to review offers', pipeline_location: 3}
+  ]
+
+  jobs_stage_list.each { |stage|
+    pipeline_get_alumni_jobs.stages.create(stage)
+  }
+
+
+  admissions_stage_list = [
+    {name: 'First contact', description: 'reach out', pipeline_location: 1},
+    {name: 'Interview', description: 'judge them harshly', pipeline_location: 2},
+    {name: 'Decision', description: 'let them know', pipeline_location: 3}
+  ]
+
+  admissions_stage_list.each { |stage|
+    pipeline_admissions.stages.create(stage)
+  }
+
+  hiring_stage_list = [
+    {name: 'Review resume', description: 'take about 60 sec on it', pipeline_location: 1},
+    {name: 'Phone screen', description: 'Ask fit questions', pipeline_location: 2},
+    {name: 'On-site interview', description: 'need to be interviewed by founders', pipeline_location: 3}
+  ]
+
+  hiring_stage_list.each { |stage|
+    pipeline_hiring.stages.create(stage)
+  }
+
+  pipeline_get_alumni_jobs.fields.create([
+    {field_name: 'top_choice_company', field_type: 'string'},
+    {field_name: 'number_companies_applied_to', field_type: 'integer'}
+  ])
+  pipeline_admissions.fields.create([
+    {field_name: 'cohort_desired', field_type: 'string'},
+    {field_name: 'candidate_quality_grade', field_type: 'float'}
+  ])
+  pipeline_hiring.fields.create([
+    {field_name: 'hiring_position', field_type: 'string'},
+    {field_name: 'position_location', field_type: 'string'}
+  ])
+end
+
 def clear_tables
   Pipeline.all.each {|p| p.destroy}
   Stage.all.each {|s| s.destroy}
@@ -11,106 +63,44 @@ def clear_tables
   Field.all.each {|f| f.destroy}
   User.all.each {|u| u.destroy}
 end
-clear_tables
 
-pipeline_admissions = Pipeline.create({name: 'Admissions', trashed: false})
-pipeline_hiring = Pipeline.create({name: 'Hiring', trashed: false})
-pipeline_get_alumni_jobs = Pipeline.create({name: 'Get alumni jobs', trashed: false})
+def create_contacts
+  contacts_list = [
+    {name: 'Andrew', email: 'andrew@gmail.com', phonenumber: '(650) 555-5126', city: 'San Francisco'},
+    {name: 'Gideon', email: 'gideon@gmail.com', phonenumber: '(650) 555-5126', city: 'San Francisco'},
+    {name: 'Jered', email: 'jered@gmail.com', phonenumber: '(650) 555-5126', city: 'San Francisco'},
+    {name: 'Jon', email: 'jon@gmail.com', phonenumber: '(650) 555-5126', city: 'San Francisco'},
+    {name: 'Catherine', email: 'catherine@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
+    {name: 'DJ', email: 'dj@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
+    {name: 'Gabe', email: 'gabe@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
+    {name: 'Alex', email: 'alex@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
+    {name: 'Maddy', email: 'maddy@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'},
+    {name: 'Michael', email: 'michael@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'},
+    {name: 'Charis', email: 'charis@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'},
+    {name: 'Jason', email: 'jason@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'}
+  ]
 
-all_pipelines = [pipeline_admissions, pipeline_hiring, pipeline_get_alumni_jobs]
+  Contact.create(contacts_list)
+end
 
-jobs_stage_list = [
-  {name: 'Applying to companies', description: 'make sure each app is customized', pipeline_location: 1},
-  {name: 'Interviewing', description: 'prep these students', pipeline_location: 2},
-  {name: 'Reviewing offers', description: 'do 1 on 1 to review offers', pipeline_location: 3}
-]
+def add_contacts_to_pipelines
+  stages = Stage.all
 
-jobs_stage_list.each { |stage|
-  pipeline_get_alumni_jobs.stages.create(stage)
-}
-
-
-admissions_stage_list = [
-  {name: 'First contact', description: 'reach out', pipeline_location: 1},
-  {name: 'Interview', description: 'judge them harshly', pipeline_location: 2},
-  {name: 'Decision', description: 'let them know', pipeline_location: 3}
-]
-
-admissions_stage_list.each { |stage|
-  pipeline_admissions.stages.create(stage)
-}
-
-hiring_stage_list = [
-  {name: 'Review resume', description: 'take about 60 sec on it', pipeline_location: 1},
-  {name: 'Phone screen', description: 'Ask fit questions', pipeline_location: 2},
-  {name: 'On-site interview', description: 'need to be interviewed by founders', pipeline_location: 3}
-]
-
-hiring_stage_list.each { |stage|
-  pipeline_hiring.stages.create(stage)
-}
-
-pipeline_get_alumni_jobs.fields.create([
-  {field_name: 'top_choice_company', field_type: 'string'},
-  {field_name: 'number_companies_applied_to', field_type: 'integer'}
-])
-pipeline_admissions.fields.create([
-  {field_name: 'cohort_desired', field_type: 'string'},
-  {field_name: 'candidate_quality_grade', field_type: 'float'}
-])
-pipeline_hiring.fields.create([
-  {field_name: 'hiring_position', field_type: 'string'},
-  {field_name: 'position_location', field_type: 'string'}
-])
-
-
-contacts_list = [
-  {name: 'Andrew', email: 'andrew@gmail.com', phonenumber: '(650) 555-5126', city: 'San Francisco'},
-  {name: 'Gideon', email: 'gideon@gmail.com', phonenumber: '(650) 555-5126', city: 'San Francisco'},
-  {name: 'Jered', email: 'jered@gmail.com', phonenumber: '(650) 555-5126', city: 'San Francisco'},
-  {name: 'Jon', email: 'jon@gmail.com', phonenumber: '(650) 555-5126', city: 'San Francisco'},
-  {name: 'Catherine', email: 'catherine@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
-  {name: 'DJ', email: 'dj@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
-  {name: 'Gabe', email: 'gabe@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
-  {name: 'Alex', email: 'alex@gmail.com', phonenumber: '(650) 555-5126', city: 'Barstow'},
-  {name: 'Maddy', email: 'maddy@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'},
-  {name: 'Michael', email: 'michael@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'},
-  {name: 'Charis', email: 'charis@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'},
-  {name: 'Jason', email: 'jason@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'}
-]
-
-num_stages = admissions_stage_list.length + hiring_stage_list.length + jobs_stage_list.length
-
-contacts_list.each_with_index { |contact, i|
-  contact_entity = Contact.create(contact)
-  i = 0 if i > num_stages
-  box_entity = contact_entity.boxes.create(contact_id: contact_entity.id, stage_id: (i+1))
-  companies = ['Google', 'Yahoo', 'Facebook', 'Amazon']
-  cohorts = ['SF August', 'SF December', 'Austin August']
-  jobs = ['Instructor', 'Operations', 'Career Services']
-  case box_entity.id
-  when 1..3
-    BoxField.create([
-      {box_id: box_entity.id, field_id: 1, value: companies[rand(companies.length)]},
-      {box_id: box_entity.id, field_id: 2, value: (rand(8)+5)}
-    ])
-  when 4..6
-    BoxField.create([
-      {box_id: box_entity.id, field_id: 3, value: cohorts[box_entity.id-4]},
-      {box_id: box_entity.id, field_id: 4, value: (rand(9)+1)}
-    ])
-  when 7..9
-    BoxField.create([
-      {box_id: box_entity.id, field_id: 5, value: jobs[box_entity.id-10]},
-      {box_id: box_entity.id, field_id: 6, value: 'San Francisco'}
-    ])
-  when 10..12
-    BoxField.create([
-      {box_id: box_entity.id, field_id: 1, value: companies[rand(companies.length)]},
-      {box_id: box_entity.id, field_id: 2, value: (rand(8)+5)}
-    ])
+  Contact.all.each_with_index do |contact, i|
+    stage_position =  i % Stage.count
+    stage = stages[stage_position]
+    box = Box.create(contact_id: contact.id, stage_id: stage.id, pipeline_id: stage.pipeline_id,
+      pipeline_location: stage.pipeline_location)
+    stage.pipeline.fields.each do |field|
+      BoxField.create(box_id: box.id, field_id: field.id, value: "Value #{i}:#{field.id}")
+    end
   end
-}
+end
+
+clear_tables
+create_pipelines_with_stages_and_fields
+create_contacts
+add_contacts_to_pipelines
 
 user_email_settings_list = [
   {user_id: 2, setting: "Smartdigest", pipeline_id: 1},

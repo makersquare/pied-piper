@@ -1,7 +1,7 @@
 app.factory("ContactsBoxRsc", function ($resource) {
     return $resource(
-        "/pipelines/:pid/contacts/:cid.json",
-        {cid: '@cid', pid: '@pid'},
+        "/pipelines/:pipeline_id/contacts/:id.json",
+        {pipeline_id: '@pipeline_id', id: '@id'},
         {
           get: {
             method: 'GET'

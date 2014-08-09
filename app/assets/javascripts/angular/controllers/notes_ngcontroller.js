@@ -1,7 +1,7 @@
 //This factory establishes a restful http api that talks to the notes controller in rails
 app.factory('NotesAPI', function($resource) {
-  return $resource('/pipelines/:pid/contacts/:cid/notes/:nid.json', { 
-    pid: '@pid', 
+  return $resource('/pipelines/:pid/contacts/:cid/notes/:nid.json', {
+    pid: '@pid',
     cid: '@cid',
     nid: '@nid'}, {
     update: {
@@ -10,19 +10,19 @@ app.factory('NotesAPI', function($resource) {
   });
 });
 
-// //this custom directive gives functionality to delete buttons on the dom to
-// //delete fields in the dom and database simultaneously
-// app.directive('deletefield', function(BoxesAPI, $routeParams) {
-//   return function(scope, element) {
-//     element.bind('click', function(e){
-//       e.preventDefault();
-//       BoxesAPI.remove({pipeline_id: $routeParams['pipeline_id'], id: this.dataset.id}, element,
-//         function(element) {
-//           scope.fields.splice(element.context.dataset.index, 1);
-//       });
-//     })
-//   }
-// });
+//this custom directive gives functionality to delete buttons on the dom to
+//delete fields in the dom and database simultaneously
+app.directive('deletenote', function(NotesAPI, $routeParams) {
+  return function(scope, element) {
+    element.bind('click', function(e){
+      e.preventDefault();
+      NotesAPI.remove({pid: $routeParams.pid, cid: $routeParams.cid}, element,
+        function(element) {
+          scope.notes.splice(element.context.dataset.index, 1);
+      });
+    })
+  }
+});
 
 //this controller gives scope to the dom template "contact_box.html" and adds
 //functionality for adding notes to the dom and db simultaneously

@@ -36,8 +36,16 @@
       <tbody>
         <tr ng-repeat="contact in contacts | orderBy:'name' | filter: {stage_id : stage.id}">
           <!-- Display actual data for your contact -->
-          <td ng-repeat="field in basicFields">{{contact[field.field_name]}}</td>
-          <td ng-repeat="field in fields">{{contact[field.field_name]}}</td>
+          <form id="inputForm" name="inputForm" method="PUT" ng-keyup="updateEntry()">
+            <td ng-repeat="field in basicFields">
+              <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="keyup($event, contact)">
+              <p ng-hide="contact.showEdit" ng-dblclick="contact.showEdit=!contact.showEdit;">{{contact[field.field_name]}}</p>
+            </td>
+            <td ng-repeat="field in fields">
+              <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="keyup($event, contact)">
+              <p ng-hide="contact.showEdit" ng-dblclick="contact.showEdit=!contact.showEdit;">{{contact[field.field_name]}}</p>
+            </td>
+          </form>
         </tr>
       </tbody>
     </table>

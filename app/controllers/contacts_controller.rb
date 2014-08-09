@@ -20,7 +20,7 @@ class ContactsController < ApplicationController
     # Show a contact within its box given the contact id
     show_contact = GetContactBox.run({:contact_id=>contact_params[:id]})
     if show_contact.success?
-      respond_with show_contact.contacts.to_json
+      respond_with show_contact.to_h
     elsif show_contact.error == :no_box_found
       respond_with({errors: ["Could not find proper Box"]}, status: :unprocessable_entity)
     end
@@ -38,7 +38,6 @@ class ContactsController < ApplicationController
 
   def update
     # User can update a contact's info and associated box info
-    # binding.pry
     update_contact_box = UpdateContactBox.run(box_params)
     respond_with update_contact_box
   end

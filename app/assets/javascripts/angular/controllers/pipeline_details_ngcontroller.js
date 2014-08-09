@@ -21,4 +21,24 @@ app.controller('PipelineDetailsCtrl',
 
     $scope.stages = StagesRsc.query({pipeline_id: $routeParams.id});
 
+// Edit the entry in the browser by double-clicking the text; press enter to update in the database
+    $scope.keyup = function(event, contact) {
+      if (event.keyCode == 13) {
+        contact.showEdit = !contact.showEdit;
+        contact.cid = contact.id;
+        contact.contact_id = contact.id;
+        contact.pid = $routeParams.id;
+        ContactBoxRsc.update(contact);
+      }
+    };
+
+// Define the rails path that will be hit by the http requests
+    var ContactBoxRsc = $resource('/pipelines/:pid/contacts/:cid.json',
+      {cid: '@cid', pid: '@pid'},
+      {
+       get: {method: 'GET'},
+       update: { method: 'PUT', params: $scope.cb}
+        }
+      );
+
   }]);

@@ -54,11 +54,17 @@
 </div>
 
 <div ng-controller='NotesCtrl'>
+  <div class='notes'>
+    <div class="note" ng-repeat="note.notes in notes">
+      <span><a deletenote data-id="{{note.id}}" data-index="{{$index}}" href="#" class="button tiny alert">Delete</a> {{note.notes}}</span>
+    </div>
+  </div>
   <form name="noteForm" ng-submit="addNote()">
     <input name="newnote" ng-model="newNote" type="text" placeholder="Add note"/>
     <input type='submit' name='submit' />
   </form>
 </div>
+
 <!--
 <div ng-controller='StagesCtrl'>
   <h1>Add/Remove Pipeline Stages</h1>

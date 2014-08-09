@@ -1,17 +1,25 @@
 app.controller('PipelineIndexCtrl',
   ['$scope', '$resource', 'PipelinesRsc',
   function($scope, $resource, PipelinesRsc) {
+    $scope.newPipeline = false;
+    $scope.pipelineName = "";
 
     var updatePipes = function(){
       $scope.pipelineList = PipelinesRsc.get();
     };
     updatePipes();
 
+    $scope.namePipeline = function() {
+      $scope.newPipeline = true;
+    };
+
     $scope.createNewPipeline = function(){
-      var pipeName = prompt('Pipeline Name:');
-      var result = PipelinesRsc.createPipe({'name':pipeName},{});
-      // we need to redo an new api call to get the updated pipelines
-      updatePipes();
+      if ($scope.pipelineName.length > 0) {
+        var result = PipelinesRsc.createPipe({'name': $scope.pipelineName}, function(data) {
+          $scope.newPipeline = false;
+          $scope.pipelineList.push({'name': $scope.pipelineName, 'id': data.id});
+        });
+      }
     };
 
   }]);

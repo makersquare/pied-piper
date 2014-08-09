@@ -34,7 +34,6 @@ app.controller('StagesCtrl',
       function(data) {
         $scope.stages.push({name: $scope.stageName, description: $scope.stageDesc, pipeline_location: $scope.stageLoc});
         $scope.stageName = "";
-      });
-
-  };
+    });
+  }
 });

@@ -3,11 +3,15 @@
   <div class="small-3 large-3 columns panel callout row"
     ng-controller="PipelineIndexCtrl">
       <h3>Pipelines <a class="button tiny radius round"
-        ng-click="createNewPipeline()">+</a></h3>
+        ng-click="namePipeline()">+</a></h3>
       <div ng-repeat="pipe in pipelineList" class="">
         <a href="/#/pipeline/{{pipe.id}}" title="">{{pipe.name}}</a>
       </div>
-
+      <form ng-show="newPipeline" ng-submit="createNewPipeline()" role="form">
+        <div class="form-group">
+          <input ng-model="pipelineName" type="text" class="form-control" id="pipelineName" placeholder="Name New Pipeline">
+        </div>
+      </form>
   </div>
 
   <!-- The below div is where the ng views/partials will be shown -->

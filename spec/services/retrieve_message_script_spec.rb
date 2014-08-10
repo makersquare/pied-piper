@@ -21,3 +21,4 @@ describe RetrieveMessageScript do
   end
 
 end
+

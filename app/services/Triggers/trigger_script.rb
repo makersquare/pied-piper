@@ -4,6 +4,7 @@ class Trigger
     @cause = cause_input
     @effect = effect_methods
   end
+
   def run_trigger
     @effect.each{|script| script.run(@cause)}
   end

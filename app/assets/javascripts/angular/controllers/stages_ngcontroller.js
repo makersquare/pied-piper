@@ -16,8 +16,8 @@ app.directive('deletestage', function(StagesAPI, $routeParams) {
       StagesAPI.remove({pipeline_id: $routeParams['pipeline_id'], id: this.dataset.id}, element, function(element){
         scope.stages.splice(element.context.dataset.index, 1);
       });
-    })
-  }
+    });
+  };
 });
 
 //this controller gives scope to the dom template "createFields.html" and adds
@@ -30,8 +30,8 @@ app.controller('StagesCtrl', function($routeParams, $scope, $http, StagesAPI) {
     $scope.stage.$save({pipeline_id: $routeParams['pipeline_id'], name: $scope.stageName, description: $scope.stageDesc, pipeline_location: $scope.stageLoc},
       function(data) {
         $scope.stages.push({name: $scope.stageName, description: $scope.stageDesc, pipeline_location: $scope.stageLoc});
-        $scope.stageName = ""
+        $scope.stageName = "";
       });
 
-  }
-})
+  };
+});

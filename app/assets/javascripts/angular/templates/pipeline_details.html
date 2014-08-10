@@ -37,7 +37,10 @@
       <tbody>
         <tr ng-repeat="contact in contacts | orderBy:'name' | filter: {stage_id : stage.id}">
           <!-- Display actual data for your contact -->
-          <td><a href="/#/pipeline/{{pipeline_id}}/contact/{{contact.id}}" class="button detail-button tiny radius round">Details</a></td>
+          <td>
+            <a href="/#/pipeline/{{pipeline_id}}/contact/{{contact.id}}"
+              class="button detail-button tiny radius round">Details</a>
+            </td>
           <td ng-repeat="field in basicFields">{{contact[field.field_name]}}</td>
           <td ng-repeat="field in fields">{{contact[field.field_name]}}</td>
         </tr>

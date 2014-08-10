@@ -6,7 +6,7 @@ class AddUserPipeline < TransactionScript
     pipeline_id = params[:id]
     params[:pipeline_admin] == false ? admin = 'false' : admin = 'true'
     return failure(:user_already_in_pipeline) unless PipelineUser.find_by(user_id: user_id, pipeline_id: pipeline_id).nil?
-    
+
     begin
       result = PipelineUser.create(user_id: user_id, pipeline_id: pipeline_id, admin: admin)
       EmailSetting.create(pipeline_user_id: result.id)

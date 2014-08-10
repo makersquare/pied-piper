@@ -1,6 +1,7 @@
 //This factory establishes a restful http api that talks to the stages controller in rails
 app.factory('StagesAPI', function($resource) {
-  return $resource('/pipelines/:pipeline_id/stages/:id.json', {pipeline_id: '@pipeline_id', stage_id: '@id'}, {
+  return $resource('/pipelines/:pipeline_id/stages/:id.json',
+    {pipeline_id: '@pipeline_id', stage_id: '@id'}, {
     update: {
           method: 'PUT'
         }
@@ -22,7 +23,9 @@ app.directive('deletestage', function(StagesAPI, $routeParams) {
 
 //this controller gives scope to the dom template "createFields.html" and adds
 //functionality for adding stages to the dom and db simultaneously
-app.controller('StagesCtrl', function($routeParams, $scope, $http, StagesAPI) {
+app.controller('StagesCtrl',
+  function($routeParams, $scope, $http, StagesAPI) {
+
   $scope.stages = StagesAPI.query({pipeline_id: $routeParams['pipeline_id']});
 
   $scope.addStage = function() {

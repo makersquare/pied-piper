@@ -1,6 +1,6 @@
 class Trigger
   attr_accessor :cause, :effect
-  def initialize(cause_input, effect_methods*)
+  def initialize(cause_input, *effect_methods)
     @cause = cause_input
     @effect = effect_methods
   end

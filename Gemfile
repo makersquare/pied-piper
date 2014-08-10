@@ -9,6 +9,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-byebug'
+  gem "jasmine", github: "pivotal/jasmine-gem"
 end
 
 gem 'hashie'
@@ -63,6 +64,5 @@ gem 'figaro'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
 
 gem 'contextio'

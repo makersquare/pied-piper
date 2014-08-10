@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/pivotal/jasmine-gem.git
+  revision: 1dc044853e6589203770831a0f6507c352cb8985
+  specs:
+    jasmine (2.0.2)
+      jasmine-core (~> 2.0.0)
+      phantomjs
+      rack (>= 1.2.1)
+      rake
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -71,6 +81,7 @@ GEM
     hike (1.2.3)
     hirb (0.7.2)
     i18n (0.6.11)
+    jasmine-core (2.0.1)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -107,6 +118,7 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     pg (0.17.1)
+    phantomjs (1.9.7.1)
     polyglot (0.3.5)
     pry (0.10.0)
       coderay (~> 1.1.0)
@@ -195,6 +207,7 @@ DEPENDENCIES
   foundation-rails
   hashie
   hirb
+  jasmine!
   jbuilder (~> 1.2)
   jquery-rails
   json

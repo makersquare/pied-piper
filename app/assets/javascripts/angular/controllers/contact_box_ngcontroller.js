@@ -1,6 +1,9 @@
 app.controller('ContactBoxCtrl',
-  ['$scope', '$resource', '$http', '$location', '$routeParams',
-  function($scope, $resource, $http, $location, $routeParams) {
+  ['$scope', '$resource', '$http',
+  '$location', '$routeParams',
+  function($scope, $resource, $http,
+    $location, $routeParams) {
+
     $scope.cb = null;
 
 // Define the rails path that will be hit by the http requests

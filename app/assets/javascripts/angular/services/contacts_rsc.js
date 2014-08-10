@@ -8,7 +8,6 @@ app.factory("ContactsRsc", function ($resource) {
           },
           update: {
             method: 'PUT'
-            // params: $scope.cb
           }
         }
     );

@@ -8,7 +8,6 @@ app.factory("ContactsBoxRsc", function ($resource) {
           },
           update: {
             method: 'PUT'
-            // params: $scope.cb
           }
         }
     );

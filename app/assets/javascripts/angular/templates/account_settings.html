@@ -1,0 +1,14 @@
+<h3>Account Settings</h3>
+
+<div ng-controller="EmailCtrl">
+  <form ng-repeat="setting in emailSettings" ng-submit="saveSettings($index, setting)">
+    <div class="panel">
+      <h4>{{setting.pipeline_name}}</h4>
+      <input type="radio" ng-model="setting.setting" name="radio" id="radio" value="Realtime"> <label for="radio">Real Time</label>
+      <input type="radio" ng-model="setting.setting" name="radio" id="radio" value="Noemails"><label for="radio">No Emails</label>
+      <input type="radio" ng-model="setting.setting" name="radio" id="radio" value="Dailydigest"><label for="radio">Daily Digest</label>
+      <input type="radio" ng-model="setting.setting" name="radio" id="radio" value="Smartdigest"><label for="radio">Smart Digest</label>
+      <input type="submit" class="button" value="Save Settings" />
+    </div>
+  </form>
+</div>

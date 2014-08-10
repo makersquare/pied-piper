@@ -1,0 +1,16 @@
+<h2>Box#show_box</h2>
+
+<div>Show box preview here!!!!</div>
+
+<div>
+<h3>Add fields</h3>
+<%= form_tag(box_path, method: 'post') do %>
+  <%= label_tag('field_name', 'Field name') %>
+  <%= text_field_tag('field_name') %><br>
+
+  <%= label_tag('field_type', 'Field type (change to dropdown)') %>
+  <%= text_field_tag('field_type') %><br>
+
+  <%= submit_tag('submit') %>
+<% end %>
+</div>

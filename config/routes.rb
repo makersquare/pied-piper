@@ -1,4 +1,38 @@
 Crm::Application.routes.draw do
+  # ROOT ALWAYS AT TOP
+  root 'static_pages#index'
+  #if the google authentication results in a failure redirect to root
+  get 'auth/failure', to: redirect('/')
+
+  #this route is the redirect route that is triggered after sending an authentication request to google
+  get 'auth/:provider/callback', to: 'sessions#create'
+
+  #trigger session destruction on logout
+  get 'signout', to: 'sessions#destroy', as: 'signout'
+
+  resources :sessions, only: [:create, :destroy]
+  resources :home, only: [:show]
+
+  #provides a root route to show login button, can be changed later
+
+  # put 'pipeline/:pipeline_id/contact/:contact_id' => 'contacts#update'
+
+  resources :pipelines do
+    resources :stages, :defaults => { :format => :json }
+    resources :contacts
+    resources :boxes
+    resources :users
+    resources :fields, :defaults => { :format => :json }
+  end
+
+  resources :contacts
+  resources :boxes
+  resources :users do
+    resources :email_settings, :defaults => { :format => :json }
+  end
+
+  post 'contextio/webhook/' => 'contextio#callback'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -53,4 +87,5 @@ Crm::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end

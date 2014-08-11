@@ -122,7 +122,17 @@ internal_users_list = [
 
 internal_users_list.each { |user|
   user_entity = User.create(user)
-  PipelineUser.create(pipeline_id: 1, user_id: user_entity.id, admin: true)
-  PipelineUser.create(pipeline_id: 2, user_id: user_entity.id, admin: true)
-  PipelineUser.create(pipeline_id: 3, user_id: user_entity.id, admin: true)
+  admin = rand(2)
+  admin == 1 ? admin = true : admin = false
+  PipelineUser.create(pipeline_id: 1, user_id: user_entity.id, admin: admin)
+  PipelineUser.create(pipeline_id: 2, user_id: user_entity.id, admin: admin)
+  PipelineUser.create(pipeline_id: 3, user_id: user_entity.id, admin: admin)
 }
+
+User.create([
+  {name: 'Mike', email: 'mike@makersquare.com'},
+  {name: 'Harsh', email: 'harsh@makersquare.com'},
+  {name: 'Gilbert', email: 'gilbert@makersquare.com'},
+  {name: 'Ravi', email: 'ravi@makersquare.com'},
+  {name: 'Will', email: 'will@makersquare.com'}
+  ])

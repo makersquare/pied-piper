@@ -76,3 +76,4 @@ app.controller('PipelineDetailsCtrl',
       );
 
   }]);
+

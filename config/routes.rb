@@ -23,8 +23,12 @@ Crm::Application.routes.draw do
       resources :notes, :defaults => { :format => :json }
     end
     resources :boxes 
-    resources :users
     resources :fields, :defaults => { :format => :json }
+
+    get 'users', to: 'pipelines#retrieve_collaborators'
+    post 'users', to: 'pipelines#add_to_pipeline'
+    delete 'users/:user_id', to: 'pipelines#remove_from_pipeline'
+    put 'users/:user_id', to: 'pipelines#update_access_to_pipeline'
   end
 
   resources :contacts

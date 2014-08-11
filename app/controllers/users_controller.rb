@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  respond_to :json
   # # POST /users
   # # POST /users.json
 
@@ -18,4 +19,11 @@ class UsersController < ApplicationController
   #     end
   #   end
   # end
+
+  def index
+    respond_with User.all
+  end
+
+  
+
 end

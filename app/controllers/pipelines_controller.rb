@@ -1,10 +1,7 @@
 class PipelinesController < ApplicationController
   respond_to :json
-  # Need to implement authentication
   # before_filter :logged_in?
-  before_filter :is_pipeline_admin?, :only => [:destroy, :trash, :update, :add_to_pipeline, :remove_from_pipeline, :update_access_to_pipeline]
-  # We need to check and make sure the request is coming from
-  # an admin of the pipeline
+  # before_filter :is_pipeline_admin?, :only => [:destroy, :trash, :update, :add_to_pipeline, :remove_from_pipeline, :update_access_to_pipeline]
 
   #Retrieves all rows from the Pipeline table, ID, name.
   #Use this for the sidebar
@@ -52,11 +49,21 @@ class PipelinesController < ApplicationController
   #Method takes a pipeline id and a user id and adds the user to the pipeline
   # This is a mass assignment so I think I have to permit the user_id.
   # Need to first check and see if target user is not already part of pipeline
-  def add_to_pipeline
-    result = AddUserPipeline.run(pipeline_params)
-
+  def retrieve_collaborators
+    result = RetrieveCollaborators.run(params[:pipeline_id])
     if result.success?
       respond_with result.data
+    else
+      respond_with result.error.to_json
+    end
+  end
+
+  #should probably correct to use strong params here
+  def add_to_pipeline
+    result = AddUserPipeline.run({id: params["id"], user_id: params["newUser"]["user"]["id"], pipeline_admin: params["newUser"]["admin"]})
+    if result.success?
+      binding.pry
+      render json: result.data
     else
       respond_with result.error
     end
@@ -82,15 +89,6 @@ class PipelinesController < ApplicationController
     end
   end
 
-  def update_access_to_pipeline
-    result = UpdateUserPipeline.run(pipeline_params)
-
-    if result.success?
-      respond_with result.data
-    else
-      respond_with result.error
-    end
-  end
 
   private
 
@@ -103,6 +101,6 @@ class PipelinesController < ApplicationController
   end
 
   def pipeline_params
-    params.permit(:id, :name, :trashed, :user_id, :pipeline_admin)
+    params.permit(:id, :name, :trashed, :user_id, :pipeline_admin, :newUser)
   end
 end

@@ -22,6 +22,10 @@ var app = angular
       templateUrl: "<%= asset_path('angular/templates/pipeline_details.html') %>",
       controller: 'PipelineDetailsCtrl'
     })
+    .when('/pipeline/:id/users', {
+      templateUrl: "<%= asset_path('angular/templates/manage_pipeline_collaborators.html') %>",
+      controller: 'PipelineCollabCtrl'
+    })
     .when('/pipeline/:pid/contact/:cid', {
       templateUrl: "<%= asset_path('angular/templates/contact_box.html') %>",
       controller: 'ContactBoxCtrl'

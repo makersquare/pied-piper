@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20140807234645) do
 
   # These are extensions that must be enabled in order to support this database
@@ -36,6 +35,7 @@ ActiveRecord::Schema.define(version: 20140807234645) do
     t.integer "stage_id"
     t.integer "pipeline_id"
     t.integer "pipeline_location"
+    t.integer "payment_plan_id"
   end
 
   create_table "contacts", force: true do |t|
@@ -46,18 +46,10 @@ ActiveRecord::Schema.define(version: 20140807234645) do
   end
 
   create_table "email_settings", force: true do |t|
-<<<<<<< HEAD
     t.string   "setting",          default: "Realtime"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "pipeline_user_id"
-=======
-    t.integer  "user_id"
-    t.string   "setting",     default: "Realtime"
-    t.integer  "pipeline_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
->>>>>>> added foundation angular added forms to pay html
   end
 
   create_table "fields", force: true do |t|
@@ -70,6 +62,14 @@ ActiveRecord::Schema.define(version: 20140807234645) do
     t.integer "user_id"
     t.integer "box_id"
     t.text    "notes"
+  end
+
+  create_table "payment_plans", force: true do |t|
+    t.integer  "total_due"
+    t.integer  "num_payments"
+    t.datetime "due_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pipeline_users", force: true do |t|
@@ -93,12 +93,6 @@ ActiveRecord::Schema.define(version: 20140807234645) do
     t.boolean "visible"
   end
 
-  create_table "stage_fields", force: true do |t|
-    t.integer "stage_id"
-    t.integer "field_id"
-    t.boolean "visible"
-  end
-
   create_table "stages", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -106,6 +100,8 @@ ActiveRecord::Schema.define(version: 20140807234645) do
     t.integer  "pipeline_location"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "standard_payment_plan_id"
+    t.boolean  "payment"
   end
 
   create_table "user_stages", force: true do |t|
@@ -123,6 +119,7 @@ ActiveRecord::Schema.define(version: 20140807234645) do
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
     t.string   "webhook_id"
+    t.string   "uid"
   end
 
 end

@@ -22,15 +22,22 @@
 #         ...Another Contact...
 #     ]
 #   }
+#
+# You can also use this script to get generic information about the contact
+# that is not specific to the pipeline.
 class RetrieveAllContactInfo < TransactionScript
   def run(params)
     pipeline_id = params[:pipeline_id]
 
     if pipeline_id.nil? || pipeline_id == ""
+      # If the user hasn't passed in a pipeline id, don't retrieve pipeline
+      # specific information, but instead gather information about
+      # all of the pipelines the contact is in.
       contacts = Contact.all.map do |contact|
         # Convert to OpenStruct for ease of use
-        contact = OpenStruct.new(contact.serializable_hash)
-        contact
+        contact_struct = OpenStruct.new(contact.serializable_hash)
+        add_pipeline_info_to_contact(contact, contact_struct)
+        contact_struct
       end
 
       return success(contacts: contacts)
@@ -67,5 +74,11 @@ class RetrieveAllContactInfo < TransactionScript
       box_field = BoxField.where(field_id: field.id, box_id: box.id).first
       contact[field.field_name] = box_field.value
     end
+  end
+
+  # Retrieves information about which pipelines the contact is in.
+  def add_pipeline_info_to_contact(contact, contact_struct)
+    pipelines = contact.pipelines
+    contact_struct.pipelines = pipelines.to_a.map(&:serializable_hash)
   end
 end

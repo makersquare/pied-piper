@@ -2,7 +2,15 @@ class ContactsController < ApplicationController
   respond_to :json, :html
   # before_filter :logged_in?
   # before_filter :admin?
-  def new
+
+  def index
+    # Index to show contacts
+    result = RetrieveAllContactInfo.run(params)
+    if result.success?
+      respond_with result.contacts.map(&:to_h)
+    else
+      respond_with(result.error, status: :unprocessable_entity)
+    end
   end
 
   def create
@@ -12,8 +20,11 @@ class ContactsController < ApplicationController
     if results.success?
       respond_with results.contact
     else
-      respond_with results.error
+      respond_with(result.error, status: :unprocessable_entity)
     end
+  end
+
+  def new
   end
 
   def show
@@ -23,16 +34,6 @@ class ContactsController < ApplicationController
       respond_with show_contact.to_h
     elsif show_contact.error == :no_box_found
       respond_with({errors: ["Could not find proper Box"]}, status: :unprocessable_entity)
-    end
-  end
-
-  def index
-    # Index to show contacts
-    result = RetrieveAllContactInfo.run(params)
-    if result.success?
-      respond_with result.contacts.map(&:to_h)
-    else
-      respond_with(result.error, status: :unprocessable_entity)
     end
   end
 

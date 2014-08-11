@@ -1,18 +1,26 @@
 app.factory("PipelinesRsc", function ($resource) {
-    return $resource(
+
+    var pipeList = [];
+
+    var pipersc = $resource(
         "/pipelines/:Id.json",
         {Id: "@Id" },
         {
-            'get': {
-              method:'GET',
-              isArray:true,
-            },
-            'getPipe':{
-              method:'GET'
-            },
-            'createPipe':{
-              method:"POST",
-            }
+          'createPipe':{
+            method:"POST",
+          }
         }
     );
+
+    var updatePipeList = function(){
+      pipeList = pipersc.query()
+    };
+
+    updatePipeList();
+
+    return {
+      pipersc   : pipersc,
+      updatePipeList : updatePipeList,
+      pipeList  : pipeList
+    }
 });

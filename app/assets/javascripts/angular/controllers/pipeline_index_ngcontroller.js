@@ -4,10 +4,18 @@ app.controller('PipelineIndexCtrl',
     $scope.newPipeline = false;
     $scope.pipelineName = "";
 
-    var updatePipes = function(){
-      $scope.pipelineList = PipelinesRsc.get();
-    };
-    updatePipes();
+    $scope.$watchCollection(function(){
+      return PipelinesRsc.pipeList;
+    },
+    function(pipeList){
+      $scope.pipelineList = pipeList;
+    });
+
+    $scope.pipelineList = PipelinesRsc.pipeList;
+    // var updatePipes = function(){
+    //   $scope.pipelineList = PipelinesRsc.get();
+    // };
+    // updatePipes();
 
     $scope.namePipeline = function() {
       $scope.newPipeline = true;

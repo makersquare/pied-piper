@@ -16,6 +16,7 @@ gem 'hashie'
 gem 'foundation-rails'
 gem 'angularjs-rails'
 gem 'ng-rails-csrf'
+gem 'underscore-rails'
 
 group :test do
   gem 'vcr', '~> 2.6.0'

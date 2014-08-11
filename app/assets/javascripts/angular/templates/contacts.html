@@ -1,10 +1,18 @@
 <h1>All Contacts</h1>
 <div class="row">
-  <div class="panel columns"
-    ng-repeat="contact in contacts">
-     <h3> {{ contact.name }} </h3>
-     <p> {{ contact.email }} <p>
-     <p> {{ contact.city }} </p>
-     <p> {{ contact.phonenumber }} </p>
+  <div class="panel columns" ng-repeat="contact in contacts">
+    <h3> {{ contact.name }} </h3>
+    <p> {{ contact.email }} <p>
+    <p> {{ contact.city }} </p>
+    <p> {{ contact.phonenumber }} </p>
+    <h3> Pipelines </h3>
+    <span class="success radius label"> Admissions </span><br>
+    <a href="#" data-dropdown="drop1" class="button dropdown">Pipeline</a><br>
+    <ul id="drop1" data-dropdown-content class="f-dropdown">
+      <li><a href="#">This is a link</a></li>
+      <li><a href="#">This is another</a></li>
+      <li><a href="#">Yet another</a></li>
+    </ul>
+    <input type="submit" class="button" value="Add To Pipeline" />
   </div>
 </div>

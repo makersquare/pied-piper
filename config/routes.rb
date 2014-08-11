@@ -25,7 +25,9 @@ Crm::Application.routes.draw do
     resources :fields, :defaults => { :format => :json }
   end
 
-  resources :contacts
+  resources :contacts do
+    resources :pipelines, :defaults => { :format => :json }
+  end
   resources :boxes
   resources :users do
     resources :email_settings, :defaults => { :format => :json }

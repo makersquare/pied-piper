@@ -18,6 +18,4 @@ app.controller('ContactsCtrl',
         $scope.newContact = {};
       });
     };
-
-
   }]);

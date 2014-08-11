@@ -31,7 +31,9 @@ Crm::Application.routes.draw do
     put 'users/:user_id', to: 'pipelines#update_access_to_pipeline'
   end
 
-  resources :contacts
+  resources :contacts do
+    resources :pipelines, :defaults => { :format => :json }
+  end
   resources :boxes
   resources :users do
     resources :email_settings, :defaults => { :format => :json }

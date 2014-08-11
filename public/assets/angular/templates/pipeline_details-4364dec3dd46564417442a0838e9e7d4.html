@@ -23,8 +23,8 @@
 <div class="row">
   <div class="panel collumns"
     ng-repeat="stage in stages">
-    <h3 class={{stage.id}}>{{stage.name}}</h3>
-    <p class={{stage.id}}>{{stage.description}}</p>
+    <h3>{{stage.name}}</h3>
+    <p>{{stage.description}}</p>
     <table>
       <!-- Heading for fields in your pipeline -->
       <thead>
@@ -33,8 +33,8 @@
           <th ng-repeat="field in fields">{{field.field_name}}</th>
         </tr>
       </thead>
-      <tbody ng-controller="PipelineDetailsCtrl">
-        <tr dndlist="contacts" ng-repeat="contact in contacts | orderBy:'name' | filter: {stage_id : stage.id}">
+      <tbody>
+        <tr dragdrop data-drag="true" drag="contact" ng-repeat="contact in contacts | orderBy:'name' | filter: {stage_id : stage.id}">
           <!-- Display actual data for your contact -->
           <form ng-model="contact" id="inputForm" name="inputForm" method="PUT" ng-keyup="updateEntry()">
             <td ng-repeat="field in basicFields">

@@ -1,0 +1,83 @@
+<div>contact box!</div>
+<div>
+ <form id="inputForm" name="inputForm" method="PUT" ng-submit="updateEntry()">
+    <div>
+      <div class="row">
+        <div class="large-12 columns">
+          <ul>
+            <!-- <li ng-repeat="result in results">entry: {{}}</li> -->
+          </ul>
+          <!-- General contact info -->
+          <input type="text" name="name" placeholder="Name"
+            ng-model="cb.contact.name"/><br>
+          <input type="text" name="pipeline" placeholder="Pipeline"
+          ng-model="cb.pipeline.name"/><br>
+          <input type="text" name="stage" placeholder="Stage"
+          ng-model="cb.box.stage"/><br>
+          <input type="text" name="email" placeholder="Email"
+          ng-model="cb.contact.email"/><br>
+          <input type="text" name="phonenumber" placeholder="Phone Number"
+            ng-model="cb.contact.phonenumber"/><br>
+          <input type="text" name="city" placeholder="City"
+          ng-model="cb.contact.city"/><br>
+
+          <!-- Arrays -->
+          <ul>Fields:
+            <li ng-repeat="field in cb.fields" name="field">
+              {{field.field_name}}
+            </li>
+          </ul>
+          <br>
+
+          Field value:
+          <ul>
+            <li ng-repeat="field_value in cb.field_values" >
+              <input type="text" name="field_value" ng-model="field_value.value"/>
+            </li>
+          </ul>
+          <br>
+
+          Notes:
+          <ul>
+            <li ng-repeat="note in cb.notes">
+              <input type="text" name="note" ng-model="note.notes"/>
+            </li>
+          </ul>
+          <br>
+        <div>
+          <input type="submit" value="Update Info" class="button" style="margin-left: 15px; background-color: #1abc9c;">
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
+
+<div ng-controller='NotesCtrl'>
+  <div class='notes'>
+    <div class="note" ng-repeat="note.notes in notes">
+      <span><a deletenote data-id="{{note.id}}" data-index="{{$index}}" href="#" class="button tiny alert">Delete</a> {{note.notes}}</span>
+    </div>
+  </div>
+  <form name="noteForm" ng-submit="addNote()">
+    <input name="newnote" ng-model="newNote" type="text" placeholder="Add note"/>
+    <input type='submit' name='submit' />
+  </form>
+</div>
+
+<!--
+<div ng-controller='StagesCtrl'>
+  <h1>Add/Remove Pipeline Stages</h1>
+  <div class='stages'>
+    <div class="stage" ng-repeat="stage in stages">
+      <span><a deletestage data-id="{{stage.id}}" data-index="{{$index}}" href="#" class="button tiny alert">Delete</a> {{stage.name}}: {{stage.description}}</span>
+    </div>
+  </div>
+  <h4>{{stageName}}</h4>
+  <form name="stageForm" ng-submit="addStage()">
+    <input name="name" ng-model="stageName" type="text" placeholder="create a new stage"/>
+    <input name="description" ng-model="stageDesc" type="text" placeholder="stage description"/>
+    <input type='submit' name='submit' />
+  </form>
+</div>
+ -->

@@ -58,6 +58,9 @@ gem 'figaro'
 #!!!!!!!!!pagerDuty!!!!!!!!!!!!!!!!!!!
 # gem 'unicorn'
 
+# Jquery-ui for ngDragDrop feature
+gem 'jquery-ui-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 

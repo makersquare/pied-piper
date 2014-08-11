@@ -49,6 +49,9 @@ class PipelinesController < ApplicationController
   end
 
 
+  #Method takes a pipeline id and a user id and adds the user to the pipeline
+  # This is a mass assignment so I think I have to permit the user_id.
+  # Need to first check and see if target user is not already part of pipeline
   def retrieve_collaborators
     result = RetrieveCollaborators.run(params[:pipeline_id])
     if result.success?
@@ -62,6 +65,7 @@ class PipelinesController < ApplicationController
   def add_to_pipeline
     result = AddUserPipeline.run({id: params["id"], user_id: params["newUser"]["user"]["id"], pipeline_admin: params["newUser"]["admin"]})
     if result.success?
+
       render json: result.data
     else
       respond_with result.error
@@ -70,6 +74,7 @@ class PipelinesController < ApplicationController
 
   def remove_from_pipeline
     result = RemoveUserPipeline.run(pipeline_params)
+
     if result.success?
       respond_with true
     else
@@ -99,5 +104,6 @@ class PipelinesController < ApplicationController
 
   def pipeline_params
     params.permit(:id, :pipeline_id, :name, :trashed, :user_id, :pipeline_admin, :newUser)
+
   end
 end

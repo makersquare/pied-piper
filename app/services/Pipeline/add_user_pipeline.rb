@@ -8,6 +8,7 @@ class AddUserPipeline < TransactionScript
     return failure(:user_already_in_pipeline) unless PipelineUser.find_by(user_id: user_id, pipeline_id: pipeline_id).nil?
 
     begin
+
       pu = PipelineUser.create(user_id: user_id, pipeline_id: pipeline_id, admin: admin)
       pu_json = pu.as_json
       pu_json["user_data"] = pu.user.as_json

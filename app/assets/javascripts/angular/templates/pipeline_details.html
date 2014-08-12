@@ -23,7 +23,9 @@
 <h3>Stages</h3>
 <div class="row">
   <div class="panel collumns"
-    ng-repeat="stage in stages">
+    ng-repeat="stage in stages"
+    ng-drop="true"
+    ng-drop-success="onDropComplete($data, stage)">
     <h3>{{stage.name}}</h3>
     <p>{{stage.description}}</p>
     <table>
@@ -36,7 +38,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="contact in contacts | orderBy:'name' | filter: {stage_id : stage.id}">
+        <tr ng-drag="true" ng-drag-data="contact" ng-repeat="contact in contacts | orderBy:'name' | filter: {stage_id : stage.id}">
           <!-- Display actual data for your contact -->
           <td>
             <a href="/#/pipeline/{{pipeline_id}}/contact/{{contact.id}}"

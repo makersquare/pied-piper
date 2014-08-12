@@ -22,4 +22,9 @@ app.controller('PipelineDetailsCtrl',
 
     $scope.stages = StagesRsc.query({pipeline_id: $routeParams.id});
 
+    $scope.onDropComplete = function(contact, stage) {
+      console.log(contact);
+      console.log(stage);
+    }
+
   }]);

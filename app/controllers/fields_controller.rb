@@ -1,7 +1,5 @@
 class FieldsController < ApplicationController
   respond_to :json
-  # before_filter :logged_in?
-  # before_filter :admin?
 
   # def create
   #   # Create a new, empty box with the create_box TXS
@@ -18,7 +16,6 @@ class FieldsController < ApplicationController
   end
 
   def index
-    # binding.pry
     # Index to show boxes and create new boxes
     respond_with Field.where(pipeline_id: params["pipeline_id"]).to_json
   end

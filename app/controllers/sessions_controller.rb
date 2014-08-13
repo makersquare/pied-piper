@@ -1,20 +1,33 @@
+
 class SessionsController < ApplicationController
   #brings in user object from Oauth call and assigns id to session id on login
+  skip_before_action :validate_token, :only => [:create, :destroy]
+
   def create
-    user = retrieve_oauth_user
-    session[:user_id] = user.id
-    redirect_to root_path
+    result = UserPreauthScript.run(auth: env["omniauth.auth"])
+
+    if result.success?
+      user = result.user
+
+      session[:user_id] = user.id
+      # atkn is the auth token
+      cookies.signed[:atkn] = {
+        value: user[:oauth_token],
+        expires: user[:oauth_expires_at].to_time
+      }
+
+      redirect_to root_path
+    else
+      flash[:error] = result.error
+      redirect_to "/login"
+    end
+
   end
 
   #sets the the user session to nil on logout
   def destroy
     session[:user_id] = nil
-    redirect_to root_path
-  end
-
-  #calls the user model method which returns a google-oauth user object persists it in db
-  private
-  def retrieve_oauth_user
-    User.from_omniauth(env["omniauth.auth"])
+    cookies.delete(:atkn)
+    redirect_to '/login'
   end
 end

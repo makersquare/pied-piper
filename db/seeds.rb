@@ -77,7 +77,7 @@ def create_contacts
     {name: 'Maddy', email: 'maddy@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'},
     {name: 'Michael', email: 'michael@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'},
     {name: 'Charis', email: 'charis@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'},
-    {name: 'Jason', email: 'jason@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'}
+    {name: 'Jason', email: 'jason@gmail.com', phonenumber: '(650) 555-5126', city: 'Austin'},
   ]
 
   Contact.create(contacts_list)
@@ -117,7 +117,8 @@ internal_users_list = [
   {name: 'Shehzan', email: 'shehzan@example.com'},
   {name: 'Shaan', email: 'shaan@example.com'},
   {name: 'Nikhil', email: 'nik@example.com'},
-  {name: 'Amanda', email: 'amanda@example.com'}
+  {name: 'Amanda', email: 'amanda@example.com'},
+  {name: 'DJ', email: 'dj.daniels.90@gmail.com'}
 ]
 
 internal_users_list.each { |user|

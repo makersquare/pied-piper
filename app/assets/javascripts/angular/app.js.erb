@@ -8,7 +8,8 @@ var app = angular
   .module('crmApp', ['ngResource', 'ngRoute', 'mm.foundation']);
 
   // Inject necessary dependencies inside of this function below
-  app.config(['$routeProvider',function($routeProvider){
+  app.config(['$routeProvider', '$httpProvider',
+    function($routeProvider, $httpProvider){
   //providers second
   $routeProvider
     .when('/pipelines', {
@@ -60,5 +61,4 @@ var app = angular
 // User authentication should go here
 // When the angular route is changed the ng event
 // $routeChangeSuccess OR $routeChangeError is fired
-
 });

@@ -7,8 +7,17 @@
   <%= javascript_include_tag "application" %>
 </head>
 <body>
-<%= render "shared/navbar" %>
+<%= render "shared/navbar" unless @supressNavbar%>
+
 <%= yield %>
+
+<footer>
+  <div class="row">
+    <div class="columns">
+      <%= flash[:error] || flash[:notice] || flash[:message] %>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

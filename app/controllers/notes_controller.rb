@@ -1,10 +1,7 @@
 class NotesController < ApplicationController
   respond_to :json
-  # before_filter :logged_in?
-  # before_filter :admin?
 
   def create
-    # binding.pry
     # Create a new note
     results = CreateNote.run(notes_params)
     if results.success?

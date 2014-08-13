@@ -49,7 +49,6 @@ class RetrieveBoxesForPipeline < TransactionScript
       add_fields_to_contact(contact, fields, box)
       contact
     end
-
     success(contacts: contacts)
   end
 

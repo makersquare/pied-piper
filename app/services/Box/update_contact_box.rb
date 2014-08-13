@@ -19,7 +19,6 @@ class UpdateContactBox < TransactionScript
     # field.field_type = params[:field_type] || field.field_type if !field.nil?
 
     # Loop through box_field array to update field value by box_field id
-    # binding.pry
     if !params[:field_values].nil?
         field_vals = params[:field_values]
         field_vals.each do |field_val|

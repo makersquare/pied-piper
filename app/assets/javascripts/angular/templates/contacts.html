@@ -1,9 +1,11 @@
 <h1>All Contacts</h1>
-<form ng-submit="addNewContact()">
+<button ng-hide="buttonClicked" ng-click="showContactForm()">Add new contact</button>
+<form ng-show="buttonClicked" ng-submit="addNewContact()">
   <label>Name<input type="text" name="name" ng-model="newContact.name" /></label>
   <label>Email<input type="text" name="email" ng-model="newContact.email" /></label>
-  <label>Phone<input type="text" name="phone" ng-model="newContact.phone" /></label>
-  <input type="submit" id="submit" value="Add Contact"/>
+  <label>Phone<input type="text" name="phonenumber" ng-model="newContact.phonenumber" /></label>
+  <input type="submit" class="button" id="submit" value="Add Contact"/>
+  <div ng-click="hideContactForm()" class="button">Hide Contact Form</div>
 </form>
 <div class="row">
   <div class="panel columns" ng-repeat="contact in contacts">

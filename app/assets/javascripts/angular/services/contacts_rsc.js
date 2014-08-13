@@ -9,11 +9,3 @@ app.factory("ContactsRsc", function ($resource) {
         }
     );
 });
-
-// contacts = ContactRsc.query(); get /contacts
-// contacts = []
-
-// ContactRsc.get({id: 'blah'}) get /contacts/blah
-// contact = ContactRsc.get({id: 'blah'}).$promise.then(function(data){
-//   $scope.contact = data
-// })

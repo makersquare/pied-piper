@@ -1,4 +1,10 @@
 <h1>All Contacts</h1>
+<form ng-submit="addNewContact()">
+  <label>Name<input type="text" name="name" ng-model="newContact.name" /></label>
+  <label>Email<input type="text" name="email" ng-model="newContact.email" /></label>
+  <label>Phone<input type="text" name="phone" ng-model="newContact.phone" /></label>
+  <input type="submit" id="submit" value="Add Contact"/>
+</form>
 <div class="row">
   <div class="panel columns" ng-repeat="contact in contacts">
     <h3> {{ contact.name }} </h3>

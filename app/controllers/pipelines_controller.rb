@@ -65,7 +65,6 @@ class PipelinesController < ApplicationController
   def add_to_pipeline
     result = AddUserPipeline.run({id: params["id"], user_id: params["newUser"]["user"]["id"], pipeline_admin: params["newUser"]["admin"]})
     if result.success?
-
       render json: result.data
     else
       respond_with result.error
@@ -74,7 +73,6 @@ class PipelinesController < ApplicationController
 
   def remove_from_pipeline
     result = RemoveUserPipeline.run(pipeline_params)
-
     if result.success?
       respond_with true
     else
@@ -104,6 +102,5 @@ class PipelinesController < ApplicationController
 
   def pipeline_params
     params.permit(:id, :pipeline_id, :name, :trashed, :user_id, :pipeline_admin, :newUser)
-
   end
 end

@@ -14,7 +14,6 @@
         </td>
         <td>
           <select ng-model="collab.admin" ng-change="updateCollab(collab)">
-
             <option value=true ng-selected="collab.admin">Admin</option>
             <option value=false ng-selected="!collab.admin">Collaborator</option>
             <option value="remove">Remove</option>
@@ -38,7 +37,7 @@
     </select>
   </div>
 </div>
-
+{{newUser}}
 
 
 <!-- Need to make a check to see if they are the admin of this pipeline, angular checks session and makes a button visible or not -->

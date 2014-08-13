@@ -34,22 +34,24 @@
         <tr>
           <th>Details</th>
           <th ng-repeat="field in basicFields">{{field.field_name}}</th>
+          <th>Stage</th>
           <th ng-repeat="field in fields">{{field.field_name}}</th>
         </tr>
       </thead>
       <tbody id={{stage.id}} class="contacts" ng-controller="PipelineDetailsCtrl">
-        <tr dnd-list="contacts" ng-repeat="contact in contacts | orderBy:'name' | filter: {stage_id : stage.id}">
+        <tr ng-repeat="contact in stage.contacts | orderBy:'name'">
           <!-- Display actual data for your contact -->
           <td>
             <a href="/#/pipeline/{{pipeline_id}}/contact/{{contact.id}}"
               class="button detail-button tiny radius round">Details</a>
             </td>
-          <!-- <td ng-repeat="field in basicFields">{{contact[field.field_name]}}</td> -->
-          <!-- <td ng-repeat="field in fields">{{contact[field.field_name]}}</td> -->
           <form id="inputForm" name="inputForm" method="PUT" ng-keyup="updateEntry()">
            <td ng-repeat="field in basicFields">
              <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="keyup($event, contact)">
              <p ng-hide="contact.showEdit" ng-dblclick="contact.showEdit=!contact.showEdit;">{{contact[field.field_name]}}</p>
+           </td>
+           <td>
+             <select ng-model="newStage" ng-options="stageOption.name for stageOption in stages" ng-change="changeStage(contact, stageOption)"></select>
            </td>
            <td ng-repeat="field in fields">
              <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="keyup($event, contact)">

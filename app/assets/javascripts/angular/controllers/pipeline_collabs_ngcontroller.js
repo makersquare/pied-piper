@@ -12,6 +12,14 @@ app.controller('PipelineCollabCtrl',
       });
     };
 
+    $scope.collabFilter = function(user) {
+      for(var i = 0; i<$scope.collabs.length;i++) {
+        var collab_data = $scope.collabs[i].user_data
+        if(collab_data.id === user.id) return false;
+      }
+      return true;
+    };
+
     $scope.updateCollab = function(collab) {
       if(collab.admin === "remove") {
         PipelineCollabRsc.remove({id: $routeParams.id, user_id: collab.user_id}, function(data){

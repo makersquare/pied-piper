@@ -25,7 +25,7 @@
 
 <div class="row">
   <div class="small-8 medium-5 columns">
-    <select ng-model="newUser.user" ng-options="user.email for user in allUsers">
+    <select ng-model="newUser.user" ng-options="user.email for user in allUsers | filter: collabFilter">
       <option value="">--  choose user  --</option>
     </select>
   </div>
@@ -42,6 +42,5 @@
 
 <!-- Need to make a check to see if they are the admin of this pipeline, angular checks session and makes a button visible or not -->
 <!-- Need to filter the new user options for only users which aren't in the pipeline already -->
-<!-- Need to correct the add collab access setting, doesn't seem to default correctly -->
-<!-- If setting user to remove need to remove the user from the list view-->
-<!-- Need to send request to rails for add/remove/update, pass pipeline id,user id being targeted, new admin status-->
+<!-- Need to make the collab access level right next to new user selection
+need to package this into a widget that can be used in the main pipeline view -->

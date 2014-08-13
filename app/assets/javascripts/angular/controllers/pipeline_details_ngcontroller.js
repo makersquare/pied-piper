@@ -8,14 +8,16 @@ app.controller('PipelineDetailsCtrl',
     StagesRsc) {
 
     $scope.pipeline_id = $routeParams.id;
-    $scope.editData = false;
+    $scope.contact = {}
+    $scope.contact.showEdit = false;
+    $scope.draggable = true;
 
     PipelinesRsc.getPipe({Id: $routeParams.id})
       .$promise.then(function(data){
         $scope.pipeline = data;
     });
 
-    $scope.basicFields = [{field_name: "name"}, {field_name: "email"}];
+    $scope.basicFields = [{field_name: "stage"}, {field_name: "name"}, {field_name: "email"}];
     $scope.fields = FieldsRsc.query({pipeline_id: $routeParams.id});
 
     $scope.contacts = ContactsBoxRsc.query({pipeline_id: $routeParams.id});
@@ -23,6 +25,13 @@ app.controller('PipelineDetailsCtrl',
     $scope.stages = StagesRsc.query({pipeline_id: $routeParams.id});
 
 // Edit the entry in the browser by double-clicking the text; press enter to update in the database
+    $scope.makeEditable = function(contact) {
+      console.log(contact);
+      console.log('this ran!')
+      // contact.showEdit = !contact.showEdit;
+      $scope.draggable = !$scope.draggable;
+    }
+
     $scope.keyup = function(event, contact) {
       if (event.keyCode == 13) {
         contact.showEdit = !contact.showEdit;
@@ -30,6 +39,7 @@ app.controller('PipelineDetailsCtrl',
         contact.contact_id = contact.id;
         contact.pid = $routeParams.id;
         ContactBoxRsc.update(contact);
+        $scope.draggable = !$scope.draggable;
       }
     };
 
@@ -43,6 +53,7 @@ app.controller('PipelineDetailsCtrl',
       );
 
     $scope.onDropComplete = function(contact, stage) {
+      console.log($scope.draggable);
       console.log(contact);
       console.log(stage);
     }

@@ -39,22 +39,29 @@
         </tr>
       </thead>
       <tbody ng-controller="PipelineDetailsCtrl">
-        <tr ng-drag="true" ng-drag-data="contact" ng-repeat="contact in contacts | orderBy:'name' | filter: {stage_id : stage.id}">
+
+        <tr ng-drag="draggable" ng-drag-data="contact" ng-repeat="contact in contacts | orderBy:'name' | filter: {stage_id : stage.id}">
           <!-- Display actual data for your contact -->
           <td>
             <a href="/#/pipeline/{{pipeline_id}}/contact/{{contact.id}}"
               class="button detail-button tiny radius round">Details</a>
-            </td>
+          </td>
           <!-- <td ng-repeat="field in basicFields">{{contact[field.field_name]}}</td> -->
           <!-- <td ng-repeat="field in fields">{{contact[field.field_name]}}</td> -->
           <form id="inputForm" name="inputForm" method="PUT" ng-keyup="updateEntry()">
            <td ng-repeat="field in basicFields">
+            <a data-dropdown="change-status" class="button dropdown detail-button tiny radius round">{{contact[field.field_name]}}</a><br>
+            <ul id="drop1" data-dropdown-content class="f-dropdown">
+              <li><a href="#">This is a link</a></li>
+              <li><a href="#">This is another</a></li>
+              <li><a href="#">Yet another</a></li>
+            </ul>
              <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="keyup($event, contact)">
-             <p ng-hide="contact.showEdit" ng-dblclick="contact.showEdit=!contact.showEdit;">{{contact[field.field_name]}}</p>
+             <p ng-hide="contact.showEdit" ng-dblclick="makeEditable(contact)">{{contact[field.field_name]}}</p>
            </td>
            <td ng-repeat="field in fields">
              <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="keyup($event, contact)">
-             <p ng-hide="contact.showEdit" ng-dblclick="contact.showEdit=!contact.showEdit;">{{contact[field.field_name]}}</p>
+             <p ng-hide="contact.showEdit" ng-dblclick="makeEditable(contact)">{{contact[field.field_name]}}</p>
            </td>
          </form>
         </tr>

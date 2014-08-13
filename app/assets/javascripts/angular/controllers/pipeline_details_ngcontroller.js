@@ -26,8 +26,6 @@ app.controller('PipelineDetailsCtrl',
 
 // Edit the entry in the browser by double-clicking the text; press enter to update in the database
     $scope.makeEditable = function(contact) {
-      console.log(contact);
-      console.log('this ran!')
       contact.showEdit = !contact.showEdit;
       // $scope.draggable = !$scope.draggable;
     }
@@ -45,10 +43,7 @@ app.controller('PipelineDetailsCtrl',
 
 // Update a contact's stage using the dropdown list
   $scope.changeStage = function(contact, stage) {
-    console.log(contact.stage_id)
-    console.log(stage.id)
     contact.stage_id = stage.id
-    console.log(contact.stage_id)
     contact.cid = contact.id;
     contact.contact_id = contact.id;
     contact.pid = $routeParams.id;

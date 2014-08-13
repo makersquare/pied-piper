@@ -12,6 +12,7 @@ group :development, :test do
   gem "jasmine", github: "pivotal/jasmine-gem"
   gem 'teaspoon'
   gem 'phantomjs'
+  gem 'protractor-rails'
 end
 
 gem 'hashie'

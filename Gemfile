@@ -10,8 +10,8 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'pry-byebug'
   gem "jasmine", github: "pivotal/jasmine-gem"
-  gem "teaspoon"
-  gem "phantomjs"
+  gem 'teaspoon'
+  gem 'phantomjs'
 end
 
 gem 'hashie'

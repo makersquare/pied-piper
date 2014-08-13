@@ -3,13 +3,7 @@ app.factory("PipelineCollabRsc", function ($resource) {
       "/pipelines/:id/users/:user_id.json",
       {id: "@id", user_id: "@user_id"},
       {
-          'addCollab':{
-            method:'POST',
-          },
-          'removeCollab':{
-            method: 'DELETE'
-          },
-          'updateCollab':{
+          'update':{
             method: 'PUT'
           }
       }

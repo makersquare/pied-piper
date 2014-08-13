@@ -25,7 +25,7 @@
 <h3>Stages</h3>
 <div class="row">
   <div class="panel collumns"
-    ng-repeat="stage in stages">
+    ng-repeat="stage in stages | orderBy: 'pipeline_location'">
     <h3 class={{stage.id}}>{{stage.name}}</h3>
     <p class={{stage.id}}>{{stage.description}}</p>
     <table>

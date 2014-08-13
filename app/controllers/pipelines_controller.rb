@@ -62,7 +62,6 @@ class PipelinesController < ApplicationController
   def add_to_pipeline
     result = AddUserPipeline.run({id: params["id"], user_id: params["newUser"]["user"]["id"], pipeline_admin: params["newUser"]["admin"]})
     if result.success?
-      binding.pry
       render json: result.data
     else
       respond_with result.error
@@ -71,9 +70,8 @@ class PipelinesController < ApplicationController
 
   def remove_from_pipeline
     result = RemoveUserPipeline.run(pipeline_params)
-
     if result.success?
-      respond_with result.data
+      respond_with true
     else
       respond_with result.error
     end
@@ -81,9 +79,8 @@ class PipelinesController < ApplicationController
 
   def update_access_to_pipeline
     result = UpdateUserPipeline.run(pipeline_params)
-
     if result.success?
-      respond_with result.data
+      render json: result.data
     else
       respond_with result.error
     end
@@ -101,6 +98,6 @@ class PipelinesController < ApplicationController
   end
 
   def pipeline_params
-    params.permit(:id, :name, :trashed, :user_id, :pipeline_admin, :newUser)
+    params.permit(:id, :pipeline_id, :name, :trashed, :user_id, :pipeline_admin, :newUser)
   end
 end

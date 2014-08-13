@@ -16,9 +16,9 @@ describe AddUserPipeline do
     result = AddUserPipeline.run(id: p1.data.id, user_id: user.id, pipeline_admin: true)
 
     expect(result.success?).to eq(true)
-    expect(result.data.user_id).to eq(user.id)
-    expect(result.data.pipeline_id).to eq(p1.data.id)
-    expect(result.data.admin).to eq(true)
+    expect(result.data["user_id"]).to eq(user.id)
+    expect(result.data["pipeline_id"]).to eq(p1.data.id)
+    expect(result.data["admin"]).to eq(true)
 
     result2 = AddUserPipeline.run(id: p1.data.id, user_id: user.id, pipeline_admin: true)
     expect(result2.success?).to eq(false)

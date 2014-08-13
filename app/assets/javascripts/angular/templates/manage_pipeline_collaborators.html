@@ -13,7 +13,7 @@
           <a href="/#/users/{{collab.user_data.id}}">{{collab.user_data.name}}</a>
         </td>
         <td>
-          <select ng-model="collab.admin">
+          <select ng-model="collab.admin" ng-change="updateCollab(collab)">
             <option value=true ng-selected="collab.admin">Admin</option>
             <option value=false ng-selected="!collab.admin">Collaborator</option>
             <option value="remove">Remove</option>
@@ -37,14 +37,12 @@
     </select>
   </div>
 </div>
-
+{{newUser}}
 
 <button class="button detail-button small radius round" ng-click="addCollab()">Add a Collaborator</button>
 
 <!-- Need to make a check to see if they are the admin of this pipeline, angular checks session and makes a button visible or not -->
 <!-- Need to filter the new user options for only users which aren't in the pipeline already -->
-<!-- Need to get the new collab access level to appear right next to the new user select option -->
 <!-- Need to correct the add collab access setting, doesn't seem to default correctly -->
 <!-- If setting user to remove need to remove the user from the list view-->
 <!-- Need to send request to rails for add/remove/update, pass pipeline id,user id being targeted, new admin status-->
-<!-- Need to make user controller which returns all users when asked for-->

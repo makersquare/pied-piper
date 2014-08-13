@@ -114,7 +114,6 @@ module ContextioHelper
     rescue
       return {success: false, error: webhook}
     end
-    end
     user.webhook_id = webhook.webhook_id
     {success: true}
   end

@@ -17,10 +17,4 @@ class ApiConversionScript < TransactionScript
   end
 end
 
-def check_for_json(inputs)
-  begin
-    JSON.parse(inputs)
-  rescue
-    'inputs not JSON object'
-  end
-end
+

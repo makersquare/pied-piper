@@ -36,28 +36,50 @@
       <thead>
         <tr>
           <th>Details</th>
+          <th>Stage</th>
           <th ng-repeat="field in basicFields">{{field.field_name}}</th>
           <th ng-repeat="field in fields">{{field.field_name}}</th>
         </tr>
       </thead>
       <tbody ng-controller="PipelineDetailsCtrl">
 
-        <tr ng-drag="draggable" ng-drag-data="contact" ng-repeat="contact in contacts | orderBy:'name' | filter: {stage_id : stage.id}">
+        <tr ng-repeat="contact in contacts | orderBy:'name' | filter: {stage_id : stage.id}">
           <!-- Display actual data for your contact -->
           <td>
             <a href="/#/pipeline/{{pipeline_id}}/contact/{{contact.id}}"
               class="button detail-button tiny radius round">Details</a>
           </td>
-          <!-- <td ng-repeat="field in basicFields">{{contact[field.field_name]}}</td> -->
-          <!-- <td ng-repeat="field in fields">{{contact[field.field_name]}}</td> -->
+          <td>
+            <form ng-submit="changeStage(contact)">
+              <!-- <p ng-repeat="stageOption in stages">{{contact.stage}}</p> -->
+              <select
+              ng-model="contact.stage"
+              ng-options="stageOpt.name for stageOpt in stages"
+              ng-selected="contact.stage"
+              class="button dropdown detail-button tiny radius round"
+              ng-change="changeStage(contact, contact.stage)">
+              </select>
+            </form>
+          </td>
           <form id="inputForm" name="inputForm" method="PUT" ng-keyup="updateEntry()">
            <td ng-repeat="field in basicFields">
-            <a data-dropdown="change-status" class="button dropdown detail-button tiny radius round">{{contact[field.field_name]}}</a><br>
-            <ul id="drop1" data-dropdown-content class="f-dropdown">
+<!--             <a data-dropdown="change-status" class="button dropdown detail-button tiny radius round">{{contact[field.field_name]}}</a><br> -->
+<!--             <ul id="drop1" data-dropdown-content class="f-dropdown">
               <li><a href="#">This is a link</a></li>
               <li><a href="#">This is another</a></li>
               <li><a href="#">Yet another</a></li>
-            </ul>
+            </ul> -->
+
+<!--
+    <form ng-submit="addContactToPipeline(selectedPipeline, contact)">
+      <select
+        ng-model="selectedPipeline"
+        ng-options="pipeline.name for pipeline in contact.unaddedPipelines"
+      </select>
+      <input type="submit" class="button" value="Add To Pipeline" />
+    </form> -->
+
+
              <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="keyup($event, contact)">
              <p ng-hide="contact.showEdit" ng-dblclick="makeEditable(contact)">{{contact[field.field_name]}}</p>
            </td>

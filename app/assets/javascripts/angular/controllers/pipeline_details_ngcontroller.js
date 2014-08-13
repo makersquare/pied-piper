@@ -10,14 +10,14 @@ app.controller('PipelineDetailsCtrl',
     $scope.pipeline_id = $routeParams.id;
     $scope.contact = {}
     $scope.contact.showEdit = false;
-    $scope.draggable = true;
+    // $scope.draggable = true;
 
     PipelinesRsc.getPipe({Id: $routeParams.id})
       .$promise.then(function(data){
         $scope.pipeline = data;
     });
 
-    $scope.basicFields = [{field_name: "stage"}, {field_name: "name"}, {field_name: "email"}];
+    $scope.basicFields = [{field_name: "name"}, {field_name: "email"}];
     $scope.fields = FieldsRsc.query({pipeline_id: $routeParams.id});
 
     $scope.contacts = ContactsBoxRsc.query({pipeline_id: $routeParams.id});
@@ -28,8 +28,8 @@ app.controller('PipelineDetailsCtrl',
     $scope.makeEditable = function(contact) {
       console.log(contact);
       console.log('this ran!')
-      // contact.showEdit = !contact.showEdit;
-      $scope.draggable = !$scope.draggable;
+      contact.showEdit = !contact.showEdit;
+      // $scope.draggable = !$scope.draggable;
     }
 
     $scope.keyup = function(event, contact) {
@@ -39,9 +39,22 @@ app.controller('PipelineDetailsCtrl',
         contact.contact_id = contact.id;
         contact.pid = $routeParams.id;
         ContactBoxRsc.update(contact);
-        $scope.draggable = !$scope.draggable;
+        // $scope.draggable = !$scope.draggable;
       }
     };
+
+// Update a contact's stage using the dropdown list
+  $scope.changeStage = function(contact, stage) {
+    console.log(contact.stage_id)
+    console.log(stage.id)
+    contact.stage_id = stage.id
+    console.log(contact.stage_id)
+    contact.cid = contact.id;
+    contact.contact_id = contact.id;
+    contact.pid = $routeParams.id;
+    ContactBoxRsc.update(contact)
+  }
+
 
 // Define the rails path that will be hit by the http requests
     var ContactBoxRsc = $resource('/pipelines/:pid/contacts/:cid.json',
@@ -52,10 +65,10 @@ app.controller('PipelineDetailsCtrl',
         }
       );
 
-    $scope.onDropComplete = function(contact, stage) {
-      console.log($scope.draggable);
-      console.log(contact);
-      console.log(stage);
-    }
+    // $scope.onDropComplete = function(contact, stage) {
+    //   console.log($scope.draggable);
+    //   console.log(contact);
+    //   console.log(stage);
+    // }
   }]);
 

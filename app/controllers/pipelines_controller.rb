@@ -2,6 +2,8 @@ class PipelinesController < ApplicationController
   respond_to :json
   # before_filter :logged_in?
   # before_filter :is_pipeline_admin?, :only => [:destroy, :trash, :update, :add_to_pipeline, :remove_from_pipeline, :update_access_to_pipeline]
+  # We need to check and make sure the request is coming from
+  # an admin of the pipeline
 
   #Retrieves all rows from the Pipeline table, ID, name.
   #Use this for the sidebar

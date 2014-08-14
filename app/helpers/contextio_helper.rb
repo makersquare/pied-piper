@@ -56,7 +56,7 @@ module ContextioHelper
   def get_messages(inputs)
     account = account_signin(inputs[:user].email)
     account.messages.where(
-      from:inputs[:contact].email
+      from: inputs[:contact].email,
       date_after: inputs[:time]
       )
   end

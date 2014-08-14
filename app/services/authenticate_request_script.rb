@@ -1,4 +1,4 @@
-require 'pry-byebug'
+
 class AuthenticateRequestScript < TransactionScript
   def run(params)
     # check that the token returns a user

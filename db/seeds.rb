@@ -2,7 +2,6 @@
 # it, the one thing I couldn't get working was that the Boxes won't create
 # The code at the bottom though works if you use it in rails console
 
-require 'pry-byebug'
 
 def create_pipelines_with_stages_and_fields
   pipeline_admissions = Pipeline.create({name: 'Admissions', trashed: false})

@@ -27,6 +27,8 @@ class PipelineContactsController < ApplicationController
     Contact.find(contact_params[:id]).boxes.find_by(pipeline_id: box_params[:pipeline_id]).destroy
   end
 
+
+
   private
 
   def box_params

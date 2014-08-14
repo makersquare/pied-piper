@@ -6,6 +6,13 @@ app.controller('ContactBoxCtrl',
 
     $scope.cb = null;
 
+  var RetrieveEmailRsc = $resource('contextio/retrieveemail/:contact_id.json',
+      {contact_id: '@contact_id'}
+      );
+
+
+
+
 // Define the rails path that will be hit by the http requests
     var ContactBoxRsc = $resource('/pipelines/:pid/contacts/:cid.json',
       {cid: '@cid', pid: '@pid'},
@@ -14,6 +21,15 @@ app.controller('ContactBoxCtrl',
        update: { method: 'PUT', params: $scope.cb}
         }
       );
+
+
+//email request
+RetrieveEmailRsc.get(
+  {contact_id: $routeParams.cid}
+  ).$promise.then(function(emails){
+    $scope.emails = emails
+  });
+
 
 // Send 'get' request
     ContactBoxRsc.get(

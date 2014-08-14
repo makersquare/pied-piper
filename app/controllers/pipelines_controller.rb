@@ -3,10 +3,17 @@ class PipelinesController < ApplicationController
   # before_filter :logged_in?
   # before_filter :is_pipeline_admin?, :only => [:destroy, :trash, :update, :add_to_pipeline, :remove_from_pipeline, :update_access_to_pipeline]
 
-  #Retrieves all rows from the Pipeline table, ID, name.
-  #Use this for the sidebar
   def index
-    respond_with Pipeline.all
+    #This is the right code to respond with the correct pipelines on the sidebar but
+    #it is inconvenient for dev purposes to have people sign in so I will leave it commented out
+    #result = RetrieveUserPipelines.run(current_user.id)
+
+    result = RetrieveUserPipelines.run(1)
+    if result.success?
+      respond_with result.data
+    else
+      respond_with result.error
+    end
   end
 
   # TSX to check and make sure valid. Backend check for if

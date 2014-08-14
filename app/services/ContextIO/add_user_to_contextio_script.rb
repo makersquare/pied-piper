@@ -13,6 +13,6 @@ class AddUserToContextio < TransactionScript
 
     webhook = ContextioHelper.create_webhook({ user:user, options:{ sync_period:'immediate' }})
     return failure webhook['error'] unless webhook['success']
+    return success user
   end
-  return success user
 end

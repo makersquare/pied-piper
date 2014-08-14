@@ -50,13 +50,12 @@ app.controller('PipelineDetailsCtrl',
     ContactBoxRsc.update(contact)
   }
 
-
 // Define the rails path that will be hit by the http requests
     var ContactBoxRsc = $resource('/pipelines/:pid/contacts/:cid.json',
-      {cid: '@cid', pid: '@pid'},
+      { cid: '@cid', pid: '@pid' },
       {
-       get: {method: 'GET'},
-       update: { method: 'PUT', params: $scope.cb}
+       get: { method: 'GET' },
+       update: { method: 'PUT', params: $scope.cb }
         }
       );
 

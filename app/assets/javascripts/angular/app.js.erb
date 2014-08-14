@@ -5,10 +5,7 @@
 // provides user authentication for the routes.
 
 var app = angular
-  .module('crmApp', [
-    'ngResource',
-    'ngRoute',
-  ]);
+  .module('crmApp', ['ngResource', 'ngRoute', 'mm.foundation']);
 
   // Inject necessary dependencies inside of this function below
   app.config(['$routeProvider',function($routeProvider){
@@ -38,10 +35,15 @@ var app = angular
       templateUrl: "<%= asset_path('angular/templates/account_settings.html') %>",
       controller: 'EmailCtrl'
     })
+    .when('/pay', {
+      templateUrl: "<%= asset_path('angular/templates/pay.html') %>",
+      controller: 'PayCtrl'
+    })
     .when('/pipeline/:pipeline_id/stages', {
       templateUrl: "<%= asset_path('angular/templates/createFields.html') %>",
       controller: 'StagesCtrl'
     })
+    // Create new route for /pipeline/:contact_id
     .when('/contacts', {
       templateUrl: "<%= asset_path('angular/templates/contacts.html') %>",
       controller: 'ContactsCtrl'

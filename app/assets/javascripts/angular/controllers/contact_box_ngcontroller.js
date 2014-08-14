@@ -26,18 +26,26 @@ app.controller('ContactBoxCtrl',
         $scope.cb.cid = $routeParams.cid;
         $scope.cb.pid = $routeParams.pid;
         $scope.cb.contact_id = $routeParams.cid;
-        console.log($scope.cb);
         $scope.$watch('newNote', function(v){
           $scope.updateEntry();
           })
       });
 
+
+$scope.keyup = function(event, cb) {
+      if (event.keyCode == 13) {
+        cb.showEdit = !cb.showEdit;
+        ContactBoxRsc.update($scope.cb)
+      }
+    };
+
+
+
+
 // Update the entry by sending the 'update' request
     $scope.updateEntry = function(){
-      console.log($scope.cb);
       entry = ContactBoxRsc.update(
         $scope.cb);
-      console.log(entry);
     };
 
 }]);

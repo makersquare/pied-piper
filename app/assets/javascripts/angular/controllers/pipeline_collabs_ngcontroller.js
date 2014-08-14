@@ -33,4 +33,5 @@ app.controller('PipelineCollabCtrl',
         });
       }
     };
+
   }]);

@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20140807234645) do
     t.integer "stage_id"
     t.integer "pipeline_id"
     t.integer "pipeline_location"
+    t.integer "payment_plan_id"
   end
 
   create_table "contacts", force: true do |t|
@@ -61,6 +62,14 @@ ActiveRecord::Schema.define(version: 20140807234645) do
     t.integer "user_id"
     t.integer "box_id"
     t.text    "notes"
+  end
+
+  create_table "payment_plans", force: true do |t|
+    t.integer  "total_due"
+    t.integer  "num_payments"
+    t.datetime "due_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pipeline_users", force: true do |t|
@@ -91,6 +100,8 @@ ActiveRecord::Schema.define(version: 20140807234645) do
     t.integer  "pipeline_location"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "standard_payment_plan_id"
+    t.boolean  "payment"
   end
 
   create_table "user_stages", force: true do |t|

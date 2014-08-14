@@ -117,7 +117,8 @@ internal_users_list = [
   {name: 'Shaan', email: 'shaan@example.com'},
   {name: 'Nikhil', email: 'nik@example.com'},
   {name: 'Amanda', email: 'amanda@example.com'},
-  {name: 'DJ', email: 'dj.daniels.90@gmail.com'}
+  {name: 'DJ', email: 'dj.daniels.90@gmail.com'},
+  {name: 'Mike', email: 'mike@makersquare.com'}
 ]
 
 internal_users_list.each { |user|
@@ -130,7 +131,6 @@ internal_users_list.each { |user|
 }
 
 User.create([
-  {name: 'Mike', email: 'mike@makersquare.com'},
   {name: 'Harsh', email: 'harsh@makersquare.com'},
   {name: 'Gilbert', email: 'gilbert@makersquare.com'},
   {name: 'Ravi', email: 'ravi@makersquare.com'},

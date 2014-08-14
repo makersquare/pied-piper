@@ -1,24 +1,3 @@
-app.directive('dndList', function(){
-
-// Custom directive for drag/drop between stages
-    // Watch for changes to contact; use "true" to receive updates when values change
-    return function(scope, element, attrs){
-      console.log(scope)
-      // $(contact).sortable({
-      //   items: 'form',
-      //   start:function(event, ui){
-
-      //   },
-      //   stop:function(event, ui){
-      //     contact.stage = 1
-      //   },
-      //   axis: 'y'
-      // })
-
-      // ContactBoxRsc.update(contact);
-    }
-})
-
 app.controller('PipelineDetailsCtrl',
   ['$scope', '$resource',
   '$routeParams','PipelinesRsc',
@@ -26,10 +5,12 @@ app.controller('PipelineDetailsCtrl',
   'StagesRsc',
   function($scope, $resource, $routeParams,
     PipelinesRsc, ContactsBoxRsc, FieldsRsc,
-    StagesRsc, dndList) {
+    StagesRsc) {
 
     $scope.pipeline_id = $routeParams.id;
-    $scope.editData = false;
+    $scope.contact = {}
+    $scope.contact.showEdit = false;
+    // $scope.draggable = true;
 
     PipelinesRsc.getPipe({Id: $routeParams.id})
       .$promise.then(function(data){
@@ -44,6 +25,11 @@ app.controller('PipelineDetailsCtrl',
     $scope.stages = StagesRsc.query({pipeline_id: $routeParams.id});
 
 // Edit the entry in the browser by double-clicking the text; press enter to update in the database
+    $scope.makeEditable = function(contact) {
+      contact.showEdit = !contact.showEdit;
+      // $scope.draggable = !$scope.draggable;
+    }
+
     $scope.keyup = function(event, contact) {
       if (event.keyCode == 13) {
         contact.showEdit = !contact.showEdit;
@@ -51,20 +37,19 @@ app.controller('PipelineDetailsCtrl',
         contact.contact_id = contact.id;
         contact.pid = $routeParams.id;
         ContactBoxRsc.update(contact);
+        // $scope.draggable = !$scope.draggable;
       }
     };
-    $('.contacts').sortable();
 
-    $scope.$watch(dndList, function(value){
-      console.log("Contact: " + value)
-    })
-    // // Watch for changes to contact; use "true" to receive updates when values change
-    // $scope.$watch($scope.contact, function(value){
-    //   console.log("Contact: " + value//.map(function(e){
-    //     //return e.id //????
-    //   // }
-    //   )//.join(','));
-    // }, true);
+// Update a contact's stage using the dropdown list
+  $scope.changeStage = function(contact, stage) {
+    contact.stage_id = stage.id
+    contact.cid = contact.id;
+    contact.contact_id = contact.id;
+    contact.pid = $routeParams.id;
+    ContactBoxRsc.update(contact)
+  }
+
 
 // Define the rails path that will be hit by the http requests
     var ContactBoxRsc = $resource('/pipelines/:pid/contacts/:cid.json',
@@ -75,5 +60,10 @@ app.controller('PipelineDetailsCtrl',
         }
       );
 
+    // $scope.onDropComplete = function(contact, stage) {
+    //   console.log($scope.draggable);
+    //   console.log(contact);
+    //   console.log(stage);
+    // }
   }]);
 

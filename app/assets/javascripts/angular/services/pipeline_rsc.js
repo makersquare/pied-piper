@@ -13,7 +13,7 @@ app.factory("PipelinesRsc", ['$resource', function ($resource) {
     );
 
     var updatePipeList = function(){
-      pipeList = pipersc.query()
+      pipeList = pipersc.query();
     };
 
     updatePipeList();
@@ -22,5 +22,5 @@ app.factory("PipelinesRsc", ['$resource', function ($resource) {
       pipersc   : pipersc,
       updatePipeList : updatePipeList,
       pipeList  : pipeList
-    }
+    };
 }]);

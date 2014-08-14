@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   after_filter :set_csrf_cookie_for_ng
   helper_method :current_user
-  before_action :validate_token, except: [:login]
+  # FIXME: THIS IS IMPORTANT DO NOT REMOVE THIS UNCOMMENTED LINE OUT
+  # before_action :validate_token, except: [:login]
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

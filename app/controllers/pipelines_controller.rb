@@ -10,12 +10,14 @@ class PipelinesController < ApplicationController
     #it is inconvenient for dev purposes to have people sign in so I will leave it commented out
     #result = RetrieveUserPipelines.run(current_user.id)
 
-    result = RetrieveUserPipelines.run(current_user.id)
-    if result.success?
-      respond_with result.data
-    else
-      respond_with result.error
-    end
+    # result = RetrieveUserPipelines.run(current_user.id)
+    # if result.success?
+    #   respond_with result.data
+    # else
+    #   respond_with result.error
+    # end
+    # FIXME
+    respond_with Pipeline.all
   end
 
   # TSX to check and make sure valid. Backend check for if

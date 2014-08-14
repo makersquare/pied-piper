@@ -1,7 +1,6 @@
 // This controller gives scope to the dom template "contacts.html" and adds
 // functionality for manually adding contacts to the dom and db simultaneously.
 // It also contains the logic for adding/removing a contact to/from a pipeline.
-'use strict';
 
 app.controller('ContactsCtrl',
   ['$scope', '$resource', 'ContactsRsc', 'PipelinesRsc', 'ContactsBoxRsc',
@@ -18,13 +17,13 @@ app.controller('ContactsCtrl',
     // outputs the result to an array.
     var setUnaddedPipelinesForContacts = function(contacts, pipelines) {
       _.each(contacts, function(contact) {
-        var contactPipelineIds = _.map(contact.pipelines, function(pipeline) { return pipeline.id });
+        var contactPipelineIds = _.map(contact.pipelines, function(pipeline) { return pipeline.id; });
         var unaddedPipelines = _.reject(pipelines, function(pipeline) {
           return contactPipelineIds.indexOf(pipeline.id) >= 0;
         });
         contact.unaddedPipelines = unaddedPipelines;
       });
-    }
+    };
 
     $scope.pipelines = PipelinesRsc.pipersc.query();
     $scope.contacts = ContactsRsc.query();
@@ -53,7 +52,7 @@ app.controller('ContactsCtrl',
         contact_id: contact.id
       };
       ContactsBoxRsc.save(data);
-    }
+    };
 
     $scope.removeContactFromPipeline = function(pipeline, contact) {
       var index = contact.pipelines.indexOf(pipeline);
@@ -64,6 +63,6 @@ app.controller('ContactsCtrl',
         id: contact.id
       };
       ContactsBoxRsc.remove(data);
-    }
+    };
 
   }]);

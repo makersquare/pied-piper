@@ -20,8 +20,8 @@ app.directive('deletenote', function(NotesAPI, $routeParams) {
         function(element) {
           scope.notes.splice(element.context.dataset.index, 1);
       });
-    })
-  }
+    });
+  };
 });
 
 //this controller gives scope to the dom template "contact_box.html" and adds
@@ -32,7 +32,7 @@ app.controller('NotesCtrl', function($routeParams, $scope, $http, NotesAPI) {
 
   $scope.notes = NotesAPI.query({pid: $routeParams.pid, cid: $routeParams.cid});
   // $scope.routes = {pid: $routeParams.pid, cid: $routeParams.cid}
-console.log($scope)
+console.log($scope);
   $scope.addNote = function() {
     $scope.note = new NotesAPI();
     $scope.note.$save({pid: $routeParams.pid, cid: $routeParams.cid, pipeline_id: $routeParams.pid, contact_id: $routeParams.cid, notes: $scope.newNote},
@@ -40,7 +40,7 @@ console.log($scope)
         $scope.notes.push({note: $scope.newNote, id: data.id});
         $scope.newNote = "";
     });
-  }
+  };
 });
 
 

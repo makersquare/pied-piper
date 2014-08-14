@@ -28,14 +28,14 @@ app.controller('ContactBoxCtrl',
         $scope.cb.contact_id = $routeParams.cid;
         $scope.$watch('newNote', function(v){
           $scope.updateEntry();
-          })
+          });
       });
 
 
 $scope.keyup = function(event, cb) {
       if (event.keyCode == 13) {
         cb.showEdit = !cb.showEdit;
-        ContactBoxRsc.update($scope.cb)
+        ContactBoxRsc.update($scope.cb);
       }
     };
 

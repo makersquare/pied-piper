@@ -8,7 +8,7 @@ app.controller('PipelineDetailsCtrl',
     StagesRsc) {
 
     $scope.pipeline_id = $routeParams.id;
-    $scope.contact = {}
+    $scope.contact = {};
     $scope.contact.showEdit = false;
     // $scope.draggable = true;
 
@@ -28,7 +28,7 @@ app.controller('PipelineDetailsCtrl',
     $scope.makeEditable = function(contact) {
       contact.showEdit = !contact.showEdit;
       // $scope.draggable = !$scope.draggable;
-    }
+    };
 
     $scope.keyup = function(event, contact) {
       if (event.keyCode == 13) {
@@ -43,12 +43,12 @@ app.controller('PipelineDetailsCtrl',
 
 // Update a contact's stage using the dropdown list
   $scope.changeStage = function(contact, stage) {
-    contact.stage_id = stage.id
+    contact.stage_id = stage.id;
     contact.cid = contact.id;
     contact.contact_id = contact.id;
     contact.pid = $routeParams.id;
-    ContactBoxRsc.update(contact)
-  }
+    ContactBoxRsc.update(contact);
+  };
 
 // Define the rails path that will be hit by the http requests
     var ContactBoxRsc = $resource('/pipelines/:pid/contacts/:cid.json',

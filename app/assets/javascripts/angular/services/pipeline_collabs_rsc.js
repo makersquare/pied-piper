@@ -9,5 +9,3 @@ app.factory("PipelineCollabRsc", function ($resource) {
       }
   );
 });
-
-//These methods aren't needed as they are built into angular

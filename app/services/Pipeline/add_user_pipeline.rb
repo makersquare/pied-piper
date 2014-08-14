@@ -4,7 +4,11 @@ class AddUserPipeline < TransactionScript
     # on the frontend
     user_id = params[:user_id]
     pipeline_id = params[:id].to_i
-    params[:pipeline_admin] == false ? admin = 'false' : admin = 'true'
+    if params[:pipeline_admin] == 'false'
+      admin = 'false'
+    else
+      params[:pipeline_admin] == false ? admin = 'false' : admin = 'true'
+    end
     return failure(:user_already_in_pipeline) unless PipelineUser.find_by(user_id: user_id, pipeline_id: pipeline_id).nil?
 
     begin

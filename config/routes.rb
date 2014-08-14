@@ -23,7 +23,6 @@ Crm::Application.routes.draw do
       resources :notes, :defaults => { :format => :json }
     end
     resources :boxes
-    resources :users
     resources :fields, :defaults => { :format => :json }
 
     get 'users', to: 'pipelines#retrieve_collaborators'

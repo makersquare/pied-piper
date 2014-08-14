@@ -1,74 +1,85 @@
 <div ng-controller="PayCtrl">
   <tabset>
     <tab heading="Pay by card">
-      <form role='form' class='form-horizontal'>
+      <form role='form' class='form-horizontal' ng-submit="payCard()">
         <fieldset>
           <legend>Pay by card</legend>
               <div class="form-group">
+                  <label class="col-lg-5 control-label">Email</label>
+                  <div class="col-lg-5">
+                      <input type="text" ng-model='data.email' id="email" class="form-control" autocomplete="off" placeholder="Enter Email" />
+                  </div>
+              </div>
+              <div class="form-group">
                   <label class="col-lg-5 control-label">Name on Card</label>
                   <div class="col-lg-5">
-                      <input type="text" ng-model='cardName' id="cc-name" class="form-control" autocomplete="off" placeholder="John Doe" />
+                      <input type="text" ng-model='payload.name' id="cc-name" class="form-control" autocomplete="on" placeholder="John Doe" />
                   </div>
               </div>
               <div class="form-group">
                   <label class="col-lg-5 control-label">Card Number</label>
                   <div class="col-lg-5">
-                      <input type="text" ng-model='cardNumber' id="cc-number" class="form-control" autocomplete="off" placeholder="4111111111111111" maxlength="16" />
+                      <input type="text" ng-model='payload.number' id="cc-number" class="form-control" autocomplete="on" placeholder="4111111111111111" maxlength="16" />
                   </div>
               </div>
               <div class="form-group">
                   <label class="col-lg-5 control-label">Expiration</label>
                   <div class="col-lg-2">
-                      <input type="text" ng-model='cardExpMonth' id="cc-ex-month" class="form-control" autocomplete="off" placeholder="01" maxlength="2" />
+                      <input type="text" ng-model='payload.expiration_month' id="cc-ex-month" class="form-control" autocomplete="off" placeholder="01" maxlength="2" />
                   </div>
                   <div class="col-lg-2">
-                      <input type="text" ng-model='cardExpYear' id="cc-ex-year" class="form-control" autocomplete="off" placeholder="2013" maxlength="4" />
+                      <input type="text" ng-model='payload.expiration_year' id="cc-ex-year" class="form-control" autocomplete="off" placeholder="2013" maxlength="4" />
                   </div>
               </div>
               <div class="form-group">
                   <label class="col-lg-5 control-label">Card Verification Value (CVV)</label>
                   <div class="col-lg-2">
-                      <input type="text" ng-model='cardCVV' id="cc-cvv" class="form-control" autocomplete="off" placeholder="453" maxlength="4" />
+                      <input type="text" ng-model='payload.cvv' id="cc-cvv" class="form-control" autocomplete="off" placeholder="453" maxlength="4" />
                   </div>
               </div>
 
               <div class="form-group">
                   <label class="col-lg-5 control-label">Postal Code</label>
                   <div class="col-lg-2">
-                      <input type="text" ng-model='cardZip' id="ex-postal-code" class="form-control" autocomplete="off" placeholder="12345" />
+                      <input type="text" ng-model='payload.address.postal_code' id="ex-postal-code" class="form-control" autocomplete="off" placeholder="12345" />
                   </div>
               </div>
-              <a id="cc-submit" class="btn btn-large btn-primary pull-right">Pay</a>
+              <input type='submit' name='submit' />
           </form>
         </fieldset>
-      </form>
     </tab>
     <tab heading="Pay by bank">
-    <form role="form" class="form-horizontal">
+    <form role="form" class="form-horizontal" ng-submit="payBank()">
       <fieldset>
         <legend>Pay by bank</legend>
             <div class="form-group">
+                <label class="col-lg-5 control-label">Email</label>
+                <div class="col-lg-5">
+                    <input type="text" ng-model='data.email' id="email" class="form-control" autocomplete="off" placeholder="Enter Email" />
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-lg-5 control-label">Account Holder's Name</label>
                 <div class="col-lg-6">
-                    <input type="text" ng-model='bankName' id="ba-name" class="form-control" autocomplete="off" placeholder="John Doe" />
+                    <input type="text" ng-model='payload.name' id="ba-name" class="form-control" autocomplete="off" placeholder="John Doe" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-5 control-label">Routing Number</label>
                 <div class="col-lg-6">
-                    <input type="text" ng-model='bankRouting' id="ba-routing" class="form-control" autocomplete="off" placeholder="322271627" />
+                    <input type="text" ng-model='payload.routing_number' id="ba-routing" class="form-control" autocomplete="off" placeholder="322271627" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-5 control-label">Account Number</label>
                 <div class="col-lg-6">
-                    <input type="text" ng-model='bankAccount' id="ba-number" class="form-control" autocomplete="off" placeholder="9900000000" />
+                    <input type="text" ng-model='payload.account_number' id="ba-number" class="form-control" autocomplete="off" placeholder="9900000000" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-5 control-label">Account Type</label>
                 <div class="col-lg-6">
-                    <select ng-model='bankType' id="ba-account-type" class="form-control">
+                    <select ng-model='payload.account_type' id="ba-account-type" class="form-control">
                         <option value="checking">Checking</option>
                         <option value="savings">Savings</option>
                     </select>
@@ -77,8 +88,6 @@
             <a id="ba-submit" class="btn btn-large btn-primary pull-right">Pay</a>
         </form>
       </fieldset>
-    </form>
     </tab>
   </tabset>
-
 </div>

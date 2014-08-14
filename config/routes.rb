@@ -31,6 +31,9 @@ Crm::Application.routes.draw do
     resources :email_settings, :defaults => { :format => :json }
   end
 
+  post '/payments/credit', to: 'payments#create', :format => :json
+  post '/payments/bank', to: 'payments#show'
+
   post 'contextio/webhook/' => 'contextio#callback'
 
   # The priority is based upon order of creation: first created -> highest priority.

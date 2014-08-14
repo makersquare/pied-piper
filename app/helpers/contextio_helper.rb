@@ -17,9 +17,9 @@ module ContextioHelper
     contextio.accounts.new(email: user[:email], first_name: user[:first_name], last_name: user[:last_name])
   end
 
-  def create_new_source(params)
-    account = params[:account]
-    account.sources.create(email: params[:email], server: params[:server], username: params[:username], use_ssl: params[:use_ssl], port: params[:port], type:params[:type], provider_refresh_token: params[:provider_refresh_token])
+  def create_new_source(inputs)
+    account = inputs[:account]
+    account.sources.create(email: inputs[:email], server: inputs[:server], username: inputs[:username], use_ssl: inputs[:use_ssl], port: inputs[:port], type:inputs[:type], provider_refresh_token: inputs[:provider_refresh_token])
   end
 
   def authenticate(alert)
@@ -49,9 +49,16 @@ module ContextioHelper
     return inputs
   end
 
-  def get_message(inputs, account)
-    message_id = inputs['message_data']['message_id']
-    account.messages[message_id]
+  def get_message(inputs)
+    inputs[:account].messages[inputs[:message_id]]
+  end
+
+  def get_messages(inputs)
+    account = account_signin(inputs[:user].email)
+    account.messages.where(
+      from:inputs[:contact].email
+      date_after: inputs[:time]
+      )
   end
 
   def select_message_text(message)
@@ -106,12 +113,12 @@ module ContextioHelper
     new_info
   end
 
-  def create_webhook(params)
+  def create_webhook(inputs)
   #this sets a new webhook to send an alert and check for a new contact every time there is
   #a new email
-    site = 'contextio/webhook/:#{ params[:user].id }'
+    site = 'contextio/webhook/:#{ inputs[:user].id }'
     begin
-      webhook = account.webhook.create(site, site, params[:options])
+      webhook = account.webhook.create(site, site, inputs[:options])
     rescue
       return {success: false, error: webhook}
     end

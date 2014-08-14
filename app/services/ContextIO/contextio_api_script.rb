@@ -16,7 +16,8 @@ class ContextioApiScript < ApplicationController
     return failure error if !error.nil?
 #this retrieves the message body from contextio and returns the string containing the body
     account = ContextioHelper.account_signin(inputs['account_id'])
-    message = ContextioHelper.get_message(inputs, account)
+    message_id = inputs['message_data']['message_id']
+    message = ContextioHelper.get_message({message_id:message_id, account:account})
 
     return failure 'message content missing' unless message.is_a?(ContextIO::Message)
 

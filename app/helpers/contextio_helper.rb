@@ -105,12 +105,12 @@ module ContextioHelper
     new_info
   end
 
-  def create_webhook(user, options = {sync_period:'immediate'})
+  def create_webhook(params)
   #this sets a new webhook to send an alert and check for a new contact every time there is
   #a new email
-    site = 'contextio/webhook/:#{user.id}'
+    site = 'contextio/webhook/:#{ params[:user].id }'
     begin
-      webhook = account.webhook.create(site, site, options)
+      webhook = account.webhook.create(site, site, params[:options])
     rescue
       return {success: false, error: webhook}
     end

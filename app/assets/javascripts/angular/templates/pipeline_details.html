@@ -45,7 +45,8 @@
       </thead>
       <tbody ng-controller="PipelineDetailsCtrl">
 
-        <tr ng-repeat="contact in contacts | orderBy:'name' | filter: {stage_id : stage.id}">
+        <tr ng-repeat="contact in stageContacts[stage.id]">
+          <!-- | orderBy:'contact.contacts.name'" -->
           <!-- Display actual data for your contact -->
           <td>
             <a href="/#/pipeline/{{pipeline_id}}/contact/{{contact.id}}"

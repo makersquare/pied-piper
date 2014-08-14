@@ -1,5 +1,6 @@
-//this controller gives scope to the dom template "contacts.html" and adds
-//functionality for manually adding contacts to the dom and db simultaneously
+// This controller gives scope to the dom template "contacts.html" and adds
+// functionality for manually adding contacts to the dom and db simultaneously.
+// It also contains the logic for adding/removing a contact to/from a pipeline.
 'use strict';
 
 app.controller('ContactsCtrl',
@@ -13,7 +14,8 @@ app.controller('ContactsCtrl',
       $scope.buttonClicked = false;
     };
 
-    // An array of all the pipelines a contact is not in
+    // This function finds all the pipelines a contact is NOT in and
+    // outputs the result to an array.
     var setUnaddedPipelinesForContacts = function(contacts, pipelines) {
       _.each(contacts, function(contact) {
         var contactPipelineIds = _.map(contact.pipelines, function(pipeline) { return pipeline.id });
@@ -21,7 +23,6 @@ app.controller('ContactsCtrl',
           return contactPipelineIds.indexOf(pipeline.id) >= 0;
         });
         contact.unaddedPipelines = unaddedPipelines;
-        // console.log(unaddedPipelines);
       });
     }
 
@@ -44,31 +45,25 @@ app.controller('ContactsCtrl',
     });
 
     $scope.addContactToPipeline = function(pipeline, contact) {
-      // console.log(pipeline);
-      // console.log(contact);
+      contact.pipelines.push(pipeline);
+      var index = contact.unaddedPipelines.indexOf(pipeline);
+      contact.unaddedPipelines.splice(index, 1);
       var data = {
         pipeline_id: pipeline.id,
         contact_id: contact.id
       };
-      contact.pipelines.push(pipeline);
-      var index = contact.unaddedPipelines.indexOf(pipeline);
-      contact.unaddedPipelines.splice(index, 1);
       ContactsBoxRsc.save(data);
-      console.log(data);
     }
 
     $scope.removeContactFromPipeline = function(pipeline, contact) {
-      // console.log(pipeline);
-      // console.log(contact);
+      var index = contact.pipelines.indexOf(pipeline);
+      contact.pipelines.splice(index, 1);
+      contact.unaddedPipelines.push(pipeline);
       var data = {
         pipeline_id: pipeline.id,
         id: contact.id
       };
-      var index = contact.pipelines.indexOf(pipeline);
-      contact.pipelines.splice(index, 1);
-      contact.unaddedPipelines.push(pipeline);
       ContactsBoxRsc.remove(data);
-      console.log(data);
     }
 
   }]);

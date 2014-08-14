@@ -1,4 +1,4 @@
-app.factory("PipelineCollabRsc", function ($resource) {
+app.factory("PipelineCollabRsc", ['$resource', function ($resource) {
   return $resource(
       "/pipelines/:id/users/:user_id.json",
       {id: "@id", user_id: "@user_id"},
@@ -8,4 +8,4 @@ app.factory("PipelineCollabRsc", function ($resource) {
           }
       }
   );
-});
+}]);

@@ -1,4 +1,4 @@
-app.factory("ContactsRsc", function ($resource) {
+app.factory("ContactsRsc", ['$resource', function ($resource) {
     return $resource(
         "/contacts/:id.json",
         {id: '@id'},
@@ -8,4 +8,4 @@ app.factory("ContactsRsc", function ($resource) {
           }
         }
     );
-});
+}]);

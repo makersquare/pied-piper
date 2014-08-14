@@ -1,4 +1,4 @@
-app.factory("PipelinesRsc", function ($resource) {
+app.factory("PipelinesRsc", ['$resource', function ($resource) {
 
     var pipeList = [];
 
@@ -23,4 +23,4 @@ app.factory("PipelinesRsc", function ($resource) {
       updatePipeList : updatePipeList,
       pipeList  : pipeList
     }
-});
+}]);

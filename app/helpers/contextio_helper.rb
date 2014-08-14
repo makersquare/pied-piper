@@ -1,7 +1,7 @@
 require 'openssl'
 require 'base64'
 
-module a
+module ContextioHelper
 
   def contextio_signin
     ContextIO.new(ENV['CONTEXTIO_APIKEY'], ENV['CONTEXTIO_SECRETKEY'])
@@ -14,7 +14,7 @@ module a
 
   def account_email_signin(identifier)
     contextio = contextio_signin
-    contextio.accounts.where(email: idendifier).first
+    contextio.accounts.where(email: identifier).first
   end
 
   def create_new_account(user)
@@ -24,7 +24,7 @@ module a
 
   def create_new_source(inputs)
     account = inputs[:account]
-    account.sources.create(email: inputs[:email], server: inputs[:server], username: inputs[:username], use_ssl: inputs[:use_ssl], port: inputs[:port], type:inputs[:type], password: inputs[:password])#provider_refresh_token: inputs[:provider_refresh_token])
+    account.sources.create(inputs[:email], inputs[:server], inputs[:username], inputs[:use_ssl], inputs[:port], inputs[:type], password: inputs[:password])#provider_refresh_token: inputs[:provider_refresh_token])
   end
 
   def authenticate(alert)
@@ -59,9 +59,9 @@ module a
   end
 
   def get_messages(inputs)
-    account = account_email_signin(inputs[:user].email)
+    account = inputs[:account]
     account.messages.where(
-      from: inputs[:contact].email,
+      from: inputs[:contact_email],
       date_after: inputs[:time]
       )
   end

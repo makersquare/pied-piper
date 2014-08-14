@@ -12,9 +12,9 @@ http_interactions:
       Accept:
       - application/json
       Authorization:
-      - OAuth oauth_consumer_key="hmsdfr9u", oauth_nonce="c4222679cacc1a6da474f5533bca807a",
-        oauth_signature="%2B%2B4iKOkwzXe6q83yCSco8g93QnA%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1408000856", oauth_version="1.0"
+      - OAuth oauth_consumer_key="hmsdfr9u", oauth_nonce="3e88c1a97c8320f44c613a3147154e7d",
+        oauth_signature="884IyXWeCLx0moa7C44jDlxb%2Bhs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1408035100", oauth_version="1.0"
       Content-Type:
       - application/x-www-form-urlencoded
       Accept-Encoding:
@@ -27,7 +27,7 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 14 Aug 2014 07:25:16 GMT
+      - Thu, 14 Aug 2014 16:51:41 GMT
       Server:
       - Apache
       Vary:
@@ -35,12 +35,12 @@ http_interactions:
       X-Powered-By:
       - PHP/5.3.10-1ubuntu3.6
       Content-Length:
-      - '120'
+      - '119'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"success":true,"id":"53ec645cfacaddb70af4a3e6","resource_url":"https:\/\/api.context.io\/2.0\/accounts\/53ec645cfacaddb70af4a3e6"}'
+      string: '{"success":true,"id":"53ece91d8c157fe045e5e51b","resource_url":"https:\/\/api.context.io\/2.0\/accounts\/53ece91d8c157fe045e5e51b"}'
     http_version: 
-  recorded_at: Thu, 14 Aug 2014 07:20:57 GMT
+  recorded_at: Thu, 14 Aug 2014 16:51:41 GMT
 recorded_with: VCR 2.6.0

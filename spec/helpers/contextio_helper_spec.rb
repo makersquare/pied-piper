@@ -16,7 +16,10 @@ describe ContextioHelper do
   end
 
   it 'can signin to an account locally' do
-    expect(account_email_signin('new_user@gmail.com')).to be_a(ContextIO::Account)
+    VCR.use_cassette('Contextio_account_email_signin') do
+      account = account_email_signin('devpiedpiper@gmail.com')
+      expect(account).to be_a(ContextIO::Account)
+    end
   end
 
   it 'can create a new account from Contextio' do
@@ -29,9 +32,7 @@ describe ContextioHelper do
   it 'can create a new source(email account) for a specific account' do
     VCR.use_cassette('Contextio_source_create') do
       inputs = {account: account_email_signin('devpiedpiper1@gmail.com'), email: 'devpiedpiper1@gmail.com', server: 'imap.gmail.com', username: 'devpiedpiper1@gmail.com', use_ssl: 1, port: 993, type:'IMAP', password: 'workhardplayhard1'}
-
       create_new_source(inputs)
-
     end
   end
 
@@ -41,11 +42,22 @@ describe ContextioHelper do
   xit 'can convert a json to a hash' do
   end
 
-  xit 'can get a single message' do
+  it 'can get a single message' do
+    VCR.use_cassette('get_message') do
+      inputs = { account: account_signin('53dab6dffacadd465d52805a'),
+        message_id: "53ecc934b0eeaca6688b4567" }
+      expect(get_message(inputs)).to be_a(ContextIO::Message)
+    end
   end
 
-  xit 'can retrive multiple messages' do
+  it 'can retrive multiple messages' do
+    VCR.use_cassette('get_messages') do
+      inputs = { account: account_signin('53dab6dffacadd465d52805a'),
+          contact_email: "mathias.armstrong@gmail.com", time: 4.weeks.ago.to_i }
+      expect(get_messages(inputs)).to be_a(ContextIO::MessageCollection)
+    end
   end
+
 
   xit 'can select the text portions of a message' do
   end

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.context.io/2.0/accounts/devpiedpiper1@gmail.com
+    uri: https://api.context.io/2.0/accounts?email=devpiedpiper1@gmail.com
     body:
       encoding: US-ASCII
       string: ''
@@ -12,33 +12,80 @@ http_interactions:
       Accept:
       - application/json
       Authorization:
-      - OAuth oauth_consumer_key="hmsdfr9u", oauth_nonce="25d2c74c916f612b264eca7636014939",
-        oauth_signature="b1duJZF9f4KrvOZEGgfNOOP7DIg%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1408032212", oauth_version="1.0"
+      - OAuth oauth_consumer_key="hmsdfr9u", oauth_nonce="76c60aaf0f7edd37e943eb9eabd519e2",
+        oauth_signature="Z1BPKkvhnxaRpyBdUU7s48GPV0o%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1408035194", oauth_version="1.0"
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
     status:
-      code: 400
-      message: Bad Request
+      code: 200
+      message: OK
     headers:
       Content-Type:
       - application/json
       Date:
-      - Thu, 14 Aug 2014 16:03:32 GMT
+      - Thu, 14 Aug 2014 16:53:16 GMT
+      Link:
+      - <https://api.context.io/2.0/accounts?email=devpiedpiper1%40gmail.com>; rel="self"
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      X-List-Offset:
+      - '0'
+      X-Powered-By:
+      - PHP/5.3.10-1ubuntu3.8
+      Content-Length:
+      - '322'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '[{"created":1408001116,"username":"devpiedpiper1.gmail.com_53dab6c9741107910852804e","suspended":0,"id":"53ec645cfacaddb70af4a3e6","email_addresses":["devpiedpiper1@gmail.com"],"first_name":"Shehzan","last_name":"Devani","password_expired":0,"sources":[],"resource_url":"https:\/\/api.context.io\/2.0\/accounts\/53ec645cfacaddb70af4a3e6"},{"created":1408034832,"username":"devpiedpiper1.gmail.com_53dab6c9741107910852804e","suspended":0,"id":"53ece810b4810f4e132cb027","email_addresses":["devpiedpiper1@gmail.com"],"first_name":"Shehzan","last_name":"Devani","password_expired":0,"sources":[],"resource_url":"https:\/\/api.context.io\/2.0\/accounts\/53ece810b4810f4e132cb027"},{"created":1408035040,"username":"devpiedpiper1.gmail.com_53dab6c9741107910852804e","suspended":0,"id":"53ece8e0facaddf754c2a9c7","email_addresses":["devpiedpiper1@gmail.com"],"first_name":"Shehzan","last_name":"Devani","password_expired":0,"sources":[],"resource_url":"https:\/\/api.context.io\/2.0\/accounts\/53ece8e0facaddf754c2a9c7"},{"created":1408035101,"username":"devpiedpiper1.gmail.com_53dab6c9741107910852804e","suspended":0,"id":"53ece91d8c157fe045e5e51b","email_addresses":["devpiedpiper1@gmail.com"],"first_name":"Shehzan","last_name":"Devani","password_expired":0,"sources":[],"resource_url":"https:\/\/api.context.io\/2.0\/accounts\/53ece91d8c157fe045e5e51b"}]'
+    http_version: 
+  recorded_at: Thu, 14 Aug 2014 16:53:16 GMT
+- request:
+    method: post
+    uri: https://api.context.io/2.0/accounts/53ec645cfacaddb70af4a3e6/sources
+    body:
+      encoding: US-ASCII
+      string: password=workhardplayhard1&email=devpiedpiper1%40gmail.com&server=imap.gmail.com&username=devpiedpiper1%40gmail.com&use_ssl=1&port=993&type=IMAP
+    headers:
+      User-Agent:
+      - contextio-ruby-1.7.2
+      Accept:
+      - application/json
+      Authorization:
+      - OAuth oauth_consumer_key="hmsdfr9u", oauth_nonce="be907fe6a0ba96d9f50f4fd4297d5f48",
+        oauth_signature="ZshKUvzT4dR0bydOFL2ZTEmRO9Y%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1408035196", oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 14 Aug 2014 16:53:17 GMT
       Server:
       - Apache
       Vary:
       - Accept-Encoding
       X-Powered-By:
-      - PHP/5.3.10-1ubuntu3.6
+      - PHP/5.3.10-1ubuntu3.8
       Content-Length:
-      - '22'
+      - '140'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: "[]"
+      string: '{"success":true,"label":"devpiedpiper1::gmail","resource_url":"https:\/\/api.context.io\/2.0\/accounts\/53ec645cfacaddb70af4a3e6\/sources\/devpiedpiper1::gmail"}'
     http_version: 
-  recorded_at: Thu, 14 Aug 2014 16:03:32 GMT
+  recorded_at: Thu, 14 Aug 2014 16:53:18 GMT
 recorded_with: VCR 2.6.0

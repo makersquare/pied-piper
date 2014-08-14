@@ -6,6 +6,7 @@ module ContextioHelper
   def contextio_signin
     ContextIO.new(ENV['CONTEXTIO_APIKEY'], ENV['CONTEXTIO_SECRETKEY'])
   end
+
   def account_signin(identifier)
     contextio = contextio_signin
     contextio.accounts[identifier]

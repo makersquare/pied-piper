@@ -26,7 +26,7 @@ describe ContextioHelper do
     end
   end
 
-  xit 'can create a new source(email account) for a specific account' do
+  it 'can create a new source(email account) for a specific account' do
     VCR.use_cassette('Contextio_source_create') do
       inputs = {account: account_signin('devpiedpiper1@gmail.com'), email: 'devpiedpiper1@gmail.com', server: 'imap.gmail.com', username: 'devpiedpiper1@gmail.com', use_ssl: 1, port: 993, type:'IMAP', password: 'workhardplayhard1'}
 

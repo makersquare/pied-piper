@@ -12,6 +12,4 @@ class RetrieveAllEmail < TransactionScript
     end
   success ({ contact: contact, messages: messages })
   end
-
-
 end

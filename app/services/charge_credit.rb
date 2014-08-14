@@ -2,12 +2,11 @@ require 'balanced'
 
 class ChargeCredit < TransactionScript
   def run(params)
-    binding.pry
     Balanced.configure('ak-test-1HCvxVKYmjTc7NqUaEBDhFhJZQp4P9CX7')
 
     card = Balanced::CardHold.fetch(params['uri'])
     payee = Contact.find_by(email: params['email'])
-    binding.pry
+
     if card.nil?
       return {failure: 'no card found'}
     end
@@ -22,7 +21,6 @@ class ChargeCredit < TransactionScript
       :description => 'Your soul is ours! hahaha'
     )
 
-    binding.pry
     return success(charge_info: result.attributes)
   end
 end

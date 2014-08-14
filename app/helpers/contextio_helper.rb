@@ -13,13 +13,13 @@ module ContextioHelper
   end
 
   def create_new_account(user)
-    contactio= contextio_signin
-    contextio.accounts.new(email: user[:email], first_name: user[:first_name], last_name: user[:last_name])
+    contextio= contextio_signin
+    contextio.accounts.create(email: user[:email], first_name: user[:first_name], last_name: user[:last_name])
   end
 
   def create_new_source(inputs)
     account = inputs[:account]
-    account.sources.create(email: inputs[:email], server: inputs[:server], username: inputs[:username], use_ssl: inputs[:use_ssl], port: inputs[:port], type:inputs[:type], provider_refresh_token: inputs[:provider_refresh_token])
+    account.sources.create(email: inputs[:email], server: inputs[:server], username: inputs[:username], use_ssl: inputs[:use_ssl], port: inputs[:port], type:inputs[:type], password: inputs[:password])#provider_refresh_token: inputs[:provider_refresh_token])
   end
 
   def authenticate(alert)
@@ -40,7 +40,7 @@ module ContextioHelper
     end
   end
 
-  def check_for_json(inputs)
+  def convert_json(inputs)
     begin
       inputs = JSON.parse(inputs)
     rescue

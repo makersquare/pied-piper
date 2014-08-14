@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.context.io/2.0/accounts/devpiedpiper1@gmail.com
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - contextio-ruby-1.7.2
+      Accept:
+      - application/json
+      Authorization:
+      - OAuth oauth_consumer_key="hmsdfr9u", oauth_nonce="25d2c74c916f612b264eca7636014939",
+        oauth_signature="b1duJZF9f4KrvOZEGgfNOOP7DIg%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1408032212", oauth_version="1.0"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 14 Aug 2014 16:03:32 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/5.3.10-1ubuntu3.6
+      Content-Length:
+      - '22'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "[]"
+    http_version: 
+  recorded_at: Thu, 14 Aug 2014 16:03:32 GMT
+recorded_with: VCR 2.6.0

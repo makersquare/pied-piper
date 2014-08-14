@@ -7,8 +7,10 @@ describe GetEmailSettings do
     @user2 = User.create(name: "Catherine", email: "catherine@gmail.com")
     @pipeline1 = Pipeline.create(name: "Admissions")
     @pipeline2 = Pipeline.create(name: "Recruiters")
-    @setting1 = EmailSettings.create(user_id: @user1.id, pipeline_id: @pipeline1.id)
-    @setting2 = EmailSettings.create(user_id: @user1.id, pipeline_id: @pipeline2.id, setting: "Noemails")
+    @pipeline_user1 = PipelineUser.create(user_id: @user1.id, pipeline_id: @pipeline1.id, admin: true)
+    @pipeline_user2 = PipelineUser.create(user_id: @user2.id, pipeline_id: @pipeline2.id, admin: true)
+    @setting1 = EmailSettings.create(pipeline_user_id: @pipeline_user1.id)
+    @setting2 = EmailSettings.create(pipeline_user_id: @pipeline_user2.id, setting: "Noemails")
   end
 
   after(:all) do
@@ -17,8 +19,9 @@ describe GetEmailSettings do
     Pipeline.destroy_all
   end
 
-  it "returns settings given a user_id" do
-    params = {:user_id => @user1.id}
+  xit "returns settings given a user_id" do
+    params = {:pipeline_user => @pipeline_user1 }
+    binding.pry
     settings = GetEmailSettings.run(params)
 
     expect(settings[0][:pipeline_name]).to eq("Admissions")

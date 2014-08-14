@@ -16,7 +16,7 @@ describe ContextioHelper do
   end
 
   it 'can signin to an account locally' do
-    expect(account_signin('new_user@gmail.com')).to be_a(ContextIO::Account)
+    expect(account_email_signin('new_user@gmail.com')).to be_a(ContextIO::Account)
   end
 
   it 'can create a new account from Contextio' do
@@ -28,7 +28,7 @@ describe ContextioHelper do
 
   it 'can create a new source(email account) for a specific account' do
     VCR.use_cassette('Contextio_source_create') do
-      inputs = {account: account_signin('devpiedpiper1@gmail.com'), email: 'devpiedpiper1@gmail.com', server: 'imap.gmail.com', username: 'devpiedpiper1@gmail.com', use_ssl: 1, port: 993, type:'IMAP', password: 'workhardplayhard1'}
+      inputs = {account: account_email_signin('devpiedpiper1@gmail.com'), email: 'devpiedpiper1@gmail.com', server: 'imap.gmail.com', username: 'devpiedpiper1@gmail.com', use_ssl: 1, port: 993, type:'IMAP', password: 'workhardplayhard1'}
 
       create_new_source(inputs)
 

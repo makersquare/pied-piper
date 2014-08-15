@@ -31,10 +31,11 @@ class TransactionScript
   end
 
   def sanitize_user_data(user_json)
-    user_json.delete "oath_token"
+    user_json.delete "oauth_token"
+    user_json.delete "provider"
     user_json.delete "created_at"
     user_json.delete "updated_at"
-    user_json.delete "oath_expires_at"
+    user_json.delete "oauth_expires_at"
     user_json.delete "webhook_id"
     user_json.delete "uid"
 

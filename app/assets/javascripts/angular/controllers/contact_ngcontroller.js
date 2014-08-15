@@ -25,7 +25,7 @@ app.controller('ContactsCtrl',
       });
     };
 
-    $scope.pipelines = PipelinesRsc.pipersc.query();
+    $scope.pipelines = PipelinesRsc.query();
     $scope.contacts = ContactsRsc.query();
     $scope.newContact = {};
     $scope.addNewContact = function(){

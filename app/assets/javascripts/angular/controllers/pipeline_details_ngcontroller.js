@@ -26,7 +26,7 @@ app.controller('PipelineDetailsCtrl',
     $scope.contact.showEdit = false;
     // $scope.draggable = true;
 
-    PipelinesRsc.pipersc.get({Id: $routeParams.id})
+    PipelinesRsc.get({id: $routeParams.id})
       .$promise.then(function(data){
         $scope.pipeline = data;
     });

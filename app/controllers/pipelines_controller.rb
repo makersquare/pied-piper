@@ -8,7 +8,6 @@ class PipelinesController < ApplicationController
   def index
     #This is the right code to respond with the correct pipelines on the sidebar but
     #it is inconvenient for dev purposes to have people sign in so I will leave it commented out
-    #result = RetrieveUserPipelines.run(current_user.id)
 
     # result = RetrieveUserPipelines.run(current_user.id)
     # if result.success?

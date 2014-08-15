@@ -5,7 +5,7 @@ class RetrieveCollaborators < TransactionScript
     pu.each { |pu_entity|
       user_entity = pu_entity.user
       pu_json = pu_entity.as_json
-      pu_json["user_data"] = user_entity.as_json
+      pu_json["user_data"] = sanitize_user_data(user_entity.as_json)
       output_array << pu_json
     }
     return success(data: output_array)

@@ -14,7 +14,8 @@ class AddUserPipeline < TransactionScript
     begin
       pu = PipelineUser.create(user_id: user_id, pipeline_id: pipeline_id, admin: admin)
       pu_json = pu.as_json
-      pu_json["user_data"] = pu.user.as_json
+      u_json = pu.user.as_json
+      pu_json["user_data"] = sanitize_user_data(u_json)
       EmailSetting.create(pipeline_user_id: pu.user_id)
       return success(:data => pu_json)
     rescue

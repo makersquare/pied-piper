@@ -21,9 +21,25 @@ class UsersController < ApplicationController
   # end
 
   def index
-    respond_with User.all
+    user_entities = User.all
+    sanitized_user_json = []
+    user_entities.each { |u|
+      sanitized_user_json << sanitize_user_data(u)
+    }
+    respond_with sanitized_user_json
   end
 
-  
+  private
+
+  def sanitize_user_data(user_json)
+    user_json.delete "oath_token"
+    user_json.delete "created_at"
+    user_json.delete "updated_at"
+    user_json.delete "oath_expires_at"
+    user_json.delete "webhook_id"
+    user_json.delete "uid"
+
+    return user_json
+  end
 
 end

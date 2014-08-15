@@ -38,7 +38,7 @@ class FieldsController < ApplicationController
 
   def field_params
     # All params currently permitted
-    params.permit(:id, :pipeline_id, :field_type, :field_name)
+    params.permit(:id, :pipeline_id, :field_type, :field_name, :format, :field)
   end
 
   # def box_field_params

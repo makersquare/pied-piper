@@ -4,7 +4,9 @@ describe UserMailer do
   before(:each) do
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
-    @user = CreateUser.run({:name=> "user1", :email=> "user@user.com", :provider=>'provider'})
+    VCR.use_cassette('User_create') do
+     @user = CreateUser.run({:name=> "user1", :email=> "user@user.com", :provider=>'provider'})
+    end
   end
 
   after(:each) do

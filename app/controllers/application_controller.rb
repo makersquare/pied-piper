@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   after_filter :set_csrf_cookie_for_ng
   helper_method :current_user
   # FIXME: THIS IS IMPORTANT DO NOT REMOVE THIS UNCOMMENTED LINE OUT
-  # before_action :validate_token, except: [:login]
+  before_action :validate_token, except: [:login]
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

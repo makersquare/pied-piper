@@ -113,7 +113,7 @@ user_email_settings_list.each { |setting|
 
 #Not sure what to do here as the users table has a lot oath crap in it
 internal_users_list = [
-  {name: 'Shehzan', email: 'shehzan@example.com'},
+  {name: 'Shehzan', email: 'shehzan@makersquare.com'},
   {name: 'Shaan', email: 'shaan@example.com'},
   {name: 'Nikhil', email: 'nik@example.com'},
   {name: 'Amanda', email: 'amanda@example.com'},

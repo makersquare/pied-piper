@@ -2,7 +2,7 @@ app.controller('PipelineIndexCtrl',
   ['$scope', '$resource', 'PipelinesRsc',
   function($scope, $resource, PipelinesRsc) {
     $scope.newPipeline = false;
-    $scope.pipelineName = "";
+    $scope.pipelineName = ""; 
 
     $scope.$watchCollection(function(){
       return PipelinesRsc.pipeList;

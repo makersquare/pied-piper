@@ -37,7 +37,7 @@ describe('PipelinesRsc', function(){
 
     $httpBackend.expectGET('/pipelines/1.json')
 
-    pipe = PipelinesRsc.getPipe({Id:1});
+    pipe = PipelinesRsc.getPipe({id:1});
 
     $httpBackend.flush();
 

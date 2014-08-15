@@ -1,0 +1,145 @@
+<div class = 'full-width'>
+  <div ng-hide="cb.showEdit" class = 'right'>
+    <ul class="pricing-table" >
+      <li class ='title'>Contact Info</li>
+    <li ng-dblclick = "cb.showEdit=!cb.showEdit;" class = 'price'>
+      {{cb.contact.name}}
+    </li>
+    <li ng-dblclick="cb.showEdit=!cb.showEdit;" class = 'bullet-item'>
+      {{cb.contact.city}}
+    </li>
+     <li ng-dblclick="cb.showEdit=!cb.showEdit;" class = 'bullet-item'>
+      <address><a href = "mailto:"cb.contact.email>{{cb.contact.email}}</a></address>
+    </li>
+    <li ng-dblclick="cb.showEdit=!cb.showEdit;" class = 'bullet-item'>
+      <a href="tel:"cb.contact.phonenumber>{{cb.contact.phonenumber}}</a>
+    </li>
+
+    <li ng-dblclick="cb.showEdit=!cb.showEdit;" class ='cta-button'>
+      <div class='small-push-4 small-6'>
+      <div class = 'button-bar'>
+        <ul class="button-group round">
+          <li><a href="#" class = 'button tiny'>{{cb.pipeline.name || 'Pipeline'}}</a></li>
+          <li><a href="#" class = 'button secondary tiny'>{{cb.box.stage || 'Stage'}}</a></li>
+        </ul>
+      </div>
+      </div>
+    </li>
+    </ul>
+    <div class = 'columns'>
+      <dl class="sub-nav">
+        <dt>email:</dt>
+        <dd class="active"><a href="#">All</a></dd>
+        <dd><a href="#">Unread</a></dd>
+        <dd><a href="#">Important</a></dd>
+        <dd><a href="#">Recent</a></dd>
+      </dl>
+      <div>
+        this is where the emails will be
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class = 'row' ng-show="cb.showEdit">
+  <form id="inputForm" name="inputForm" method="PUT" ng-submit="updateEntry()">
+    <div class="row">
+      <div class='small-6 columns'>
+        <!-- General contact info -->
+        <div class ='panel callout radius' ng-show="cb.showEdit">
+          <input type="text" name="name" placeholder= 'Name'
+            ng-model="cb.contact.name" ng-show="cb.showEdit" ng-keyup="keyup($event, cb)"/>
+            <br>
+          <input type="text" name="pipeline" placeholder="Pipeline"
+          ng-model="cb.pipeline.name" ng-show="cb.showEdit" ng-keyup="keyup($event, cb)"/>
+            <br>
+          <input type="text" name="stage" placeholder="Stage"
+          ng-model="cb.box.stage"ng-show="cb.showEdit" ng-keyup="keyup($event, cb)"/>
+            <br>
+          <input type="text" name="email" placeholder="Email"
+          ng-model="cb.contact.email"ng-show="cb.showEdit" ng-keyup="keyup($event, cb)"/>
+            <br>
+          <input type="text" name="phonenumber" placeholder="Phone Number"
+            ng-model="cb.contact.phonenumber"ng-show="cb.showEdit" ng-keyup="keyup($event, cb)"/>
+            <br>
+          <input type="text" name="city" placeholder="City"
+          ng-model="cb.contact.city"ng-show="cb.showEdit" ng-keyup="keyup($event, cb)"/>
+        </div>
+      </div>
+  </div>
+  </form>
+
+</div>
+
+<div class = 'row'>
+  <div class = 'small-6 columns'>
+    <!-- Arrays -->
+    <ul>
+    Fields:
+      <li ng-repeat="field in cb.fields" name="field">
+        {{field.field_name}}
+      </li>
+    </ul>
+    <br>
+
+    Field value:
+    <ul>
+      <li ng-repeat="field_value in cb.field_values" >
+        <input type="text" name="field_value" ng-model="field_value.value"/>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div ng-controller='NotesCtrl' class='row'>
+  <div class = 'small-6 columns'>
+    <div class = 'left'>
+      <dl class="sub-nav">
+        <dt>Notes:</dt>
+        <dd class="active"><a href="#">All</a></dd>
+      </dl>
+      <div class='notes'>
+        <div class="note" ng-repeat="note in notes">
+          <div class='columns'><a deletenote data-id="{{note.notes.id}}" data-index="{{$index}}" href="#" class="button tiny alert">Delete</a> {{note.notes}}</div>
+        </div>
+      </div>
+      <ul>
+        <li ng-repeat="note in cb.notes">
+          <input type="text" name="note" ng-model="note.notes"/>
+        </li>
+      </ul>
+      <br>
+      <div>
+        <a type="submit" value="Update Info" class="button green">Update Info</a>
+      </div>
+    </div>
+
+    <div class='small-6 columns'>
+      <div>
+      <form name="noteForm" ng-submit="addNote()">
+        <input name="newnote" ng-model="newNote" type="text" placeholder="Add note"/>
+        <a type='submit' name='submit' class='round tiny button'>Submit</a>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<div ng-controller='StagesCtrl'>
+  <h1>Add/Remove Pipeline Stages</h1>
+  <div class='stages'>
+    <div class="stage" ng-repeat="stage in stages">
+      <span><a deletestage data-id="{{stage.id}}" data-index="{{$index}}" href="#" class="button tiny alert">Delete</a> {{stage.name}}: {{stage.description}}</span>
+    </div>
+  </div>
+  <h4>{{stageName}}</h4>
+  <form name="stageForm" ng-submit="addStage()">
+    <input name="name" ng-model="stageName" type="text" placeholder="create a new stage"/>
+    <input name="description" ng-model="stageDesc" type="text" placeholder="stage description"/>
+    <input type='submit' name='submit' />
+  </form>
+</div>
+ -->

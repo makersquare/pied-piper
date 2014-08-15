@@ -1,0 +1,35 @@
+
+<div class="small-3 columns"
+  ng-controller="PipelineIndexCtrl">
+    <ul class="side-nav">
+      <li class ='show-for-medium-up'>
+        <ul class="button-group radius">
+        <li><a class="tiny button"
+          ng-click="namePipeline()">Pipelines</a></li>
+        <li><a class="tiny button green"
+          ng-click="namePipeline()" >+</a></li>
+        </ul>
+      </li>
+      <li class ="hidden-for-medium-up"><a class="tiny button radius left"
+          ng-click="namePipeline()">Pipelines</a>
+     <a class="tiny button green radius"
+          ng-click="namePipeline()">add</a></li>
+
+      <li ng-repeat="pipe in pipelineList" class="">
+        <a href="/#/pipeline/{{pipe.id}}" title="">{{pipe.name}}</a>
+      </li>
+    </ul>
+    <form ng-show="newPipeline" ng-submit="createNewPipeline()" role="form">
+      <div class="form-group">
+        <input ng-model="pipelineName" type="text" class="form-control" id="pipelineName" placeholder="Name New Pipeline">
+      </div>
+    </form>
+</div>
+
+<!-- The below div is where the ng views/partials will be shown -->
+<div class="small-9 columns">
+  <div ng-view>
+
+  </div>
+</div>
+

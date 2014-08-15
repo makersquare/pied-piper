@@ -10,6 +10,18 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require underscore
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require foundation
+//= require angular
+//= require angular-resource
+//= require ng-rails-csrf
+//= require angular-animate
+//= require angular-route
+//= require_tree ./angular-foundation
+//= require_tree ./balancedjs
+//= require_tree ./angular
+
+
+$(function(){ $(document).foundation(); });

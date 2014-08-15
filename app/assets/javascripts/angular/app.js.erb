@@ -1,0 +1,64 @@
+// This is the main Angular application page.
+// The Config function is run before the injector and before the RUN function
+//  The run function is run after the config function.
+//  An example of this is the config provides a route while the run function
+// provides user authentication for the routes.
+
+var app = angular
+  .module('crmApp', ['ngResource', 'ngRoute', 'mm.foundation']);
+
+  // Inject necessary dependencies inside of this function below
+  app.config(['$routeProvider', '$httpProvider',
+    function($routeProvider, $httpProvider){
+  //providers second
+  $routeProvider
+    .when('/pipelines', {
+      templateUrl: "<%= asset_path('angular/templates/pipelines.html') %>",
+      controller: 'PipelinesStatusCtrl'
+    })
+    .when('/pipeline/:id', {
+      templateUrl: "<%= asset_path('angular/templates/pipeline_details.html') %>",
+      controller: 'PipelineDetailsCtrl'
+    })
+    .when('/pipeline/:id/users', {
+      templateUrl: "<%= asset_path('angular/templates/manage_pipeline_collaborators.html') %>",
+      controller: 'PipelineCollabCtrl'
+    })
+    .when('/pipeline/:pid/contact/:cid', {
+      templateUrl: "<%= asset_path('angular/templates/contact_box.html') %>",
+      controller: 'ContactBoxCtrl'
+    })
+    .when('/pipeline/:pipeline_id/fields', {
+      templateUrl: "<%= asset_path('angular/templates/createFields.html') %>",
+      controller: 'CreateFieldsCtrl'
+    })
+    .when('/email_settings/:user_id', {
+      templateUrl: "<%= asset_path('angular/templates/account_settings.html') %>",
+      controller: 'EmailCtrl'
+    })
+    .when('/pay', {
+      templateUrl: "<%= asset_path('angular/templates/pay.html') %>",
+      controller: 'PayCtrl'
+    })
+    .when('/pipeline/:pipeline_id/stages', {
+      templateUrl: "<%= asset_path('angular/templates/createFields.html') %>",
+      controller: 'StagesCtrl'
+    })
+    .when('/contacts', {
+      templateUrl: "<%= asset_path('angular/templates/contacts.html') %>",
+      controller: 'ContactsCtrl'
+    })
+    .when('/pipeline/:pipeline_id/contact/:cid/notes', {
+      templateUrl: "<%= asset_path('angular/templates/contact_box.html') %>",
+      controller: 'NotesCtrl'
+    })
+    .otherwise({
+      redirectTo: '/pipelines'
+    })
+}])
+
+.run(function(){
+// User authentication should go here
+// When the angular route is changed the ng event
+// $routeChangeSuccess OR $routeChangeError is fired
+});

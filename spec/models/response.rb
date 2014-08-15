@@ -1,0 +1,32 @@
+{"provider"=>"google_oauth2",
+ "uid"=>"1111111111111111",
+ "info"=>
+  {"name"=>"Alex Haines",
+   "email"=>"hainesaxiv@gmail.com",
+   "first_name"=>"Alex",
+   "last_name"=>"Haines",
+   "image"=>
+    "https://lh6.googleusercontent.com/-_1NFBHeHe9M/AAAAAAAAAAI/AAAAAAAAAB4/Is
+FLFkzAaPQ/photo.jpg?sz=50",
+   "urls"=>{"Google"=>"https://plus.google.com/114053408451629551944"}},
+ "credentials"=>
+  {"token"=>
+    "ya29.VAAdLh451RA86x0AAADKAtoiz6Bb7hiR-Z770ksMkZu8d81E6tBsoeMyDryxhw",
+   "expires_at"=>1406936365,
+   "expires"=>true},
+ "extra"=>
+  {"id_token"=>
+    "eyJhbGciOiJSUzI1NiIsImtpZCI6IjdiM2JjNjAwMjA5ODc1ZDNjNDJhZTI3N2EwZDAxOGQxZDIxOTg2ZWMifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiaWQiOiIxMTQwNTM0MDg0NTE2Mjk1NTE5NDQiLCJzdWIiOiIxMTQwNTM0MDg0NTE2Mjk1NTE5NDQiLCJhenAiOiI5MTExMzUyOTk0Nzgtc3UxaXZtaDF1bDBlbGxnNnBrdmQ3NmlkOHZhMjU3ZG0uYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJlbWFpbCI6ImhhaW5lc2F4aXZAZ21haWwuY29tIiwiYXRfaGFzaCI6ImU4YTFSLWE1R0VkWTVPYXlZSlo3UXciLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXVkIjoiOTExMTM1Mjk5NDc4LXN1MWl2bWgxdWwwZWxsZzZwa3ZkNzZpZDh2YTI1N2RtLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwidG9rZW5faGFzaCI6ImU4YTFSLWE1R0VkWTVPYXlZSlo3UXciLCJ2ZXJpZmllZF9lbWFpbCI6dHJ1ZSwiY2lkIjoiOTExMTM1Mjk5NDc4LXN1MWl2bWgxdWwwZWxsZzZwa3ZkNzZpZDh2YTI1N2RtLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiaWF0IjoxNDA2OTMzMTk2LCJleHAiOjE0MDY5MzcwOTZ9.FoupxprxtP24PqLOrdj0NDi3PNvXPcg2pJg9lHfGb6YF5dJp9S3eZ57SOJkU1AwV4WNYkC-TrBHxpUHYHViZbq9DQQ8zJSQnFiuWHfHjH9LeVKJnv04BwxRvhcUubdq2lLlFbB0EBNOj3hT6Nv3xGllxKZ0zhtm_elPM0RXFUjU",
+   "raw_info"=>
+    {"kind"=>"plus#personOpenIdConnect",
+     "gender"=>"male",
+     "sub"=>"114053408451629551944",
+     "name"=>"Alex Haines",
+     "given_name"=>"Alex",
+     "family_name"=>"Haines",
+     "profile"=>"https://plus.google.com/114053408451629551944",
+     "picture"=>
+      "https://lh6.googleusercontent.com/-_1NFBHeHe9M/AAAAAAAAAAI/AAAAAAAAAB4/IsFLFkzAaPQ/photo.jpg?sz=50",
+     "email"=>"hainesaxiv@gmail.com",
+     "email_verified"=>"true",
+     "locale"=>"en"}}}

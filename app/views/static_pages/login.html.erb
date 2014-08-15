@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="medium-6 small-6 large-6 large-centered text-center columns">
+    <h1>Login Page</h1>
+    <h3>You must login to continue</h3>
+    <% if current_user %>
+      <%= link_to "Sign out " + current_user.name, signout_path, id: "sign_out", class: "button"%>
+    <% else %>
+      <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in", class: "button" %>
+    <% end %>
+  </div>
+</div>

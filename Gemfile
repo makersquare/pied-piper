@@ -6,6 +6,21 @@ gem 'rails', '4.0.2'
 # RSpec
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.2'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-byebug'
+  gem "jasmine", github: "pivotal/jasmine-gem"
+end
+
+gem 'hashie'
+gem 'foundation-rails'
+gem 'angularjs-rails'
+gem 'ng-rails-csrf'
+gem 'underscore-rails'
+
+group :test do
+  gem 'vcr', '~> 2.6.0'
+  gem 'webmock', '~> 1.13.0'
 end
 
 # Use sqlite3 as the database for Active Record
@@ -33,15 +48,26 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+gem 'json'
+gem 'omniauth-google-oauth2'
+gem 'hirb'
+gem 'figaro'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
+#!!!!!!!!!pagerDuty!!!!!!!!!!!!!!!!!!!
 # gem 'unicorn'
+
+# Jquery-ui for ngDragDrop feature
+gem 'jquery-ui-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'contextio'
+gem 'rails_12factor', group: :production

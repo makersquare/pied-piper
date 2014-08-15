@@ -11,17 +11,115 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729232410) do
+ActiveRecord::Schema.define(version: 20140807234645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
+  create_table "box_fields", force: true do |t|
+    t.integer "field_id"
+    t.integer "box_id"
+    t.string  "value"
+  end
+
+  create_table "box_histories", force: true do |t|
+    t.integer  "box_id"
+    t.integer  "stage_id"
+    t.integer  "stage_from"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "boxes", force: true do |t|
+    t.integer "contact_id"
+    t.integer "stage_id"
+    t.integer "pipeline_id"
+    t.integer "pipeline_location"
+    t.integer "payment_plan_id"
+  end
+
+  create_table "contacts", force: true do |t|
+    t.string "name"
+    t.string "email"
+    t.string "city"
+    t.string "phonenumber"
+  end
+
+  create_table "email_settings", force: true do |t|
+    t.string   "setting",          default: "Realtime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "pipeline_user_id"
+  end
+
+  create_table "fields", force: true do |t|
+    t.string  "field_name"
+    t.string  "field_type"
+    t.integer "pipeline_id"
+  end
+
+  create_table "notes", force: true do |t|
+    t.integer "user_id"
+    t.integer "box_id"
+    t.text    "notes"
+  end
+
+  create_table "payment_plans", force: true do |t|
+    t.integer  "total_due"
+    t.integer  "num_payments"
+    t.datetime "due_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pipeline_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "pipeline_id"
     t.boolean  "admin"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "pipelines", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "trashed",    default: false
+  end
+
+  create_table "stage_fields", force: true do |t|
+    t.integer "stage_id"
+    t.integer "field_id"
+    t.boolean "visible"
+  end
+
+  create_table "stages", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "pipeline_id"
+    t.integer  "pipeline_location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "standard_payment_plan_id"
+    t.boolean  "payment"
+  end
+
+  create_table "user_stages", force: true do |t|
+    t.integer "user_id"
+    t.integer "stage_id"
+    t.boolean "hidden"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.string   "webhook_id"
+    t.string   "uid"
   end
 
 end

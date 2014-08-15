@@ -1,0 +1,177 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ak-test-1HCvxVKYmjTc7NqUaEBDhFhJZQp4P9CX7:@api.balancedpayments.com/cards/CCZrwTpmU3G1lxtoL43EN4m
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - balanced-ruby/1.1.1
+      Content-Type:
+      - application/json;revision=1.1
+      Accept:
+      - application/vnd.api+json;revision=1.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 15 Aug 2014 17:42:20 GMT
+      Server:
+      - ngx_openresty/1.2.6.3
+      X-Balanced-Guru:
+      - OHM81abd4dc24a311e4b7da06429171ffad
+      X-Balanced-Host:
+      - bapi-integration-prod-8u30f7-10-3-4-8
+      X-Balanced-Marketplace:
+      - TEST-MP7qmqtt2aswDE2it8z8YVj7
+      X-Balanced-Merchant:
+      - TEST-MR7pyxRR7D0MhxqHAhud8EU5
+      X-Balanced-Revision:
+      - '1.1'
+      X-Balanced-Software-Build:
+      - 1.8.2
+      Content-Length:
+      - '596'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "cards": [
+            {
+              "links": {
+                "customer": null
+              },
+              "fingerprint": "48ad17418c43082ec1ae6214f0c1f5191869c87ae3fb0fc56333e1762c1ca779",
+              "cvv_result": "Match",
+              "number": "xxxxxxxxxxxx1111",
+              "avs_postal_match": "yes",
+              "expiration_month": 10,
+              "meta": {},
+              "id": "CCZrwTpmU3G1lxtoL43EN4m",
+              "category": "other",
+              "type": "credit",
+              "cvv_match": "yes",
+              "bank_name": "JPMORGAN CHASE BANK, N.A.",
+              "avs_street_match": null,
+              "brand": "Visa",
+              "updated_at": "2014-08-15T17:40:54.038812Z",
+              "address": {
+                "city": null,
+                "line2": null,
+                "line1": null,
+                "state": null,
+                "postal_code": "12345",
+                "country_code": null
+              },
+              "can_debit": true,
+              "name": "alex haines",
+              "expiration_year": 2014,
+              "cvv": "xxx",
+              "is_verified": true,
+              "avs_result": "Postal code matches, but street address not verified.",
+              "can_credit": false,
+              "href": "/cards/CCZrwTpmU3G1lxtoL43EN4m",
+              "created_at": "2014-08-15T17:40:54.038810Z"
+            }
+          ],
+          "links": {
+            "cards.card_holds": "/cards/{cards.id}/card_holds",
+            "cards.customer": "/customers/{cards.customer}",
+            "cards.disputes": "/cards/{cards.id}/disputes",
+            "cards.debits": "/cards/{cards.id}/debits"
+          }
+        }
+    http_version: 
+  recorded_at: Fri, 15 Aug 2014 17:42:20 GMT
+- request:
+    method: post
+    uri: https://ak-test-1HCvxVKYmjTc7NqUaEBDhFhJZQp4P9CX7:@api.balancedpayments.com/cards/CCZrwTpmU3G1lxtoL43EN4m/debits
+    body:
+      encoding: UTF-8
+      string: '{"amount":13000,"appears_on_statement_as":"Statement text","description":"Your
+        soul is ours! hahaha"}'
+    headers:
+      User-Agent:
+      - balanced-ruby/1.1.1
+      Content-Type:
+      - application/json;revision=1.1
+      Accept:
+      - application/vnd.api+json;revision=1.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 15 Aug 2014 17:42:21 GMT
+      Server:
+      - ngx_openresty/1.2.6.3
+      X-Balanced-Guru:
+      - OHM81cac57224a311e4a4e806429171ffad
+      X-Balanced-Host:
+      - bapi-integration-prod-8u30f7-10-3-5-17
+      X-Balanced-Marketplace:
+      - TEST-MP7qmqtt2aswDE2it8z8YVj7
+      X-Balanced-Merchant:
+      - TEST-MR7pyxRR7D0MhxqHAhud8EU5
+      X-Balanced-Revision:
+      - '1.1'
+      X-Balanced-Software-Build:
+      - 1.8.2
+      Content-Length:
+      - '1003'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "debits": [
+            {
+              "status": "succeeded",
+              "description": "Your soul is ours! hahaha",
+              "links": {
+                "customer": null,
+                "source": "CCZrwTpmU3G1lxtoL43EN4m",
+                "order": null,
+                "dispute": null
+              },
+              "updated_at": "2014-08-15T17:42:21.083074Z",
+              "created_at": "2014-08-15T17:42:20.431207Z",
+              "transaction_number": "W407-227-1570",
+              "failure_reason": null,
+              "currency": "USD",
+              "amount": 13000,
+              "failure_reason_code": null,
+              "meta": {},
+              "href": "/debits/WD3WXHaKu23VngqdJO2t8z6M",
+              "appears_on_statement_as": "BAL*Statement text",
+              "id": "WD3WXHaKu23VngqdJO2t8z6M"
+            }
+          ],
+          "links": {
+            "debits.customer": "/customers/{debits.customer}",
+            "debits.dispute": "/disputes/{debits.dispute}",
+            "debits.source": "/resources/{debits.source}",
+            "debits.order": "/orders/{debits.order}",
+            "debits.refunds": "/debits/{debits.id}/refunds",
+            "debits.events": "/debits/{debits.id}/events"
+          }
+        }
+    http_version: 
+  recorded_at: Fri, 15 Aug 2014 17:42:21 GMT
+recorded_with: VCR 2.6.0

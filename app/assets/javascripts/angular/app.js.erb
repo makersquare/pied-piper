@@ -40,6 +40,10 @@ var app = angular
       templateUrl: "<%= asset_path('angular/templates/pay.html') %>",
       controller: 'PayCtrl'
     })
+    .when('/pay', {
+      templateUrl: "<%= asset_path('angular/templates/pay.html') %>",
+      controller: 'PayCtrl'
+    })
     .when('/pipeline/:pipeline_id/stages', {
       templateUrl: "<%= asset_path('angular/templates/createFields.html') %>",
       controller: 'StagesCtrl'

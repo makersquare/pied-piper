@@ -41,6 +41,9 @@ Crm::Application.routes.draw do
     resources :email_settings, :defaults => { :format => :json }
   end
 
+  post '/payments/credit', to: 'payments#create', :defaults => { :format => :json }
+  post '/payments/bank', to: 'payments#show'
+
   post 'contextio/webhook/' => 'contextio#callback'
 
 

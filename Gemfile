@@ -52,6 +52,7 @@ gem 'json'
 gem 'omniauth-google-oauth2'
 gem 'hirb'
 gem 'figaro'
+gem 'balanced'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

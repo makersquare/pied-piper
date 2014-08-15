@@ -38,6 +38,10 @@ GEM
     addressable (2.3.6)
     angularjs-rails (1.2.20)
     arel (4.0.2)
+    balanced (1.1.1)
+      addressable (~> 2.3.5)
+      faraday (>= 0.8.6, <= 0.9.0)
+      faraday_middleware (~> 0.9.0)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -207,6 +211,7 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
+  balanced
   better_errors
   binding_of_caller
   coffee-rails (~> 4.0.0)

@@ -8,7 +8,6 @@ class RetrieveCollaborators < TransactionScript
       pu_json["user_data"] = sanitize_user_data(user_entity.as_json)
       output_array << pu_json
     }
-    binding.pry
     return success(data: output_array)
   end
 end

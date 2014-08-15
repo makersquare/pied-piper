@@ -61,7 +61,6 @@ class PipelinesController < ApplicationController
   # This is a mass assignment so I think I have to permit the user_id.
   # Need to first check and see if target user is not already part of pipeline
   def retrieve_collaborators
-    binding.pry
     result = RetrieveCollaborators.run(params[:pipeline_id])
     if result.success?
       respond_with result.data

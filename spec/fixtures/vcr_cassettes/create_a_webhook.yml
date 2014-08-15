@@ -1,0 +1,138 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.context.io/2.0/accounts?email=devpiedpiper@gmail.com
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - contextio-ruby-1.7.2
+      Accept:
+      - application/json
+      Authorization:
+      - OAuth oauth_consumer_key="hmsdfr9u", oauth_nonce="36431ed58d19981c5b5482c9994d82c2",
+        oauth_signature="lRx953iJKyK4L4RKsOnlj6TETbA%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1408137617", oauth_version="1.0"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 15 Aug 2014 21:20:17 GMT
+      Link:
+      - <https://api.context.io/2.0/accounts?email=devpiedpiper%40gmail.com>; rel="self"
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      X-List-Offset:
+      - '0'
+      X-Powered-By:
+      - PHP/5.3.10-1ubuntu3.6
+      Content-Length:
+      - '346'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '[{"created":1406842589,"username":"devpiedpiper.gmail.com_53dab6c9741107910852804e","suspended":0,"id":"53dab6dffacadd465d52805a","email_addresses":["devpiedpiper@gmail.com"],"first_name":"dev","last_name":"piedpiper","password_expired":0,"sources":[{"server":"imap.googlemail.com","label":"devpiedpiper::gmail","username":"devpiedpiper@gmail.com","port":993,"authentication_type":"oauth","use_ssl":true,"sync_period":"1d","status":"OK","service_level":"pro","type":"imap","resource_url":"https:\/\/api.context.io\/2.0\/accounts\/53dab6dffacadd465d52805a\/sources\/devpiedpiper::gmail"}],"resource_url":"https:\/\/api.context.io\/2.0\/accounts\/53dab6dffacadd465d52805a"}]'
+    http_version: 
+  recorded_at: Fri, 15 Aug 2014 21:20:17 GMT
+- request:
+    method: get
+    uri: https://api.context.io/2.0/accounts/53dab6dffacadd465d52805a
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - contextio-ruby-1.7.2
+      Accept:
+      - application/json
+      Authorization:
+      - OAuth oauth_consumer_key="hmsdfr9u", oauth_nonce="c35f160aa86290e94a8d206d9f5703ce",
+        oauth_signature="9qVOG6uI2vijL0YYVgJCnViwG04%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1408137617", oauth_version="1.0"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 15 Aug 2014 21:20:18 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      X-Contextio-Source-Status:
+      - https://api.context.io/2.0/accounts/53dab6dffacadd465d52805a/sources/devpiedpiper::gmail
+        OK
+      X-Powered-By:
+      - PHP/5.3.10-1ubuntu3.8
+      Content-Length:
+      - '355'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"id":"53dab6dffacadd465d52805a","username":"devpiedpiper.gmail.com_53dab6c9741107910852804e","created":1406842589,"suspended":0,"email_addresses":["devpiedpiper@gmail.com"],"first_name":"dev","last_name":"piedpiper","password_expired":0,"nb_messages":31,"nb_files":0,"sources":[{"server":"imap.googlemail.com","label":"devpiedpiper::gmail","username":"devpiedpiper@gmail.com","port":993,"authentication_type":"oauth","use_ssl":true,"sync_period":"1d","status":"OK","service_level":"pro","type":"imap","resource_url":"https:\/\/api.context.io\/2.0\/accounts\/53dab6dffacadd465d52805a\/sources\/devpiedpiper::gmail"}]}'
+    http_version: 
+  recorded_at: Fri, 15 Aug 2014 21:20:18 GMT
+- request:
+    method: post
+    uri: https://api.context.io/2.0/accounts/53dab6dffacadd465d52805a/webhooks
+    body:
+      encoding: US-ASCII
+      string: sync_period=immediate&callback_url=http%3A%2F%2Fpied-piper-staging.herokuapp.com%2Fcontextio%2Fwebhook%2F318&failure_notif_url=http%3A%2F%2Fpied-piper-staging.herokuapp.com%2Fcontextio%2Fwebhook%2F318
+    headers:
+      User-Agent:
+      - contextio-ruby-1.7.2
+      Accept:
+      - application/json
+      Authorization:
+      - OAuth oauth_consumer_key="hmsdfr9u", oauth_nonce="ca91dd1928e24bc9be677f86caa69af2",
+        oauth_signature="rt4rj6nMNRWkNltpL%2Fq2yiSSA00%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1408137618", oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 15 Aug 2014 21:20:18 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      X-Contextio-Source-Status:
+      - https://api.context.io/2.0/accounts/53dab6dffacadd465d52805a/sources/devpiedpiper::gmail
+        OK
+      X-Powered-By:
+      - PHP/5.3.10-1ubuntu3.8
+      Content-Length:
+      - '149'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"success":true,"webhook_id":"53ee79920e5e1bf751bb45a6","resource_url":"https:\/\/api.context.io\/2.0\/accounts\/53dab6dffacadd465d52805a\/webhooks\/53ee79920e5e1bf751bb45a6"}'
+    http_version: 
+  recorded_at: Fri, 15 Aug 2014 21:20:19 GMT
+recorded_with: VCR 2.6.0

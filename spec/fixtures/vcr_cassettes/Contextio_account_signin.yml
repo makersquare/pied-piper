@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.context.io/2.0/accounts?email=devpiedpiper1@gmail.com
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - contextio-ruby-1.7.2
+      Accept:
+      - application/json
+      Authorization:
+      - OAuth oauth_consumer_key="hmsdfr9u", oauth_nonce="2eeedd58df1c855ae812a0c7f6238e48",
+        oauth_signature="XoKR3t0oKLJRR%2BwXkDq3Fk%2FB3X0%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1408128426", oauth_version="1.0"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 15 Aug 2014 18:47:06 GMT
+      Link:
+      - <https://api.context.io/2.0/accounts?email=devpiedpiper1%40gmail.com>; rel="self"
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      X-List-Offset:
+      - '0'
+      X-Powered-By:
+      - PHP/5.3.10-1ubuntu3.6
+      Content-Length:
+      - '244'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '[{"created":1408127608,"username":"devpiedpiper1.gmail.com_53dab6c9741107910852804e","suspended":0,"id":"53ee5278615a996d265d8c58","email_addresses":["devpiedpiper1@gmail.com"],"first_name":"Shehzan","last_name":"Devani","password_expired":0,"sources":[],"resource_url":"https:\/\/api.context.io\/2.0\/accounts\/53ee5278615a996d265d8c58"}]'
+    http_version: 
+  recorded_at: Fri, 15 Aug 2014 18:47:06 GMT
+recorded_with: VCR 2.6.0

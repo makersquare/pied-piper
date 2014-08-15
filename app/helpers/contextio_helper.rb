@@ -3,26 +3,31 @@ require 'base64'
 
 module ContextioHelper
 
-  def contextio_signin
+  def self.contextio_signin
     ContextIO.new(ENV['CONTEXTIO_APIKEY'], ENV['CONTEXTIO_SECRETKEY'])
   end
 
-  def account_signin(identifier)
-    contextio = contextio_signin
+  def self.account_signin(identifier)
+    contextio = ContextioHelper.contextio_signin
     contextio.accounts[identifier]
   end
 
-  def create_new_account(user)
-    contextio= contextio_signin
+  def self.account_email_signin(identifier)
+    contextio = ContextioHelper.contextio_signin
+    contextio.accounts.where(email:identifier).first
+  end
+
+  def self.create_new_account(user)
+    contextio= ContextioHelper.contextio_signin
     contextio.accounts.create(email: user[:email], first_name: user[:first_name], last_name: user[:last_name])
   end
 
-  def create_new_source(inputs)
+  def self.create_new_source(inputs)
     account = inputs[:account]
-    account.sources.create(email: inputs[:email], server: inputs[:server], username: inputs[:username], use_ssl: inputs[:use_ssl], port: inputs[:port], type:inputs[:type], password: inputs[:password])#provider_refresh_token: inputs[:provider_refresh_token])
+    account.sources.create(inputs[:email], inputs[:server], inputs[:username], inputs[:use_ssl], inputs[:port], inputs[:type], inputs[:options])#provider_refresh_token: inputs[:provider_refresh_token])
   end
 
-  def authenticate(alert)
+  def self.authenticate(alert)
 
   #this hash is generated using the secret key, the timestamp and the token from the
   #notification using openssl and sha256 encryption
@@ -40,7 +45,7 @@ module ContextioHelper
     end
   end
 
-  def convert_json(inputs)
+  def self.convert_json(inputs)
     begin
       inputs = JSON.parse(inputs)
     rescue
@@ -49,19 +54,19 @@ module ContextioHelper
     return inputs
   end
 
-  def get_message(inputs)
+  def self.get_message(inputs)
     inputs[:account].messages[inputs[:message_id]]
   end
 
-  def get_messages(inputs)
-    account = account_signin(inputs[:user].email)
+  def self.get_messages(inputs)
+    account = inputs[:account]
     account.messages.where(
       from: inputs[:contact].email,
       date_after: inputs[:time]
       )
   end
 
-  def select_message_text(message)
+  def self.select_message_text(message)
     begin
       { body: message.body_parts.where(type: 'text/plain').first.content,
         success:true }
@@ -70,7 +75,7 @@ module ContextioHelper
     end
   end
 
-  def parse_typeform(message)
+  def self.parse_typeform(message)
   #these questions are the requirements for a contact entity we can move these out to be
   #altered later if we want
 
@@ -113,16 +118,19 @@ module ContextioHelper
     new_info
   end
 
-  def create_webhook(inputs)
+  def self.create_webhook(inputs)
   #this sets a new webhook to send an alert and check for a new contact every time there is
   #a new email
-    site = 'contextio/webhook/:#{ inputs[:user].id }'
+  #THIS NEEDS TO BE SET TO THE FINAL WEB ADDRESS
+    site = "http://pied-piper-staging.herokuapp.com/contextio/webhook/#{ inputs[:user].id }"
+    account = ContextioHelper.account_email_signin(inputs[:user].email)
+
     begin
-      webhook = account.webhook.create(site, site, inputs[:options])
+      webhook = account.webhooks.create(site, site, inputs[:options])
     rescue
       return {success: false, error: webhook}
     end
-    user.webhook_id = webhook.webhook_id
-    {success: true}
+   inputs[:user].webhook_id = webhook.webhook_id
+    {success: true , webhook: webhook}
   end
 end

@@ -17,11 +17,7 @@ class CreateContact < TransactionScript
 
   def contact_already_exists?(params)
     email = Contact.find_by(email: params.email)
-    name = Contact.find_by(name: params.name)
-    name = Contact.find_by(name:'#{params.firstname} #{params.lastname}') if name.nil?
-    if name.nil? && email.nil?
-      return false
-    end
+    return false if email.nil?
     return true
   end
 

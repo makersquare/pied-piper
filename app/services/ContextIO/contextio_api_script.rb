@@ -1,11 +1,10 @@
 include ContextioHelper
 
 
-class ContextioApiScript < ApplicationController
+class ContextioApiScript < TransactionScript
 
 #this TX script runs all othe other contextio TX sscripts and passes on the errors
   def run(inputs)
-    puts inputs
 #this authenticates the notification from contextio
     if inputs['signature'].nil?
       return failure 'Context.io authentication signature is nil'
@@ -32,7 +31,7 @@ class ContextioApiScript < ApplicationController
     return failure 'Missing firstname' if contact['firstname'].nil?
     return failure 'Missing lastname' if contact['lastname'].nil?
     return failure 'Missing email' if contact['email'].nil?
-
+puts contact
     return contact
   end
 end

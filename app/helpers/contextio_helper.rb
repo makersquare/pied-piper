@@ -32,16 +32,15 @@ module ContextioHelper
   #this hash is generated using the secret key, the timestamp and the token from the
   #notification using openssl and sha256 encryption
     our_hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest::SHA256.new, ENV['CONTEXTIO_SECRETKEY'], inputs['timestamp'].to_s+inputs['token'])
-
   #then we compare our generated has to the signature from the notification
     unless our_hash == inputs['signature']
-      return 'Context.io notification authentication failure'
+      return :Contextio_notification_authentication_failure
     end
 
   #here we are testing the webhook id to confirm it is the correct notification and not
   #a duplicate webhook, or a webhook for a different function
     unless User.find_by(webhook_id:inputs['webhook_id'] )
-      return 'Context.io webhook id not recognized'
+      return :Contextio_webhook_id_not_recognized
     end
   end
 

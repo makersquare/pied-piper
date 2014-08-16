@@ -27,20 +27,20 @@ module ContextioHelper
     account.sources.create(inputs[:email], inputs[:server], inputs[:username], inputs[:use_ssl], inputs[:port], inputs[:type], inputs[:options])#provider_refresh_token: inputs[:provider_refresh_token])
   end
 
-  def self.authenticate(alert)
+  def self.authenticate(inputs)
 
   #this hash is generated using the secret key, the timestamp and the token from the
   #notification using openssl and sha256 encryption
-    our_hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest::SHA256.new, ENV['CONTEXTIO_SECRETKEY'], alert['timestamp'].to_s+alert['token'])
+    our_hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest::SHA256.new, ENV['CONTEXTIO_SECRETKEY'], inputs['timestamp'].to_s+inputs['token'])
 
   #then we compare our generated has to the signature from the notification
-    unless our_hash == alert['signature']
+    unless our_hash == inputs['signature']
       return 'Context.io notification authentication failure'
     end
 
   #here we are testing the webhook id to confirm it is the correct notification and not
   #a duplicate webhook, or a webhook for a different function
-    unless alert['webhook_id'] == ENV['CONTEXTIO_WEBHOOKID']
+    unless User.find_by(webhook_id:inputs['webhook_id'] )
       return 'Context.io webhook id not recognized'
     end
   end
@@ -90,10 +90,11 @@ module ContextioHelper
           'email',
           'phone number',
           'phonenumber',
+          'which cohort works for you?'
         ]
   #this downcases the message for easier parsing and removes > and \r characters
   #then we store the body in order to save it as a note later
-    body = message.downcase.gsub(/>|\r/,'')
+    body = message[:body].downcase.gsub(/>|\r/,'')
 
   #we split the body into an array of lines to parse it line by line and then split each
   #line into an array of words
@@ -119,7 +120,7 @@ module ContextioHelper
   end
 
   def self.create_webhook(inputs)
-  #this sets a new webhook to send an alert and check for a new contact every time there is
+  #this sets a new webhook to send an inputs and check for a new contact every time there is
   #a new email
   #THIS NEEDS TO BE SET TO THE FINAL WEB ADDRESS
     site = "http://pied-piper-staging.herokuapp.com/contextio/webhook/#{ inputs[:user].id }"

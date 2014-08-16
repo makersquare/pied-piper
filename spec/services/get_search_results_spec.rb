@@ -33,9 +33,9 @@ describe 'GetSearchResults' do
       let!(:pipeline1) {Pipeline.create(name: "KEYWORD")}
       let!(:pipeline2) {Pipeline.create(name: "Not me")}
       let!(:pipeline3) {Pipeline.create(name: "Not this one here")}
-      let!(:stage1) {Stage.create(name: "Whatever")}
-      let!(:stage2) {Stage.create(name: "KEYWORD")}
-      let!(:stage3) {Stage.create(name: "KEYWORD")}
+      let!(:stage1) {Stage.create(name: "Whatever", pipeline_id: pipeline1.id)}
+      let!(:stage2) {Stage.create(name: "KEYWORD", pipeline_id: pipeline3.id)}
+      let!(:stage3) {Stage.create(name: "KEYWORD", pipeline_id: pipeline2.id)}
       let!(:field1) {pipeline1.fields.create(field_name: "haha")}
       let!(:field2) {pipeline1.fields.create(field_name: "lawl")}
       let!(:field3) {pipeline2.fields.create(field_name: "KEYWORD")}
@@ -74,14 +74,18 @@ describe 'GetSearchResults' do
         expect(stages.size).to eq(2)
         expect(stages[0].id).to eq(stage2.id)
         expect(stages[0].name).to eq(stage2.name)
+        expect(stages[0].pipeline.name).to eq(pipeline3.name)
         expect(stages[1].id).to eq(stage3.id)
+        expect(stages[1].pipeline.name).to eq(pipeline2.name)
       end
 
-      it "returns pipelines with matching field names" do
-        pipelines = result.search_results[:pipelines_by_field]
-        # binding.pry
-        expect(pipelines.length).to eq(1)
-        expect(pipelines[0].id).to eq(pipeline2.id)
+      it "returns field with proper pipeline" do
+        # Field 3, pipeline 2
+        fields = result.search_results[:pipelines_by_field]
+        expect(fields.length).to eq(1)
+        expect(fields[0].id).to eq(field3.id)
+        expect(fields[0].field_name).to eq(field3.field_name)
+        expect(fields[0].pipeline.name).to eq(pipeline2.name)
       end
         
       it "returns contacts with matching names" do

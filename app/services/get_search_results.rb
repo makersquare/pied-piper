@@ -23,10 +23,21 @@ class GetSearchResults < TransactionScript
 
   def find_pipelines_by_field
     pipelines = Pipeline.joins(:fields).where(fields: {field_name: @search_term}) || []
+    fields = Field.joins(:pipeline).where(field_name: @search_term) || []
+    fields.map do |field|
+      res = OpenStruct.new(field.as_json)
+      res.pipeline = field.pipeline
+      res
+    end
   end
 
   def find_stages
-    stages = Stage.where(name: @search_term) || []
+    stages = Stage.joins(:pipeline).where(name: @search_term) || []
+    stages.map do |stage|
+      res = OpenStruct.new(stage.as_json)
+      res.pipeline = stage.pipeline
+      res
+    end
   end
 
   def find_contacts

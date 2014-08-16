@@ -18,7 +18,7 @@
   </table>
 </div>
 
-<div ng-show="Search.results.pipelines_by_field.length">
+<div ng-show="Search.results.fields.length">
   <h5>Field Match</h5>
   <table>
     <thead>
@@ -28,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="result in Search.results.pipelines_by_field"
+      <tr ng-repeat="result in Search.results.fields"
         ng-click="fieldPath(result)">
         <td>{{result.field_name}}</td>
         <td>{{result.pipeline.name}}</td>

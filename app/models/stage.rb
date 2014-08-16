@@ -7,5 +7,7 @@ class Stage < ActiveRecord::Base
   has_many :stages, through: :user_stages
   has_many :stage_fields
   has_many :fields, through: :stage_fields
+
+  fuzzily_searchable :name
 end
 

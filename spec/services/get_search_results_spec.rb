@@ -22,7 +22,7 @@ describe 'GetSearchResults' do
         expect(result.search_results).to be_a(Hash)
         expect(result.search_results[:pipelines]).to eq([])
         expect(result.search_results[:stages]).to eq([])
-        expect(result.search_results[:pipelines_by_field]).to eq([])
+        expect(result.search_results[:fields]).to eq([])
         expect(result.search_results[:contacts]).to eq([])
         expect(result.search_results[:boxes]).to eq([])
       end
@@ -30,6 +30,8 @@ describe 'GetSearchResults' do
 
 
     context "there is data in the database" do
+      # Large set up for large number of search tests
+      # I will identify the expected results of the search
       let!(:pipeline1) {Pipeline.create(name: "KEYWORD")}
       let!(:pipeline2) {Pipeline.create(name: "Not me")}
       let!(:pipeline3) {Pipeline.create(name: "Not this one here")}
@@ -59,6 +61,7 @@ describe 'GetSearchResults' do
 
 
       it "returns matching pipelines" do
+        # Pipeline1 has a name with the search term
         expect(result.success?).to eq(true)
         pipelines = result.search_results[:pipelines]
         expect(pipelines).to_not be_nil
@@ -68,6 +71,11 @@ describe 'GetSearchResults' do
       end
 
       it "returns matching stages" do
+        # Stub fuzzy search because it will give inconsistent and
+        # untestable answers
+        Stage.stub(:find_by_fuzzy_name) {|arg| Stage.where(name: arg)}
+        # Expect 2 stages as a result. Stage2, and stage3 have the
+        #   matching name
         expect(result.success?).to eq(true)
         stages = result.search_results[:stages]
         expect(stages).to_not be_nil
@@ -81,7 +89,8 @@ describe 'GetSearchResults' do
 
       it "returns field with proper pipeline" do
         # Field 3, pipeline 2
-        fields = result.search_results[:pipelines_by_field]
+        Field.stub(:find_by_fuzzy_field_name) {|arg| Field.where(field_name: arg)}
+        fields = result.search_results[:fields]
         expect(fields.length).to eq(1)
         expect(fields[0]["id"]).to eq(field3.id)
         expect(fields[0]["field_name"]).to eq(field3.field_name)
@@ -89,6 +98,8 @@ describe 'GetSearchResults' do
       end
         
       it "returns contacts with matching names" do
+        # Contact1 has matching name, contact3 has matching email
+        Contact.stub(:find_by_fuzzy_name) {|arg| Contact.where(name: arg)}
         contacts = result.search_results[:contacts]
         expect(contacts.length).to eq(2)
         expect(contacts[0].id).to eq(contact1.id)
@@ -96,12 +107,15 @@ describe 'GetSearchResults' do
       end
 
       it "returns boxes with matching field values" do
-        # Minimum data necessary
-        #   field.field_name and box_field.value for the text
-        #   contact.name and pipeline.name are important to have too
+        # We ensure we have minimum data necessary
+        #   field.field_name and box_field.value for the matching text
+        #   contact.name and pipeline.name are important to display
         #   box.contact_id and box.pipeline_id for url
+        BoxField.stub(:find_by_fuzzy_value) {|arg| BoxField.where(value: arg)}
         boxes = result.search_results[:boxes]
         # Box 1 and Box 2 should be in it
+        # Box 1 is there twice because 2 fields match
+        #   with this search
         expect(boxes.size).to eq(3)
         expect(boxes[0][:contact].id).to eq(box1.contact_id)
         expect(boxes[0][:pipeline].id).to eq(box1.pipeline_id)

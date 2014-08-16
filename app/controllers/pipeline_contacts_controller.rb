@@ -23,6 +23,24 @@ class PipelineContactsController < ApplicationController
     end
   end
 
+  def show
+    # Show a contact within its box given the contact id
+    show_contact = GetContactBox.run({:contact_id=>contact_params[:id]})
+    if show_contact.success?
+      respond_with show_contact.to_h
+    elsif show_contact.error == :no_box_found
+      respond_with({errors: ["Could not find proper Box"]}, status: :unprocessable_entity)
+    end
+  end
+
+
+  def update
+    # User can update a contact's info and associated box info
+    update_contact_box =
+     UpdateContactBox.run(box_params)
+    respond_with update_contact_box
+  end
+
   def destroy
     Contact.find(contact_params[:id]).boxes.find_by(pipeline_id: box_params[:pipeline_id]).destroy
   end
@@ -30,7 +48,7 @@ class PipelineContactsController < ApplicationController
   private
 
   def box_params
-    params.permit(:id, :contact_id, :stage_id, :pipeline_id)
+    params.permit(:id, :contact_id, :stage_id, :pipeline_id, :pipeline_location, :contact=>[:name, :phonenumber, :city, :email] )
   end
 
   def contact_params

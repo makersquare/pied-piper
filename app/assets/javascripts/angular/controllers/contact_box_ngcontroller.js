@@ -26,11 +26,11 @@ app.controller('ContactBoxCtrl',
         $scope.cb.cid = $routeParams.cid;
         $scope.cb.pid = $routeParams.pid;
         $scope.cb.contact_id = $routeParams.cid;
-        $scope.$watch('newNote', function(v){
-          $scope.updateEntry();
-          });
-      });
 
+        // $scope.$watch('newNote', function(v){
+        //   $scope.updateEntry();
+        //   });
+      });
 
 $scope.keyup = function(event, cb) {
       if (event.keyCode == 13) {
@@ -38,14 +38,21 @@ $scope.keyup = function(event, cb) {
         ContactBoxRsc.update($scope.cb);
       }
     };
-
-
-
-
 // Update the entry by sending the 'update' request
     $scope.updateEntry = function(){
       entry = ContactBoxRsc.update(
         $scope.cb);
     };
+}]
+);
 
+app.controller('ToggleCtrl', ['$scope', function($scope) {
+  $scope.linkItems = {
+    "All": "http://google.com",
+    "Unread": "http://google.com",
+    "Important": "http://google.com",
+    "Recent": "http://google.com",
+  };
+  $scope.show_email = false;
 }]);
+

@@ -1,0 +1,163 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.context.io/2.0/accounts/53dab6dffacadd465d52805a
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - contextio-ruby-1.7.2
+      Accept:
+      - application/json
+      Authorization:
+      - OAuth oauth_consumer_key="hmsdfr9u", oauth_nonce="4ab2520259f4263f91178957a4854b7f",
+        oauth_signature="%2FFCNNPyCAgeyB51%2BNo%2BQDiIRViw%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1408193546", oauth_version="1.0"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 16 Aug 2014 12:52:27 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      X-Contextio-Source-Status:
+      - https://api.context.io/2.0/accounts/53dab6dffacadd465d52805a/sources/devpiedpiper::gmail
+        OK
+      X-Powered-By:
+      - PHP/5.3.10-1ubuntu3.6
+      Content-Length:
+      - '355'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"id":"53dab6dffacadd465d52805a","username":"devpiedpiper.gmail.com_53dab6c9741107910852804e","created":1406842589,"suspended":0,"email_addresses":["devpiedpiper@gmail.com"],"first_name":"dev","last_name":"piedpiper","password_expired":0,"nb_messages":42,"nb_files":0,"sources":[{"server":"imap.googlemail.com","label":"devpiedpiper::gmail","username":"devpiedpiper@gmail.com","port":993,"authentication_type":"oauth","use_ssl":true,"sync_period":"1d","status":"OK","service_level":"pro","type":"imap","resource_url":"https:\/\/api.context.io\/2.0\/accounts\/53dab6dffacadd465d52805a\/sources\/devpiedpiper::gmail"}]}'
+    http_version: 
+  recorded_at: Sat, 16 Aug 2014 12:52:27 GMT
+- request:
+    method: get
+    uri: https://api.context.io/2.0/accounts/53dab6dffacadd465d52805a/messages/53ef36e94246816a458b4567
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - contextio-ruby-1.7.2
+      Accept:
+      - application/json
+      Authorization:
+      - OAuth oauth_consumer_key="hmsdfr9u", oauth_nonce="a41d96e5afbb2b7bee006193146d9a1a",
+        oauth_signature="muSggnN0NEBVfNtXX4gzfUY9o10%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1408193547", oauth_version="1.0"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 16 Aug 2014 12:52:27 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      X-Contextio-Source-Status:
+      - https://api.context.io/2.0/accounts/53dab6dffacadd465d52805a/sources/devpiedpiper::gmail
+        OK
+      X-Powered-By:
+      - PHP/5.3.10-1ubuntu3.8
+      Content-Length:
+      - '629'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"email_message_id":"<7AF4890B-C9B1-4993-9E83-B175BAD0B457@gmail.com>","addresses":{"from":{"email":"jered.mccullough@gmail.com","name":"Jered
+        McCullough"},"to":[{"email":"devpiedpiper@gmail.com"}]},"message_id":"53ef36e94246816a458b4567","sources":[{"label":"devpiedpiper::gmail","resource_url":"https:\/\/api.context.io\/2.0\/accounts\/53dab6dffacadd465d52805a\/sources\/devpiedpiper%3A%3Agmail"}],"gmail_message_id":"147de6e50cfc46a2","gmail_thread_id":"147925db30c2f51d","references":["<E4782BF6-D0DB-4B35-82FB-07EB64506B7C@gmail.com>"],"files":[],"person_info":{"jered.mccullough@gmail.com":{"thumbnail":"https:\/\/secure.gravatar.com\/avatar\/60ae35295147c053e9c448919a1b41b5?s=50&d=https%3A%2F%2Fs3.amazonaws.com%2Fcontextio-icons%2Fcontact.png"},"devpiedpiper@gmail.com":{"thumbnail":"https:\/\/secure.gravatar.com\/avatar\/c5b83e8623c112685b0fa86ab201d728?s=50&d=https%3A%2F%2Fs3.amazonaws.com%2Fcontextio-icons%2Fcontact.png"}},"date":1408186043,"date_indexed":1408186089,"date_received":1408186078,"subject":"Fwd:
+        Immersive Primary: Christa Clark Austin - August 25","folders":["[Gmail]\/Important","\\Important","INBOX","\\Inbox"]}'
+    http_version: 
+  recorded_at: Sat, 16 Aug 2014 12:52:27 GMT
+- request:
+    method: get
+    uri: https://api.context.io/2.0/accounts/53dab6dffacadd465d52805a/messages/53ef36e94246816a458b4567/body?type=text/plain
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - contextio-ruby-1.7.2
+      Accept:
+      - application/json
+      Authorization:
+      - OAuth oauth_consumer_key="hmsdfr9u", oauth_nonce="c7311434fae268327013d95a1f8e4e1a",
+        oauth_signature="kDcG5GGacY%2B4xYLb2GcRrQIbIKQ%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1408193547", oauth_version="1.0"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 16 Aug 2014 12:52:28 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept-Encoding
+      X-Contextio-Source-Status:
+      - https://api.context.io/2.0/accounts/53dab6dffacadd465d52805a/sources/devpiedpiper::gmail
+        OK
+      X-Powered-By:
+      - PHP/5.3.10-1ubuntu3.8
+      Content-Length:
+      - '803'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '[{"type":"text\/plain","charset":"utf-8","content":"\r\n\r\n>>>>>>>>>
+        \r\n>>>>>>>>> \r\n>>>>>>>>> An immersive applicant applied. Here are their
+        details. \r\n>>>>>>>>>>> \r\n>>>>>>>>>>> First name\r\n>>>>>>>>>>> Christa\r\n>>>>>>>>>>>
+        \r\n>>>>>>>>>>> Last name\r\n>>>>>>>>>>> Clark\r\n>>>>>>>>>>> \r\n>>>>>>>>>>>
+        Email\r\n>>>>>>>>>>> christamarie.c@gmail.com\r\n>>>>>>>>>>> \r\n>>>>>>>>>>>
+        Phone number\r\n>>>>>>>>>>> 512-965-4955\r\n>>>>>>>>>>> \r\n>>>>>>>>>>> What
+        city do you currently live in?\r\n>>>>>>>>>>> Austin, TX\r\n>>>>>>>>>>> \r\n>>>>>>>>>>>
+        Which cohort works for you?\r\n>>>>>>>>>>> Austin - August 25\r\n>>>>>>>>>>>
+        \r\n>>>>>>>>>>> What programming languages are you familiar with?\r\n>>>>>>>>>>>
+        HTML, CSS\r\n>>>>>>>>>>> \r\n>>>>>>>>>>> What resources have you used to learn
+        the programming languages above?\r\n>>>>>>>>>>> Free online classes. \r\n>>>>>>>>>>>
+        \r\n>>>>>>>>>>> For any online resources that you''ve used, please include
+        a link to your public profile for each resource.\r\n>>>>>>>>>>> http:\/\/www.codecademy.com\/ajaxPro41462\r\n>>>>>>>>>>>
+        \r\n>>>>>>>>>>> Please include a link for your LinkedIn profile.\r\n>>>>>>>>>>>
+        www.linkedin.com\/in\/christamarieclark\/\r\n>>>>>>>>>>> \r\n>>>>>>>>>>> Please
+        include a link to your resume.\r\n>>>>>>>>>>> https:\/\/drive.google.com\/file\/d\/0B1mKVnBZV-lxR2xHRzZmQWcxWU0\/edit?usp=sharing\r\n>>>>>>>>>>>
+        \r\n>>>>>>>>>>> Are you interested in living in the DevHouse while you''re
+        at MakerSquare?\r\n>>>>>>>>>>> Yes\r\n>>>>>>>>>>> \r\n>>>>>>>>>>> How did
+        you hear about MakerSquare?\r\n>>>>>>>>>>> I''ve heard the name come up in
+        several conversations! \r\n>>>>>>>>>>> \r\n>>>>>>>>>>> What''s your Skype
+        or Google account?\r\n>>>>>>>>>>> My google account is under Christa Marie
+        Clark: christamarie.c@gmail.com\r\n>>>>>>>>>>> \r\n>>>>>>>>>>> \r\n>>>>>>>>>>>
+        \r\n>>>>>>>>>>> Have a nice day :)\r\n>>>>>>>>>>> \r\n>>>>>>>>>>> \r\n>>>>>>>>>>>
+        \r\n>>>>>>>>>>> -- \r\n>>>>>>>>>>> Shehzan Devani\r\n>>>>>>>>>>> Co-Founder,
+        Instructor\r\n>>>>>>>>>>> MakerSquare\r\n>>>>>>>>>>> \r\n>>>>>>>>>>> www.makersquare.com\r\n>>>>>>>>>>>
+        \u1427\r\n>>>>>>>>>> \r\n>>>>>>>>> \r\n>>>>>>>> \r\n>>>>>>> \r\n>>>>>> \r\n>>>>>
+        \r\n>>>> \r\n>>> \r\n>> \r\n> \r\n\r\n","body_section":"1"}]'
+    http_version: 
+  recorded_at: Sat, 16 Aug 2014 12:52:28 GMT
+recorded_with: VCR 2.6.0

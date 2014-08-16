@@ -1,5 +1,15 @@
 require 'spec_helper'
 
 describe ContextioController do
-
+  it 'passes' do
+    VCR.use_cassette('Contextio_typeform') do
+      params ={"account_id"=>"53dab6dffacadd465d52805a", "webhook_id"=>"53ef1bb45c7efd3d0d957dba", "timestamp"=>1408186089, "message_data"=>{"email_message_id"=>"<7AF4890B-C9B1-4993-9E83-B175BAD0B457@gmail.com>", "addresses"=>{"from"=>{"email"=>"jered.mccullough@gmail.com", "name"=>"Jered McCullough"}, "to"=>[{"email"=>"devpiedpiper@gmail.com"}]}, "message_id"=>"53ef36e94246816a458b4567", "sources"=>[{"label"=>"devpiedpiper::gmail"}], "gmail_message_id"=>"147de6e50cfc46a2", "gmail_thread_id"=>"147925db30c2f51d", "references"=>["<E4782BF6-D0DB-4B35-82FB-07EB64506B7C@gmail.com>"], "files"=>nil, "person_info"=>{"jered.mccullough@gmail.com"=>{"thumbnail"=>"https://secure.gravatar.com/avatar/60ae35295147c053e9c448919a1b41b5?s=50&d=https%3A%2F%2Fs3.amazonaws.com%2Fcontextio-icons%2Fcontact.png"}, "devpiedpiper@gmail.com"=>{"thumbnail"=>"https://secure.gravatar.com/avatar/c5b83e8623c112685b0fa86ab201d728?s=50&d=https%3A%2F%2Fs3.amazonaws.com%2Fcontextio-icons%2Fcontact.png"}}, "date"=>1408186043, "date_indexed"=>1408186089, "date_received"=>1408186078, "subject"=>"Fwd: Immersive Primary: Christa Clark Austin - August 25", "folders"=>["[Gmail]/Important", "\\Important", "INBOX", "\\Inbox"]}, "token"=>"5TSqWAY6QtOZwjvFZuihszZ3fP99DDH6iRUVDwh33IbEJ3PqNg", "signature"=>"5b747eae2937103378d64d51e4eb6c63686d40283f43a02c9e5a7e32b6c50fc9", "id"=>"33", "contextio"=>{"account_id"=>"53dab6dffacadd465d52805a", "webhook_id"=>"53ef1bb45c7efd3d0d957dba", "timestamp"=>1408186089, "message_data"=>{"email_message_id"=>"<7AF4890B-C9B1-4993-9E83-B175BAD0B457@gmail.com>", "addresses"=>{"from"=>{"email"=>"jered.mccullough@gmail.com", "name"=>"Jered McCullough"}, "to"=>[{"email"=>"devpiedpiper@gmail.com"}]}, "message_id"=>"53ef36e94246816a458b4567", "sources"=>[{"label"=>"devpiedpiper::gmail"}], "gmail_message_id"=>"147de6e50cfc46a2", "gmail_thread_id"=>"147925db30c2f51d", "references"=>["<E4782BF6-D0DB-4B35-82FB-07EB64506B7C@gmail.com>"], "files"=>nil, "person_info"=>{"jered.mccullough@gmail.com"=>{"thumbnail"=>"https://secure.gravatar.com/avatar/60ae35295147c053e9c448919a1b41b5?s=50&d=https%3A%2F%2Fs3.amazonaws.com%2Fcontextio-icons%2Fcontact.png"}, "devpiedpiper@gmail.com"=>{"thumbnail"=>"https://secure.gravatar.com/avatar/c5b83e8623c112685b0fa86ab201d728?s=50&d=https%3A%2F%2Fs3.amazonaws.com%2Fcontextio-icons%2Fcontact.png"}}, "date"=>1408186043, "date_indexed"=>1408186089, "date_received"=>1408186078, "subject"=>"Fwd: Immersive Primary: Christa Clark Austin - August 25", "folders"=>["[Gmail]/Important", "\\Important", "INBOX", "\\Inbox"]}, "token"=>"5TSqWAY6QtOZwjvFZuihszZ3fP99DDH6iRUVDwh33IbEJ3PqNg", "signature"=>"5b747eae2937103378d64d51e4eb6c63686d40283f43a02c9e5a7e32b6c50fc9"}}
+      user = User.find_by(email:'devpiedpiper@gmail.com')
+      user = User.create(name:'dev', email:'devpiedpiper@gmail.com') if user.nil?
+      user.update(webhook_id: params['webhook_id'])
+      result = ContextioApiScript.run(params)
+      expect(result.success?).to be_true
+      Contact.find_by(name:'Christa Clark').delete
+    end
+  end
 end

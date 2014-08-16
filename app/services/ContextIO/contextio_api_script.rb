@@ -44,6 +44,6 @@ class ContextioApiScript < TransactionScript
     note = CreateNote.run(note_info)
     return note unless success
 
-    return contact
+    return success contact: contact
   end
 end

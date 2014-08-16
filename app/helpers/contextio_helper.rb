@@ -130,7 +130,7 @@ module ContextioHelper
     rescue
       return {success: false, error: webhook}
     end
-    User.find_by(email:params[:user].email).update(webhook_id: webhook.webhook_id)
+    User.find_by(email:inputs[:user].email).update(webhook_id: webhook.webhook_id)
 
     {success: true , webhook: webhook}
   end

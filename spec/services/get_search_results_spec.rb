@@ -72,20 +72,20 @@ describe 'GetSearchResults' do
         stages = result.search_results[:stages]
         expect(stages).to_not be_nil
         expect(stages.size).to eq(2)
-        expect(stages[0].id).to eq(stage2.id)
-        expect(stages[0].name).to eq(stage2.name)
-        expect(stages[0].pipeline.name).to eq(pipeline3.name)
-        expect(stages[1].id).to eq(stage3.id)
-        expect(stages[1].pipeline.name).to eq(pipeline2.name)
+        expect(stages[0]["id"]).to eq(stage2.id)
+        expect(stages[0]["name"]).to eq(stage2.name)
+        expect(stages[0]["pipeline"].name).to eq(pipeline3.name)
+        expect(stages[1]["id"]).to eq(stage3.id)
+        expect(stages[1]["pipeline"].name).to eq(pipeline2.name)
       end
 
       it "returns field with proper pipeline" do
         # Field 3, pipeline 2
         fields = result.search_results[:pipelines_by_field]
         expect(fields.length).to eq(1)
-        expect(fields[0].id).to eq(field3.id)
-        expect(fields[0].field_name).to eq(field3.field_name)
-        expect(fields[0].pipeline.name).to eq(pipeline2.name)
+        expect(fields[0]["id"]).to eq(field3.id)
+        expect(fields[0]["field_name"]).to eq(field3.field_name)
+        expect(fields[0]["pipeline"].name).to eq(pipeline2.name)
       end
         
       it "returns contacts with matching names" do

@@ -25,8 +25,8 @@ class GetSearchResults < TransactionScript
     pipelines = Pipeline.joins(:fields).where(fields: {field_name: @search_term}) || []
     fields = Field.joins(:pipeline).where(field_name: @search_term) || []
     fields.map do |field|
-      res = OpenStruct.new(field.as_json)
-      res.pipeline = field.pipeline
+      res = field.serializable_hash
+      res["pipeline"] = field.pipeline
       res
     end
   end
@@ -34,8 +34,8 @@ class GetSearchResults < TransactionScript
   def find_stages
     stages = Stage.joins(:pipeline).where(name: @search_term) || []
     stages.map do |stage|
-      res = OpenStruct.new(stage.as_json)
-      res.pipeline = stage.pipeline
+      res = stage.serializable_hash
+      res["pipeline"] = stage.pipeline
       res
     end
   end

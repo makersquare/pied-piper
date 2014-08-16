@@ -5,7 +5,7 @@ class ContextioApiScript < ApplicationController
 
 #this TX script runs all othe other contextio TX sscripts and passes on the errors
   def run(inputs)
-
+    puts inputs
 #this authenticates the notification from contextio
     if inputs['signature'].nil?
       return failure 'Context.io authentication signature is nil'

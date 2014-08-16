@@ -1,5 +1,6 @@
 Crm::Application.routes.draw do
   # ROOT ALWAYS AT TOP
+  get '/search' => 'search#show', :defaults => { :format => :json }
   root :to => 'static_pages#index'
 
   #if the google authentication results in a failure redirect to root

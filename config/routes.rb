@@ -44,7 +44,7 @@ Crm::Application.routes.draw do
   post '/payments/credit', to: 'payments#create', :defaults => { :format => :json }
   post '/payments/bank', to: 'payments#show'
 
-  post 'contextio/webhook/' => 'contextio#callback'
+  post 'contextio/webhook/:id' => 'contextio#callback'
 
 
 end

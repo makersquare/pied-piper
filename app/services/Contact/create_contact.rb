@@ -24,7 +24,7 @@ class CreateContact < TransactionScript
   def contact_has_name?(params)
     params.phonenumber = params.phonenumber if params.phonenumber.nil?
     if params.name.nil? && !params.firstname.nil?
-      params.name = '#{params.firstname} #{params.lastname}'
+      params.name = "#{params.firstname} #{params.lastname}"
     end
     return false if params.name.nil?
     return true

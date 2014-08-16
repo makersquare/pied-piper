@@ -4,6 +4,4 @@ class Field < ActiveRecord::Base
   belongs_to :pipeline
   has_many :stage_fields
   has_many :stages, through: :stage_fields
-
-  fuzzily_searchable :field_name
 end

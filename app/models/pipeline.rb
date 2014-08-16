@@ -6,6 +6,4 @@ class Pipeline < ActiveRecord::Base
   has_many :fields, dependent: :destroy
   has_many :boxes
   has_many :contacts, through: :boxes
-
-  fuzzily_searchable :name
 end

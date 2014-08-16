@@ -71,9 +71,6 @@ describe 'GetSearchResults' do
       end
 
       it "returns matching stages" do
-        # Stub fuzzy search because it will give inconsistent and
-        # untestable answers
-        Stage.stub(:find_by_fuzzy_name) {|arg| Stage.where(name: arg)}
         # Expect 2 stages as a result. Stage2, and stage3 have the
         #   matching name
         expect(result.success?).to eq(true)
@@ -89,7 +86,6 @@ describe 'GetSearchResults' do
 
       it "returns field with proper pipeline" do
         # Field 3, pipeline 2
-        Field.stub(:find_by_fuzzy_field_name) {|arg| Field.where(field_name: arg)}
         fields = result.search_results[:fields]
         expect(fields.length).to eq(1)
         expect(fields[0]["id"]).to eq(field3.id)
@@ -99,7 +95,6 @@ describe 'GetSearchResults' do
         
       it "returns contacts with matching names" do
         # Contact1 has matching name, contact3 has matching email
-        Contact.stub(:find_by_fuzzy_name) {|arg| Contact.where(name: arg)}
         contacts = result.search_results[:contacts]
         expect(contacts.length).to eq(2)
         expect(contacts[0].id).to eq(contact1.id)
@@ -111,7 +106,6 @@ describe 'GetSearchResults' do
         #   field.field_name and box_field.value for the matching text
         #   contact.name and pipeline.name are important to display
         #   box.contact_id and box.pipeline_id for url
-        BoxField.stub(:find_by_fuzzy_value) {|arg| BoxField.where(value: arg)}
         boxes = result.search_results[:boxes]
         # Box 1 and Box 2 should be in it
         # Box 1 is there twice because 2 fields match

@@ -1,0 +1,95 @@
+<h1>Search Results for: </h1>
+<h3>{{searchItem}}</h3>
+
+<div ng-show="Search.results.pipelines.length">
+  <h5>Pipelines</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Pipeline</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="result in Search.results.pipelines"
+        ng-click="pipelinePath(result)">
+        <td>{{result.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div ng-show="Search.results.pipelines_by_field.length">
+  <h5>Field Match</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Pipeline</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="result in Search.results.pipelines_by_field"
+        ng-click="fieldPath(result)">
+        <td>{{result.field_name}}</td>
+        <td>{{result.pipeline.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div ng-show="Search.results.stages.length">
+  <h5>Stage</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Stage</th>
+        <th>Pipeline</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="result in Search.results.stages"
+        ng-click="stagePath(result)">
+        <td>{{result.name}}</td>
+        <td>{{result.pipeline.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div ng-show="Search.results.boxes.length">
+  <h5>Boxes</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Pipeline</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="result in Search.results.boxes"
+        ng-click="boxPath(result)">
+        <td>{{result.contact.name}}</td>
+        <td>{{result.pipeline.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div ng-show="Search.results.contacts.length">
+  <h5>Contacts</h5>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="result in Search.results.contacts"
+        ng-click="contactPath(result)">
+        <td>{{result.name}}</td>
+        <td>{{result.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

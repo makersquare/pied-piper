@@ -18,6 +18,26 @@ app.controller('SearchCtrl', ['$scope', '$location', 'Search',
       Search.updateResults();
     };
 
+    $scope.pipelinePath = function(result) {
+      $location.path("/pipeline/" + result.id);
+    };
+
+    $scope.stagePath = function(result) {
+      $location.path("/pipeline/" + result.pipeline_id);
+    };
+
+    $scope.contactPath = function(result) {
+      $location.path("/contacts/" + result.id);
+    };
+
+    $scope.fieldPath = function(result) {
+      $location.path("/pipeline/" + result.pipeline_id);
+    };
+
+    $scope.boxPath = function(result) {
+      $location.path("/pipeline/" + result.pipeline.id + "/contact/" + result.contact.id);
+    };
+
     $scope.$watch('Search.searchItem', function(newVal, oldVal, scope){
       scope.searchItem = newVal;
     });

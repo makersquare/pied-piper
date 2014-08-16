@@ -1,0 +1,40 @@
+<h1>Hello mothafuckaz</h1>
+<h3>{{searchItem}}</h3>
+
+<div ng-show="Search.results.pipelines">
+  <h3>Pipelines</h3>
+  <div ng-repeat="result in Search.results.pipelines">
+    <a ng-click="pipelinePath(result)">{{result.name}}</a>
+  </div>
+</div>
+
+<div ng-show="Search.results.pipelines_by_field">
+  <h3>Fields</h3>
+  <div ng-repeat="result in Search.results.pipelines_by_field">
+    <a ng-click="fieldPath(result)">Field {{result.field_name}}
+     in the {{result.pipeline.name}} pipeline</a>
+  </div>
+</div>
+
+<div ng-show="Search.results.stages">
+  <h3>Stage</h3>
+  <div ng-repeat="result in Search.results.stages">
+    <a ng-click="stagePath(result)">{{result.name}} Stage in
+     {{result.pipeline.name}} pipeline</a>
+  </div>
+</div>
+
+<div>
+  <h3>Boxes</h3>
+  <div ng-repeat="result in Search.results.boxes">
+    <a ng-click="boxPath(result)">{{result.contact.name}} has {{result.field.value}}
+     as {{result.field.field_name}} in the {{result.pipeline.name}} Pipeline</a>
+  </div>
+</div>
+
+<div>
+  <h3>Contacts</h3>
+  <div ng-repeat="result in Search.results.contacts">
+    <a ng-click="contactPath(result)">{{result.name}}</a>
+  </div>
+</div>

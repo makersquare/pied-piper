@@ -11,7 +11,7 @@
       <a href="/#/pipeline/{{pipeline_id}}/users/"
       class="button tiny">Manage Collaborators</a>
 
-      <a ng-click="contactSelector.sendEmail()" class="button tiny">Send Email</a>
+      <a ng-click="BoxService.sendEmailToSelected()" class="button tiny">Send Email</a>
     </div>
 
     <!-- Allows you to edit the pipeline title -->
@@ -27,7 +27,7 @@
 <!-- Displays all of the stages and contact information -->
 <h3>Stages</h3>
 <div class="row">
-  <button ng-click="toggleSelectAll();">Select/Deselect All</button>
+  <button ng-click="BoxService.toggleAllContactSelection();">Select/Deselect All</button>
   <div class="panel collumns"
     ng-repeat="stage in stages"
     ng-drop="true"
@@ -40,7 +40,7 @@
       <!-- Heading for fields in your pipeline -->
       <thead>
         <tr>
-          <th><input type="checkbox" ng-model="stage.selected" ng-change="selectAllFromStage(stage)"></th>
+          <th><input type="checkbox" ng-model="stage.selection" ng-change="BoxService.toggleStageSelection(stage)"></th>
           <th>Details</th>
           <th>Stage</th>
           <th ng-repeat="field in basicFields">{{field.field_name}}</th>
@@ -53,37 +53,34 @@
           <!-- | orderBy:'contact.contacts.name'" -->
           <!-- Display actual data for your contact -->
           <td>
-            <input type="checkbox" ng-model="contactSelector.selected[contact.id]">
+            <input type="checkbox" ng-model="contact.selected">
           </td>
           <td>
             <a href="/#/pipeline/{{pipeline_id}}/contact/{{contact.id}}"
               class="button detail-button tiny radius round">Details</a>
           </td>
           <td>
-            <form ng-submit="changeStage(contact)">
+            <form>
               <!-- <p ng-repeat="stageOption in stages">{{contact.stage}}</p> -->
               <select
               ng-model="contact.stage"
               ng-options="stageOpt.name for stageOpt in stages"
               ng-selected="contact.stage"
               class="button dropdown detail-button tiny radius round"
-              ng-change="changeStage(contact, contact.stage)">
+              ng-change="BoxService.changeStage(contact, contact.stage)">
               </select>
             </form>
           </td>
-          <form id="inputForm" name="inputForm" method="PUT" ng-keyup="updateEntry()">
-           <td ng-repeat="field in basicFields">
-
-
-
-             <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="keyup($event, contact)">
-             <p ng-hide="contact.showEdit" ng-dblclick="makeEditable(contact)">{{contact[field.field_name]}}</p>
-           </td>
-           <td ng-repeat="field in fields">
-             <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="keyup($event, contact)">
-             <p ng-hide="contact.showEdit" ng-dblclick="makeEditable(contact)">{{contact[field.field_name]}}</p>
-           </td>
-         </form>
+          <form id="inputForm">
+            <td ng-repeat="field in basicFields">
+              <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="updateBoxOnEnter($event, contact)">
+              <p ng-hide="contact.showEdit" ng-dblclick="BoxService.toggleEditable(contact)">{{contact[field.field_name]}}</p>
+            </td>
+            <td ng-repeat="field in fields">
+              <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="keyup($event, contact)">
+              <p ng-hide="contact.showEdit" ng-dblclick="BoxService.toggleEditable(contact)">{{contact[field.field_name]}}</p>
+            </td>
+          </form>
         </tr>
       </tbody>
     </table>

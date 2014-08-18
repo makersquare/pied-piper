@@ -22,6 +22,16 @@ app.controller('ContactBoxCtrl',
       })
       .$promise.then(function(cb){
         $scope.cb = cb;
+        fields_info = [];
+        angular.forEach(cb.fields, function(field){
+          angular.forEach(cb.field_values,function(value){
+            if(field.id === value.field_id){
+              fields_info.push({field: field,
+                field_value: value});
+            };
+          });
+        });
+        $scope.fields_info =fields_info;
         $scope.cb.contact.contact_id = $routeParams.cid;
         $scope.cb.cid = $routeParams.cid;
         $scope.cb.pid = $routeParams.pid;

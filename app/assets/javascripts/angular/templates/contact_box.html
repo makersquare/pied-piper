@@ -1,76 +1,65 @@
-<div class = 'right small-6 panel row'>
-  <div  class = 'right small-12'>
-    <div class = 'row' ng-show="cb.showEdit">
+<div class = 'right small-4 panel row'>
+  <div class = 'right small-12'>
+    <div>
+      <ul class="pricing-table" >
 
-      <form id="inputForm" name="inputForm" method="PUT" ng-submit="updateEntry()">
-            <!-- General contact info -->
-        <div class ='panel radius' >
-          <input type="text" name="name" placeholder= 'Name'
-            ng-model="cb.contact.name" ng-keyup="keyup($event, cb)"/>
-            <br>
-          <input type="text" name="pipeline" placeholder="Pipeline"
-          ng-model="cb.pipeline.name"  ng-keyup="keyup($event, cb)"/>
-            <br>
-          <input type="text" name="stage" placeholder="Stage"
-          ng-model="cb.box.stage" ng-keyup="keyup($event, cb)"/>
-            <br>
-          <input type="text" name="email" placeholder="Email"
-          ng-model="cb.contact.email" ng-keyup="keyup($event, cb)"/>
-            <br>
-          <input type="text" name="phonenumber" placeholder="Phone Number"
-            ng-model="cb.contact.phonenumber" ng-keyup="keyup($event, cb)"/>
-            <br>
-          <input type="text" name="city" placeholder="City"
-          ng-model="cb.contact.city" ng-keyup="keyup($event, cb)"/>
-        </div>
-      </form>
-    </div>
-    <div ng-hide="cb.showEdit">
-      <ul class="pricing-table  " >
         <li class ='title'>Contact Info</li>
-      <li ng-dblclick = "cb.showEdit=!cb.showEdit;" class = 'price'>
-        {{cb.contact.name}}
-      </li>
-      <li ng-dblclick="cb.showEdit=!cb.showEdit;" class = 'bullet-item'>
-        {{cb.contact.city}}
-      </li>
-       <li ng-dblclick="cb.showEdit=!cb.showEdit;" class = 'bullet-item'>
-        <address><a href = "mailto:"cb.contact.email>{{cb.contact.email}}</a></address>
-      </li>
-      <li ng-dblclick="cb.showEdit=!cb.showEdit;" class = 'bullet-item'>
-        <a href="tel:"cb.contact.phonenumber>{{cb.contact.phonenumber}}</a>
-      </li>
-      <li class = 'bullet-item'>
-          <ul class = 'button-group radius'>
-        <div class = 'row button-bar' ng-controller="ToggleCtrl" name="field" ng-repeat="field in cb.fields">
-            <li ng-click="show_email=!show_email">
-              <a class ='button'   name="field_value" ng-model="field_value.value">
-                {{field.field_name}}
-              </a>
-            </li>
-            <li>
-              <a class ='button' ng-show="!show_email" ng-repeat="field_value in cb.field_values" >
-                {{field_value.value}}
-              </a>
-                <input ng-show="show_email" type="text" />
-            </li>
-          </div>
-        </ul>
-      </li>
 
-      <li ng-dblclick="cb.showEdit=!cb.showEdit;" class ='cta-button'>
-        <div class='small-push-4 small-6'>
+        <li ng-dblclick = "cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'price'>
+          {{cb.contact.name}}
+        </li>
+
+        <li ng-show="cb.showEdit" class = 'price hidepadding'>
+          <input class = 'bordername' type="text" name="name" placeholder= 'Name'
+              ng-model="cb.contact.name" ng-keyup="keyup($event, cb)"/>
+        </li>
+
+        <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'bullet-item'>
+          {{cb.contact.city}}
+        </li>
+
+        <li ng-show="cb.showEdit" class = 'bullet-item hidepadding'>
+          <input class = 'border' type="text" name="city" placeholder="City"
+            ng-model="cb.contact.city"  ng-keyup="keyup($event, cb)"/>
+        </li>
+
+        <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'bullet-item'>
+          <a href="tel:"cb.contact.phonenumber>{{cb.contact.phonenumber}}</a>
+        </li>
+
+        <li ng-show="cb.showEdit" class = 'bullet-item hidepadding'>
+          <input class = 'border' type="text" name="phonenumber" placeholder="Phone Number"
+              ng-model="cb.contact.phonenumber"  ng-keyup="keyup($event, cb)"/>
+        </li>
+
+
+        <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'bullet-item'>
+          <address><a href = "mailto:"cb.contact.email>{{cb.contact.email}}</a></address>
+        </li>
+
+        <li ng-show="cb.showEdit" class = 'bullet-item hidepadding'>
+          <input class = 'border' type="text" name="email" placeholder="Email"
+            ng-model="cb.contact.email" ng-keyup="keyup($event, cb)"/>
+        </li>
+        <li class = 'bullet-item' ng-repeat="field in fields_info" ng-model="field_value.value">
+              <strong name="field">
+                  {{field.field.field_name}}:
+              </strong>
+              <p name="field_value" >
+                  {{field.field_value.value}}
+              </p>
+        </li>
+      </ul>
+      <div class= 'row'>
+        <div class='small-6 small-centered columns'>
           <div class = 'button-bar'>
-            <ul class="button-group radius">
-              <li><a href="#" class = 'button tiny'>{{cb.pipeline.name || 'Pipeline'}}</a></li>
-              <li><a href="#" class = 'button secondary tiny'>{{cb.box.stage || 'Stage'}}</a></li>
+            <ul class="button-group round">
+              <li><a href="#" class = 'tiny button'>{{cb.pipeline.name || 'Pipeline'}}</a></li>
+              <li><a href="#" class = 'tiny button green'>{{cb.box.stage || 'Stage'}}</a></li>
             </ul>
           </div>
         </div>
-      </li>
-      </ul>
-
-
+      </div>
       <div ng-controller="ToggleCtrl" class = 'columns'>
         <dl class="sub-nav ">
           <dt>
@@ -116,8 +105,7 @@
             </ul> -->
 
           <div ng-controller="ToggleCtrl">
-            <a type="submit" value="Update Info" ng-show="!show_email" class="button tiny radius green" ng-click="show_email=!show_email">+</a>
-
+            <a type="submit" value="Update Info" ng-shide="show_email" class="button tiny radius green" ng-click="show_email=!show_email">+</a>
 
           <div class='small-8 columns' ng-show="show_email">
             <div>

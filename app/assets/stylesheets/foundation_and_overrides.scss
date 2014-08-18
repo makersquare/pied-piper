@@ -28,7 +28,6 @@
 $include-html-classes: true;
 // $include-print-styles: true;
 $include-html-global-classes: $include-html-classes;
-
 // Grid
 
 // $include-html-grid-classes: $include-html-classes;
@@ -1320,5 +1319,6 @@ $sub-nav-active-cursor: default;
 // $range-slider-handle-round: $global-rounded;
 // $range-slider-handle-bg-hover-color: scale-color($primary-color, $lightness: -12%);
 // $range-slider-handle-cursor: pointer;
+
 
 @import 'foundation';

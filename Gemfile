@@ -75,3 +75,4 @@ gem 'jquery-ui-rails'
 gem 'contextio'
 gem 'rails_12factor', group: :production
 gem 'redis'
+gem 'foundation-icons-sass-rails'

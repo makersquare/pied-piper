@@ -68,7 +68,7 @@ class PipelinesController < ApplicationController
   def retrieve_collaborators
     result = RetrieveCollaborators.run(params[:pipeline_id])
     if result.success?
-      respond_with result.data
+      respond_with result.data.to_json
     else
       respond_with result.error.to_json
     end

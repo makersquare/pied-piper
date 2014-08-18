@@ -1,8 +1,8 @@
 app.controller('PipelineDetailsCtrl',
-  ['$scope', '$routeParams', 'PipelinesRsc', 'FieldsRsc',
-    'StagesRsc', 'BoxService',
-  function($scope, $routeParams, PipelinesRsc, FieldsRsc,
-    StagesRsc, BoxService) {
+  ['$scope', '$routeParams', 'PipelineService', 'BoxService', 'StagesRsc', 'FieldsRsc',
+  function($scope, $routeParams, PipelineService, BoxService, StagesRsc, FieldsRsc) {
+
+    var pipelineId = $scope.pipeline_id = $routeParams.id;
 
     /*
      * Use BoxService to grab all Boxes
@@ -34,23 +34,18 @@ app.controller('PipelineDetailsCtrl',
       };
     };
 
-    $scope.pipeline_id = $routeParams.id;
-    $scope.contact = {};
-    $scope.contact.showEdit = false;
+    /*
+     * Grabs information related to the pipeline including
+     * stages, fields, pipeline name, and basicFields
+     */
+    $scope.PipelineService = PipelineService;
+    $scope.pipeline = PipelineService.pipeline(pipelineId);
+    $scope.fields = PipelineService.fields(pipelineId);
+    $scope.stages = PipelineService.stages(pipelineId);
+    $scope.basicFields = PipelineService.basicFields;
 
-    PipelinesRsc.get({id: $routeParams.id})
-      .$promise.then(function(data){
-        $scope.pipeline = data;
+    $scope.$on('pipeline:updated', function(event, data) {
+      $scope.pipeline = data;
     });
 
-    $scope.basicFields = [{field_name: "name"}, {field_name: "email"}];
-    $scope.fields = FieldsRsc.query({pipeline_id: $routeParams.id});
-
-    $scope.stages = StagesRsc.query({pipeline_id: $routeParams.id});
-
-    $scope.stages.$promise.then(function(data) {
-      for (var stageIndex = 0; stageIndex < data.length; stageIndex++) {
-        var stage = data[stageIndex];
-      };
-    })
   }]);

@@ -102,7 +102,7 @@ app.factory("BoxService", ["$resource", "ContactsBoxRsc", "$rootScope",
 
     var updateBox = function(contact) {
       contact.showEdit = !contact.showEdit;
-      BoxService.updateBox({pipeline_id: pipelineId, id: contact.id, contact: contact});
+      ContactsBoxRsc.update({pipeline_id: pipelineId, id: contact.id, contact: contact});
     };
 
     return {
@@ -111,7 +111,7 @@ app.factory("BoxService", ["$resource", "ContactsBoxRsc", "$rootScope",
       setUp: setUp,
       toggleAllContactSelection: toggleAllContactSelection,
       toggleStageSelection: toggleStageSelection,
-      updateBox: ContactsBoxRsc.update,
+      updateBox: updateBox,
       changeStage: changeStage,
       stageSelection: stageSelection,
       toggleEditable: toggleEditable,

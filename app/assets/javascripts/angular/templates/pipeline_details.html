@@ -61,7 +61,6 @@
           </td>
           <td>
             <form>
-              <!-- <p ng-repeat="stageOption in stages">{{contact.stage}}</p> -->
               <select
               ng-model="contact.stage"
               ng-options="stageOpt.name for stageOpt in stages"
@@ -77,7 +76,7 @@
               <p ng-hide="contact.showEdit" ng-dblclick="BoxService.toggleEditable(contact)">{{contact[field.field_name]}}</p>
             </td>
             <td ng-repeat="field in fields">
-              <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="keyup($event, contact)">
+              <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="updateBoxOnEnter($event, contact)">
               <p ng-hide="contact.showEdit" ng-dblclick="BoxService.toggleEditable(contact)">{{contact[field.field_name]}}</p>
             </td>
           </form>

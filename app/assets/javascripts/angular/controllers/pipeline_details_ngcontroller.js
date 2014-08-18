@@ -15,10 +15,8 @@ app.controller('PipelineDetailsCtrl',
         $scope.stageContacts[stage.id].push(contact);
 
         contact.stage_id = stage.id;
-        contact.cid = contact.id;
-        contact.contact_id = contact.id;
-        contact.pid = $routeParams.id;
-        ContactBoxRsc.update(contact);
+        ContactsBoxRsc.update({id: contact.id, pipeline_id:
+          $routeParams.id, contact: contact, stage_id: contact.stage_id});
     };
 
     // This function runs to select all contacts in a given
@@ -91,33 +89,13 @@ app.controller('PipelineDetailsCtrl',
 // Edit the entry in the browser by double-clicking the text; press enter to update in the database
     $scope.makeEditable = function(contact) {
       contact.showEdit = !contact.showEdit;
-      // $scope.draggable = !$scope.draggable;
     };
 
     $scope.keyup = function(event, contact) {
       if (event.keyCode == 13) {
         contact.showEdit = !contact.showEdit;
-        contact.cid = contact.id;
-        contact.contact_id = contact.id;
-        contact.pid = $routeParams.id;
-        ContactBoxRsc.update(contact);
-        // $scope.draggable = !$scope.draggable;
+        ContactsBoxRsc.update({pipeline_id: $routeParams.id, id: contact.id, contact: contact});
       };
     };
-
-// Define the rails path that will be hit by the http requests
-    var ContactBoxRsc = $resource('/pipelines/:pid/contacts/:cid.json',
-      { cid: '@cid', pid: '@pid' },
-      {
-       get: { method: 'GET' },
-       update: { method: 'PUT', params: $scope.cb }
-        }
-      );
-
-    // $scope.onDropComplete = function(contact, stage) {
-    //   console.log($scope.draggable);
-    //   console.log(contact);
-    //   console.log(stage);
-    // }
   }]);
 

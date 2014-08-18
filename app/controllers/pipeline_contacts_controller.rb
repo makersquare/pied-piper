@@ -36,8 +36,7 @@ class PipelineContactsController < ApplicationController
 
   def update
     # User can update a contact's info and associated box info
-    update_contact_box =
-     UpdateContactBox.run(box_params)
+    update_contact_box = UpdateContactBox.run(box_params)
     respond_with update_contact_box
   end
 
@@ -48,7 +47,10 @@ class PipelineContactsController < ApplicationController
   private
 
   def box_params
-    params.permit(:id, :contact_id, :stage_id, :pipeline_id, :pipeline_location, :contact=>[:name, :phonenumber, :city, :email] )
+    res = params.permit(:id, :contact_id, :stage_id, :pipeline_id,
+      :pipeline_location, :contact=>[:name, :phonenumber, :city, :email] )
+    res[:contact_id] ||= params[:id]
+    res
   end
 
   def contact_params

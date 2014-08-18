@@ -1,4 +1,6 @@
-app.controller('PayCtrl', function($routeParams, $scope, $http, $modal, $log) {
+app.controller('PayCtrl',
+  ['$routeParams', '$scope', '$http', '$modal', '$log',
+  function($routeParams, $scope, $http, $modal, $log) {
   $scope.payload = {};
   $scope.data = {};
   $scope.type = null;
@@ -29,4 +31,4 @@ app.controller('PayCtrl', function($routeParams, $scope, $http, $modal, $log) {
       console.log('failure');
     }
   }
-});
+}]);

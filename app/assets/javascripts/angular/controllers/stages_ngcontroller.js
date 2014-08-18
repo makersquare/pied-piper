@@ -24,6 +24,7 @@ app.directive('deletestage', function(StagesAPI, $routeParams) {
 //this controller gives scope to the dom template "createFields.html" and adds
 //functionality for adding stages to the dom and db simultaneously
 app.controller('StagesCtrl',
+  ['$routeParams', '$scope', '$http', 'StagesAPI',
   function($routeParams, $scope, $http, StagesAPI) {
 
   $scope.stages = StagesAPI.query({pipeline_id: $routeParams['pipeline_id']});
@@ -36,4 +37,4 @@ app.controller('StagesCtrl',
         $scope.stageName = "";
     });
   };
-});
+}]);

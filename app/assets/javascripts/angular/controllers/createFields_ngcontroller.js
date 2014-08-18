@@ -26,6 +26,7 @@ app.directive('deletefield',
 //this controller gives scope to the dom template "createFields.html" and adds
 //functionality for adding fields to the dom and db simultaneously
 app.controller('CreateFieldsCtrl',
+  ['$routeParams', '$scope', '$http', 'BoxesAPI',
   function($routeParams, $scope, $http, BoxesAPI) {
 
   $scope.fields = BoxesAPI.query({pipeline_id: $routeParams['pipeline_id']});
@@ -38,7 +39,7 @@ app.controller('CreateFieldsCtrl',
         $scope.fieldName = "";
     });
   };
-});
+}]);
 
 
 

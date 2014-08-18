@@ -2,8 +2,7 @@ app.controller('PipelineCollabCtrl',
   ['$scope', '$resource', 'PipelineCollabRsc', '$routeParams', 'UsersRsc',
   function($scope, $resource, PipelineCollabRsc, $routeParams, UsersRsc) {
     $scope.allUsers = UsersRsc.query();
-    $scope.pipeline_id = $routeParams.id;
-    $scope.collabs = PipelineCollabRsc.query({id: $routeParams.id});
+    $scope.collabs = PipelineCollabRsc.query({pipeline_id: $routeParams.id});
     $scope.newUser = {user: {}, admin: false};
 
     $scope.addCollab = function() {

@@ -53,6 +53,9 @@ app.controller('SearchCtrl', ['$scope', '$location', 'Search',
 
     $scope.boxPath = function(result) {
       $location.path("/pipeline/" + result.pipeline.id + "/contact/" + result.contact.id);
-    }; 
+    };
   }
 ])
+
+
+

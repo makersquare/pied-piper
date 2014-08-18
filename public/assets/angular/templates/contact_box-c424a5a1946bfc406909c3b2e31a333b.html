@@ -1,0 +1,150 @@
+<div class = 'right large-8 panel row' >
+
+  <div ng-controller = 'EmailShowCtrl'>
+    <div ng-controller="ToggleCtrl" class = 'columns'>
+      <dl class="sub-nav ">
+        <dt>
+          <a class="dropdown" ng-click="show_email=!show_email">email</a>
+        </dt>
+        <dd ng-repeat="(label, url) in linkItems" ng-show="show_email" class = 'slide-left' >
+          <div id="dropdown1" >
+            <a href='#' target="_blank">{{label}}</a>
+          </div>
+        </dd>
+      </dl>
+      <div class = 'email_stuff slide-left' ng-controller="AccordionDemoCtrl" ng-show="show_email">
+        <accordion close-others="oneAtATime">
+          <accordion-group heading="{{message.subject}}" ng-repeat = 'message in messages.result'>
+                  <p class = 'left'>{{message.from.name}}</p>
+                  <p class = 'right'>{{message.subject}}</p>
+                  <br>
+          </accordion-group>
+        </accordion>
+      </div>
+    </div>
+  </div>
+
+  <div ng-controller="ToggleCtrl" class = 'columns'>
+    <div ng-controller='NotesCtrl'>
+          <dl class="sub-nav">
+            <dt><a class="dropdown" ng-click="show_email=!show_email">notes</a></dt>
+            <dd ng-repeat="(label, url) in linkItems" ng-show="show_email"  >
+              <div id="dropdown1" >
+                <a href='#' target="_blank">{{label}}</a>
+              </div>
+            </dd>
+          </dl>
+      <div ng-show="show_email" class = 'columns'>
+          <div class='notes'>
+            <div class="note left" ng-repeat="note in notes">
+              <div class='columns'><a deletenote data-id="{{note.notes.id}}" data-index="{{$index}}" href="#" class="button tiny alert">Delete</a> {{note.notes}}</div>
+            </div>
+          </div>
+          <div ng-controller="ToggleCtrl">
+            <div  ng-repeat="note in cb.notes">
+              <div class ='small-6 columns button tiny radius' ng-click="show_email=!show_email" >{{note.notes}}</div>
+              <input type="text" name="note" ng-show="show_email" ng-model="note.notes"/>
+            </div>
+          </div>
+          <!-- <ul>
+            <li ng-repeat="note in cb.notes">
+              <input type="text" name="note" ng-model="note.notes"/>
+            </li>
+          </ul> -->
+
+        <div ng-controller="ToggleCtrl">
+          <a type="submit" value="Update Info" ng-shide="show_email" class="button tiny radius green" ng-click="show_email=!show_email">+</a>
+
+          <div class='small-8 columns' ng-show="show_email">
+            <div>
+              <form name="noteForm" ng-submit="addNote()">
+                <input name="newnote" ng-model="newNote" type="text" placeholder="Add note"/>
+                <a type='submit' name='submit' class='round tiny button' ng-click="show_email=!show_email">Submit</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class = 'right large-4 small-8 panel row'>
+  <ul class="pricing-table" >
+
+    <li class ='title'>Contact Info </li>
+
+    <li ng-dblclick = "cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'price'>
+      {{cb.contact.name}}
+    </li>
+
+    <li ng-show="cb.showEdit" class = 'price hidepadding'>
+      <input class = 'bordername' type="text" name="name" placeholder= 'Name'
+          ng-model="cb.contact.name" ng-keyup="keyup($event, cb)"/>
+    </li>
+
+    <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'bullet-item'>
+      {{cb.contact.city}}
+    </li>
+
+    <li ng-show="cb.showEdit" class = 'bullet-item hidepadding'>
+      <input class = 'border' type="text" name="city" placeholder="City"
+        ng-model="cb.contact.city"  ng-keyup="keyup($event, cb)"/>
+    </li>
+
+    <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'bullet-item'>
+      <a href="tel:"cb.contact.phonenumber>{{cb.contact.phonenumber}}</a>
+    </li>
+
+    <li ng-show="cb.showEdit" class = 'bullet-item hidepadding'>
+      <input class = 'border' type="text" name="phonenumber" placeholder="Phone Number"
+          ng-model="cb.contact.phonenumber"  ng-keyup="keyup($event, cb)"/>
+    </li>
+
+
+    <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'bullet-item'>
+      <address><a href = "mailto:"cb.contact.email>{{cb.contact.email}}</a></address>
+    </li>
+
+    <li ng-show="cb.showEdit" class = 'bullet-item hidepadding'>
+      <input class = 'border' type="text" name="email" placeholder="Email"
+        ng-model="cb.contact.email" ng-keyup="keyup($event, cb)"/>
+    </li>
+    <li class = 'bullet-item' ng-repeat="field in fields_info" ng-model="field_value.value">
+          <strong name="field">
+              {{field.field.field_name}}:
+          </strong>
+          <p name="field_value" >
+              {{field.field_value.value}}
+          </p>
+    </li>
+  </ul>
+  <div class = 'large-centered columns'>
+    <ul class="button-group even-2 radius">
+      <li><a href="#" class = 'button'>{{cb.pipeline.name || 'Pipeline'}}</a></li>
+      <li><a href="#" class = 'button green'>{{cb.box.stage || 'Stage'}}</a></li>
+    </ul>
+  </div>
+    <i class="foundicon-heart"></i>
+</div>
+
+
+
+
+<!--
+<div ng-controller='StagesCtrl'>
+  <h1>Add/Remove Pipeline Stages</h1>
+  <div class='stages'>
+    <div class="stage" ng-repeat="stage in stages">
+      <span><a deletestage data-id="{{stage.id}}" data-index="{{$index}}" href="#" class="button tiny alert">Delete</a> {{stage.name}}: {{stage.description}}</span>
+    </div>
+  </div>
+  <h4>{{stageName}}</h4>
+  <form name="stageForm" ng-submit="addStage()">
+    <input name="name" ng-model="stageName" type="text" placeholder="create a new stage"/>
+    <input name="description" ng-model="stageDesc" type="text" placeholder="stage description"/>
+    <input type='submit' name='submit' />
+  </form>
+</div>
+ -->

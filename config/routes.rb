@@ -45,6 +45,7 @@ Crm::Application.routes.draw do
   post '/payments/bank', to: 'payments#show'
 
   post 'contextio/webhook/:id' => 'contextio#callback'
+  get 'contextio/email/:id' => 'contextio#getemail'
 
 
 end

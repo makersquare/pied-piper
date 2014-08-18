@@ -18,11 +18,10 @@
 //= require angular-resource
 //= require ng-rails-csrf
 //= require angular-animate
+//= require_tree ./fixedHeaderTables
 //= require angular-route
 //= require_tree ./angular-foundation
 //= require_tree ./balancedjs
 //= require_tree ./angular
-
-
 
 $(function(){ $(document).foundation(); });

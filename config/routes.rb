@@ -13,7 +13,6 @@ Crm::Application.routes.draw do
   #trigger session destruction on logout
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
-
   resources :sessions, only: [:create, :destroy]
   resources :home, only: [:show]
 

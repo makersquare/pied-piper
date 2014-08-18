@@ -2,10 +2,10 @@ app.controller('PipelineDetailsCtrl',
   ['$scope', '$resource',
   '$routeParams','PipelinesRsc',
   'ContactsBoxRsc', 'FieldsRsc',
-  'StagesRsc',
+  'StagesRsc', 'ContactSelector',
   function($scope, $resource, $routeParams,
     PipelinesRsc, ContactsBoxRsc, FieldsRsc,
-    StagesRsc) {
+    StagesRsc, ContactSelector) {
 
 // Update a contact's stage using the dropdown list
     $scope.changeStage = function(contact, stage) {
@@ -20,6 +20,33 @@ app.controller('PipelineDetailsCtrl',
         contact.pid = $routeParams.id;
         ContactBoxRsc.update(contact);
     };
+
+    // This function runs to select all contacts in a given
+    // Stage
+    $scope.selectAllFromStage = function (stage) {
+      $scope.contactSelector.markAll(
+        $scope.stageContacts[stage.id],
+        stage.selected
+      );
+    }
+
+    // The function will toggle between selecting all
+    // contacts, and deselecting them.
+    // It will use the helper 'selectAllFromStage' to
+    // propogate the call.
+    $scope.toggleSelectAll = function() {
+      // var value = true;
+      var value = $scope.selectAll = !$scope.selectAll;
+      console.log(value);
+      for (var i = 0; i < $scope.stages.length; i++) {
+        var stage = $scope.stages[i];
+        stage.selected = value;
+        $scope.contactSelector.markAll(
+          $scope.stageContacts[stage.id],
+          stage.selected
+        );
+      }
+    }
 
     $scope.pipeline_id = $routeParams.id;
     $scope.contact = {};
@@ -49,12 +76,16 @@ app.controller('PipelineDetailsCtrl',
     })
     .then(function(data) {
       var contacts = data;
+      // Once contacts are loaded, set up ability
+      // to select/deselect contacts
+      $scope.contactSelector = ContactSelector;
+      $scope.contactSelector.deselectAll($scope.contacts);
+
       for (var contactIndex = 0; contactIndex < contacts.length; contactIndex++) {
         var contact = contacts[contactIndex];
         var contactStageId = contact.stage_id;
         $scope.stageContacts[contactStageId].push(contact);
       };
-      console.log($scope.stageContacts);
     });
 
 // Edit the entry in the browser by double-clicking the text; press enter to update in the database

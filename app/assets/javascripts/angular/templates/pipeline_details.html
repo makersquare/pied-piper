@@ -10,6 +10,8 @@
 
       <a href="/#/pipeline/{{pipeline_id}}/users/"
       class="button tiny">Manage Collaborators</a>
+
+      <a ng-click="contactSelector.sendEmail()" class="button tiny">Send Email</a>
     </div>
 
     <!-- Allows you to edit the pipeline title -->
@@ -25,6 +27,7 @@
 <!-- Displays all of the stages and contact information -->
 <h3>Stages</h3>
 <div class="row">
+  <button ng-click="toggleSelectAll();">Select/Deselect All</button>
   <div class="panel collumns"
     ng-repeat="stage in stages"
     ng-drop="true"
@@ -37,6 +40,7 @@
       <!-- Heading for fields in your pipeline -->
       <thead>
         <tr>
+          <th><input type="checkbox" ng-model="stage.selected" ng-change="selectAllFromStage(stage)"></th>
           <th>Details</th>
           <th>Stage</th>
           <th ng-repeat="field in basicFields">{{field.field_name}}</th>
@@ -48,6 +52,9 @@
         <tr ng-repeat="contact in stageContacts[stage.id]">
           <!-- | orderBy:'contact.contacts.name'" -->
           <!-- Display actual data for your contact -->
+          <td>
+            <input type="checkbox" ng-model="contactSelector.selected[contact.id]">
+          </td>
           <td>
             <a href="/#/pipeline/{{pipeline_id}}/contact/{{contact.id}}"
               class="button detail-button tiny radius round">Details</a>

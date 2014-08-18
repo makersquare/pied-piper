@@ -53,6 +53,30 @@ def create_pipelines_with_stages_and_fields
     {field_name: 'hiring_position', field_type: 'string'},
     {field_name: 'position_location', field_type: 'string'}
   ])
+
+  internal_users_list = [
+    {name: 'Shehzan', email: 'shehzan@makersquare.com'},
+    {name: 'Shaan', email: 'shaan@example.com'},
+    {name: 'Nikhil', email: 'nik@example.com'},
+    {name: 'Amanda', email: 'amanda@example.com'},
+    {name: 'DJ', email: 'dj.daniels.90@gmail.com'},
+    {name: 'Andrew', email: 'andrewpei@gmail.com'},
+    {name: 'Jon Katz', email: 'jonathan.a.katz@gmail.com'},
+    {name: 'Gabe', email: 'gabe.a.polk@gmail.com'},
+    {name: 'Alex', email: 'hainesaxiv@gmail.com'},
+    {name: 'Jered M', email: 'mathias.armstrong@gmail.com'},
+    {name: 'Cathy N', email: 'noll.catherine@gmail.com'},
+    {name: 'Mike', email: 'mike@makersquare.com'}
+  ]
+
+  internal_users_list.each { |user|
+    user_entity = User.create(user)
+    admin = rand(2)
+    admin == 1 ? admin = true : admin = false
+    PipelineUser.create(pipeline_id: pipeline_admissions.id, user_id: user_entity.id, admin: admin)
+    PipelineUser.create(pipeline_id: pipeline_hiring.id, user_id: user_entity.id, admin: admin)
+    PipelineUser.create(pipeline_id: pipeline_get_alumni_jobs.id, user_id: user_entity.id, admin: admin)
+  }
 end
 
 def clear_tables
@@ -109,31 +133,6 @@ user_email_settings_list = [
 
 user_email_settings_list.each { |setting|
   EmailSetting.create(setting)
-}
-
-#Not sure what to do here as the users table has a lot oath crap in it
-internal_users_list = [
-  {name: 'Shehzan', email: 'shehzan@makersquare.com'},
-  {name: 'Shaan', email: 'shaan@example.com'},
-  {name: 'Nikhil', email: 'nik@example.com'},
-  {name: 'Amanda', email: 'amanda@example.com'},
-  {name: 'DJ', email: 'dj.daniels.90@gmail.com'},
-  {name: 'Andrew', email: 'andrewpei@gmail.com'},
-  {name: 'Jon Katz', email: 'jonathan.a.katz@gmail.com'},
-  {name: 'Gabe', email: 'gabe.a.polk@gmail.com'},
-  {name: 'Alex', email: 'hainesaxiv@gmail.com'},
-  {name: 'Jered M', email: 'mathias.armstrong@gmail.com'},
-  {name: 'Cathy N', email: 'noll.catherine@gmail.com'},
-  {name: 'Mike', email: 'mike@makersquare.com'}
-]
-
-internal_users_list.each { |user|
-  user_entity = User.create(user)
-  admin = rand(2)
-  admin == 1 ? admin = true : admin = false
-  PipelineUser.create(pipeline_id: pipeline_admissions.id, user_id: user_entity.id, admin: admin)
-  PipelineUser.create(pipeline_id: pipeline_hiring.id, user_id: user_entity.id, admin: admin)
-  PipelineUser.create(pipeline_id: pipeline_get_alumni_jobs.id, user_id: user_entity.id, admin: admin)
 }
 
 User.create([

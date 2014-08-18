@@ -131,9 +131,9 @@ internal_users_list.each { |user|
   user_entity = User.create(user)
   admin = rand(2)
   admin == 1 ? admin = true : admin = false
-  PipelineUser.create(pipeline_id: 1, user_id: user_entity.id, admin: admin)
-  PipelineUser.create(pipeline_id: 2, user_id: user_entity.id, admin: admin)
-  PipelineUser.create(pipeline_id: 3, user_id: user_entity.id, admin: admin)
+  PipelineUser.create(pipeline_id: pipeline_admissions.id, user_id: user_entity.id, admin: admin)
+  PipelineUser.create(pipeline_id: pipeline_hiring.id, user_id: user_entity.id, admin: admin)
+  PipelineUser.create(pipeline_id: pipeline_get_alumni_jobs.id, user_id: user_entity.id, admin: admin)
 }
 
 User.create([

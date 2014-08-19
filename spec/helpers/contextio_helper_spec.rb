@@ -50,7 +50,7 @@ describe ContextioHelper do
      VCR.use_cassette('retrieve_multiple_messages') do
       inputs = { account: ContextioHelper.account_email_signin('devpiedpiper@gmail.com'), contact:OpenStruct.new(email:'jered.mccullough@gmail.com'), time: 4.weeks.ago.to_i}
       messages = ContextioHelper.get_messages(inputs)
-binding.pry
+
       expect(messages).to be_a(ContextIO::MessageCollection)
     end
   end

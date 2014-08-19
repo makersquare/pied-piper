@@ -61,45 +61,8 @@ app.controller('ToggleCtrl', ['$scope', function($scope) {
     "All": "http://google.com",
     "Unread": "http://google.com",
     "Important": "http://google.com",
+    "Recent": "http://google.com",
   };
   $scope.show_email = false;
-}]);
-
-app.controller('ToggleDoubleCtrl', ['$scope', function($scope) {
-  $scope.show = false;
-  $scope.show2 = false;
-}]);
-
-app.controller('EmailShowCtrl',['$scope', '$resource', '$http',
-  '$location', '$routeParams', function($scope, $resource, $http,
-    $location, $routeParams){
-
-    $scope.messages=null;
-
-  var EmailRetrieveRsc = $resource('/contextio/email/:id.json',
-      {id: '@id'},
-      {
-       get: {method: 'GET'},
-        }
-      );
-
-  EmailRetrieveRsc.get({id: $routeParams.cid})
-  .$promise.then(function(messages){
-  $scope.messages = messages});
-}]);
-
-
-app.controller('AccordionDemoCtrl',['$scope', function($scope) {
-  $scope.oneAtATime = true;
-
-  $scope.addItem = function() {
-    var newItemNo = $scope.items.length + 1;
-    $scope.items.push('Item ' + newItemNo);
-  };
-
-  $scope.status = {
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
 }]);
 

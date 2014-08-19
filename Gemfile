@@ -10,6 +10,8 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'pry-byebug'
   gem "jasmine", github: "pivotal/jasmine-gem"
+  gem "teaspoon"
+  gem "phantomjs"
 end
 
 gem 'hashie'
@@ -73,3 +75,4 @@ gem 'jquery-ui-rails'
 gem 'contextio'
 gem 'rails_12factor', group: :production
 gem 'redis'
+gem 'foundation-icons-sass-rails'

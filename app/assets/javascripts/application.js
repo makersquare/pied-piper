@@ -23,5 +23,6 @@
 //= require_tree ./angular-foundation
 //= require_tree ./balancedjs
 //= require_tree ./angular
+//= require angular-mocks
 
 $(function(){ $(document).foundation(); });

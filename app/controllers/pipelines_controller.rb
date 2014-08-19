@@ -29,7 +29,7 @@ class PipelinesController < ApplicationController
   # if the request is coming for an admin of the entire app or
   # allow any user to create pipelines
   def create
-    respond_with CreatePipelineScript.run(pipeline_params).data
+    respond_with CreatePipelineScript.run(name: params[:name], user_id: current_user.id).data
   end
 
   #sets DB flag for pipeline to be trashed, can limit to admins on frontend
@@ -68,7 +68,7 @@ class PipelinesController < ApplicationController
   def retrieve_collaborators
     result = RetrieveCollaborators.run(params[:pipeline_id])
     if result.success?
-      respond_with result.data
+      respond_with result.data.to_json
     else
       respond_with result.error.to_json
     end

@@ -3,7 +3,9 @@
     <nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
-          <h1><a>Pied-Piper</a></h1>
+          <div class = 'topbarmargin'>
+            <a class ='logo' href='/'><img src= '/assets/makersquare_diecut.png' ></a>
+          </div>
         </li>
       </ul>
 
@@ -17,15 +19,9 @@
               </li>
             </ul>
           </li>
-          <li><a class ='' href="#"><i class="fi-plus"></i></a></li>
+          <li><a ng-click="namePipeline()"><i class="fi-plus"></i></a></li>
           <li><a></a></li>
           <li><a></a></li>
-        </ul>
-
-
-        <ul class="left">
-
-        <li><input ng-model="searchItem" type="text" placeholder="Type to Search" ng-change="search()"/></li>
         </ul>
 
         <ul class="right">
@@ -38,6 +34,11 @@
           </li>
         </ul>
 
+        <ul class="right">
+          <div class = 'topbarmargin'>
+            <li><input ng-model="searchItem" type="text" placeholder="Type to Search" ng-change="search()"/></li>
+          </div>
+        </ul>
       </section>
 
     </nav>

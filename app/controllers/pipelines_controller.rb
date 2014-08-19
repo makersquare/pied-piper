@@ -16,7 +16,12 @@ class PipelinesController < ApplicationController
     #   respond_with result.error
     # end
     # FIXME
-    respond_with Pipeline.all
+    result = RetrieveAllPipelineInfo.run(params)
+    if result.success?
+      respond_with result.pipelines.map(&:to_h)
+    else
+      respond_with(result.error, status: :unprocessable_entity)
+    end
   end
 
   # TSX to check and make sure valid. Backend check for if

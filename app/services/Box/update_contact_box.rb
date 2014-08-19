@@ -1,3 +1,7 @@
+# 1. Update contact's primary information
+# 2. Update contact's box fields
+# 3. Update contact's stage
+# 4. Update contact's note
 class UpdateContactBox < TransactionScript
   def run(params)
     # Updates a contact's box info
@@ -5,12 +9,7 @@ class UpdateContactBox < TransactionScript
     b.stage_id = params[:stage_id] || b.stage_id
     b.pipeline_location = params[:pipeline_location] || b.pipeline_location
 
-    if (params[:contact])
-      b.contact.name = params[:contact][:name] || b.contact.name
-      b.contact.email = params[:contact][:email] || b.contact.email
-      b.contact.phonenumber = params[:contact][:phonenumber] || b.contact.phonenumber
-      b.contact.city = params[:contact][:city] || b.contact.city
-    end
+    UpdateContactInfo.run(params)
 
     if params.include?(:status)
       UpdateBoxStage.run(params)

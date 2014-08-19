@@ -13,7 +13,7 @@
         <div ng-repeat="stage in pipeline.stages">
           <li><a href="#">
             <div class="count">{{ stage.contact_count }}</div>
-            <div class="name">{{ stage.name }}</div>
+            <div class="name">{{ stage.name | uppercase }}</div>
           </a></li>
         </div>
       </ul>

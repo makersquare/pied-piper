@@ -1,10 +1,19 @@
 <h1>Pipeline Overview</h1>
 
 <div ng-repeat="pipeline in pipelines">
-  {{pipeline.name}}
-  {{pipeline.contact_count}}
-  <div ng-repeat="stage in pipeline.stages">
-    {{stage.name}}
-    {{stage.contact_count}}
-  </div>
+  <h3>{{pipeline.name}}</h3>
+    <div class="row">
+      <ul class="pipeline">
+        <li><a href="#">
+          <div class="count">{{ pipeline.contact_count }}</div>
+          <div class="name">ALL ACTIVE</div>
+        </a></li>
+        <div ng-repeat="stage in pipeline.stages">
+          <li><a href="#">
+            <div class="count">{{ stage.contact_count }}</div>
+            <div class="name">{{ stage.name }}</div>
+          </a></li>
+        </div>
+      </ul>
+    </div>
 </div>

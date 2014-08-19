@@ -28,6 +28,7 @@ app.controller('ContactsCtrl',
     $scope.pipelines = PipelinesRsc.query();
     $scope.contacts = ContactsRsc.query();
     $scope.newContact = {};
+
     $scope.addNewContact = function(){
       ContactsRsc.save($scope.newContact, function(contact) {
         $scope.contacts.unshift(contact);
@@ -40,7 +41,7 @@ app.controller('ContactsCtrl',
       return $scope.contacts.$promise;
     }).then(function(result) {
       $scope.contacts = result;
-      setUnaddedPipelinesForContacts($scope.contacts, $scope. pipelines);
+      setUnaddedPipelinesForContacts($scope.contacts, $scope.pipelines);
     });
 
     $scope.addContactToPipeline = function(pipeline, contact) {

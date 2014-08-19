@@ -3,8 +3,11 @@
     <nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
-          <div class = 'topbarmargin'>
-            <a class ='logo' href='/'><img src= '/assets/makersquare_diecut.png' ></a>
+          <div>
+            <h1><a class ='logo' href='/'><img src= '/assets/makersquare_diecut.png'>
+              <span class ='logo_fat'>Maker</span>
+              <span class ='logo_skinny'>Square</span>
+            </a></h1>
           </div>
         </li>
       </ul>
@@ -36,7 +39,7 @@
 
         <ul class="right">
           <div class = 'topbarmargin'>
-            <li><input ng-model="searchItem" type="text" placeholder="Type to Search" ng-change="search()"/></li>
+            <li><input class = 'topbarcenter' ng-model="searchItem" type="text" placeholder="Type to Search" ng-change="search()"/></li>
           </div>
         </ul>
       </section>

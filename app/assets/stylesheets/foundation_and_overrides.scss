@@ -1201,8 +1201,8 @@ $topbar-height: 60px;
 $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
-// $topbar-title-weight: $font-weight-normal;
-// $topbar-title-font-size: rem-calc(17);
+$topbar-title-weight: $font-weight-normal;
+$topbar-title-font-size: rem-calc(17);
 
 // Style the top bar dropdown elements
 $topbar-dropdown-bg: #2380E2;
@@ -1330,6 +1330,34 @@ div.topbarmargin{
   margin-top: 9px;
 }
 
+nav.top-bar .logo_skinny {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 26px;
+  font-weight: 100;
+  color: white;
+  vertical-align: middle;
+}
+
+nav.top-bar .logo_fat {
+  letter-spacing: 1px;
+  font-size: 26px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: white;
+  vertical-align: middle;
+}
+// .top-bar .name h1 a {
+// font-weight: bold;
+// color: white;
+// width: 50%;
+// display: block;
+// padding: 0 20px;
+// }
+img {
+display: inline-block;
+vertical-align: middle;
+}
 /* ------------------------------------------- */
 /* Mixins
 /* ------------------------------------------- */

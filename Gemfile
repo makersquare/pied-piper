@@ -19,7 +19,6 @@ gem 'foundation-rails'
 gem 'angularjs-rails'
 gem 'ng-rails-csrf'
 gem 'underscore-rails'
-gem 'haml'
 
 group :test do
   gem 'vcr', '~> 2.6.0'

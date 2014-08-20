@@ -17,7 +17,13 @@ var app = angular
       controller: 'PipelineIndexCtrl'
     })
     .when('/pipeline/:id', {
+      // TODO: switch me with the new implementation
       templateUrl: "<%= asset_path('angular/templates/pipeline_details.html') %>",
+      controller: 'PipelineDetailsCtrl'
+    })
+    .when('/pipeline2/:id', {
+      // TODO: DELETE ME WHEN DONE IMPLEMENTING
+      templateUrl: "<%= asset_path('angular/templates/pipeline_details2.html') %>",
       controller: 'PipelineDetailsCtrl'
     })
     .when('/pipeline/:id/users', {

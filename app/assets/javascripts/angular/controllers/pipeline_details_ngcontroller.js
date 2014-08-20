@@ -1,11 +1,25 @@
 app.controller('PipelineDetailsCtrl',
-  ['$scope', '$resource',
-  '$routeParams','PipelinesRsc',
-  'ContactsBoxRsc', 'FieldsRsc',
-  'StagesRsc', 'ContactSelector',
-  function($scope, $resource, $routeParams,
-    PipelinesRsc, ContactsBoxRsc, FieldsRsc,
-    StagesRsc, ContactSelector) {
+  ['$scope', '$routeParams', 'PipelineService', 'BoxService',
+  function($scope, $routeParams, PipelineService, BoxService) {
+
+    var pipelineId = $scope.pipeline_id = $routeParams.id;
+
+    /*
+     * Use BoxService to grab all Boxes
+     * and allow selection, updates, and more
+     * We'll be watching the contacts through
+     * broadcasts
+     */
+    $scope.BoxService = BoxService;
+    BoxService.setUp($routeParams.id);
+    $scope.stageContacts = BoxService.stageContacts;
+    $scope.stageContacts = BoxService.stageContacts;
+    $scope.stageSelection = BoxService.stageSelection;
+    $scope.allContactsSelection = BoxService.allContactsSelection;
+
+    $scope.$on("stageContacts:updated", function(event, data, id){
+      $scope.stageContacts = data;
+    });
 
 // Update a contact's stage using the dropdown list
     $scope.changeStage = function(contact, stage) {

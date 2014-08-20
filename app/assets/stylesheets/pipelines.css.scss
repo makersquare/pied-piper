@@ -67,12 +67,23 @@ li.price.hidepadding {
 }
 
 div.email_stuff {
-background-color: white;
-height: 400px;
-overflow-y: scroll;
+  background-color: white;
+  height: 400px;
+  overflow-y: scroll;
 }
 
 .shrink {
-font-size: small;
+  font-size: small;
 }
 
+div.over-panel{
+  position: absolute;
+  z-index: 300;
+  left: 26%;
+}
+
+.slidebox{
+  min-height:90vh;
+  overflow-y: scroll;
+  background-color: white;
+}

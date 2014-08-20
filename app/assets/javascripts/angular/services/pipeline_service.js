@@ -24,7 +24,12 @@ app.factory("PipelineService", ["$rootScope", "PipelinesRsc",
       return FieldsRsc.query({pipeline_id: pipelineId});
     }
 
+    var test = function() {
+      return true;
+    }
+
     return {
+      what: test,
       pipeline: retrievePipeline,
       stages: retrieveStages,
       fields: retrieveFields,

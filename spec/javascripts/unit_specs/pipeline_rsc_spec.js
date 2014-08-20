@@ -24,9 +24,10 @@ describe('PipelinesRsc', function(){
 
 
   it('get all pipelines', function() {
+    console.log($httpBackend);
      $httpBackend.expectGET('/pipelines.json')
 
-     pipes = PipelinesRsc.get()
+     pipes = PipelinesRsc.query()
 
      $httpBackend.flush();
 
@@ -37,7 +38,7 @@ describe('PipelinesRsc', function(){
 
     $httpBackend.expectGET('/pipelines/1.json')
 
-    pipe = PipelinesRsc.getPipe({id:1});
+    pipe = PipelinesRsc.get({id:1});
 
     $httpBackend.flush();
 

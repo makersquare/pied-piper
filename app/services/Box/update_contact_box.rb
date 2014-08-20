@@ -10,6 +10,7 @@ class UpdateContactBox < TransactionScript
     b.pipeline_location = params[:pipeline_location] || b.pipeline_location
 
     UpdateContactInfo.run(params)
+    UpdateContactFieldValues.run(params)
 
     if params.include?(:status)
       UpdateBoxStage.run(params)

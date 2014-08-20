@@ -45,6 +45,7 @@ class PipelinesController < ApplicationController
   #TSX cause we need the pipeline data, we need the stage data, boxes. Jbuilder, rabl
   #Ar serializer
   def show
+    binding.pry
     pipeline_with_data = RetrievePipeline.run(params[:id])
     respond_with pipeline_with_data.data
   end

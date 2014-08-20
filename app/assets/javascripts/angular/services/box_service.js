@@ -105,7 +105,12 @@ app.factory("BoxService", ["$resource", "ContactsBoxRsc", "$rootScope",
       ContactsBoxRsc.update({pipeline_id: pipelineId, id: contact.id, contact: contact});
     };
 
+    var test = function() {
+      return true;
+    };
+
     return {
+      test: test,
       contacts: contacts,
       stageContacts: stageContacts,
       setUp: setUp,

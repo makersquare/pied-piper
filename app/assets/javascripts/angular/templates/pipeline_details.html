@@ -6,7 +6,9 @@
         Title: <input type="text" name="pipeName" ng-model="pipeData.name">
       </form>
       <h2>{{pipeline.name}}</h2>
-      <span><a href="/#/pipeline/{{pipeline_id}}/stages" class="button tiny">Add Stages & Fields</a></span>
+      <span>
+        <a href="/#/pipeline/{{pipeline_id}}/stages" class="button tiny">Add Stages & Fields</a>
+      </span>
 
       <a href="/#/pipeline/{{pipeline_id}}/users/"
       class="button tiny">Manage Collaborators</a>
@@ -28,7 +30,7 @@
 <h3>Stages</h3>
 <div class="row">
   <button ng-click="BoxService.toggleAllContactSelection();">Select/Deselect All</button>
-  <div class="panel collumns"
+  <div class="panel"
     ng-repeat="stage in stages"
     ng-drop="true"
     ng-drop-success="onDropComplete($data,stage)">
@@ -40,9 +42,12 @@
       <!-- Heading for fields in your pipeline -->
       <thead>
         <tr>
-          <th><input type="checkbox" ng-model="stage.selection" ng-change="BoxService.toggleStageSelection(stage)"></th>
+          <th>
+            <input type="checkbox" ng-model="stage.selection" ng-change="BoxService.toggleStageSelection(stage)">
+          </th>
           <th>Details</th>
           <th>Stage</th>
+          <!-- TODO: need to add the capitalize and convert underscore filters here, respectively -->
           <th ng-repeat="field in basicFields">{{field.field_name}}</th>
           <th ng-repeat="field in fields">{{field.field_name}}</th>
         </tr>

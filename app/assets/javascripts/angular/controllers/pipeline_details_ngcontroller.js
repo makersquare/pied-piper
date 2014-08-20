@@ -31,7 +31,7 @@ app.controller('PipelineDetailsCtrl',
     $scope.updateBoxOnEnter = function(event, contact) {
       if (event.keyCode == 13) {
         BoxService.updateBox(contact);
-      };
+      }
     };
 
     /*

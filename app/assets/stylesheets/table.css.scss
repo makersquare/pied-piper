@@ -1,0 +1,35 @@
+// Table Variables
+$header-row-color: #444444;
+$header-text-color: #f4f;
+$header-border-color: #4f4;
+$header-text-color: #4f4;
+
+$tdth-border: #ccc;
+$table-border: #777;
+
+$table-row-color: #444ff1;
+$table-even-row: darken($table-row-color, 15);
+$table-odd-row: darken($table-row-color, 15);
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Zebra striping */
+tr {
+  &:nth-child(odd) {
+    background: $table-odd-row;
+  }
+}
+
+th {
+  background: $header-row-color;
+  color: $header-text-color;
+  font-weight: bold;
+}
+td, th {
+  padding: 6px;
+  border: 1px solid $tdth-border;
+  text-align: left;
+}

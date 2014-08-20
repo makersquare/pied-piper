@@ -36,7 +36,7 @@ app.factory("BoxService", ["$resource", "ContactsBoxRsc", "$rootScope",
           stageContacts[contactStageId] = [];
         }
         stageContacts[contactStageId].push(contact);
-      };
+      }
 
       $rootScope.$broadcast('stageContacts:updated', stageContacts);
     };
@@ -89,7 +89,7 @@ app.factory("BoxService", ["$resource", "ContactsBoxRsc", "$rootScope",
       var recipients = "";
 
       for (var index in contacts) {
-        var contact = contacts[index]
+        var contact = contacts[index];
         if (contact.selected) {
           recipients += contact.email + "; ";
         }

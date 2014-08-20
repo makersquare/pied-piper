@@ -13,11 +13,13 @@ app.controller('PipelineDetailsCtrl',
     $scope.BoxService = BoxService;
     BoxService.setUp($routeParams.id);
     $scope.stageContacts = BoxService.stageContacts;
+
     $scope.stageSelection = BoxService.stageSelection;
     $scope.allContactsSelection = BoxService.allContactsSelection;
 
     $scope.$on("stageContacts:updated", function(event, data, id){
       $scope.stageContacts = data;
+
     });
 
     $scope.$on("allContactsSelection:updated", function(event, data){

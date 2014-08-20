@@ -5,34 +5,20 @@
   background-color: #1abc9c;
 }
 
-input.bordername {
-  border: 0;
-  margin: 0;
-  outline:none;
-  box-shadow: inset 0 0px 0px;
-  background-color: #f6f6f6;
-  padding: 0rem 1.25rem 0rem;
-  text-align: center;
-  color: #333333;
-  font-weight: normal;
-  font-size: 2rem;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-}
-input:focus.bordername {
-  border: 0;
-  margin: 0;
-  outline:none;
-  box-shadow: inset 0 0px 0px;
-  background-color: #f6f6f6;
-  padding: 0rem 1.25rem 0rem;
-  text-align: center;
-  color: #333333;
-  font-weight: normal;
-  font-size: 2rem;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-}
 
-input.border {
+
+input.contact-details.contact-name {
+  background-color: #f6f6f6;
+  padding: 0rem 1.25rem 0rem;
+  font-size: 2rem;
+}
+input:focus.contact-details.contact-name {
+  background-color: #f6f6f6;
+  padding: 0rem 1.25rem 0rem;
+  font-size: 2rem;
+}
+// this removes the all the input field boxes and shadows
+input.contact-details {
   border: 0;
   margin: 0;
   padding: 0;
@@ -45,7 +31,8 @@ input.border {
   font-size: 0.875rem;
   font-weight: normal;
 }
-input:focus.border {
+
+input:focus.contact-details {
   border: 0;
   margin: 0;
   padding: 0;
@@ -62,6 +49,7 @@ input:focus.border {
 li.bullet-item.hidepadding {
   padding: .220rem;
 }
+
 li.price.hidepadding {
   padding: .765rem;
 }
@@ -83,7 +71,7 @@ div.over-panel{
 }
 
 .slidebox{
-  min-height:90vh;
+  min-height: 90vh;
   overflow-y: scroll;
   background-color: white;
 }

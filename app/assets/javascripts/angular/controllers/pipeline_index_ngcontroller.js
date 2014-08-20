@@ -6,10 +6,6 @@ app.controller('PipelineIndexCtrl',
 
     $scope.pipelineList = PipelinesRsc.query();
 
-    $scope.namePipeline = function() {
-      $scope.newPipeline = true;
-    };
-
     $scope.createNewPipeline = function(){
       if ($scope.pipelineName.length > 0) {
         PipelinesRsc.save({'name': $scope.pipelineName}, function(data) {

@@ -4,3 +4,12 @@
 require File.expand_path('../config/application', __FILE__)
 
 Crm::Application.load_tasks
+
+require 'rake'
+require 'resque/tasks'
+
+task "resque:setup" => :environment do
+  ENV['QUEUE'] ||= '*'
+  ENV['BACKGROUND'] ||= 'yes'
+  ENV['PIDFILE'] ||= './resque.pid'
+end

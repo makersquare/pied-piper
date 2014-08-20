@@ -24,7 +24,6 @@
 <div class="row">
 
   <button ng-click="BoxService.toggleAllContactSelection();">Select/Deselect All</button>
-
   <div class="" ng-repeat="stage in stages">
     <div class="row panel">
       <h3>{{stage.name}}</h3>
@@ -34,9 +33,7 @@
       <!-- Heading for fields in your pipeline -->
       <thead>
         <tr>
-          <th>
-            <input type="checkbox" ng-model="stage.selection" ng-change="BoxService.toggleStageSelection(stage)">
-          </th>
+          <th><input type="checkbox" ng-model="stage.selection" ng-change="BoxService.toggleStageSelection(stage)"></th>
           <th>Details</th>
           <th>Stage</th>
           <th ng-repeat="field in basicFields">{{field.field_name | titleCase}}</th>

@@ -14,21 +14,21 @@ app.factory("PipelineService", ["$rootScope", "PipelinesRsc",
           $rootScope.$broadcast('pipeline:updated', data);
         });
       return pipeline;
-    }
+    };
 
     var retrieveStages = function(pipelineId) {
       return StagesRsc.query({pipeline_id: pipelineId});
-    }
+    };
 
     var retrieveFields = function(pipelineId) {
       return FieldsRsc.query({pipeline_id: pipelineId});
-    }
+    };
 
     return {
       pipeline: retrievePipeline,
       stages: retrieveStages,
       fields: retrieveFields,
       basicFields: basicFields
-    }
+    };
   }
 ]);

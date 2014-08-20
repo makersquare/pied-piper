@@ -27,7 +27,11 @@
 </div>
 
 <!-- Displays all of the stages and contact information -->
-<h3>Stages</h3>
+<div class="row">
+  <div class="columns text-center large-centered">
+    <h3>Stages</h3>
+  </div>
+</div>
 <div class="row">
   <button ng-click="BoxService.toggleAllContactSelection();">Select/Deselect All</button>
   <div class="panel"
@@ -47,9 +51,8 @@
           </th>
           <th>Details</th>
           <th>Stage</th>
-          <!-- TODO: need to add the capitalize and convert underscore filters here, respectively -->
-          <th ng-repeat="field in basicFields">{{field.field_name}}</th>
-          <th ng-repeat="field in fields">{{field.field_name}}</th>
+          <th ng-repeat="field in basicFields">{{field.field_name | titleCase}}</th>
+          <th ng-repeat="field in fields">{{field.field_name | titleCase}}</th>
         </tr>
       </thead>
       <tbody ng-controller="PipelineDetailsCtrl">
@@ -77,11 +80,13 @@
           </td>
           <form id="inputForm">
             <td ng-repeat="field in basicFields">
-              <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="updateBoxOnEnter($event, contact)">
+            <!-- TODO: need to make a input field class here for the text fields -->
+              <input type="text" class="tableField" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="updateBoxOnEnter($event, contact)">
               <p ng-hide="contact.showEdit" ng-dblclick="BoxService.toggleEditable(contact)">{{contact[field.field_name]}}</p>
             </td>
+            <!-- TODO: need to make a input field class here for the text fields -->
             <td ng-repeat="field in fields">
-              <input type="text" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="updateBoxOnEnter($event, contact)">
+              <input type="text" class="tableField" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="updateBoxOnEnter($event, contact)">
               <p ng-hide="contact.showEdit" ng-dblclick="BoxService.toggleEditable(contact)">{{contact[field.field_name]}}</p>
             </td>
           </form>

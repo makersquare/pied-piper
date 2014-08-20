@@ -1,35 +1,31 @@
 // Table Variables
-$header-row-color: #444444;
+$header-row-color: #2380E2;
+$row-odd-color: #CEE2F7;
 $header-text-color: #f4f;
-$header-border-color: #4f4;
-$header-text-color: #4f4;
-
-$tdth-border: #ccc;
-$table-border: #777;
-
-$table-row-color: #444ff1;
-$table-even-row: darken($table-row-color, 15);
-$table-odd-row: darken($table-row-color, 15);
 
 table {
-  width: 100%;
+  // width: 100%;
+  // table-layout: fixed;
   border-collapse: collapse;
 }
 
 /* Zebra striping */
 tr {
-  &:nth-child(odd) {
-    background: $table-odd-row;
+  &:nth-of-type(2n+1) {
+    background: $row-odd-color;
   }
 }
 
 th {
   background: $header-row-color;
-  color: $header-text-color;
+  white-space-collapse: true;
+  word-wrap: break-word;
   font-weight: bold;
+  text-align: center;
 }
+
 td, th {
   padding: 6px;
-  border: 1px solid $tdth-border;
-  text-align: left;
+  border: 1px solid black;
+  text-align: center;
 }

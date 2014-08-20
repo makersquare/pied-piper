@@ -3,19 +3,17 @@
 </div>
 
 <div ng-repeat="pipeline in pipelines">
-    <div class="row">
-      <h3>{{pipeline.name}}</h3>
-      <ul class="pipeline">
-        <li><a href="#">
-          <div class="count">{{ pipeline.contact_count }}</div>
-          <div class="name">ALL ACTIVE</div>
-        </a></li>
-        <div ng-repeat="stage in pipeline.stages">
-          <li><a href="#">
-            <div class="count">{{ stage.contact_count }}</div>
-            <div class="name">{{ stage.name | uppercase }}</div>
-          </a></li>
-        </div>
-      </ul>
-    </div>
+  <div class="row">
+    <h3>{{pipeline.name}}</h3>
+    <ul class="flex-container">
+      <li class="flex-item"><a href="#">
+        <div class="contact-count">{{ pipeline.contact_count }}</div>
+        <div class="pipeline-name">ALL ACTIVE</div>
+      </a></li>
+      <li class="flex-item" ng-repeat="stage in pipeline.stages"><a href="#">
+        <div class="contact-count">{{ stage.contact_count }}</div>
+        <div class="pipeline-name">{{ stage.name | uppercase }}</div>
+      </a></li>
+    </ul>
+  </div>
 </div>

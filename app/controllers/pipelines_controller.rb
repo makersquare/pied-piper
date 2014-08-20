@@ -29,11 +29,6 @@ class PipelinesController < ApplicationController
     respond_with true, location: '/pipelines'
   end
 
-  def queue_pipeline
-    Resque.enqueue(CreatePipeline, "test #{rand(100)}")
-    respond_with true, location: '/pipelines'
-  end
-
   # TSX to check and make sure valid. Backend check for if
   # people concurrently add pipelines. This needs to check
   # if the request is coming for an admin of the entire app or

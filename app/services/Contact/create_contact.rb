@@ -9,7 +9,7 @@ class CreateContact < TransactionScript
     result = Contact.create({name: params.name, phonenumber: params.phonenumber, email: params.email})
 
     if result
-      Resque.enqueue(NewContactEE)
+      Resque.enqueue(NewContactEE, result)
       # UserMailer.new_contact_update(result).deliver
     end
 

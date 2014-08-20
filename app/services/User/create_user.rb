@@ -16,7 +16,7 @@ class CreateUser < TransactionScript
       })
 
     if result
-      UserMailer.registration_email(result).deliver
+      # UserMailer.registration_email(result).deliver
     end
 
 #this adds the user to Contextio and creates a webhook and downloads contacts

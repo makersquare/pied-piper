@@ -30,6 +30,5 @@ class CreateContact < TransactionScript
     return true
   end
 
-
 end
 

@@ -47,5 +47,6 @@ Crm::Application.routes.draw do
   post 'contextio/webhook/:id' => 'contextio#callback'
   get 'contextio/email/:id' => 'contextio#getemail'
 
-
+  # Resque implementation
+  mount Resque::Server.new, at: "/resque"
 end

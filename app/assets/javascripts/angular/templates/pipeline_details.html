@@ -1,47 +1,35 @@
+<!-- BEGIN- Show Pipeline Options and Name/Title -->
 <div class="row ">
-  <div id="pipeDataDiv" class="large-8 columns">
+  <div id="pipeDataDiv" class="large-8 columns panel">
     <!-- Displays title of the pipeline -->
-    <div id="showDataDiv" ng-hide="editData">
-      <form name="pipeDataForm" ng-hide="!editData">
-        Title: <input type="text" name="pipeName" ng-model="pipeData.name">
-      </form>
+    <div id="showDataDiv">
       <h2>{{pipeline.name}}</h2>
-      <span>
-        <a href="/#/pipeline/{{pipeline_id}}/stages" class="button tiny">Add Stages & Fields</a>
-      </span>
-
-      <a href="/#/pipeline/{{pipeline_id}}/users/"
-      class="button tiny">Manage Collaborators</a>
-
+      <a href="/#/pipeline/{{pipeline_id}}/stages" class="button tiny">Add Stages & Fields</a>
+      <a href="/#/pipeline/{{pipeline_id}}/users/" class="button tiny">Manage Collaborators</a>
       <a ng-click="BoxService.sendEmailToSelected()" class="button tiny">Send Email</a>
     </div>
-
-    <!-- Allows you to edit the pipeline title -->
-    <form name="pipeDataForm" ng-hide="!editData">
-      Title: <input type="text" name="pipeName" ng-model="pipeline.name">
-      Created At: <input disabled type="text" name="pipeline.created_at" ng-model="pipeline.created_at">
-      Trash: <input type="checkbox" name="pipeTrash" ng-model="pipeline.trashed">
-    </form>
   </div>
-
 </div>
+<!-- END- Show Pipeline Options and Name/Title -->
 
-<!-- Displays all of the stages and contact information -->
+<!-- BEGIN- Stages Partition -->
 <div class="row">
   <div class="columns text-center large-centered">
     <h3>Stages</h3>
   </div>
 </div>
+<!-- END- Stages Partition -->
+
+<!-- BEGIN- Show Stage information tables -->
 <div class="row">
+
   <button ng-click="BoxService.toggleAllContactSelection();">Select/Deselect All</button>
-  <div class="panel"
-    ng-repeat="stage in stages"
-    ng-drop="true"
-    ng-drop-success="onDropComplete($data,stage)">
 
-    <h3>{{stage.name}}</h3>
-    <p>{{stage.description}}</p>
-
+  <div class="" ng-repeat="stage in stages">
+    <div class="row panel">
+      <h3>{{stage.name}}</h3>
+      <p>{{stage.description}}</p>
+    </div>
     <table>
       <!-- Heading for fields in your pipeline -->
       <thead>

@@ -21,15 +21,47 @@
 <!-- END- Stages Partition -->
 
 <!-- BEGIN- Show Stage information tables -->
-<div class="row">
 
-  <button ng-click="BoxService.toggleAllContactSelection();">Select/Deselect All</button>
-  <div>
-    <div class="" ng-repeat="stage in stages">
-      <div class="row panel">
-        <h3>{{stage.name}}</h3>
-        <p>{{stage.description}}</p>
+  <button ng-click="BoxService.toggleAllContactSelection();">
+  Select/Deselect All
+  </button>
+  <br>
+  <div class='flex tall full' ng-controller="PipelineDetailsCtrl" >
+    <div class="flex wide full fl-item">
+      <div class = 'fl-item sml'>
       </div>
+      <div class = 'fl-item flex tall' ng-repeat="field in basicFields.concat(fields)">
+        {{field.field_name | titleCase}}
+      </div>
+    </div>
+    <div class = 'fl-item flex tall full' ng-repeat="stage in stages">
+      <div class = 'stge fl-item'>
+        <input class='left' type="checkbox" ng-model="stage.selection" ng-change="BoxService.toggleStageSelection(stage)">
+        <h5 ><strong>{{stage.name}}:</strong> {{stage.description}}</h5>
+        <div class = 'flex wide full'>
+          <div class = 'fl-item sml'>
+          </div>
+
+
+          <div class = 'fl-item flex tall' ng-repeat="field in basicFields.concat(fields)">
+            <div class = 'fl-item full txt-left' ng-repeat="contact in stageContacts[stage.id]">
+            {{contact[field.field_name]}}
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+
+
       <!-- <table> -->
         <!-- Heading for fields in your pipeline -->
        <!--  <thead>
@@ -79,6 +111,3 @@
           </tr>
         </tbody>
       </table> -->
-    </div>
-  </div>
-</div>

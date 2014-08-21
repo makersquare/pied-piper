@@ -7,7 +7,6 @@ app.factory("PipelineService", ["$rootScope", "PipelinesRsc",
   function ($rootScope, PipelinesRsc, StagesRsc, FieldsRsc) {
 
     var basicFields = [{field_name: "name"}, {field_name: "email"}];
-
     var retrievePipeline = function(pipelineId) {
       pipeline = PipelinesRsc.get({id: pipelineId})
         .$promise.then(function(data) {

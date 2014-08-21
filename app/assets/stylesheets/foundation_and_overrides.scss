@@ -1408,6 +1408,42 @@ li.price.hidepadding {
 
 
 
+// flexbox stuff
+.flex{
+  display: inline-flex;
+  overflow: auto;
+  align-items: stretch;
+}
+.flex.wide{
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+.flex.full{
+  width:100%;
+}
+.flex.tall{
+  flex-flow: column nowrap;
+}
+.stge{
+  width: 90%;
+  text-align: center;
+}
+.txt-left{
+  text-align: left;
+  border-right: 1px solid black;
+  width:100%;
+}
+
+.fl-item{
+  flex-grow:2;
+  align-self: baseline;
+}
+
+.fl-item.sml{
+  flex-grow:1;
+}
+
+
 
 
 /* ------------------------------------------- */

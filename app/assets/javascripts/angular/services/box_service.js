@@ -119,6 +119,7 @@ app.factory("BoxService", ["$resource", "ContactsBoxRsc", "$rootScope",
       changeStage: changeStage,
       stageSelection: stageSelection,
       toggleEditable: toggleEditable,
-      sendEmailToSelected: sendEmailToSelected
+      sendEmailToSelected: sendEmailToSelected,
+      ContactsBoxRsc: ContactsBoxRsc
     };
 }]);

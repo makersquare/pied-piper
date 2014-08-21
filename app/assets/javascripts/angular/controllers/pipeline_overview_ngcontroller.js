@@ -9,6 +9,7 @@ app.controller('PipelineOverviewCtrl', ['$scope', 'PipelinesRsc',
         PipelinesRsc.save({'name': $scope.pipelineName}, function(data) {
           $scope.newPipeline = false;
           $scope.pipelines.push({'name': $scope.pipelineName, 'id': data.id});
+          $scope.pipelineName='';
         });
       }
     };

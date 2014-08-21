@@ -8,9 +8,13 @@ app.directive('bsActiveLink', ['$location', function($location) {
             var selectors = ['li > [href="#' + $location.path() + '"]',
                              'li > [href="/#' + $location.path() + '"]', //html5: false
                              'li > [href="' + $location.path() + '"]']; //html5: true
-            $(elem).find(selectors.join(',')) //find the matching link
-            .parent('li').addClass('active') //add active class to the matching element
-            .siblings('li').removeClass('active'); //remove it from the sibling elements
+            // FIXME: Because foundation uses nested uls in the navbar we need to account for this
+            //find the matching link
+            $(elem).find(selectors.join(','))
+            //add active class to the matching element
+            .parent('li').addClass('active')
+            //remove it from the sibling elements
+            .siblings('li').removeClass('active');
         });
      }
   };

@@ -1,32 +1,53 @@
-<div class="row">
-  <h1>Pipeline Overview</h1>
-  <div class="columns small-6">
-    <form role="form">
-      <div class="row collapse">
-        <div class="small-9 columns">
-          <input ng-model="pipelineName" type="text" class="form-control" id="pipelineName" placeholder="Name New Pipeline">
-        </div>
-        <div class="small-3 columns">
-          <a class="button postfix" ng-click="createNewPipeline()">Submit</a>
-        </div>
-      </div>
-    </form>
+
+
+<div class="columns large-9">
+  <div class="row" ng-repeat="pipeline in pipelines">
+    <h3><a href="/#/pipeline/{{pipeline.id}}">{{pipeline.name}}</a></h3>
+    <ul class="flex-container">
+      <li class="flex-item">
+        <a href="#">
+          <div class="contact-count">{{ pipeline.contact_count }}</div>
+          <div class="pipeline-name">ALL ACTIVE</div>
+        </a>
+      </li>
+      <li class="flex-item" ng-repeat="stage in pipeline.stages">
+        <a href="#">
+          <div class="contact-count">{{ stage.contact_count}}</div>
+          <div class="pipeline-name">{{ stage.name | uppercase }}</div>
+        </a>
+      </li>
+    </ul>
   </div>
 </div>
 
-<div ng-repeat="pipeline in pipelines">
+<div class="columns large-3">
+
+  <!-- Pipeline List row -->
   <div class="row">
-    <h3>{{pipeline.name}}</h3>
-    <ul class="flex-container">
-      <li class="flex-item"><a href="#">
-        <div class="contact-count">{{ pipeline.contact_count }}</div>
-        <div class="pipeline-name">ALL ACTIVE</div>
-      </a></li>
-      <li class="flex-item" ng-repeat="stage in pipeline.stages"><a href="#">
-        <div class="contact-count">{{ stage.contact_count }}</div>
-        <div class="pipeline-name">{{ stage.name | uppercase }}</div>
-      </a></li>
+    <div class="text-center">
+      <h3>Pipeline List</h3>
+    </div>
+    <ul class="side-nav">
+      <!-- Side navigation -->
+      <form ng-submit="createNewPipeline()">
+        <li>
+          <div class="row collapse">
+            <div class="small-10 columns">
+              <input ng-model="pipelineName" type="text" class="form-control" id="newPipeInput" placeholder="Name New Pipeline">
+            </div>
+            <div class="small-2 columns">
+              <a class="button postfix radius" ng-click="createNewPipeline()">+</a>
+            </div>
+          </div>
+        </li>
+      <form>
+      <!-- End Side Navigation -->
+      <li class="divider"></li>
+      <li ng-repeat="pipeline in pipelines">
+        <a href="/#/pipeline/{{pipeline.id}}">{{pipeline.name}}</a>
+      </li>
     </ul>
   </div>
 
 </div>
+

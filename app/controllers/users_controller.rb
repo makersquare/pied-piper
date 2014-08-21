@@ -29,6 +29,15 @@ class UsersController < ApplicationController
     respond_with sanitized_user_json
   end
 
+  def create
+    result = CreateUser.run(params)
+    if result.success?
+      respond_with(result)
+    else
+      respond_with(result.error, status: :unprocessable_entity)
+    end
+  end
+
   private
 
   def sanitize_user_data(user_json)

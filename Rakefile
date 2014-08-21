@@ -11,6 +11,4 @@ require 'resque/scheduler/tasks'
 
 task "resque:setup" => :environment do
   ENV['QUEUE'] ||= '*'
-  ENV['BACKGROUND'] ||= 'yes'
-  ENV['PIDFILE'] ||= './resque.pid'
 end

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  before_save :set_last_email_value
   #saves google outh user object to DB
   def self.from_omniauth(auth)
     where(email: auth.info.email).first_or_initialize.tap do |user|
@@ -18,4 +19,8 @@ class User < ActiveRecord::Base
   has_many :stages, through: :user_stages
   has_many :email_settings
   has_many :notifications
+
+  def set_last_email_value
+    self.last_email ||= Time.now
+  end
 end

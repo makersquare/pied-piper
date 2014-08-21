@@ -55,18 +55,18 @@ def create_pipelines_with_stages_and_fields
   ])
 
   internal_users_list = [
-    {name: 'Shehzan', email: 'shehzan@makersquare.com'},
-    {name: 'Shaan', email: 'shaan@example.com'},
-    {name: 'Nikhil', email: 'nik@example.com'},
-    {name: 'Amanda', email: 'amanda@example.com'},
-    {name: 'DJ', email: 'dj.daniels.90@gmail.com'},
-    {name: 'Andrew', email: 'andrewpei@gmail.com'},
-    {name: 'Jon Katz', email: 'jonathan.a.katz@gmail.com'},
-    {name: 'Gabe', email: 'gabe.a.polk@gmail.com'},
-    {name: 'Alex', email: 'hainesaxiv@gmail.com'},
-    {name: 'Jered M', email: 'mathias.armstrong@gmail.com'},
-    {name: 'Cathy N', email: 'noll.catherine@gmail.com'},
-    {name: 'Mike', email: 'mike@makersquare.com'}
+    {name: 'Shehzan', email: 'shehzan@makersquare.com'}#,
+    #{name: 'Shaan', email: 'shaan@example.com'},
+    #{name: 'Nikhil', email: 'nik@example.com'},
+    #{name: 'Amanda', email: 'amanda@example.com'},
+    #{name: 'DJ', email: 'dj.daniels.90@gmail.com'},
+    #{name: 'Andrew', email: 'andrewpei@gmail.com'},
+    #{name: 'Jon Katz', email: 'jonathan.a.katz@gmail.com'},
+    #{name: 'Gabe', email: 'gabe.a.polk@gmail.com'},
+    #{name: 'Alex', email: 'hainesaxiv@gmail.com'},
+    #{name: 'Jered M', email: 'mathias.armstrong@gmail.com'},
+    #{name: 'Cathy N', email: 'noll.catherine@gmail.com'},
+    #{name: 'Mike', email: 'mike@makersquare.com'}
   ]
 
   internal_users_list.each { |user|

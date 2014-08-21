@@ -29,6 +29,14 @@ class UserMailer < ActionMailer::Base
     end
   end
 
+  def send_user_update(user, email_body)
+    mail(
+      to: user.email,
+      subject: 'MakerSquare CRM Notification: Updates at ' + Time.now.strftime("%A, %B %d, %Y").to_s,
+      body: email_body
+    ).deliver
+  end
+
 # Sends email when a new contact is created.
   def new_contact_update(contact)
     @name = contact.name

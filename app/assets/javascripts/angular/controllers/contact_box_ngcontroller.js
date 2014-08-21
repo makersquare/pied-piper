@@ -1,12 +1,13 @@
 app.controller('ContactBoxCtrl',
-  ['$scope', '$resource', '$http',
-  '$location', '$routeParams',
-  function($scope, $resource, $http,
-    $location, $routeParams) {
+  ['$scope', '$resource', '$http', '$location', '$routeParams', 'BoxService',
+  function($scope, $resource, $http, $location, $routeParams, BoxService) {
 
     $scope.cb = null;
 
-// Define the rails path that will be hit by the http requests
+    $scope.stageContacts = BoxService.stageContacts;
+    $scope.BoxService = BoxService;
+
+    // Define the rails path that will be hit by the http requests
     var ContactBoxRsc = $resource('/pipelines/:pid/contacts/:cid.json',
       {cid: '@cid', pid: '@pid'},
       {
@@ -15,7 +16,7 @@ app.controller('ContactBoxCtrl',
         }
       );
 
-// Send 'get' request
+    // Send 'get' request
     ContactBoxRsc.get(
       {cid: $routeParams.cid,
         pid: $routeParams.pid
@@ -36,25 +37,26 @@ app.controller('ContactBoxCtrl',
         $scope.cb.cid = $routeParams.cid;
         $scope.cb.pid = $routeParams.pid;
         $scope.cb.contact_id = $routeParams.cid;
+        console.log($scope.cb)
 
         // $scope.$watch('newNote', function(v){
         //   $scope.updateEntry();
         //   });
       });
 
-$scope.keyup = function(event, cb) {
-      if (event.keyCode == 13) {
-        cb.showEdit = !cb.showEdit;
-        ContactBoxRsc.update($scope.cb);
-      }
-    };
-// Update the entry by sending the 'update' request
-    $scope.updateEntry = function(){
-      entry = ContactBoxRsc.update(
-        $scope.cb);
-    };
-}]
-);
+  $scope.keyup = function(event, cb) {
+    if (event.keyCode == 13) {
+      cb.showEdit = !cb.showEdit;
+      ContactBoxRsc.update($scope.cb);
+    }
+  };
+
+  // Update the entry by sending the 'update' request
+  $scope.updateEntry = function(){
+    entry = ContactBoxRsc.update(
+      $scope.cb);
+  };
+}]);
 
 app.controller('ToggleCtrl', ['$scope', function($scope) {
   $scope.linkItems = {

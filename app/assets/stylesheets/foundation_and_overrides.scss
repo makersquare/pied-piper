@@ -856,9 +856,9 @@ $magellan-padding: 0 !important;
 // $price-title-font-family: $body-font-family;
 
 // We use these to control the price styles
-// $price-money-bg: #f6f6f6  ;
+$price-money-bg: #F2F2F2;
 // $price-money-padding: rem-calc(15 20);
-// $price-money-align: center;
+$price-money-align: left;
 // $price-money-color: #333;
 // $price-money-weight: $font-weight-normal;
 // $price-money-size: rem-calc(32);
@@ -866,22 +866,22 @@ $magellan-padding: 0 !important;
 
 
 // We use these to control the description styles
-// $price-bg: #fff;
+$price-bg: #F2F2F2;
 // $price-desc-color: #777;
 // $price-desc-padding: rem-calc(15);
-// $price-desc-align: center;
+$price-desc-align: left;
 // $price-desc-font-size: rem-calc(12);
 // $price-desc-weight: $font-weight-normal;
 // $price-desc-line-height: 1.4;
-// $price-desc-bottom-border: dotted 1px #ddd;
+// $price-desc-bottom-border: solid 1px #ddd;
 
 // We use these to control the list item styles
 // $price-item-color: #333;
 // $price-item-padding: rem-calc(15);
-// $price-item-align: center;
+$price-item-align: left;
 // $price-item-font-size: rem-calc(14);
 // $price-item-weight: $font-weight-normal;
-// $price-item-bottom-border: dotted 1px #ddd;
+// $price-item-bottom-border: solid 1px #ddd;
 
 // We use these to control the CTA area styles
 // $price-cta-bg: #fff;

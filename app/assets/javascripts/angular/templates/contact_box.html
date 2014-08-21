@@ -74,8 +74,6 @@
   <div class = 'slidebox right large-4 medium-5 small-12 slide-right'ng-show="show">
 
     <ul class="pricing-table" >
-      <li class ='title'>Contact Info  </li>
-
       <li ng-dblclick = "cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'price'>
         {{cb.contact.name}}
       </li>
@@ -86,7 +84,7 @@
       </li>
 
       <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'bullet-item'>
-        {{cb.contact.city}}
+        <i class="fi-map"></i>  {{cb.contact.city}}
       </li>
 
       <li ng-show="cb.showEdit" class = 'bullet-item hidepadding'>
@@ -95,7 +93,7 @@
       </li>
 
       <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'bullet-item'>
-        <a href="tel:"cb.contact.phonenumber>{{cb.contact.phonenumber}}</a>
+        <i class="fi-telephone"></i>  <a href="tel:"cb.contact.phonenumber>{{cb.contact.phonenumber}}</a>
       </li>
 
       <li ng-show="cb.showEdit" class = 'bullet-item hidepadding'>
@@ -103,9 +101,8 @@
             ng-model="cb.contact.phonenumber"  ng-keyup="keyup($event, cb)"/>
       </li>
 
-
       <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'bullet-item'>
-        <address><a href = "mailto:"cb.contact.email>{{cb.contact.email}}</a></address>
+        <i class="fi-mail"></i>  <a href = "mailto:"cb.contact.email>{{cb.contact.email}}</a>
       </li>
 
       <li ng-show="cb.showEdit" class = 'bullet-item hidepadding'>
@@ -114,19 +111,47 @@
       </li>
       <li class = 'bullet-item' ng-repeat="field in fields_info" ng-model="field_value.value">
             <strong name="field">
-                {{field.field.field_name}}:
+                {{field.field.field_name | titleCase}}:
             </strong>
             <p name="field_value" >
                 {{field.field_value.value}}
             </p>
       </li>
+      <li class='bullet-item'>
+        Stage
+        <div ng-controller='ContactBoxCtrl'>
+          <form>
+            <select
+              ng-model="contact.stage"
+              ng-options="stageOpt.name for stageOpt in stages"
+              ng-selected="contact.stage"
+              class="button dropdown detail-button tiny radius round"
+              ng-change="BoxService.changeStage(contact, contact.stage)">
+            </select>
+          </form>
+        </div>
+      </li>
+      <li class='bullet-item'>
+        Pipelines
+        <div ng-repeat="pipeline in contact[cb.cid].pipelines" class="contact pipelines">
+          <span class="success radius label"> {{pipeline.name}} </span>
+          <button ng-click="removeContactFromPipeline(pipeline, contact)">Remove</button>
+        </div>
+        <form ng-submit="addContactToPipeline(selectedPipeline, contact)">
+          <select
+            ng-model="selectedPipeline"
+            ng-options="pipeline.name for pipeline in contact.unaddedPipelines">
+          </select>
+          <input type="submit" class="button" value="Add To Pipeline" />
+        </form>
+      </li>
     </ul>
-    <div class = 'large-centered columns'>
+    <!-- <div class='large-centered columns'>
       <ul class="button-group even-2 radius">
         <li><a href="#" class = 'button small'>{{cb.pipeline.name || 'Pipeline'}}</a></li>
         <li><a href="#" class = 'button green small'>{{cb.box.stage || 'Stage'}}</a></li>
       </ul>
-    </div>
+    </div> -->
   </div>
   <div class = 'right'>
     <div class = 'left button secondary tiny fade' ng-hide="show" ng-click="show=true"><i class="fi-arrow-left"></i></div>

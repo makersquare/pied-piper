@@ -32,6 +32,14 @@ var app = angular
       templateUrl: "<%= asset_path('angular/templates/createFields.html') %>",
       controller: 'CreateFieldsCtrl'
     })
+    .when('/pipeline/:pipeline_id/stages', {
+      templateUrl: "<%= asset_path('angular/templates/createFields.html') %>",
+      controller: 'StagesCtrl'
+    })
+    .when('/pipeline/:pipeline_id/contact/:cid/notes', {
+      templateUrl: "<%= asset_path('angular/templates/contact_box.html') %>",
+      controller: 'NotesCtrl'
+    })
     .when('/email_settings/:user_id', {
       templateUrl: "<%= asset_path('angular/templates/account_settings.html') %>",
       controller: 'EmailCtrl'
@@ -47,18 +55,6 @@ var app = angular
     .when('/pay', {
       templateUrl: "<%= asset_path('angular/templates/pay.html') %>",
       controller: 'PayCtrl'
-    })
-    .when('/pay', {
-      templateUrl: "<%= asset_path('angular/templates/pay.html') %>",
-      controller: 'PayCtrl'
-    })
-    .when('/pipeline/:pipeline_id/stages', {
-      templateUrl: "<%= asset_path('angular/templates/createFields.html') %>",
-      controller: 'StagesCtrl'
-    })
-    .when('/pipeline/:pipeline_id/contact/:cid/notes', {
-      templateUrl: "<%= asset_path('angular/templates/contact_box.html') %>",
-      controller: 'NotesCtrl'
     })
     .when('/search', {
       templateUrl: "<%= asset_path('angular/templates/search.html') %>",

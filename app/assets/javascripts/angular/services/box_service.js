@@ -12,9 +12,9 @@
  *   stageSelection
  */
 
-app.factory("BoxService", ["$resource", "ContactsBoxRsc", "$rootScope",
-  function ($resource, ContactsBoxRsc, $rootScope) {
-    var pipelineId, contacts, stageContacts, stageSelection,
+app.factory("BoxService", ["$resource", "ContactsBoxRsc", "$rootScope", "StagesRsc", "$q",
+  function ($resource, ContactsBoxRsc, $rootScope, StagesRsc, $q) {
+    var pipelineId, contacts, stages, stageContacts, stageSelection,
       allContactsSelection;
 
     // By default group all contacts by stages
@@ -22,19 +22,27 @@ app.factory("BoxService", ["$resource", "ContactsBoxRsc", "$rootScope",
       pipelineId = pipeline_id;
       stageContacts = {};
       stageSelection = {};
+      stages = StagesRsc.query({pipeline_id: pipelineId});
       contacts = ContactsBoxRsc.query({pipeline_id: pipelineId});
-      contacts.$promise.then(groupByStages);
+      $q.all({stages: stages.$promise, contacts: contacts.$promise})
+        .then(function(results){
+          groupByStages(results.contacts, results.stages)
+        })
       allContactsSelection = false;
     };
 
-    var groupByStages = function(contacts) {
+    var groupByStages = function(contacts, stages) {
       stageContacts = {};
+
+      for (var i = 0; i < stages.length; i++) {
+        if (!stageContacts[stages[i].id]) {
+          stageContacts[stages[i].id] = [];
+        }
+      }
+
       for (var contactIndex = 0; contactIndex < contacts.length; contactIndex++) {
         var contact = contacts[contactIndex];
         var contactStageId = contact.stage_id;
-        if (!stageContacts[contactStageId]) {
-          stageContacts[contactStageId] = [];
-        }
         stageContacts[contactStageId].push(contact);
       }
 
@@ -76,8 +84,9 @@ app.factory("BoxService", ["$resource", "ContactsBoxRsc", "$rootScope",
       var currentStageId = contact.stage_id;
       var contactIndex = stageContacts[currentStageId].indexOf(contact);
       stageContacts[currentStageId].splice(contactIndex, 1);
-      stageContacts[stage.id].push(contact);
       contact.stage_id = stage.id;
+      stageContacts[stage.id].push(contact);
+      // contact.stage_id = stage.id;
 
       ContactsBoxRsc.update({id: contact.id, pipeline_id:
         pipelineId, contact: contact, stage_id: contact.stage_id});

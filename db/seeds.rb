@@ -73,9 +73,9 @@ def create_pipelines_with_stages_and_fields
     user_entity = User.create(user)
     admin = rand(2)
     admin == 1 ? admin = true : admin = false
-    PipelineUser.create(pipeline_id: pipeline_admissions.id, user_id: user_entity.id, admin: admin)
-    PipelineUser.create(pipeline_id: pipeline_hiring.id, user_id: user_entity.id, admin: admin)
-    PipelineUser.create(pipeline_id: pipeline_get_alumni_jobs.id, user_id: user_entity.id, admin: admin)
+    AddUserPipeline.run(id: pipeline_admissions.id, user_id: user_entity.id, pipeline_admin: admin)
+    AddUserPipeline.run(id: pipeline_hiring.id, user_id: user_entity.id, pipeline_admin: admin)
+    AddUserPipeline.run(id: pipeline_get_alumni_jobs.id, user_id: user_entity.id, pipeline_admin: admin)
   }
 end
 
@@ -125,15 +125,6 @@ create_pipelines_with_stages_and_fields
 create_contacts
 add_contacts_to_pipelines
 
-user_email_settings_list = [
-  {pipeline_user_id: 2, setting: "Smartdigest"},
-  {pipeline_user_id: 2, setting: "Noemails"},
-  {pipeline_user_id: 3, setting: "Dailydigest"}
-]
-
-user_email_settings_list.each { |setting|
-  EmailSetting.create(setting)
-}
 
 User.create([
   {name: 'Harsh', email: 'harsh@makersquare.com'},

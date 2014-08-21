@@ -46,10 +46,11 @@ ActiveRecord::Schema.define(version: 20140816193004) do
   end
 
   create_table "email_settings", force: true do |t|
-    t.string   "setting",          default: "Realtime"
+    t.integer  "user_id"
+    t.string   "setting",     default: "Realtime"
+    t.integer  "pipeline_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "pipeline_user_id"
   end
 
   create_table "fields", force: true do |t|

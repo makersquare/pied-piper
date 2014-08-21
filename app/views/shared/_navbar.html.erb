@@ -13,40 +13,31 @@
       </ul>
 
       <section ng-controller="PipelineIndexCtrl" class="top-bar-section">
-        <ul class="left">
-          <li><a></a></li>
-          <li class = 'has-dropdown'><a href="#"><strong>PIPELINES</strong></a>
-            <ul class="dropdown">
-              <li ng-repeat="pipe in pipelineList" class="">
-                <a href="/#/pipeline/{{pipe.id}}" title="">{{pipe.name}}</a>
-              </li>
-            </ul>
-          </li>
-          <li><a ng-click='newPipeline = true'><i class="fi-plus"></i></a></li>
-          <li><a></a></li>
-          <li><a></a></li>
+        <ul class="left" bs-active-link>
+          <li><a href="/#/pipelines">Pipelines</a></li>
+          <!-- TODO -->
+          <li><a href="/#/contacts">Contacts</a></li>
         </ul>
 
-        <ul class="right">
-          <li>
+        <ul class="right" bs-active-link>
+        <!-- FIXME: need to fix bs-active-link for the email_settings -->
           <% if current_user %>
+          <li>
+            <a href="/#/email_settings/<%=current_user.id%>" title=""><i class="fi-widget"></i></a>
+          </li>
+          <li>
             <%= link_to "Sign out " + current_user.name, signout_path, id: "sign_out" %>
+          </li>
           <% else %>
             <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
           <% end %>
-          </li>
         </ul>
 
-        <ul class="right">
+        <ul class="right" bs-active-link>
           <div class = 'topbarmargin'>
             <li><input class = 'topbarcenter' ng-model="searchItem" type="text" placeholder="Type to Search" ng-change="search()"/></li>
           </div>
         </ul>
-        <form ng-show="newPipeline" ng-submit="createNewPipeline()" role="form">
-          <div class="form-group">
-            <input ng-model="pipelineName" type="text" class="form-control" id="pipelineName" placeholder="Name New Pipeline">
-          </div>
-        </form>
       </section>
 
     </nav>

@@ -1,3 +1,5 @@
+// FIXME: This can be deleted i think
+// pipeline_overview_ngcontroller replaces this... i think?
 app.controller('PipelineIndexCtrl',
   ['$scope', '$resource', 'PipelinesRsc',
   function($scope, $resource, PipelinesRsc) {
@@ -6,13 +8,5 @@ app.controller('PipelineIndexCtrl',
 
     $scope.pipelineList = PipelinesRsc.query();
 
-    $scope.createNewPipeline = function(){
-      if ($scope.pipelineName.length > 0) {
-        PipelinesRsc.save({'name': $scope.pipelineName}, function(data) {
-          $scope.newPipeline = false;
-          $scope.pipelineList.push({'name': $scope.pipelineName, 'id': data.id});
-        });
-      }
-    };
 
   }]);

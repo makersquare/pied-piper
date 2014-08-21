@@ -1,5 +1,19 @@
 <div class="row">
   <h1>Pipeline Overview</h1>
+  <div class="columns small-6">
+    <form ng-submit="createNewPipeline()" role="form">
+      <div class="row collapse">
+        <div class="small-9 columns">
+          <input ng-model="pipelineName" type="text" class="form-control" id="pipelineName" placeholder="Name New Pipeline">
+        </div>
+        <div class="small-3 columns">
+          <a class="button postfix" onclick="$(this).closest('form').submit()">Submit</a>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
 </div>
 
 <div ng-repeat="pipeline in pipelines">

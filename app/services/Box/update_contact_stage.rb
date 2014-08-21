@@ -30,11 +30,15 @@ class UpdateContactStage < TransactionScript
     box = Box.where(contact_id: params[:contact_id], pipeline_id: params[:pipeline_id]).first
 
     if box.nil?
-      return failure(:invalid_box_id)
+      return failure(:box_not_found_with_contact_id_and_pipeline_id)
     end
 
-    history = BoxHistory.create(box_id: box.id, stage_from: box.stage_id, stage_id: params[:stage_id])
-    box.update(stage_id: params[:stage_id])
+    if params[:stage_id] != box.stage_id
+      history = BoxHistory.create(box_id: box.id, stage_from: box.stage_id, stage_id: params[:stage_id])
+      box.update(stage_id: params[:stage_id])
+    else
+      history = :no_stage_change
+    end
 
     return success({box: box, history: history})
   end

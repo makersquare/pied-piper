@@ -35,7 +35,7 @@ describe UpdateContactStage do
   it "fails when the box id is invalid" do
     result = UpdateContactStage.run({contact_id: contact2.id, pipeline_id: pipeline.id, stage_id: stage.id})
     expect(result.success?).to eq(false)
-    expect(result.error).to eq(:invalid_box_id)
+    expect(result.error).to eq(:box_not_found_with_contact_id_and_pipeline_id)
   end
 
   it "fails when no stage info is passed" do
@@ -46,16 +46,24 @@ describe UpdateContactStage do
 
   it "updates the contact box stage_id given a contact_id and pipeline_id" do
     result = UpdateContactStage.run({contact_id: contact.id, pipeline_id: pipeline.id, stage_id: stage2.id})
+    retrieved_box_stage = Box.find(result.box.id)
     expect(result.success?).to eq(true)
-    expect(result.box.stage_id).to eq(stage2.id)
+    expect(retrieved_box_stage.stage_id).to eq(stage2.id)
 
   end
 
   it "updates the box_history with the former and current stage" do
     result = UpdateContactStage.run({contact_id: contact.id, pipeline_id: pipeline.id, stage_id: stage2.id})
+    retrieved_box_history = BoxHistory.find(result.history.id)
     expect(result.success?).to eq(true)
-    expect(result.history.box_id).to eq(box.id)
-    expect(result.history.stage_from).to eq(stage.id)
-    expect(result.history.stage_id).to eq(stage2.id)
+    expect(retrieved_box_history.box_id).to eq(box.id)
+    expect(retrieved_box_history.stage_from).to eq(stage.id)
+    expect(retrieved_box_history.stage_id).to eq(stage2.id)
+  end
+
+  it "does not update the box_history if the stage hasn't changed" do
+    result = UpdateContactStage.run({contact_id: contact.id, pipeline_id: pipeline.id, stage_id: stage.id})
+    expect(result.success?).to eq(true)
+    expect(result.history).to eq(:no_stage_change)
   end
 end

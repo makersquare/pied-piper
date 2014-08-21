@@ -18,10 +18,11 @@ describe UpdateContactNote do
 
   it "updates a note based on note id" do
     result = UpdateContactNote.run({note: {id: note.id, notes: "update"}})
+    retrieved_note = Note.find(result.note.id)
     expect(result.success?).to eq(true)
-    expect(result.note.notes).to eq("update")
-    expect(result.note.user_id).to eq(1)
-    expect(result.note.box_id).to eq(1)
+    expect(retrieved_note.notes).to eq("update")
+    expect(retrieved_note.user_id).to eq(1)
+    expect(retrieved_note.box_id).to eq(1)
   end
 
   it "raises exception when extraneous information is passed" do

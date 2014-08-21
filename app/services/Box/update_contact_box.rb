@@ -10,15 +10,16 @@ class UpdateContactBox < TransactionScript
     b.pipeline_location = params[:pipeline_location] || b.pipeline_location
 
     UpdateContactInfo.run(params)
-    UpdateContactFieldValues.run(params)
     UpdateContactStage.run(params)
 
     # Loop through box_field array to update field value by box_field id
     if !params[:field_values].nil?
       field_vals = params[:field_values]
       field_vals.each do |field_val|
-        v = BoxField.find(field_val[:id])
-        v.update_column(:value, field_val[:value]) || v[:value]
+        UpdateContactFieldValues.run(params)
+
+        # v = BoxField.find(field_val[:id])
+        # v.update_column(:value, field_val[:value]) || v[:value]
       end
     end
 
@@ -26,12 +27,13 @@ class UpdateContactBox < TransactionScript
     if !params[:notes].nil?
       notes = params[:notes]
       notes.each do |note|
-        nt = Note.find(note[:id])
-        nt.update_column(:notes, note[:notes]) || nt[:notes]
+        UpdateContactNote.run(params)
+        # nt = Note.find(note[:id])
+        # nt.update_column(:notes, note[:notes]) || nt[:notes]
       end
     end
     b.save
-    b.contact.save
+    # b.contact.save
     # field.save if !field.nil?
     # field_value.save if !field_value.nil?
     # notes.save if !notes.nil?

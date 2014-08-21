@@ -3,10 +3,10 @@ app.controller('UserDetailsCtrl',
   ['$scope', 'UsersRsc',
   function($scope, UsersRsc) {
 
-    $scope.allUsers = UsersRsc.query();
-    console.log($scope.allUsers)
+    $scope.users = UsersRsc.query();
+    console.log($scope.users)
 
-    $scope.createNewUser = UsersRsc.save();
+    // $scope.createNewUser = UsersRsc.save();
 
   }
 ]);

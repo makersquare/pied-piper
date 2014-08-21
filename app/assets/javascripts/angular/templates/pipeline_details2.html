@@ -1,0 +1,68 @@
+<!-- BEGIN- Show Pipeline Options and Name/Title -->
+<div class="row ">
+  <div id="pipeDataDiv" class="large-8 columns panel">
+    <!-- Displays title of the pipeline -->
+    <div id="showDataDiv">
+      <h2>{{pipeline.name}}</h2>
+      <a href="/#/pipeline/{{pipeline_id}}/stages" class="button tiny">Add Stages & Fields</a>
+      <a href="/#/pipeline/{{pipeline_id}}/users/" class="button tiny">Manage Collaborators</a>
+      <a ng-click="BoxService.sendEmailToSelected()" class="button tiny">Send Email</a>
+    </div>
+  </div>
+</div>
+<!-- END- Show Pipeline Options and Name/Title -->
+
+<!-- BEGIN- SECTION PAGEBREAK-->
+<div class="row">
+  <div class="columns text-center large-centered">
+    <h3>Stages</h3>
+  </div>
+</div>
+<!-- END- SECTION PAGE BREAK-->
+
+<!-- <div class="row"> -->
+
+  <div class="flex-container">
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+    <div class="flex-column">Testing</div>
+  </div>
+
+<!-- </div> -->
+
+
+
+<!-- DEV SHIT -->
+<h3>DEV DUMP</h3>
+<div class="row">
+<div class="">pipeline</div>
+<div class="panel">{{pipeline}}</div>
+<div class="">fields</div>
+<div class="panel">{{fields}}</div>
+<div class="">stages</div>
+<div class="panel">{{stages}}</div>
+<div class="">basicFields</div>
+<div class="panel">{{basicFields}}</div>
+<div class="">stageContacts</div>
+<div class="panel">{{stageContacts}}</div>
+</div>

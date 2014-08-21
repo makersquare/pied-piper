@@ -41,6 +41,10 @@ app.factory("BoxService", ["$resource", "ContactsBoxRsc", "$rootScope",
       $rootScope.$broadcast('stageContacts:updated', stageContacts);
     };
 
+    var stageContacts = function() {
+      return stageContacts;
+    }
+
     var markAll = function(contacts, value) {
       for (var i = 0; i < contacts.length; i++) {
         var contact = contacts[i];
@@ -105,12 +109,7 @@ app.factory("BoxService", ["$resource", "ContactsBoxRsc", "$rootScope",
       ContactsBoxRsc.update({pipeline_id: pipelineId, id: contact.id, contact: contact});
     };
 
-    var test = function() {
-      return true;
-    };
-
     return {
-      test: test,
       contacts: contacts,
       stageContacts: stageContacts,
       setUp: setUp,

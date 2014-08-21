@@ -4,6 +4,7 @@ class PipelineContactsController < ApplicationController
   def index
     # Index for all contacts
     result = RetrieveBoxesForPipeline.run({pipeline_id: params[:pipeline_id]})
+
     if result.success?
       respond_with result.contacts.map(&:to_h)
     else

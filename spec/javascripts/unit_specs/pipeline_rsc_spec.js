@@ -24,7 +24,6 @@ describe('PipelinesRsc', function(){
 
 
   it('get all pipelines', function() {
-    console.log($httpBackend);
      $httpBackend.expectGET('/pipelines.json')
 
      pipes = PipelinesRsc.query()

@@ -2,7 +2,7 @@
 // functionality for manually adding contacts to the dom and db simultaneously.
 // It also contains the logic for adding/removing a contact to/from a pipeline.
 
-app.controller('ContactsCtrl',
+app.controller('ContactDetailsCtrl',
   ['$scope', '$resource', 'ContactsRsc', 'PipelinesRsc', 'ContactsBoxRsc',
   function($scope, $resource, ContactsRsc, PipelinesRsc, ContactsBoxRsc) {
     $scope.buttonClicked = false;

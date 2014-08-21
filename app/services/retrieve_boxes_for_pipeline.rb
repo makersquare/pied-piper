@@ -38,7 +38,6 @@ class RetrieveBoxesForPipeline < TransactionScript
     end
 
     fields = retrieve_fields(pipeline)
-
     # Returning each contact's information
     # Gathering - basic info, stage_id, fields
     contacts = pipeline.boxes.map do |box|
@@ -59,7 +58,8 @@ class RetrieveBoxesForPipeline < TransactionScript
   def add_fields_to_contact(contact, fields, box)
     fields.each do |field|
       box_field = BoxField.where(field_id: field.id, box_id: box.id).first
-      contact[field.field_name] = box_field.value
+      box_field.nil? ? value = "" : value = box_field.value
+      contact[field.field_name] = value
     end
   end
 

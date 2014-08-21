@@ -27,7 +27,7 @@ class UpdateContactStage < TransactionScript
       return failure(:no_stage_info_passed)
     end
 
-    box = Box.where(contact_id: params[:contact_id]).first
+    box = Box.where(contact_id: params[:contact_id], pipeline_id: params[:pipeline_id]).first
 
     if box.nil?
       return failure(:invalid_box_id)

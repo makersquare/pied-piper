@@ -43,6 +43,7 @@ class PipelineContactsController < ApplicationController
 
   def destroy
     Contact.find(contact_params[:id]).boxes.find_by(pipeline_id: box_params[:pipeline_id]).destroy
+    respond_with true, location: "/pipelines"
   end
 
   private

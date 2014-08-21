@@ -1,5 +1,5 @@
 # 1. Update contact's primary information
-# 2. Update contact's box fields
+# 2. Update contact's box field values
 # 3. Update contact's stage
 # 4. Update contact's note
 class UpdateContactBox < TransactionScript
@@ -11,13 +11,7 @@ class UpdateContactBox < TransactionScript
 
     UpdateContactInfo.run(params)
     UpdateContactFieldValues.run(params)
-
-    if params.include?(:status)
-      UpdateBoxStage.run(params)
-    end
-    # field = Field.where('pipeline_id = ?', params[:pipeline_id]).first
-    # field.field_name = params[:field_name] || field.field_name if !field.nil?
-    # field.field_type = params[:field_type] || field.field_type if !field.nil?
+    UpdateContactStage.run(params)
 
     # Loop through box_field array to update field value by box_field id
     if !params[:field_values].nil?

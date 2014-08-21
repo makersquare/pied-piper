@@ -1,3 +1,7 @@
+# 1. Update contact's primary information
+# 2. Update contact's box field values
+# 3. Update contact's stage
+# 4. Update contact's note
 class UpdateContactBox < TransactionScript
   def run(params)
     # Updates a contact's box info
@@ -5,26 +9,18 @@ class UpdateContactBox < TransactionScript
     b.stage_id = params[:stage_id] || b.stage_id
     b.pipeline_location = params[:pipeline_location] || b.pipeline_location
 
-    if (params[:contact])
-      b.contact.name = params[:contact][:name] || b.contact.name
-      b.contact.email = params[:contact][:email] || b.contact.email
-      b.contact.phonenumber = params[:contact][:phonenumber] || b.contact.phonenumber
-      b.contact.city = params[:contact][:city] || b.contact.city
-    end
-
-    if params.include?(:status)
-      UpdateBoxStage.run(params)
-    end
-    # field = Field.where('pipeline_id = ?', params[:pipeline_id]).first
-    # field.field_name = params[:field_name] || field.field_name if !field.nil?
-    # field.field_type = params[:field_type] || field.field_type if !field.nil?
+    UpdateContactInfo.run(params)
+    UpdateContactStage.run(params)
 
     # Loop through box_field array to update field value by box_field id
     if !params[:field_values].nil?
       field_vals = params[:field_values]
       field_vals.each do |field_val|
-        v = BoxField.find(field_val[:id])
-        v.update_column(:value, field_val[:value]) || v[:value]
+        binding.pry
+        UpdateContactFieldValues.run(params)
+
+        # v = BoxField.find(field_val[:id])
+        # v.update_column(:value, field_val[:value]) || v[:value]
       end
     end
 
@@ -32,12 +28,13 @@ class UpdateContactBox < TransactionScript
     if !params[:notes].nil?
       notes = params[:notes]
       notes.each do |note|
-        nt = Note.find(note[:id])
-        nt.update_column(:notes, note[:notes]) || nt[:notes]
+        UpdateContactNote.run(params)
+        # nt = Note.find(note[:id])
+        # nt.update_column(:notes, note[:notes]) || nt[:notes]
       end
     end
     b.save
-    b.contact.save
+    # b.contact.save
     # field.save if !field.nil?
     # field_value.save if !field_value.nil?
     # notes.save if !notes.nil?

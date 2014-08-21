@@ -7,8 +7,8 @@ describe GetContactsByPipelineId do
 
   describe 'Validation' do
 
-    xit "requires a valid session" do
-    end
+    # xit "requires a valid session" do
+    # end
   end
 
   it "gets all contacts associated with a pipeline by pipeline id" do

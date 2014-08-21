@@ -1,9 +1,7 @@
 class PipelinesController < ApplicationController
   respond_to :json
   # before_filter :logged_in?
-  # before_filter :is_pipeline_admin?, :only => [:destroy, :trash, :update, :add_to_pipeline, :remove_from_pipeline, :update_access_to_pipeline]
-  # We need to check and make sure the request is coming from
-  # an admin of the pipeline
+  before_filter :is_pipeline_admin?, :only => [:destroy, :trash, :update, :add_to_pipeline, :remove_from_pipeline, :update_access_to_pipeline]
 
   def index
     #This is the right code to respond with the correct pipelines on the sidebar but
@@ -109,8 +107,9 @@ class PipelinesController < ApplicationController
   # Also need the pipeline ID, return true if user is the admin
   #This blocks access to admin only pipeline methods in the CTRL
   def is_pipeline_admin?
-    pipeline_user = PipelineUser.find_by(user_id: current_user.id, pipeline_id: params[:id])
-    return pipeline_user.admin || false
+    pipeline_user = PipelineUser.find_by(user_id: current_user.id, pipeline_id: params[:pipeline_id])
+    binding.pry
+    redirect_back if (pipeline_user.admin || false)
   end
 
   def pipeline_params

@@ -16,4 +16,3 @@ class EmailSettingsController < ApplicationController
     params.permit(:setting)
   end
 end
-

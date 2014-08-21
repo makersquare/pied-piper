@@ -5,8 +5,8 @@ describe AddUserPipeline do
   it_behaves_like('TransactionScripts')
 
   describe 'Validation' do
-    xit "requires a valid session" do
-    end
+    # xit "requires a valid session" do
+    # end
   end
 
   it "Adds a user to a pipeline and bounces back if the user is already in it" do

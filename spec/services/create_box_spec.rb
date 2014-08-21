@@ -7,8 +7,8 @@ describe CreateBox do
 
   describe 'Validation' do
 
-    xit "requires a valid session" do
-    end
+    # xit "requires a valid session" do
+    # end
   end
 
   it "creates a box with fields" do

@@ -5,8 +5,8 @@ describe RemoveUserPipeline do
   it_behaves_like('TransactionScripts')
 
   describe 'Validation' do
-    xit "requires a valid session" do
-    end
+    # xit "requires a valid session" do
+    # end
   end
 
   it "Removes a user from a pipeline, and makes sure they are in it" do

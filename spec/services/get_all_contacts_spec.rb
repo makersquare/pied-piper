@@ -7,8 +7,8 @@ describe GetAllContacts do
 
   describe 'Validation' do
 
-    xit "requires a valid session" do
-    end
+    # xit "requires a valid session" do
+    # end
   end
 
   it "returns all contacts" do

@@ -7,8 +7,8 @@ describe UpdateContactBox do
 
   describe 'Validation' do
 
-    xit "requires a valid session" do
-    end
+    # xit "requires a valid session" do
+    # end
   end
 
   it "updates the box associated with a contact in a given pipeline" do

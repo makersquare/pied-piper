@@ -8,8 +8,8 @@ describe UpdateBoxStage do
 
   describe 'Validation' do
 
-    xit "requires a valid session" do
-    end
+    # xit "requires a valid session" do
+    # end
   end
 
   it "updates the box stage and documents the change in the box_history table" do

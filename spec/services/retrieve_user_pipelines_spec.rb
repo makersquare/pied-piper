@@ -5,8 +5,8 @@ describe RetrieveUserPipelines do
   it_behaves_like('TransactionScripts')
 
   describe 'Validation' do
-    xit "requires a valid session" do
-    end
+    # xit "requires a valid session" do
+    # end
   end
 
   it "Retrieves a users pipelines" do

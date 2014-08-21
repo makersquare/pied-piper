@@ -21,7 +21,6 @@ describe GetEmailSettings do
   it "returns settings given a user_id" do
     params = {user_id: @user1.id}
     settings = GetEmailSettings.run(params)
-    binding.pry
     expect(settings[0][:pipeline_name]).to eq("Admissions")
     expect(settings[1][:pipeline_name]).to eq("Recruiters")
     expect(settings[0]["setting"]).to eq("Realtime")

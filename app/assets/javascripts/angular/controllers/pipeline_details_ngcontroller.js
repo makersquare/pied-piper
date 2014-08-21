@@ -10,8 +10,9 @@ app.controller('PipelineDetailsCtrl',
      * We'll be watching the contacts through
      * broadcasts
      */
-
-   BoxService.ContactsBoxRsc.get({pipeline_id: $routeParams.id, id: 1})
+  // $scope.contact_id_jered = null
+  $scope.changeContact = function(event, contact_id){
+   BoxService.ContactsBoxRsc.get({pipeline_id: $routeParams.id, id: contact_id})
    .$promise.then(function(cb){
         $scope.cb = cb;
         fields_info = [];
@@ -33,7 +34,7 @@ app.controller('PipelineDetailsCtrl',
         //   $scope.updateEntry();
         //   });
       });
-
+      }
       $scope.keyup = function(event, cb) {
         if (event.keyCode == 13) {
           cb.showEdit = !cb.showEdit;

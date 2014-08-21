@@ -1,4 +1,5 @@
 <!-- BEGIN- Show Pipeline Options and Name/Title -->
+<div ng-controller='ToggleDoubleCtrl'>
 <div class="row left">
   <div id="pipeDataDiv" class="large-8 columns ">
     <!-- Displays title of the pipeline -->
@@ -51,8 +52,9 @@
               <input type="checkbox" ng-model="contact.selected">
             </td>
             <td>
-              <a href="/#/pipeline/{{pipeline_id}}/contact/{{contact.id}}"
-                class="button detail-button tiny radius round">Details</a>
+              <a
+                ng-click='contactView(true); changeContact(event, contact.id);'
+                class="button detail-button tiny radius round">Details</a> {{show}}
             </td>
             <td>
               <form>
@@ -85,7 +87,7 @@
 </div>
 
 <div class = 'over-panel small-9 columns'>
-  <div ng-controller='ToggleDoubleCtrl'>
+
     <div class = 'slidebox right large-7 medium-6 columns slide-right' ng-show="show2">
       <div ng-controller = 'EmailShowCtrl'>
         <div ng-controller="ToggleCtrl" class = 'columns'>
@@ -158,7 +160,7 @@
       </div>
     </div>
 
-    <div class = 'slidebox right large-4 medium-5 small-12 slide-right'ng-show="show">
+    <div class = 'slidebox right large-4 medium-5 small-12 slide-right' ng-show="show">
 
       <ul class="pricing-table" >
         <li ng-dblclick = "cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'price'>

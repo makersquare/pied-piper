@@ -12,7 +12,6 @@ app.controller('PipelineIndexCtrl',
           $scope.newPipeline = false;
           $scope.pipelineList.push({'name': $scope.pipelineName, 'id': data.id});
         });
-      }
+      };
     };
-
   }]);

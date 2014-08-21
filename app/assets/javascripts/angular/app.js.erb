@@ -14,7 +14,7 @@ var app = angular
   $routeProvider
     .when('/pipelines', {
       templateUrl: "<%= asset_path('angular/templates/pipelines.html') %>",
-      controller: 'PipelineIndexCtrl'
+      controller: 'PipelineOverviewCtrl'
     })
     .when('/pipeline/:id', {
       // TODO: switch me with the new implementation

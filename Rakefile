@@ -7,6 +7,7 @@ Crm::Application.load_tasks
 
 require 'rake'
 require 'resque/tasks'
+require 'resque/scheduler/tasks'
 
 task "resque:setup" => :environment do
   ENV['QUEUE'] ||= '*'

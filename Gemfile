@@ -77,3 +77,4 @@ gem 'rails_12factor', group: :production
 gem 'redis'
 gem 'foundation-icons-sass-rails'
 gem 'resque', :require => "resque/server"
+gem 'resque-scheduler'

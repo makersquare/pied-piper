@@ -16,6 +16,7 @@ class UpdateContactBox < TransactionScript
     if !params[:field_values].nil?
       field_vals = params[:field_values]
       field_vals.each do |field_val|
+        binding.pry
         UpdateContactFieldValues.run(params)
 
         # v = BoxField.find(field_val[:id])

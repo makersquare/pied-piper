@@ -2,32 +2,17 @@
 # fields hash passed in.
 class UpdateContactFieldValues < TransactionScript
   def run(params)
-
-    if params[:contact_id].nil?
-      return failure(:no_contact_id_passed_in)
+    if params[:field_values].nil?
+      return failure(:no_field_value_info_passed)
     end
 
-    contact = Contact.where(id: params[:contact_id]).first
-
-    if contact.nil?
-      return failure(:invalid_contact_id)
-    end
-
-    if params[:field_id].nil?
-      return failure(:no_field_id_passed_in)
-    end
-
-    boxfield = BoxField.where(field_id: params[:field_id]).first
+    boxfield = BoxField.where(id: params[:field_values][:id]).first
 
     if boxfield.nil?
-      return failure(:invalid_boxfield_field_id)
+      return failure(:invalid_field_value_id)
     end
 
-    if params[:box_field].nil?
-      return failure(:no_boxfield_info_passed)
-    end
-
-    boxfield.update(params[:box_field])
+    boxfield.update(params[:field_values])
 
     return success({boxfield: boxfield})
   end

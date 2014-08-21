@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe UpdateContactFieldValues do
-  let(:contact) {Contact.create(name: "test", email: "t@t.com",
-        city: "testcity", phonenumber: "9721234567")}
 
   let(:pipeline) {Pipeline.create(name: "test_pipeline")}
 
@@ -10,38 +8,20 @@ describe UpdateContactFieldValues do
 
   let!(:box_field) {BoxField.create(field_id: field.id, value: "Y")}
 
-  it "fails when there is no contact_id" do
-    result = UpdateContactFieldValues.run({field_id: 1})
-    expect(result.success?).to eq(false)
-    expect(result.error).to eq(:no_contact_id_passed_in)
-  end
-
-  it "fails when the contact id is invalid" do
-    result = UpdateContactFieldValues.run({contact_id: 1000, field_id: field.id})
-    expect(result.success?).to eq(false)
-    expect(result.error).to eq(:invalid_contact_id)
-  end
-
-  it "fails when there is no boxfield field_id" do
-    result = UpdateContactFieldValues.run({contact_id: 1})
-    expect(result.success?).to eq(false)
-    expect(result.error).to eq(:no_field_id_passed_in)
-  end
-
   it "fails when the boxfield field_id is invalid" do
-    result = UpdateContactFieldValues.run({contact_id: 1, field_id: 10})
+    result = UpdateContactFieldValues.run({contact_id: 1, field_values: {id: 1000}})
     expect(result.success?).to eq(false)
-    expect(result.error).to eq(:invalid_boxfield_field_id)
+    expect(result.error).to eq(:invalid_field_value_id)
   end
 
   it "fails when no boxfield hash is passed" do
     result = UpdateContactFieldValues.run({contact_id: 1, field_id: field.id})
     expect(result.success?).to eq(false)
-    expect(result.error).to eq(:no_boxfield_info_passed)
+    expect(result.error).to eq(:no_field_value_info_passed)
   end
 
-  it "updates the boxfield value given contact_id and field_id" do
-    result = UpdateContactFieldValues.run({contact_id: 1, field_id: field.id, box_field: {field_id: field.id, value: "updated"}})
+  it "updates the boxfield value given a field_values hash" do
+    result = UpdateContactFieldValues.run({contact_id: 1, field_id: field.id, field_values: {id: box_field.id, value: "updated"}})
     expect(result.success?).to eq(true)
     expect(result.boxfield.value).to eq("updated")
   end
@@ -51,8 +31,8 @@ describe UpdateContactFieldValues do
       UpdateContactFieldValues.run({
       contact_id: 1,
       field_id: field.id,
-      box_field: {
-        field_id: field.id,
+      field_values: {
+        id: box_field.id,
         value: "updated",
         asdf: "hi"}})}.to raise_error
   end

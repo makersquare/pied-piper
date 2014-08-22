@@ -16,7 +16,7 @@ app.controller('ContactBoxCtrl',
         }
     );
 
-    // Send 'get' request
+    // // Send 'get' request
     // ContactBoxRsc.get(
     //   {cid: $routeParams.cid,
     //     pid: $routeParams.pid

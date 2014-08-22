@@ -1352,6 +1352,23 @@ img {
 display: inline-block;
 vertical-align: middle;
 }
+
+.full{
+  width: 100%;
+}
+.txt-center{
+  text-align: center;
+}
+.long{
+  height: 90%;
+  overflow-y: scroll;
+}
+
+
+
+
+
+
 /* ------------------------------------------- */
 /* Mixins
 /* ------------------------------------------- */

@@ -25,7 +25,7 @@ respond_to :json, :html
     # Move any contacts associated with that stage to the default stage
     results = DestroyStage.run(stage_params)
     if results.success?
-      respond_with results.pipeline, results.data, results.contacts
+      respond_with results.contact_boxes
     else
       respond_with results.error
     end

@@ -19,24 +19,24 @@ describe DestroyStage do
   end
 
   it "fails if the stage_id is invalid" do
-    result = DestroyStage.run({stage_id: 10000})
+    result = DestroyStage.run({id: 10000})
     expect(result.success?).to eq(false)
     expect(result.error).to eq(:invalid_stage_id)
   end
 
   it "fails if the stage_id is the default stage_id" do
-    result = DestroyStage.run({stage_id: stage.id})
+    result = DestroyStage.run({id: stage.id})
     expect(result.error).to eq(:cannot_destroy_default_stage)
   end
 
   it "fails if no default stage is defined" do
-    result = DestroyStage.run({stage_id: stage3.id})
+    result = DestroyStage.run({id: stage3.id})
     expect(result.success?).to eq(false)
     expect(result.error).to eq(:no_default_stage_defined)
   end
 
   it "finds all contacts associated with a stage and moves them to the default stage for that pipeline" do
-    result = DestroyStage.run({stage_id: stage2.id})
+    result = DestroyStage.run({id: stage2.id})
     expect(result.success?).to eq(true)
     retrieve_contact_boxes = Box.where({stage_id: stage.id})
     expect(retrieve_contact_boxes.first.stage_id).to eq(stage.id)
@@ -46,7 +46,7 @@ describe DestroyStage do
   end
 
   it "destroys the stage" do
-    result = DestroyStage.run({stage_id: stage2.id})
+    result = DestroyStage.run({id: stage2.id})
     expect(result.success?).to eq(true)
     retrieve_stage = Stage.where(id: stage2.id).first
     expect(retrieve_stage).to be_nil

@@ -113,9 +113,6 @@ GEM
     multi_xml (0.5.5)
     multipart-post (1.2.0)
     ng-rails-csrf (0.1.0)
-    ngannotate-rails (0.9.11)
-      execjs
-      rails (>= 3.1)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -266,7 +263,6 @@ DEPENDENCIES
   json
   modernizr-rails
   ng-rails-csrf
-  ngannotate-rails
   omniauth-google-oauth2
   pg
   phantomjs

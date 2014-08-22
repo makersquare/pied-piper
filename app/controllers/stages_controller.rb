@@ -22,7 +22,13 @@ respond_to :json, :html
 
   def destroy
     # Destroy a pipeline in browser and database
-    respond_with Stage.destroy(params['id']).to_json
+    # Move any contacts associated with that stage to the default stage
+    results = DestroyStage.run(stage_params)
+    if results.success?
+      respond_with results.pipeline, results.data, results.contacts
+    else
+      respond_with results.error
+    end
   end
 
   private

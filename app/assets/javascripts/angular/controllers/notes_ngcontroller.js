@@ -1,5 +1,5 @@
 //This factory establishes a restful http api that talks to the notes controller in rails
-app.factory('NotesAPI', function($resource) {
+app.factory('NotesAPI', ['$resource', function($resource) {
   return $resource('/pipelines/:pid/contacts/:cid/notes/:nid.json', {
     pid: '@pid',
     cid: '@cid',
@@ -8,11 +8,11 @@ app.factory('NotesAPI', function($resource) {
       method: 'PUT'
     }
   });
-});
+}]);
 
 //this custom directive gives functionality to delete buttons on the dom to
 //delete fields in the dom and database simultaneously
-app.directive('deletenote', function(NotesAPI, $routeParams) {
+app.directive('deletenote', ['NotesAPI', '$routeParams', function(NotesAPI, $routeParams) {
   return function(scope, element) {
     element.bind('click', function(e){
       e.preventDefault();
@@ -22,13 +22,13 @@ app.directive('deletenote', function(NotesAPI, $routeParams) {
       });
     });
   };
-});
+}]);
 
 //this controller gives scope to the dom template "contact_box.html" and adds
 //functionality for adding notes to the dom and db simultaneously
 
 //PENDING AUTHENTICATION - pass user_id to database with params based on who is logged in
-app.controller('NotesCtrl', function($routeParams, $scope, $http, NotesAPI) {
+app.controller('NotesCtrl', ['$routeParams', '$scope', '$http', 'NotesAPI', function($routeParams, $scope, $http, NotesAPI) {
 
 //   $scope.notes = NotesAPI.query({pid: $routeParams.pid, cid: $routeParams.cid});
 //   // $scope.routes = {pid: $routeParams.pid, cid: $routeParams.cid}

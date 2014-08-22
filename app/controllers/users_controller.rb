@@ -1,3 +1,4 @@
+require 'pry-byebug'
 class UsersController < ApplicationController
   respond_to :json
   # # POST /users
@@ -21,12 +22,13 @@ class UsersController < ApplicationController
   # end
 
   def index
-    user_entities = User.all
-    sanitized_user_json = []
-    user_entities.each { |u|
-      sanitized_user_json << sanitize_user_data(u.as_json)
-    }
-    respond_with sanitized_user_json
+    # Index to show contacts
+    result = RetrieveAllUserInfo.run(params)
+    if result.success?
+      respond_with result.users.map(&:to_h)
+    else
+      respond_with(result.error, status: :unprocessable_entity)
+    end
   end
 
   def create
@@ -36,20 +38,6 @@ class UsersController < ApplicationController
     else
       respond_with(result.error, status: :unprocessable_entity)
     end
-  end
-
-  private
-
-  def sanitize_user_data(user_json)
-    user_json.delete "oauth_token"
-    user_json.delete "provider"
-    user_json.delete "created_at"
-    user_json.delete "updated_at"
-    user_json.delete "oauth_expires_at"
-    user_json.delete "webhook_id"
-    user_json.delete "uid"
-
-    return user_json
   end
 
 end

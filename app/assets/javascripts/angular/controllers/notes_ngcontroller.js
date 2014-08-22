@@ -30,17 +30,17 @@ app.directive('deletenote', function(NotesAPI, $routeParams) {
 //PENDING AUTHENTICATION - pass user_id to database with params based on who is logged in
 app.controller('NotesCtrl', function($routeParams, $scope, $http, NotesAPI) {
 
-  $scope.notes = NotesAPI.query({pid: $routeParams.pid, cid: $routeParams.cid});
-  // $scope.routes = {pid: $routeParams.pid, cid: $routeParams.cid}
-console.log($scope);
-  $scope.addNote = function() {
-    $scope.note = new NotesAPI();
-    $scope.note.$save({pid: $routeParams.pid, cid: $routeParams.cid, pipeline_id: $routeParams.pid, contact_id: $routeParams.cid, notes: $scope.newNote},
-      function(data) {
-        $scope.notes.push({note: $scope.newNote, id: data.id});
-        $scope.newNote = "";
-    });
-  };
+//   $scope.notes = NotesAPI.query({pid: $routeParams.pid, cid: $routeParams.cid});
+//   // $scope.routes = {pid: $routeParams.pid, cid: $routeParams.cid}
+// console.log($scope);
+//   $scope.addNote = function() {
+//     $scope.note = new NotesAPI();
+//     $scope.note.$save({pid: $routeParams.pid, cid: $routeParams.cid, pipeline_id: $routeParams.pid, contact_id: $routeParams.cid, notes: $scope.newNote},
+//       function(data) {
+//         $scope.notes.push({note: $scope.newNote, id: data.id});
+//         $scope.newNote = "";
+//     });
+//   };
 });
 
 

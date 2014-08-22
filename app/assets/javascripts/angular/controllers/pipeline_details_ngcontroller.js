@@ -100,6 +100,7 @@ app.controller('PipelineDetailsCtrl',
     $scope.fields = PipelineService.fields(pipelineId);
     $scope.stages = PipelineService.stages(pipelineId);
     $scope.basicFields = PipelineService.basicFields;
+    $scope.notes = PipelineService.notes;
 
     $scope.$on('pipeline:updated', function(event, data) {
       $scope.pipeline = data;

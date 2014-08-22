@@ -19,7 +19,7 @@ class UpdateContactBox < TransactionScript
     UpdateContactStage.run(params)
 
     # Loop through box_field array to update field value by box_field id
-    if !params[:field_values].nil?
+    if params[:field_values]
       field_vals = params[:field_values]
       field_vals.each do |field_val|
         UpdateContactFieldValues.run({field_values: field_val})
@@ -27,7 +27,7 @@ class UpdateContactBox < TransactionScript
     end
 
     # Loop through notes array to update note by note id
-    if !params[:notes].nil?
+    if params[:notes]
       notes = params[:notes]
       notes.each do |note|
         UpdateContactNote.run({note: note})

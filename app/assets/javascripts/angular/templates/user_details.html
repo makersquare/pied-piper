@@ -22,7 +22,7 @@
           {{user.email}}
         </td>
         <td>
-          {{user.pipelines}}
+          <span ng-repeat="pipeline in user.pipelines" class="success radius label" id="pipeline-label">{{pipeline.name}}</span>
         </td>
       </tr>
     </tbody>

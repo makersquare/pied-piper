@@ -108,8 +108,7 @@ class PipelinesController < ApplicationController
   #This blocks access to admin only pipeline methods in the CTRL
   def is_pipeline_admin?
     pipeline_user = PipelineUser.find_by(user_id: current_user.id, pipeline_id: params[:pipeline_id])
-    binding.pry
-    redirect_back if (pipeline_user.admin || false)
+    pipeline_user.admin || false
   end
 
   def pipeline_params

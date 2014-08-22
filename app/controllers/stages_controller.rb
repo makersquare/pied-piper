@@ -24,6 +24,7 @@ respond_to :json, :html
     # Destroy a pipeline in browser and database
     # Move any contacts associated with that stage to the default stage
     results = DestroyStage.run(stage_params)
+    binding.pry
     if results.success?
       respond_with results.contact_boxes
     else
@@ -34,6 +35,6 @@ respond_to :json, :html
   private
 
   def stage_params
-    params.permit(:id, :name, :description, :pipeline_id)
+    params.permit(:id, :name, :description, :pipeline_id, :format)
   end
 end

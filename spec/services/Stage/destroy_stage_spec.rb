@@ -8,9 +8,9 @@ describe DestroyStage do
   let!(:box2) {Box.create(contact_id: contact2.id, stage_id: stage2.id, pipeline_id: pipeline.id)}
   let(:pipeline) {Pipeline.create(name: "pipeline name")}
   let(:pipeline2) {Pipeline.create(name: "pipeline2 name")}
-  let!(:stage) {Stage.create(name: "default", description: "a stage", pipeline_id: pipeline.id, pipeline_location: 0, standard_payment_plan_id: 1, payment: true)}
-  let!(:stage2) {Stage.create(name: "destroy me", description: "another stage", pipeline_id: pipeline.id, pipeline_location: 1, standard_payment_plan_id: 1, payment: true)}
-  let(:stage3) {Stage.create(name: "stage without default", description: "a stage", pipeline_id: pipeline2.id, pipeline_location: 1, standard_payment_plan_id: 1, payment: true)}
+  let!(:stage) {Stage.create(name: "default", description: "a stage", pipeline_id: pipeline.id, pipeline_location: 1, standard_payment_plan_id: 1, payment: true)}
+  let!(:stage2) {Stage.create(name: "destroy me", description: "another stage", pipeline_id: pipeline.id, pipeline_location: 2, standard_payment_plan_id: 1, payment: true)}
+  let(:stage3) {Stage.create(name: "stage without default", description: "a stage", pipeline_id: pipeline2.id, pipeline_location: 2, standard_payment_plan_id: 1, payment: true)}
 
   it "fails if the stage_id is nil" do
     result = DestroyStage.run({})

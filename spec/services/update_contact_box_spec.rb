@@ -5,56 +5,89 @@ describe UpdateContactBox do
   it_behaves_like('TransactionScripts')
   let(:script) {UpdateContactBox.new}
 
-  describe 'Validation' do
+    let (:pipeline) {Pipeline.create(name: "pipeline test")}
+    let (:contact) {Contact.create(name: "new contact", email: "a@b.c", phonenumber: "1234567890")}
+    let (:field1) {Field.create(pipeline_id: pipeline.id, field_type: "text", field_name: "status")}
+    let (:field2) {Field.create(pipeline_id: pipeline.id, field_type: "text", field_name: "cohort")}
+    let (:stage1) {Stage.create(name: "first stage", description: "here is a stage", pipeline_id: pipeline.id)}
+    let (:stage2) {Stage.create(name: "second stage", description: "another stage", pipeline_id: pipeline.id)}
+    let! (:box) {Box.create(contact_id: contact.id, pipeline_id: pipeline.id, stage_id: stage1.id, payment_plan_id: 1)}
+    let (:boxfield1) {BoxField.create(field_id: field1.id, box_id: box.id, value: "application accepted")}
+    let (:boxfield2) {BoxField.create(field_id: field2.id, box_id: box.id, value: "SF2")}
+    let (:note1) {Note.create(user_id: 1, box_id: box.id, notes: "first note")}
+    let (:note2) {Note.create(user_id: 2, box_id: box.id, notes: "second note")}
 
-    xit "requires a valid session" do
+    it "fails if no contact_id is passed" do
+        result = UpdateContactBox.run({pipeline_id: pipeline.id})
+        expect(result.success?).to eq(false)
+        expect(result.error).to eq(:no_contact_id_passed)
     end
-  end
 
-  it "updates the box associated with a contact in a given pipeline" do
-    p1 = CreatePipelineScript.run({:name=>'pipeline1'})
-    c1 = CreateContact.run({:name=>'contact1', :email=>'me@email.com', :phonenumber=>'1234567'})
-    b1 = CreateBox.run({:contact_id=>c1.contact.id, :pipeline_id=>p1.data.id})
-    f1 = Field.create({:pipeline_id=>p1.data.id, :field_type=>'text', :field_name=>'status'})
-    f2 = Field.create({:pipeline_id=>p1.data.id, :field_type=>'text', :field_name=>'cohort'})
-    bf1 = BoxField.create({:field_id=>f1.id, :box_id=>b1.box.id, :value=>'application complete'})
-    bf2 = BoxField.create({:field_id=>f2.id, :box_id=>b1.box.id, :value=>'SF2'})
-    n1 = Note.create({:user_id=>1, :box_id=>b1.box.id, :notes=>'here you go'})
-    n2 = Note.create({:user_id=>1, :box_id=>b1.box.id, :notes=>'second note'})
+    it "fails if no pipeline_id is passed" do
+        result = UpdateContactBox.run({contact_id: contact.id})
+        expect(result.success?).to eq(false)
+        expect(result.error).to eq(:no_pipeline_id_passed)
+    end
 
-    result = UpdateContactBox.run({:id=>b1.box.id,
-        :pipeline_id=>p1.data.id,
-        :contact_id=>c1.contact.id,
-        :field_id=>f1.id,
-        :contact=>{:id=>c1.contact.id, :name=>'updated name'},
-        :field_values=>[{:id=>bf1.id, :value=>'interview scheduled'}],
-        :notes=>[{:id=>n1.id, :notes=>'updated notes'}, {:id=>n2.id, :notes=>'second updated note'}]})
+    it "fails if no box is identified" do
+        result = UpdateContactBox.run({contact_id: 1000, pipeline_id: pipeline.id})
+        expect(result.success?).to eq(false)
+        expect(result.error).to eq(:no_box_found_for_contact_id_and_pipeline_id)
+    end
 
-    box = result.box
-    field = result.fields
-    box_field = result.field_values
-    contact = result.contact
-    notes = result.notes
-
+  it "updates a contact's information" do
+    result = UpdateContactBox.run({contact_id: contact.id,
+        pipeline_id: pipeline.id,
+        contact: {city: "SF", phonenumber: "0987654321"}
+        })
+    retrieved_contact = Contact.find(contact.id)
     expect(result.success?).to eq(true)
-    expect(box.id).to eq(b1.box.id)
-    expect(box.pipeline_id).to eq(p1.data.id)
-    expect(box.contact_id).to eq(c1.contact.id)
-    expect(contact.name).to eq('updated name')
-    expect(contact.email).to eq(c1.contact.email)
-    expect(contact.phonenumber).to eq(c1.contact.phonenumber)
-    # expect(field.first.id).to eq(f1.id)
-    # expect(field.first.field_name).to eq(f1.field_name)
-    # expect(field.first.field_type).to eq(f1.field_type)
-    # expect(field.last.id).to eq(f2.id)
-    # expect(field.last.field_name).to eq(f2.field_name)
-    # expect(field.last.field_type).to eq(f2.field_type)
-    expect(box_field.first.id).to eq(bf1.id)
-    expect(box_field.first.value).to eq('interview scheduled')
-    expect(box_field.last.id).to eq(bf2.id)
-    expect(box_field.last.value).to eq(bf2.value)
-    expect(notes.first.notes).to eq('updated notes')
-    expect(notes.last.notes).to eq('second updated note')
+    expect(retrieved_contact.city).to eq("SF")
+    expect(retrieved_contact.phonenumber).to eq("0987654321")
   end
 
+  it "updates field values" do
+    result = UpdateContactBox.run({contact_id: contact.id,
+        pipeline_id: pipeline.id,
+        field_values: [{id: boxfield1.id, field_id: field1.id, box_id: box.id, value: "pending"}, {id: boxfield2.id, field_id: field2.id, box_id: box.id, value: "update"}]
+        })
+    expect(result.success?).to eq(true)
+    expect(result.field_values.first.value).to eq("pending")
+    expect(result.field_values.last.value).to eq("update")
+    retrieved_field_value1 = BoxField.find(result.field_values.first.id)
+    retrieved_field_value2 = BoxField.find(result.field_values.last.id)
+    expect(retrieved_field_value1.value).to eq("pending")
+    expect(retrieved_field_value2.value).to eq("update")
+  end
+
+  it "updates stage information" do
+    result = UpdateContactBox.run({
+        contact_id: contact.id,
+        pipeline_id: pipeline.id,
+        stage_id: stage2.id
+        })
+    expect(result.success?).to eq(true)
+    expect(result.box.stage_id).to eq(stage2.id)
+    retrieved_stage = Stage.find(result.box.stage_id)
+    retrieved_history = BoxHistory.find_by(stage_id: result.box.stage_id)
+    expect(retrieved_stage.id).to eq(stage2.id)
+    expect(retrieved_stage.name).to eq(stage2.name)
+    expect(retrieved_stage.description).to eq(stage2.description)
+    expect(retrieved_stage.pipeline_id).to eq(stage2.pipeline_id)
+    expect(retrieved_history.stage_id).to eq(stage2.id)
+    expect(retrieved_history.stage_from).to eq(stage1.id)
+  end
+
+  it "updates notes" do
+    result = UpdateContactBox.run({contact_id: contact.id,
+        pipeline_id: pipeline.id,
+        notes: [{id: note1.id, notes: "updated note"}, {id: note2.id, notes: "second update"}]})
+    expect(result.success?).to eq(true)
+    expect(result.notes.first.notes).to eq("updated note")
+    expect(result.notes.last.notes).to eq("second update")
+    retrieved_note1 = Note.find(result.notes.first.id)
+    retrieved_note2 = Note.find(result.notes.last.id)
+    expect(retrieved_note1.notes).to eq("updated note")
+    expect(retrieved_note2.notes).to eq("second update")
+  end
 end

@@ -1,29 +1,60 @@
-<div class="row left">
-  <div class="small-8 columns left">
+<div class="columns large-9">
   <h2>Users</h2>
-    <!-- <div  ng-repeat="stage in stages"> -->
-<!--       <div>
-        <h3>{{stage.name}}</h3>
-        <p>{{stage.description}}</p>
-      </div> -->
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="user in users">
-            <td>
-              {{user.name}}
-            </td>
-            <td>
-              {{user.email}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- <div  ng-repeat="stage in stages"> -->
+<!--     <div>
+      <h3>{{stage.name}}</h3>
+      <p>{{stage.description}}</p>
+    </div> -->
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in users">
+        <td>
+          {{user.name}}
+        </td>
+        <td>
+          {{user.email}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="columns large-3">
+  <!-- Pipeline List row -->
+  <div class="row">
+    <div class="text-center">
+      <h3>Create User</h3>
+    </div>
+    <ul class="side-nav">
+      <!-- Side navigation -->
+      <!-- <form ng-submit="createNewUser()"> -->
+      <form ng-submit="createNewUser()">
+        <li>
+          <label>Name<input type="text" name="name" ng-model="newUser.name" /></label>
+          <label>Email<input type="text" name="email" ng-model="newUser.email" /></label>
+          <input type="submit" class="button" id="submit" value="Submit"/>
+          <!-- <div class="row collapse">
+            <div class="small-10 columns">
+              <input ng-model="pipelineName"
+                     type="text"
+                     class="form-control"
+                     id="newPipeInput"
+                     placeholder="Name New Pipeline">
+            </div>
+            <div class="small-2 columns">
+              <a class="button postfix radius" ng-click="createNewPipeline()">+</a>
+            </div>
+          </div> -->
+        </li>
+      <form>
+      <!-- End Side Navigation -->
+    </ul>
   </div>
 </div>
 

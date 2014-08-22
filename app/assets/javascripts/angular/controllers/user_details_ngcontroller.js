@@ -4,9 +4,14 @@ app.controller('UserDetailsCtrl',
   function($scope, UsersRsc) {
 
     $scope.users = UsersRsc.query();
-    console.log($scope.users)
+    $scope.newUser = {};
 
-    // $scope.createNewUser = UsersRsc.save();
-
+    $scope.createNewUser = function(){
+      UsersRsc.save($scope.newUser, function(user){
+        $scope.users.unshift(user);
+        $scope.newUser = {};
+      })
+      console.log($scope.newUser)
+    }
   }
 ]);

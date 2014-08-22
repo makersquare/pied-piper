@@ -16,7 +16,6 @@
 //= require foundation
 //= require angular
 //= require angular-resource
-//= require_tree ./dynatables
 //= require modernizr
 //= require ng-rails-csrf
 //= require angular-animate

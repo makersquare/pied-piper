@@ -29,12 +29,6 @@ describe UpdateContactBox do
         expect(result.error).to eq(:no_pipeline_id_passed)
     end
 
-    it "fails if no box is identified" do
-        result = UpdateContactBox.run({contact_id: 1000, pipeline_id: pipeline.id})
-        expect(result.success?).to eq(false)
-        expect(result.error).to eq(:no_box_found_for_contact_id_and_pipeline_id)
-    end
-
   it "updates a contact's information" do
     result = UpdateContactBox.run({contact_id: contact.id,
         pipeline_id: pipeline.id,

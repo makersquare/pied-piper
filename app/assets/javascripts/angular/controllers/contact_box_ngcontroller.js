@@ -14,35 +14,35 @@ app.controller('ContactBoxCtrl',
        get: {method: 'GET'},
        update: { method: 'PUT', params: $scope.cb}
         }
-      );
+    );
 
     // Send 'get' request
-    ContactBoxRsc.get(
-      {cid: $routeParams.cid,
-        pid: $routeParams.pid
-      })
-      .$promise.then(function(cb){
-        $scope.cb = cb;
-        fields_info = [];
-        angular.forEach(cb.fields, function(field){
-          angular.forEach(cb.field_values,function(value){
-            if(field.id === value.field_id){
-              fields_info.push({field: field,
-                field_value: value});
-            };
-          });
-        });
-        $scope.fields_info =fields_info;
-        $scope.cb.contact.contact_id = $routeParams.cid;
-        $scope.cb.cid = $routeParams.cid;
-        $scope.cb.pid = $routeParams.pid;
-        $scope.cb.contact_id = $routeParams.cid;
-        console.log($scope.cb)
+    // ContactBoxRsc.get(
+    //   {cid: $routeParams.cid,
+    //     pid: $routeParams.pid
+    //   })
+    //   .$promise.then(function(cb){
+    //     $scope.cb = cb;
+    //     fields_info = [];
+    //     angular.forEach(cb.fields, function(field){
+    //       angular.forEach(cb.field_values,function(value){
+    //         if(field.id === value.field_id){
+    //           fields_info.push({field: field,
+    //             field_value: value});
+    //         };
+    //       });
+    //     });
+    //     $scope.fields_info =fields_info;
+    //     $scope.cb.contact.contact_id = $routeParams.cid;
+    //     $scope.cb.cid = $routeParams.cid;
+    //     $scope.cb.pid = $routeParams.pid;
+    //     $scope.cb.contact_id = $routeParams.cid;
+    //     console.log($scope.cb)
 
-        // $scope.$watch('newNote', function(v){
-        //   $scope.updateEntry();
-        //   });
-      });
+    //     // $scope.$watch('newNote', function(v){
+    //     //   $scope.updateEntry();
+    //     //   });
+    //   });
 
   $scope.keyup = function(event, cb) {
     if (event.keyCode == 13) {

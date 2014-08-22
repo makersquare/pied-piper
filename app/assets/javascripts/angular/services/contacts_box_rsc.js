@@ -5,3 +5,4 @@ app.factory("ContactsBoxRsc", ['$resource', function ($resource) {
         { update: { method: 'PUT'} }
     );
 }]);
+

@@ -32,6 +32,7 @@ app.controller('ContactDetailsCtrl',
     $scope.addNewContact = function(){
       ContactsRsc.save($scope.newContact, function(contact) {
         $scope.contacts.unshift(contact);
+        setUnaddedPipelinesForContacts($scope.contacts, $scope.pipelines);
         $scope.newContact = {};
       });
     };

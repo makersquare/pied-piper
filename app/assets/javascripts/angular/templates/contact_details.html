@@ -12,21 +12,35 @@
 
 <div class="columns large-9">
   <h2>Contacts</h2>
-  <table>
+  <table datatable="ng" dt-columns="dtColumns" class="row-border hover">
     <thead>
       <tr>
         <th>Name</th>
         <th>Email</th>
         <th>City</th>
         <th>Phone Number</th>
+        <th>Pipelines</th>
+        <th>Add to Pipeline</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="contact in contacts | orderBy: 'name'">
+      <tr dt-rows="" ng-repeat="contact in contacts | orderBy: 'name'">
         <td>{{ contact.name }}</td>
         <td>{{ contact.email }}</td>
         <td>{{ contact.city }}</td>
         <td>{{ contact.phonenumber }}</td>
+        <td>
+          <span ng-repeat="pipeline in contact.pipelines" ng-click="removeContactFromPipeline(pipeline, contact)" class="success radius label" id="pipeline-label"><i class="fi-x"></i> {{pipeline.name}}</span>
+        </td>
+        <td>
+          <form>
+              <select class="button dropdown detail-button tiny radius round ng-pristine ng-valid"
+                ng-model="selectedPipeline"
+                ng-options="pipeline.name for pipeline in contact.unaddedPipelines"
+                ng-change="addContactToPipeline(selectedPipeline, contact)">
+              </select>
+          </form>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -54,24 +68,4 @@
   </div>
 </div>
 
-<div class="row">
-  <div ng-repeat="contact in contacts" class="panel columns">
-    <h3> {{ contact.name }} </h3>
-    <p> {{ contact.email }} <p>
-    <p> {{ contact.city }} </p>
-    <p> {{ contact.phonenumber }} </p>
-    <h3> Pipelines </h3>
-    <div class="contact pipelines" ng-repeat="pipeline in contact.pipelines">
-      <span class="success radius label"> {{pipeline.name}} </span>
-      <button ng-click="removeContactFromPipeline(pipeline, contact)">Remove</button>
-    </div>
-    <form ng-submit="addContactToPipeline(selectedPipeline, contact)">
-      <select
-        ng-model="selectedPipeline"
-        ng-options="pipeline.name for pipeline in contact.unaddedPipelines">
-      </select>
-      <input type="submit" class="button" value="Add To Pipeline" />
-    </form>
-  </div>
-</div> -->
 

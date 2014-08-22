@@ -1,3 +1,5 @@
+# Master TXS for updating information associated with a contact
+# box.  Calls helper TXS to:
 # 1. Update contact's primary information
 # 2. Update contact's box field values
 # 3. Update contact's stage
@@ -11,12 +13,6 @@ class UpdateContactBox < TransactionScript
 
     if params[:pipeline_id].nil?
       return failure(:no_pipeline_id_passed)
-    end
-
-    b = Box.where(contact_id: params[:contact_id], pipeline_id: params[:pipeline_id]).first
-
-    if b.nil?
-      return failure(:no_box_found_for_contact_id_and_pipeline_id)
     end
 
     UpdateContactInfo.run(params)

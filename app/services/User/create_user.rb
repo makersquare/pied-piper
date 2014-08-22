@@ -23,7 +23,7 @@ class CreateUser < TransactionScript
     user = result
     name = user.name.split(' ')
     account = ContextioHelper.create_new_account(email: user.email, first_name: name[0], last_name: name[1..-1].join(' '))
-    ContextioHelper.create_new_source(account: account, email: user.email, server: 'imap.gmail.com', username: user.email, use_ssl: 1, port: 993, type:'IMAP', options:{provider_refresh_token: user.oath_token})
+    ContextioHelper.create_new_source(account: account, email: user.email, server: 'imap.gmail.com', username: user.email, use_ssl: 1, port: 993, type:'IMAP', options:{provider_refresh_token: user.oauth_token})
 
 
   #this finds all the contacts by selecting the from section of the emails

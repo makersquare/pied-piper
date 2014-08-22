@@ -1,4 +1,3 @@
-
 app.controller('UserDetailsCtrl',
   ['$scope', 'UsersRsc',
   function($scope, UsersRsc) {
@@ -7,11 +6,9 @@ app.controller('UserDetailsCtrl',
     $scope.newUser = {};
 
     $scope.createNewUser = function(){
-      UsersRsc.save($scope.newUser, function(user){
-        $scope.users.unshift(user);
-        $scope.newUser = {};
-      })
-      console.log($scope.newUser)
+      UsersRsc.save($scope.newUser);
+      $scope.users.push($scope.newUser);
+      $scope.newUser = {};
     }
   }
 ]);

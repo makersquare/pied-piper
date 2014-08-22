@@ -41,7 +41,7 @@ app.controller('NotesCtrl', ['$routeParams', '$scope', '$http', 'NotesAPI', func
 //         $scope.newNote = "";
 //     });
 //   };
-});
+}]);
 
 
 // app.controller('ContactBoxCtrl', ['$scope', '$resource', '$http', '$location', '$routeParams',

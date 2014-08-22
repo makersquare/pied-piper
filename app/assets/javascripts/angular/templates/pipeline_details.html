@@ -1,5 +1,4 @@
 <!-- BEGIN- Show Pipeline Options and Name/Title -->
-<div ng-controller='ToggleDoubleCtrl'>
 <div class="row left">
   <div id="pipeDataDiv" class="large-8 columns ">
     <!-- Displays title of the pipeline -->
@@ -53,8 +52,8 @@
             </td>
             <td>
               <a
-                ng-click='contactView(true); changeContact(event, contact.id);'
-                class="button detail-button tiny radius round">Details</a> {{show}}
+                ng-click='showContactInfo();changeContact(event, contact.id)'
+                class="button detail-button tiny radius round">Details</a>
             </td>
             <td>
               <form>
@@ -86,27 +85,27 @@
   </div>
 </div>
 
-<div class = 'over-panel small-9 columns'>
+<div class='over-panel small-9 columns'>
 
-    <div class = 'slidebox right large-7 medium-6 columns slide-right' ng-show="show2">
-      <div ng-controller = 'EmailShowCtrl'>
-        <div ng-controller="ToggleCtrl" class = 'columns'>
+    <div class='slidebox right large-7 medium-6 columns slide-right' ng-show="show2">
+      <div ng-controller='EmailShowCtrl'>
+        <div ng-controller="ToggleCtrl" class='columns'>
           <dl class="sub-nav ">
             <dt>
               <a class="dropdown" ng-click="show_email=!show_email">email</a>
             </dt>
-            <dd ng-repeat="(label, url) in linkItems" ng-show="show_email" class = 'slide-left' >
+            <dd ng-repeat="(label, url) in linkItems" ng-show="show_email" class='slide-left' >
               <div id="dropdown1" >
                 <a href='#' target="_blank">{{label}}</a>
               </div>
             </dd>
           </dl>
-          <div class = 'email_stuff slide-left' ng-controller="AccordionDemoCtrl" ng-show="show_email">
+          <div class='email_stuff slide-left' ng-controller="AccordionDemoCtrl" ng-show="show_email">
             <accordion close-others="oneAtATime">
-              <accordion-group heading="{{message.subject}}" ng-repeat = 'message in messages.result'>
+              <accordion-group heading="{{message.subject}}" ng-repeat='message in messages.result'>
                 <div class='row'>
-                      <p class = 'shrink left'>{{message.from.name}}</p>
-                      <p class = 'shrink right'>{{message.subject}}</p>
+                      <p class='shrink left'>{{message.from.name}}</p>
+                      <p class='shrink right'>{{message.subject}}</p>
                       <br>
                 </div>
               </accordion-group>
@@ -115,7 +114,7 @@
         </div>
       </div>
 
-      <div ng-controller="ToggleCtrl" class = 'columns'>
+      <div ng-controller="ToggleCtrl" class='columns'>
         <div ng-controller='NotesCtrl'>
               <dl class="sub-nav">
                 <dt><a class="dropdown" ng-click="show_email=!show_email">notes</a></dt>
@@ -125,7 +124,7 @@
                   </div>
                 </dd>
               </dl>
-          <div ng-show="show_email" class = 'columns'>
+          <div ng-show="show_email" class='columns'>
               <div class='notes'>
                 <div class="note left" ng-repeat="note in notes">
                   <div class='columns'><a deletenote data-id="{{note.notes.id}}" data-index="{{$index}}" href="#" class="button tiny alert">Delete</a> {{note.notes}}</div>
@@ -133,7 +132,7 @@
               </div>
               <div ng-controller="ToggleCtrl">
                 <div  ng-repeat="note in cb.notes">
-                  <div class ='small-6 columns button tiny radius' ng-click="show_email=!show_email" >{{note.notes}}</div>
+                  <div class='small-6 columns button tiny radius' ng-click="show_email=!show_email" >{{note.notes}}</div>
                   <input type="text" name="note" ng-show="show_email" ng-model="note.notes"/>
                 </div>
               </div>
@@ -160,45 +159,45 @@
       </div>
     </div>
 
-    <div class = 'slidebox right large-4 medium-5 small-12 slide-right' ng-show="show">
+    <div class='slidebox right large-4 medium-5 small-12 slide-right' ng-show="showContact">
 
       <ul class="pricing-table" >
-        <li ng-dblclick = "cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'price'>
+        <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class='price'>
           {{cb.contact.name}}
         </li>
 
-        <li ng-show="cb.showEdit" class = 'price hidepadding'>
-          <input class = 'contact-details contact-name' type="text" name="name" placeholder= 'Name'
+        <li ng-show="cb.showEdit" class='price hidepadding'>
+          <input class='contact-details contact-name' type="text" name="name" placeholder='Name'
               ng-model="cb.contact.name" ng-keyup="keyup($event, cb)"/>
         </li>
 
-        <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'bullet-item'>
+        <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class='bullet-item'>
           <i class="fi-map"></i>  {{cb.contact.city}}
         </li>
 
-        <li ng-show="cb.showEdit" class = 'bullet-item hidepadding'>
-          <input class = 'contact-details'contact- type="text" name="city" placeholder="City"
+        <li ng-show="cb.showEdit" class='bullet-item hidepadding'>
+          <input class='contact-details'contact- type="text" name="city" placeholder="City"
             ng-model="cb.contact.city"  ng-keyup="keyup($event, cb)"/>
         </li>
 
-        <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'bullet-item'>
+        <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class='bullet-item'>
           <i class="fi-telephone"></i>  <a href="tel:"cb.contact.phonenumber>{{cb.contact.phonenumber}}</a>
         </li>
 
-        <li ng-show="cb.showEdit" class = 'bullet-item hidepadding'>
-          <input class = 'contact-details'contact- type="text" name="phonenumber" placeholder="Phone Number"
+        <li ng-show="cb.showEdit" class='bullet-item hidepadding'>
+          <input class='contact-details'contact- type="text" name="phonenumber" placeholder="Phone Number"
               ng-model="cb.contact.phonenumber"  ng-keyup="keyup($event, cb)"/>
         </li>
 
-        <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class = 'bullet-item'>
-          <i class="fi-mail"></i>  <a href = "mailto:"cb.contact.email>{{cb.contact.email}}</a>
+        <li ng-dblclick="cb.showEdit=!cb.showEdit;" ng-hide="cb.showEdit" class='bullet-item'>
+          <i class="fi-mail"></i>  <a href="mailto:"cb.contact.email>{{cb.contact.email}}</a>
         </li>
 
-        <li ng-show="cb.showEdit" class = 'bullet-item hidepadding'>
-          <input class = 'contact-details'contact- type="text" name="email" placeholder="Email"
+        <li ng-show="cb.showEdit" class='bullet-item hidepadding'>
+          <input class='contact-details'contact- type="text" name="email" placeholder="Email"
             ng-model="cb.contact.email" ng-keyup="keyup($event, cb)"/>
         </li>
-        <li class = 'bullet-item' ng-repeat="field in fields_info" ng-model="field_value.value">
+        <li class='bullet-item' ng-repeat="field in fields_info" ng-model="field_value.value">
               <strong name="field">
                   {{field.field.field_name | titleCase}}:
               </strong>
@@ -237,15 +236,15 @@
       </ul>
       <!-- <div class='large-centered columns'>
         <ul class="button-group even-2 radius">
-          <li><a href="#" class = 'button small'>{{cb.pipeline.name || 'Pipeline'}}</a></li>
-          <li><a href="#" class = 'button green small'>{{cb.box.stage || 'Stage'}}</a></li>
+          <li><a href="#" class='button small'>{{cb.pipeline.name || 'Pipeline'}}</a></li>
+          <li><a href="#" class='button green small'>{{cb.box.stage || 'Stage'}}</a></li>
         </ul>
       </div> -->
     </div>
-    <div class = 'right'>
-      <div class = 'left button secondary tiny fade' ng-hide="show" ng-click="show=true"><i class="fi-arrow-left"></i></div>
-      <div class = 'left button secondary tiny' ng-show="!show2 && show" ng-click="show2=true"><i class="fi-arrow-left"></i></div>
-      <div class = 'left button secondary tiny' ng-show="show" ng-click="show=false; show2=false"><i class="fi-arrow-right"></i></div>
+    <div class='right'>
+      <div class='left button secondary tiny fade' ng-hide="showContact" ng-click="showContactInfo()"><i class="fi-arrow-left"></i></div>
+      <div class='left button secondary tiny' ng-show="!show2 && showContact" ng-click="show2=true"><i class="fi-arrow-left"></i></div>
+      <div class='left button secondary tiny' ng-show="showContact" ng-click="hideContactInfo(); show2=false"><i class="fi-arrow-right"></i></div>
     </div>
   </div>
 </div>

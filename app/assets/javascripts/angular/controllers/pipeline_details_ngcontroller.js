@@ -11,6 +11,7 @@ app.controller('PipelineDetailsCtrl',
      * broadcasts
      */
   // $scope.contact_id_jered = null
+  $scope.showContact =false
   $scope.changeContact = function(event, contact_id){
    BoxService.ContactsBoxRsc.get({pipeline_id: $routeParams.id, id: contact_id})
    .$promise.then(function(cb){
@@ -35,6 +36,20 @@ app.controller('PipelineDetailsCtrl',
         //   });
       });
       }
+
+      $scope.showContactInfo = function(){
+        if ($scope.showContact==true){
+          $scope.showContact = !$scope.showContact
+          $scope.showContact = !$scope.showContact
+        }
+        else{
+          $scope.showContact = !$scope.showContact
+        };
+      };
+      $scope.hideContactInfo = function(){
+        $scope.showContact = false;
+      }
+
       $scope.keyup = function(event, cb) {
         if (event.keyCode == 13) {
           cb.showEdit = !cb.showEdit;

@@ -12,6 +12,30 @@
 </div>
 
 <div class="row">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>City</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="contact in contacts | orderBy: 'name'">
+        <td>{{ contact.id }}</td>
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.email }}</td>
+        <td>{{ contact.city }}</td>
+        <td>{{ contact.phonenumber }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
   <ul>
     <li class="flex-row flex-header">
       <div class="flex-row-item header-item">Name</div>

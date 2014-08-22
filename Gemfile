@@ -79,5 +79,7 @@ gem 'rails_12factor', group: :production
 gem 'redis'
 gem 'foundation-icons-sass-rails'
 gem 'resque', :require => "resque/server"
+gem 'unicorn'
+gem 'rack-timeout'
 
 ruby '2.0.0'

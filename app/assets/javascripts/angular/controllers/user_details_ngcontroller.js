@@ -9,6 +9,6 @@ app.controller('UserDetailsCtrl',
       UsersRsc.save($scope.newUser);
       $scope.users.push($scope.newUser);
       $scope.newUser = {};
-    }
+    };
   }
 ]);

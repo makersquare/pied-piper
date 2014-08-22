@@ -12,7 +12,7 @@
 
 <div class="columns large-9">
   <h2>Contacts</h2>
-  <table>
+  <table datatable="ng" dt-columns="dtColumns" class="row-border hover">
     <thead>
       <tr>
         <th>Name</th>
@@ -24,7 +24,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="contact in contacts | orderBy: 'name'">
+      <tr dt-rows="" ng-repeat="contact in contacts | orderBy: 'name'">
         <td>{{ contact.name }}</td>
         <td>{{ contact.email }}</td>
         <td>{{ contact.city }}</td>

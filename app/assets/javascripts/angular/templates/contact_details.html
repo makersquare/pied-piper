@@ -1,12 +1,39 @@
 <h1>All Contacts</h1>
-<button ng-hide="buttonClicked" ng-click="showContactForm()">Add new contact</button>
-<form ng-show="buttonClicked" ng-submit="addNewContact()">
-  <label>Name<input type="text" name="name" ng-model="newContact.name" /></label>
-  <label>Email<input type="text" name="email" ng-model="newContact.email" /></label>
-  <label>Phone<input type="text" name="phonenumber" ng-model="newContact.phonenumber" /></label>
-  <input type="submit" class="button" id="submit" value="Add Contact"/>
-  <div ng-click="hideContactForm()" class="button">Hide Contact Form</div>
-</form>
+
+<div class="row">
+  <button ng-hide="buttonClicked" ng-click="showContactForm()">Add new contact</button>
+  <form ng-show="buttonClicked" ng-submit="addNewContact()">
+    <label>Name<input type="text" name="name" ng-model="newContact.name" /></label>
+    <label>Email<input type="text" name="email" ng-model="newContact.email" /></label>
+    <label>Phone<input type="text" name="phonenumber" ng-model="newContact.phonenumber" /></label>
+    <input type="submit" class="button" id="submit" value="Add Contact"/>
+    <div ng-click="hideContactForm()" class="button">Hide Contact Form</div>
+  </form>
+</div>
+
+<div class="row">
+  <ul>
+    <li class="flex-row flex-header">
+      <div class="flex-row-item header-item">Name</div>
+      <div class="flex-row-item header-item">Email</div>
+      <div class="flex-row-item header-item">City</div>
+      <div class="flex-row-item header-item">Phone Number</div>
+      <div class="flex-row-item header-item">Pipelines</div>
+    </li>
+    <li class="flex-row" ng-repeat="contact in contacts">
+      <div class="flex-row-item">{{ contact.name }}</div>
+      <div class="flex-row-item">{{ contact.email }}</div>
+      <div class="flex-row-item">{{ contact.city }}</div>
+      <div class="flex-row-item">{{ contact.phonenumber }}</div>
+      <div class="flex-row-item">SOMETHING HERE</div>
+    </li>
+  </ul>
+
+</div>
+
+
+
+
 <div class="row">
   <div ng-repeat="contact in contacts" class="panel columns">
     <h3> {{ contact.name }} </h3>

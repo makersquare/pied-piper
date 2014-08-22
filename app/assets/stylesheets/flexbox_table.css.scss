@@ -1,0 +1,30 @@
+//
+// This is the FLEXBOX Css Section
+//
+.flex-row {
+  border: 1px solid red;
+
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+
+  &.flex-header {
+    justify-content: space-between;
+    flex-grow: 1;
+
+
+  }
+
+}
+
+.flex-row-item {
+  border: 1px solid green;
+  // flex-grow: 1;
+   // align-self: center;
+
+  &.header-item {
+    font-weight: bold;
+  }
+}

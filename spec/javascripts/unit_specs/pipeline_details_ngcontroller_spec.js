@@ -41,7 +41,7 @@ describe('PipelineDetailsCtrl', function() {
     ctrl = $controller('PipelineDetailsCtrl', {$scope: scope, $routeParams: {id:1}});
   }));
 
-  xit('should get pipelines data', function() {
+  it('should get pipelines data', function() {
 
     $httpBackend.expectGET('/pipelines/1.json');
     $httpBackend.expectGET('/pipelines/1/fields.json');
@@ -54,7 +54,7 @@ describe('PipelineDetailsCtrl', function() {
 
   });
 
-  xit('should handle api failures', function() {
+  it('should handle api failures', function() {
     $httpBackend.expectGET('/pipelines/1.json').respond(500, '');
 
     $httpBackend.flush();

@@ -1,6 +1,6 @@
 
-
 <div class="columns large-9">
+  <h2>Pipelines</h2>
   <div class="row" ng-repeat="pipeline in pipelines">
     <h3><a href="/#/pipeline/{{pipeline.id}}">{{pipeline.name}}</a></h3>
     <ul class="flex-container">
@@ -25,12 +25,12 @@
   <!-- Pipeline List row -->
   <div class="row">
     <div class="text-center">
-      <h3>Pipeline List</h3>
+      <h3>Create Pipeline</h3>
     </div>
     <ul class="side-nav">
       <!-- Side navigation -->
-      <form ng-submit="createNewPipeline()">
-        <li>
+      <!-- <form ng-submit="createNewPipeline()"> -->
+<!--         <li>
           <div class="row collapse">
             <div class="small-10 columns">
               <input ng-model="pipelineName" type="text" class="form-control" id="newPipeInput" placeholder="Name New Pipeline">
@@ -39,13 +39,19 @@
               <a class="button postfix radius" ng-click="createNewPipeline()">+</a>
             </div>
           </div>
-        </li>
-      <form>
+        </li> -->
+        <form ng-submit="createNewPipeline()">
+          <li>
+            <label>Name<input type="text" name="name" ng-model="pipelineName" /></label>
+            <input type="submit" class="button" id="submit" value="Submit"/>
+          </li>
+        <form>
+      <!-- <form> -->
       <!-- End Side Navigation -->
-      <li class="divider"></li>
-      <li ng-repeat="pipeline in pipelines">
-        <a href="/#/pipeline/{{pipeline.id}}">{{pipeline.name}}</a>
-      </li>
+      <!-- <li class="divider"></li> -->
+      <!-- <li ng-repeat="pipeline in pipelines"> -->
+        <!-- <a href="/#/pipeline/{{pipeline.id}}">{{pipeline.name}}</a> -->
+      <!-- </li> -->
     </ul>
   </div>
 

@@ -29,8 +29,8 @@
     </div>
     <ul class="side-nav">
       <!-- Side navigation -->
-      <!-- <form ng-submit="createNewPipeline()"> -->
-<!--         <li>
+      <form ng-submit="createNewPipeline()">
+        <li>
           <div class="row collapse">
             <div class="small-10 columns">
               <input ng-model="pipelineName" type="text" class="form-control" id="newPipeInput" placeholder="Name New Pipeline">
@@ -39,19 +39,13 @@
               <a class="button postfix radius" ng-click="createNewPipeline()">+</a>
             </div>
           </div>
-        </li> -->
-        <form ng-submit="createNewPipeline()">
-          <li>
-            <label>Name<input type="text" name="name" ng-model="pipelineName" /></label>
-            <input type="submit" class="button" id="submit" value="Submit"/>
-          </li>
-        <form>
-      <!-- <form> -->
+        </li>
+      <form>
       <!-- End Side Navigation -->
-      <!-- <li class="divider"></li> -->
-      <!-- <li ng-repeat="pipeline in pipelines"> -->
-        <!-- <a href="/#/pipeline/{{pipeline.id}}">{{pipeline.name}}</a> -->
-      <!-- </li> -->
+      <li class="divider"></li>
+      <li ng-repeat="pipeline in pipelines">
+        <a href="/#/pipeline/{{pipeline.id}}">{{pipeline.name}}</a>
+      </li>
     </ul>
   </div>
 

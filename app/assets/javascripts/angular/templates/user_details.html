@@ -1,7 +1,7 @@
 
 <div class="columns large-9">
   <h2>Users</h2>
-  <table>
+  <table datatable="ng" dt-columns="dtColumns" class="row-border hover">
     <thead>
       <tr>
         <th>Name</th>
@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="user in users">
+      <tr dt-rows="" ng-repeat="user in users">
         <td>
           {{user.name}}
         </td>

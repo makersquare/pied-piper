@@ -10,19 +10,18 @@ app.controller('PipelineDetailsCtrl',
      * We'll be watching the contacts through
      * broadcasts
      */
-  // $scope.contact_id_jered = null
-  $scope.showContact =false
+  $scope.showContact =false;
   $scope.changeContact = function(event, contact_id){
    BoxService.ContactsBoxRsc.get({pipeline_id: $routeParams.id, id: contact_id})
    .$promise.then(function(cb){
         $scope.cb = cb;
-        fields_info = [];
+        var fields_info = [];
         angular.forEach(cb.fields, function(field){
           angular.forEach(cb.field_values,function(value){
             if(field.id === value.field_id){
               fields_info.push({field: field,
                 field_value: value});
-            };
+            }
           });
         });
         $scope.fields_info =fields_info;
@@ -35,20 +34,20 @@ app.controller('PipelineDetailsCtrl',
         //   $scope.updateEntry();
         //   });
       });
-      }
+      };
 
       $scope.showContactInfo = function(){
         if ($scope.showContact==true){
-          $scope.showContact = !$scope.showContact
-          $scope.showContact = !$scope.showContact
+          $scope.showContact = !$scope.showContact;
+          $scope.showContact = !$scope.showContact;
         }
         else{
-          $scope.showContact = !$scope.showContact
-        };
+          $scope.showContact = !$scope.showContact;
+        }
       };
       $scope.hideContactInfo = function(){
         $scope.showContact = false;
-      }
+      };
 
       $scope.keyup = function(event, cb) {
         if (event.keyCode == 13) {
@@ -59,7 +58,7 @@ app.controller('PipelineDetailsCtrl',
 
       // Update the entry by sending the 'update' request
       $scope.updateEntry = function(){
-        entry = BoxService.ContactsBoxRsc.update(
+        BoxService.ContactsBoxRsc.update(
           $scope.cb);
       };
 
@@ -136,7 +135,7 @@ app.controller('EmailShowCtrl',['$scope', '$resource', '$http',
 
   EmailRetrieveRsc.get({id: $routeParams.cid})
   .$promise.then(function(messages){
-  $scope.messages = messages});
+  $scope.messages = messages;});
 }]);
 
 

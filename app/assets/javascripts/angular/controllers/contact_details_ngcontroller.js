@@ -27,7 +27,6 @@ app.controller('ContactDetailsCtrl',
 
     $scope.pipelines = PipelinesRsc.query();
     $scope.contacts = ContactsRsc.query();
-    console.log($scope.contacts)
     $scope.newContact = {};
 
     $scope.addNewContact = function(){

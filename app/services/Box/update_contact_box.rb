@@ -4,10 +4,6 @@
 # 4. Update contact's note
 class UpdateContactBox < TransactionScript
   def run(params)
-    # Updates a contact's box info
-    # b = Box.where(contact_id: params[:contact_id], pipeline_id: params[:pipeline_id]).first
-    # b.stage_id = params[:stage_id] || b.stage_id
-    # b.pipeline_location = params[:pipeline_location] || b.pipeline_location
 
     if params[:contact_id].nil?
       return failure(:no_contact_id_passed)
@@ -24,7 +20,6 @@ class UpdateContactBox < TransactionScript
     end
 
     UpdateContactInfo.run(params)
-    # binding.pry
     UpdateContactStage.run(params)
 
     # Loop through box_field array to update field value by box_field id

@@ -1,4 +1,4 @@
-<div ng-controller="SearchCtrl">
+<div>
   <!-- <div class="contain-to-grid sticky"> -->
     <nav class="top-bar" data-topbar>
       <ul class="title-area">
@@ -34,8 +34,8 @@
             <% end %>
           </ul>
 
-          <ul class="right">
-            <div class = 'topbarmargin'>
+          <ul class="right" >
+            <div class = 'topbarmargin' ng-controller="SearchCtrl">
               <li><input class = 'topbarcenter' ng-model="searchItem" type="text" placeholder="Type to Search" ng-change="search()"/></li>
             </div>
           </ul>

@@ -20,12 +20,12 @@ app.controller('SearchCtrl', ['$scope', '$location', 'Search',
     // It will also keep track of the page you were at before
     //   you searched
     $scope.search = function() {
-      if ($scope.searchItem == "") {
-        $location.path(Search.lastPath);
-        return;
-      } else if ($location.path() != "/search") {
+      if ($location.path() != "/search") {
         Search.lastPath = $location.path();
         $location.path("/search");
+      } else if ($scope.searchItem == "") {
+        $location.path(Search.lastPath);
+        return;
       }
 
       Search.searchItem = $scope.searchItem;

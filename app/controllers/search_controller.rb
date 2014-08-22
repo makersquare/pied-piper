@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   respond_to :json
-  
+
   def show
     results = GetSearchResults.run({query: params[:query]})
     if results.success?

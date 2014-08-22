@@ -17,3 +17,4 @@ class CreatePipelineScript < TransactionScript
     end
   end
 end
+

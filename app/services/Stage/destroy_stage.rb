@@ -13,19 +13,19 @@ class DestroyStage < TransactionScript
       return failure(:invalid_stage_id)
     end
 
-    if stage.pipeline_location == 0
+    if stage.pipeline_location == 1
       return failure(:cannot_destroy_default_stage)
     end
 
     stage_pipeline = Stage.where(id: params[:id]).first.pipeline_id
-    default = Stage.where(pipeline_id: stage_pipeline, pipeline_location: 0).first
+    default = Stage.where(pipeline_id: stage_pipeline, pipeline_location: 1).first
 
     if default.nil?
       return failure(:no_default_stage_defined)
     end
 
     contact_boxes = Box.where(stage_id: params[:id])
-    contact_boxes.update_all(stage_id: default.id, pipeline_location: 0)
+    contact_boxes.update_all(stage_id: default.id, pipeline_location: 1)
     updated = Box.where(stage_id: default.id)
 
     Stage.find(params[:id]).destroy

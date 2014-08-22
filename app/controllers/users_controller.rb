@@ -1,4 +1,3 @@
-require 'pry-byebug'
 class UsersController < ApplicationController
   respond_to :json
   # # POST /users

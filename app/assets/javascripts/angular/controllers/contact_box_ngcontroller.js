@@ -16,6 +16,7 @@ app.controller('ContactBoxCtrl',
         }
     );
 
+// this code causes a 404 error:
     // // Send 'get' request
     // ContactBoxRsc.get(
     //   {cid: $routeParams.cid,

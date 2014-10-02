@@ -1,0 +1,12 @@
+app.directive('stage', function() {
+  return {
+    restrict: 'E',
+    scope: { stage: '=',
+             basicFields: '=basicFields',
+             fields: '=fields',
+             stageContacts: '=stageContacts' },
+    templateUrl: "<%= asset_path('angular/templates/stage.html') %>",
+    controller: function($scope) {
+    }
+  }
+});

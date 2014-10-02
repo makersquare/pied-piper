@@ -6,13 +6,13 @@
     <h3><a href="/#/pipeline/{{pipeline.id}}">{{pipeline.name}}</a></h3>
     <ul class="flex-container">
       <li class="flex-item">
-        <a href="#">
+        <a href="#/pipeline/{{pipeline.id}}">
           <div class="contact-count">{{ pipeline.contact_count }}</div>
           <div class="pipeline-name">ALL ACTIVE</div>
         </a>
       </li>
       <li class="flex-item" ng-repeat="stage in pipeline.stages">
-        <a href="#">
+        <a href="#/pipeline/{{pipeline.id}}">
           <div class="contact-count">{{ stage.contact_count}}</div>
           <div class="pipeline-name">{{ stage.name | uppercase }}</div>
         </a>

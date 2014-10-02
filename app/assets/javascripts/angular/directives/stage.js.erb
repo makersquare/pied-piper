@@ -1,0 +1,27 @@
+app.directive('stage', function() {
+  return {
+    restrict: 'E',
+    scope: { stage: '=stage',
+             basicFields: '=basicFields',
+             fields: '=fields',
+             pipelineId: '=pipelineId',
+             stageContacts: '=stageContacts' },
+    templateUrl: "<%= asset_path('angular/templates/stage.html') %>",
+    controller: ['$scope', 'BoxService', function($scope, BoxService) {
+      $scope.BoxService = BoxService;
+      console.log($scope.pipelineId);
+      BoxService.setUp($scope.pipelineId);
+      $scope.stageContacts = BoxService.stageContacts;
+      $scope.contacts = $scope.stageContacts[$scope.stage.id];
+
+      $scope.$on("stageContacts:updated", function(event, data, id){
+        $scope.stageContacts = data;
+        $scope.contacts = $scope.stageContacts[$scope.stage.id];
+      });
+
+      $scope.doThis = function() {
+        console.log("hi");
+      }
+    }]
+  }
+});

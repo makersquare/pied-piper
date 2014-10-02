@@ -1,0 +1,41 @@
+<h1>This right here is a contact</h1>
+stage: {{stage}}
+<br>
+basicFields: {{basicFields}}
+<br>
+fields: {{fields}}
+<br>
+contact: {{contact}}
+
+
+<td>
+  <input type="checkbox" ng-model="contact.selected">
+</td>
+<td>
+  <a
+    ng-click='showContactInfo();changeContact(event, contact.id)'
+    class="button detail-button tiny radius round">Details</a>
+</td>
+<td>
+  <form>
+    <select
+    ng-model="contact.stage"
+    ng-options="stageOpt.name for stageOpt in stages"
+    ng-selected="contact.stage"
+    class="button dropdown detail-button tiny radius round"
+    ng-change="BoxService.changeStage(contact, contact.stage)">
+    </select>
+  </form>
+</td>
+<form id="inputForm">
+  <td ng-repeat="field in basicFields">
+  <!-- TODO: need to make a input field class here for the text fields -->
+    <input type="text" class="tableField" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="updateBoxOnEnter($event, contact)">
+    <p ng-hide="contact.showEdit" ng-dblclick="BoxService.toggleEditable(contact)">{{contact[field.field_name]}}</p>
+  </td>
+  <!-- TODO: need to make a input field class here for the text fields -->
+  <td ng-repeat="field in fields">
+    <input type="text" class="tableField" ng-model="contact[field.field_name]" ng-show="contact.showEdit" ng-keyup="updateBoxOnEnter($event, contact)">
+    <p ng-hide="contact.showEdit" ng-dblclick="BoxService.toggleEditable(contact)">{{contact[field.field_name]}}</p>
+  </td>
+</form>

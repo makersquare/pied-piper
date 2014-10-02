@@ -1,0 +1,25 @@
+<div class='green txt-center'>
+  <strong>{{stage.name}}:</strong> {{stage.description}}
+</div>
+
+<table class='full'>
+  <!-- Heading for fields in your pipeline -->
+  <thead ng-click="doThis">
+    <tr>
+      <th>
+        <input type="checkbox" ng-model="stage.selection" ng-change="BoxService.toggleStageSelection(stage)">
+      </th>
+      <th>Details</th>
+      <th>Stage</th>
+      <th ng-repeat="field in basicFields.concat(fields)">{{field.field_name | titleCase}}</th>
+    </tr>
+  </thead>
+  <tbody class='full'>
+    <tr ng-repeat="data in stageContacts[stage.id]">
+      <!-- | orderBy:'contact.contacts.name'" -->
+      <!-- Display actual data for your contact -->
+      <h1>size: {{[data]}}</h1>
+      <div stage=stage contact=contact basicFields=basicFields fields=fields></div>
+    </tr>
+  </tbody>
+</table>

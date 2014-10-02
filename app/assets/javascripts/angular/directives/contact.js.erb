@@ -1,0 +1,15 @@
+app.directive('contact', function() {
+  return {
+    restrict: 'E',
+    scope: { stage: '=stage',
+             basicFields: '=basicFields',
+             fields: '=fields',
+             contact: '=contact', },
+    templateUrl: "<%= asset_path('angular/templates/contact.html') %>",
+    controller: function($scope) {
+      $scope.watch('contact', function(newVal, oldVal){
+        $scope.contact = newVal;
+      });
+    }
+  }
+});
